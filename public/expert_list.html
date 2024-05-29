@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Expert List</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <style>
+    :root {
+      --dark_orange: #ee5007;
+      --dark_blue: #060047;
+      --blue_violet: #6a1fcb;
+      --white_smoke: #f5f6f7;
+      --deep-orrange: #ff0c0e;
+      --sky-blue: #12bcff;
+      --jomolhari: font-family: "Jomolhari", serif;
+      --adamina: font-family: "Adamina", serif;
+      --ledger: font-family: "Ledger", serif;
+      --castoro: font-family: 'Castoro', serif;
+      --lora: font-family: 'Lora', serif;
+    }
+
+    body {
+      background-color: #e3eaf0;
+    }
+
+    .expert .expert-list {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    }
+
+    .expert .expert-list .img-container {
+      background-color: #e3eaf0;
+    }
+
+    .expert .social-media-link a {
+      color: var(--sky-blue);
+    }
+
+    .expert .social-media-link a:hover {
+      color: var(--deep-orrange);
+    }
+
+    .expert .info a {
+      color: #0d293d;
+    }
+
+    .expert .message-btn {
+      background-color: var(--sky-blue);
+    }
+
+    .expert .whatsapp-btn {
+      background-color: #00d957;
+    }
+
+    .expert .profile-btn {
+      background-color: #eef4fc;
+      transition: all 0.5s;
+      display: inline-block;
+    }
+
+    .profile-btn small {
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    .profile-btn small:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    .profile-btn:hover small {
+      padding-right: 15px;
+      color: var(--deep-orrange);
+    }
+
+    .profile-btn:hover small:after {
+      opacity: 1;
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="container-fluid container-lg expert my-5">
+      <div class="row row-cols-1 g-4">
+        <div class="col">
+          <div class="card expert-list border-0">
+            <div class="row g-0">
+              <div class="col-md-4 p-2">
+                <div class="img-container rounded">
+                  <img src="./images/person1.png" class="img-fluid rounded d-block m-auto" alt="..." title="..." style="width: auto; height: 235px;">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted"><small>Real State Agent</small></h6>
+                  <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">Brittany Watkins</h5>
+
+                  <div class="social-media-link">
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-pinterest"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-telegram"></i>
+                    </a>
+                  </div>
+
+
+                  <div class="row row-cols-1 row-cols-md-2 my-3 info">
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Office: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Email: </span>
+                        <a href="mailto:" class="text-decoration-none  float-end">example@gmail.com</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Mobile: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Website: </span>
+                        <a href="#" class="text-decoration-none  float-end">https://www.example.com</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0" href="#" role="button">
+                      <i class="bi bi-envelope"></i>
+                      <small>Message</small>
+                    </a>
+
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 whatsapp-btn fw-semibold border-0" href="#" role="button">
+                      <i class="bi bi-whatsapp"></i>
+                      <small>Whatsapp</small>
+                    </a>
+
+                    <a class="btn rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0" href="./expert_profile.html" role="button">
+                      <small>View Profile</small>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card expert-list border-0">
+            <div class="row g-0">
+              <div class="col-md-4 p-2">
+                <div class="img-container rounded">
+                  <img src="./images/person2.png" class="img-fluid rounded d-block m-auto" alt="..." title="..." style="width: auto; height: 235px;">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted"><small>Real State Agent</small></h6>
+                  <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">Brittany Watkins</h5>
+
+                  <div class="social-media-link">
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-pinterest"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-telegram"></i>
+                    </a>
+                  </div>
+
+
+                  <div class="row row-cols-1 row-cols-md-2 my-3 info">
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Office: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Email: </span>
+                        <a href="mailto:" class="text-decoration-none  float-end">example@gmail.com</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Mobile: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Website: </span>
+                        <a href="#" class="text-decoration-none  float-end">https://www.example.com</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0" href="#" role="button">
+                      <i class="bi bi-envelope"></i>
+                      <small>Message</small>
+                    </a>
+
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 whatsapp-btn fw-semibold border-0" href="#" role="button">
+                      <i class="bi bi-whatsapp"></i>
+                      <small>Whatsapp</small>
+                    </a>
+
+                    <a class="btn rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0" href="./expert_profile.html" role="button">
+                      <small>View Profile</small>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col">
+          <div class="card expert-list border-0">
+            <div class="row g-0">
+              <div class="col-md-4 p-2">
+                <div class="img-container rounded">
+                  <img src="./images/person3.png" class="img-fluid rounded d-block m-auto" alt="..." title="..." style="width: auto; height: 235px;">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted"><small>Real State Agent</small></h6>
+                  <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">Brittany Watkins</h5>
+
+                  <div class="social-media-link">
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-pinterest"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-telegram"></i>
+                    </a>
+                  </div>
+
+
+                  <div class="row row-cols-1 row-cols-md-2 my-3 info">
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Office: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Email: </span>
+                        <a href="mailto:" class="text-decoration-none  float-end">example@gmail.com</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Mobile: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Website: </span>
+                        <a href="#" class="text-decoration-none  float-end">https://www.example.com</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0" href="#" role="button">
+                      <i class="bi bi-envelope"></i>
+                      <small>Message</small>
+                    </a>
+
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 whatsapp-btn fw-semibold border-0" href="#" role="button">
+                      <i class="bi bi-whatsapp"></i>
+                      <small>Whatsapp</small>
+                    </a>
+
+                    <a class="btn rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0" href="./expert_profile.html" role="button">
+                      <small>View Profile</small>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col">
+          <div class="card expert-list border-0">
+            <div class="row g-0">
+              <div class="col-md-4 p-2">
+                <div class="img-container rounded">
+                  <img src="./images/person4.png" class="img-fluid rounded d-block m-auto" alt="..." title="..." style="width: auto; height: 235px;">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted"><small>Real State Agent</small></h6>
+                  <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">Brittany Watkins</h5>
+
+                  <div class="social-media-link">
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-pinterest"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-telegram"></i>
+                    </a>
+                  </div>
+
+
+                  <div class="row row-cols-1 row-cols-md-2 my-3 info">
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Office: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Email: </span>
+                        <a href="mailto:" class="text-decoration-none  float-end">example@gmail.com</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Mobile: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Website: </span>
+                        <a href="#" class="text-decoration-none  float-end">https://www.example.com</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0" href="#" role="button">
+                      <i class="bi bi-envelope"></i>
+                      <small>Message</small>
+                    </a>
+
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 whatsapp-btn fw-semibold border-0" href="#" role="button">
+                      <i class="bi bi-whatsapp"></i>
+                      <small>Whatsapp</small>
+                    </a>
+
+                    <a class="btn rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0" href="./expert_profile.html" role="button">
+                      <small>View Profile</small>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card expert-list border-0">
+            <div class="row g-0">
+              <div class="col-md-4 p-2">
+                <div class="img-container rounded">
+                  <img src="./images/person5.png" class="img-fluid rounded d-block m-auto" alt="..." title="..." style="width: auto; height: 235px;">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted"><small>Real State Agent</small></h6>
+                  <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">Brittany Watkins</h5>
+
+                  <div class="social-media-link">
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-pinterest"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-telegram"></i>
+                    </a>
+                  </div>
+
+
+                  <div class="row row-cols-1 row-cols-md-2 my-3 info">
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Office: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Email: </span>
+                        <a href="mailto:" class="text-decoration-none  float-end">example@gmail.com</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Mobile: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Website: </span>
+                        <a href="#" class="text-decoration-none  float-end">https://www.example.com</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0" href="#" role="button">
+                      <i class="bi bi-envelope"></i>
+                      <small>Message</small>
+                    </a>
+
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 whatsapp-btn fw-semibold border-0" href="#" role="button">
+                      <i class="bi bi-whatsapp"></i>
+                      <small>Whatsapp</small>
+                    </a>
+
+                    <a class="btn rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0" href="./expert_profile.html" role="button">
+                      <small>View Profile</small>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card expert-list border-0">
+            <div class="row g-0">
+              <div class="col-md-4 p-2">
+                <div class="img-container rounded">
+                  <img src="./images/person6.png" class="img-fluid rounded d-block m-auto" alt="..." title="..." style="width: auto; height: 235px;">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted"><small>Real State Agent</small></h6>
+                  <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">Brittany Watkins</h5>
+
+                  <div class="social-media-link">
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-pinterest"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-telegram"></i>
+                    </a>
+                  </div>
+
+
+                  <div class="row row-cols-1 row-cols-md-2 my-3 info">
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Office: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Email: </span>
+                        <a href="mailto:" class="text-decoration-none  float-end">example@gmail.com</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Mobile: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Website: </span>
+                        <a href="#" class="text-decoration-none  float-end">https://www.example.com</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0" href="#" role="button">
+                      <i class="bi bi-envelope"></i>
+                      <small>Message</small>
+                    </a>
+
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 whatsapp-btn fw-semibold border-0" href="#" role="button">
+                      <i class="bi bi-whatsapp"></i>
+                      <small>Whatsapp</small>
+                    </a>
+
+                    <a class="btn rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0" href="./expert_profile.html" role="button">
+                      <small>View Profile</small>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card expert-list border-0">
+            <div class="row g-0">
+              <div class="col-md-4 p-2">
+                <div class="img-container rounded">
+                  <img src="./images/person9.png" class="img-fluid rounded d-block m-auto" alt="..." title="..." style="width: auto; height: 235px;">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h6 class="card-subtitle text-muted"><small>Real State Agent</small></h6>
+                  <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">Brittany Watkins</h5>
+
+                  <div class="social-media-link">
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-pinterest"></i>
+                    </a>
+                    <a href="http://" class="icon-link me-1 fs-5" target="_blank">
+                      <i class="bi bi-telegram"></i>
+                    </a>
+                  </div>
+
+
+                  <div class="row row-cols-1 row-cols-md-2 my-3 info">
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Office: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-top border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Email: </span>
+                        <a href="mailto:" class="text-decoration-none  float-end">example@gmail.com</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Mobile: </span>
+                        <a href="tel:+" class="text-decoration-none float-end">+880 1789 777777</a>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="border-bottom py-2 fw-semibold" style="font-size: small;">
+                        <span>Website: </span>
+                        <a href="#" class="text-decoration-none  float-end">https://www.example.com</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0" href="#" role="button">
+                      <i class="bi bi-envelope"></i>
+                      <small>Message</small>
+                    </a>
+
+                    <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 whatsapp-btn fw-semibold border-0" href="#" role="button">
+                      <i class="bi bi-whatsapp"></i>
+                      <small>Whatsapp</small>
+                    </a>
+
+                    <a class="btn rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0" href="./expert_profile.html" role="button">
+                      <small>View Profile</small>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+
+</html>
