@@ -38,11 +38,10 @@
       21 => 'Illuminate\\View\\ViewServiceProvider',
       22 => 'Spatie\\Permission\\PermissionServiceProvider',
       23 => 'Jenssegers\\Agent\\AgentServiceProvider',
-      24 => 'Intervention\\Image\\ImageServiceProvider',
-      25 => 'App\\Providers\\AppServiceProvider',
-      26 => 'App\\Providers\\AuthServiceProvider',
-      27 => 'App\\Providers\\EventServiceProvider',
-      28 => 'App\\Providers\\RouteServiceProvider',
+      24 => 'App\\Providers\\AppServiceProvider',
+      25 => 'App\\Providers\\AuthServiceProvider',
+      26 => 'App\\Providers\\EventServiceProvider',
+      27 => 'App\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -84,7 +83,6 @@
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Agent' => 'Jenssegers\\Agent\\Facades\\Agent',
-      'Image' => 'Intervention\\Image\\Facades\\Image',
       'Share' => 'Jorenvh\\Share\\ShareFacade',
     ),
   ),

@@ -167,7 +167,6 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
       //  Jorenvh\Share\Providers\ShareServiceProvider::class,
 
         /*
@@ -233,7 +232,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
-        'Image' => Intervention\Image\Facades\Image::class,
         'Share' => Jorenvh\Share\ShareFacade::class
 
 

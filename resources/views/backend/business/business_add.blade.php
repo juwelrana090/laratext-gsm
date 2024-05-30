@@ -48,11 +48,12 @@
                             <h4 class="card-title">Contact Person</h4>
                             <hr>
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact Person Name</label>
+                                <label for="title" class="col-sm-2 col-form-label">Contact Person Name <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_person_name"
                                         class="form-control @error('contact_person_name') is-invalid @enderror"
-                                        id="contact_person_name" placeholder="Title">
+                                        id="contact_person_name" placeholder="Contact Person Name">
                                 </div>
                                 @error('contact_person_name')
                                     <span class="invalid-feedback" role="alert">
@@ -62,11 +63,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact Email</label>
+                                <label for="title" class="col-sm-2 col-form-label">Contact Email <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="email" name="contact_email"
                                         class="form-control @error('contact_email') is-invalid @enderror" id="contact_email"
-                                        placeholder="Title">
+                                        placeholder="Contact Email">
                                 </div>
                                 @error('contact_email')
                                     <span class="invalid-feedback" role="alert">
@@ -76,11 +78,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact Mobile</label>
+                                <label for="title" class="col-sm-2 col-form-label">Contact Mobile <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_mobile"
                                         class="form-control @error('contact_mobile') is-invalid @enderror"
-                                        id="contact_mobile" placeholder="Title">
+                                        id="contact_mobile" placeholder="Contact Mobile">
                                 </div>
                                 @error('contact_mobile')
                                     <span class="invalid-feedback" role="alert">
@@ -90,11 +93,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact WhatsApp</label>
+                                <label for="title" class="col-sm-2 col-form-label">Contact WhatsApp <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_whatsapp"
                                         class="form-control @error('contact_whatsapp') is-invalid @enderror"
-                                        id="contact_whatsapp" placeholder="Title">
+                                        id="contact_whatsapp" placeholder="Contact WhatsApp">
                                 </div>
                                 @error('contact_whatsapp')
                                     <span class="invalid-feedback" role="alert">
@@ -108,7 +112,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_google_map"
                                         class="form-control @error('contact_google_map') is-invalid @enderror"
-                                        id="contact_google_map" placeholder="Title">
+                                        id="contact_google_map" placeholder="Contact Google Map">
                                 </div>
                                 @error('contact_google_map')
                                     <span class="invalid-feedback" role="alert">
@@ -118,13 +122,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact Google Map</label>
+                                <label for="title" class="col-sm-2 col-form-label">Contact Address <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="contact_google_map"
-                                        class="form-control @error('contact_google_map') is-invalid @enderror"
-                                        id="contact_google_map" placeholder="Title">
+                                    <input type="text" name="contact_address"
+                                        class="form-control @error('contact_address') is-invalid @enderror"
+                                        id="contact_address" placeholder="Contact Address">
                                 </div>
-                                @error('contact_google_map')
+                                @error('contact_address')
                                     <span class="invalid-feedback" role="alert">
                                         <span>{{ $message }}</span>
                                     </span>
@@ -136,7 +141,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_website"
                                         class="form-control @error('contact_website') is-invalid @enderror"
-                                        id="contact_website" placeholder="Title">
+                                        id="contact_website" placeholder="Contact Website">
                                 </div>
                                 @error('contact_website')
                                     <span class="invalid-feedback" role="alert">
@@ -156,11 +161,12 @@
                             <h4 class="card-title">Company Info</h4>
                             <hr>
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Company Name</label>
+                                <label for="title" class="col-sm-2 col-form-label">Company Name <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="company_name"
                                         class="form-control @error('company_name') is-invalid @enderror" id="company_name"
-                                        placeholder="Title">
+                                        placeholder="Company Name">
                                 </div>
                                 @error('company_name')
                                     <span class="invalid-feedback" role="alert">
@@ -170,11 +176,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Company Mobile</label>
+                                <label for="title" class="col-sm-2 col-form-label">Company Mobile <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="company_mobile"
                                         class="form-control @error('company_mobile') is-invalid @enderror"
-                                        id="company_mobile" placeholder="Title">
+                                        id="company_mobile" placeholder="Company Mobile">
                                 </div>
                                 @error('company_mobile')
                                     <span class="invalid-feedback" role="alert">
@@ -184,11 +191,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Company Email</label>
+                                <label for="title" class="col-sm-2 col-form-label">Company Email <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="email" name="company_email"
                                         class="form-control @error('company_email') is-invalid @enderror"
-                                        id="company_email" placeholder="Title">
+                                        id="company_email" placeholder="Company Email">
                                 </div>
                                 @error('company_email')
                                     <span class="invalid-feedback" role="alert">
@@ -225,11 +233,12 @@
                             <h4 class="card-title">Business Info</h4>
                             <hr>
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Business Type</label>
+                                <label for="title" class="col-sm-2 col-form-label">Business Type <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="business_type"
                                         class="form-control @error('business_type') is-invalid @enderror"
-                                        id="business_type" placeholder="Title">
+                                        id="business_type" placeholder="Business Type">
                                 </div>
                                 @error('business_type')
                                     <span class="invalid-feedback" role="alert">
@@ -239,7 +248,8 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="business_category_id" class="col-sm-2 col-form-label">Business Catgory</label>
+                                <label for="business_category_id" class="col-sm-2 col-form-label">Business Catgory <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select name="business_category_id" class="form-control select2"
                                         id="business_category_id">
@@ -251,11 +261,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Business Hours</label>
+                                <label for="title" class="col-sm-2 col-form-label">Business Hours <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="business_hours"
                                         class="form-control @error('business_hours') is-invalid @enderror"
-                                        id="business_hours" placeholder="Title">
+                                        id="business_hours" placeholder="Business Hours">
                                 </div>
                                 @error('business_hours')
                                     <span class="invalid-feedback" role="alert">
@@ -269,7 +280,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="whatsapp_number"
                                         class="form-control @error('whatsapp_number') is-invalid @enderror"
-                                        id="whatsapp_number" placeholder="Title">
+                                        id="whatsapp_number" placeholder="WhatsApp Number">
                                 </div>
                                 @error('whatsapp_number')
                                     <span class="invalid-feedback" role="alert">
@@ -283,7 +294,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="social_media"
                                         class="form-control @error('social_media') is-invalid @enderror"
-                                        id="social_media" placeholder="Title">
+                                        id="social_media" placeholder="Social Media">
                                 </div>
                                 @error('social_media')
                                     <span class="invalid-feedback" role="alert">
@@ -297,7 +308,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="social_media"
                                         class="form-control @error('website') is-invalid @enderror" id="website"
-                                        placeholder="Title">
+                                        placeholder="Website">
                                 </div>
                                 @error('website')
                                     <span class="invalid-feedback" role="alert">
@@ -307,11 +318,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">City</label>
+                                <label for="title" class="col-sm-2 col-form-label">City <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="city"
                                         class="form-control @error('city') is-invalid @enderror" id="city"
-                                        placeholder="Title">
+                                        placeholder="City">
                                 </div>
                                 @error('city')
                                     <span class="invalid-feedback" role="alert">
@@ -321,7 +333,8 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Country</label>
+                                <label for="title" class="col-sm-2 col-form-label">Country <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="country"
                                         class="form-control @error('country') is-invalid @enderror" id="country"
@@ -335,13 +348,63 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Status</label>
+                                <label for="status" class="col-sm-2 col-form-label">Status <span
+                                        class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="country"
-                                        class="form-control @error('country') is-invalid @enderror" id="country"
-                                        placeholder="Country">
+                                    <select name="status" class="form-control select2" id="status">
+                                        <option value="pending">Pending</option>
+                                        <option value="approved">Approved</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="rejected">Rejected</option>
+                                    </select>
                                 </div>
-                                @error('country')
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body" style="position: relative;">
+                            <h4 class="card-title">SEO Info</h4>
+                            <hr>
+                            <div class="form-group row">
+                                <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="company_name"
+                                        class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
+                                        placeholder="SEO Title">
+                                </div>
+                                @error('seo_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="seo_keywords" class="col-sm-2 col-form-label">SEO Keywords</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="seo_keywords"
+                                        class="form-control @error('seo_keywords') is-invalid @enderror"
+                                        id="seo_keywords" placeholder="SEO Keywords">
+                                </div>
+                                @error('seo_keywords')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="seo_description" class="col-sm-2 col-form-label">SEO Description</label>
+                                <div class="col-sm-10">
+                                        <textarea class="form-control" name="seo_description" id="seo_description" rows="3" placeholder="SEO Description"></textarea>
+                                </div>
+                                @error('seo_description')
                                     <span class="invalid-feedback" role="alert">
                                         <span>{{ $message }}</span>
                                     </span>
@@ -353,12 +416,11 @@
                 </div>
             </div>
 
-
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body" style="position: relative;">
-                            <h4 class="card-title text-uppercase">Business Images</h4>
+                            <h4 class="card-title text-uppercase">Business Images <span class="text-danger">*</span></h4>
                             <hr>
                             <div class="business-images"></div>
                             <hr>

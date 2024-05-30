@@ -18,6 +18,7 @@ class Experts extends Model
         'whatsapp_number',
         'price',
         'title',
+        'slug',
         'about',
         'working_hours',
         'description',
@@ -30,5 +31,8 @@ class Experts extends Model
         'website',
         'city',
         'country',
+        'seo_title',
+        'seo_keywords',
+        'seo_description',
     ];
 }

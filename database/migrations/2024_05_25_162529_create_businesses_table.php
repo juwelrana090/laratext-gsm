@@ -26,8 +26,9 @@ class CreateBusinessesTable extends Migration
             $table->string('contact_address');
             $table->string('contact_website')->nullable();
             $table->string('company_name');
+            $table->string('company_slug');
             $table->string('company_mobile');
-            $table->string('company_description');
+            $table->string('company_description')->nullable();
             $table->string('company_email');
             $table->string('business_type');
             $table->string('business_hours');
@@ -41,6 +42,10 @@ class CreateBusinessesTable extends Migration
             $table->string('city');
             $table->string('country');
             $table->enum('status', ['pending', 'active', 'inactive', 'rejected'])->default('pending');
+            $table->text('seo_title')->nullable();
+            $table->text('seo_keywords')->nullable();
+            $table->text('seo_description')->nullable();
+
             $table->timestamps();
         });
     }

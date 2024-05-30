@@ -79,7 +79,7 @@ class CarController extends Controller
     {
         $request->validate([
             'title'=>'required',
-       ]);
+        ]);
 
         $data =[
             'title'=>$request->title,

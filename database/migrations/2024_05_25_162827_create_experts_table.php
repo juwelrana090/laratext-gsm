@@ -25,6 +25,7 @@ class CreateExpertsTable extends Migration
             $table->string('whatsapp_number');
             $table->string('price');
             $table->string('title');
+            $table->string('slug');
             $table->string('about');
             $table->string('working_hours');
             $table->string('description')->nullable();
@@ -37,6 +38,9 @@ class CreateExpertsTable extends Migration
             $table->string('website')->nullable();
             $table->string('city');
             $table->string('country');
+            $table->text('seo_title')->nullable();
+            $table->text('seo_keywords')->nullable();
+            $table->text('seo_description')->nullable();
             $table->timestamps();
         });
     }

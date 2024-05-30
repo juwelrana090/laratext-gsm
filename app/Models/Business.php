@@ -18,6 +18,7 @@ class Business extends Model
         'contact_address',
         'contact_website',
         'company_name',
+        'company_slug',
         'company_mobile',
         'company_description',
         'company_email',
@@ -32,5 +33,8 @@ class Business extends Model
         'city',
         'country',
         'status',
+        'seo_title',
+        'seo_keywords',
+        'seo_description',
     ];
 }
