@@ -34,5 +34,7 @@ class Experts extends Model
         'seo_title',
         'seo_keywords',
         'seo_description',
+        'expert_image',
+        'image_id',
     ];
 }

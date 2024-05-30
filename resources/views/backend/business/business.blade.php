@@ -78,7 +78,8 @@
 
                             </div>
                             <div class="col-lg-12 mb-5">
-                                {{-- {{$cars->links()}} --}}
+                                <!-- Pagination Links -->
+                                {{ $businesses->links() }}
                             </div>
                         </div>
 

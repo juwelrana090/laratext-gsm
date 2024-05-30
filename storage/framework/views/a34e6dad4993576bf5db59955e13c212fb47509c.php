@@ -125,6 +125,14 @@
                         class="feather icon-briefcase"></i><span class="menu-title"
                         data-i18n="CarSetup">Experts</span></a>
                 <ul class="menu-content">
+                    <li class="<?php echo e(Route::is('experts.create') ? 'active' : ''); ?>">
+                        <a href="<?php echo e(route('experts.create')); ?>"><i class="feather icon-circle"></i><span
+                                class="menu-item" data-i18n="Alerts">Expert Add</span></a>
+                    </li>
+                    <li class="<?php echo e(Route::is('experts.index') ? 'active' : ''); ?>">
+                        <a href="<?php echo e(route('experts.index')); ?>"><i class="feather icon-circle"></i><span
+                                class="menu-item" data-i18n="Alerts">Experts List</span></a>
+                    </li>
                     <li class="<?php echo e(Route::is('experts.category.index') ? 'active' : ''); ?>">
                         <a href="<?php echo e(route('experts.category.index')); ?>"><i class="feather icon-circle"></i><span
                                 class="menu-item" data-i18n="Alerts">Category</span></a>

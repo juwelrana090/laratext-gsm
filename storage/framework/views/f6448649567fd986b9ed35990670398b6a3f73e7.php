@@ -1,12 +1,11 @@
-@extends('layouts.backend.master')
-@section('title', 'Experts List')
-@push('meta')
-@endpush
-@push('theme_css')
-@endpush
-@push('page_css')
-@endpush
-@push('custom_css')
+<?php $__env->startSection('title', 'Experts List'); ?>
+<?php $__env->startPush('meta'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('theme_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_css'); ?>
     <style>
         .bg_image {
             width: 100%;
@@ -32,12 +31,12 @@
             filter: contrast(120%);
         }
     </style>
-@endpush
-@push('head')
-@endpush
-@section('breadcrumb')
-@endsection
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('head'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card">
@@ -62,23 +61,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($experts as $expert)
+                                        <?php $__currentLoopData = $experts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $expert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td class="product-category">{{ $expert->company_name }}</td>
-                                                <td class="product-category">{{ $expert->company_mobile }}</td>
-                                                <td class="product-category">{{ $expert->company_email }}</td>
-                                                <td class="product-category">{{ $expert->business_type }}</td>
-                                                <td class="product-category">{{ $expert->business_category_title }}</td>
-                                                <td class="product-category">{{ $expert->business_hours }}</td>
+                                                <td class="product-category"><?php echo e($expert->company_name); ?></td>
+                                                <td class="product-category"><?php echo e($expert->company_mobile); ?></td>
+                                                <td class="product-category"><?php echo e($expert->company_email); ?></td>
+                                                <td class="product-category"><?php echo e($expert->business_type); ?></td>
+                                                <td class="product-category"><?php echo e($expert->business_category_title); ?></td>
+                                                <td class="product-category"><?php echo e($expert->business_hours); ?></td>
                                                 <td class="product-category"></td>
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
 
                             </div>
                             <div class="col-lg-12 mb-5">
-                                {{$experts->links()}}
+                                <?php echo e($experts->links()); ?>
+
                             </div>
                         </div>
 
@@ -87,12 +87,12 @@
             </div>
         </div>
     </div>
-@endsection
-@push('theme_js')
-@endpush
-@push('page_js')
-@endpush
-@push('custom_js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('theme_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_js'); ?>
     <script>
         var dataThumbView = $(".data-thumb-view").DataTable({
             responsive: false,
@@ -125,4 +125,6 @@
             }
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.backend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/backend/experts/experts.blade.php ENDPATH**/ ?>

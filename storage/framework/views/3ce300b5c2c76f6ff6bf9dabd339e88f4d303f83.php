@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <?php echo $__env->yieldPushContent('meta'); ?>
-    <title>Best Cool | <?php echo $__env->yieldContent('title'); ?></title>
+    <title>GSP | <?php echo $__env->yieldContent('title'); ?></title>
     <link rel="apple-touch-icon" href="<?php echo e(asset('Frontend/desktop/img/logo/logo.png')); ?>">
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('Frontend/desktop/img/logo/logo.png')); ?>">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">

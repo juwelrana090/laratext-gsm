@@ -31,7 +31,7 @@ class CreateExpertsTable extends Migration
             $table->string('description')->nullable();
             $table->string('services');
             $table->string('starting_prices');
-            $table->json('social_profile');
+            $table->json('social_profile')->nullable();
             $table->string('google_map')->nullable();
             $table->integer('ratings')->nullable();
             $table->string('reviews')->nullable();
@@ -41,9 +41,13 @@ class CreateExpertsTable extends Migration
             $table->text('seo_title')->nullable();
             $table->text('seo_keywords')->nullable();
             $table->text('seo_description')->nullable();
+            $table->string('expert_image');
+            $table->integer('image_id')->nullable()->unsigned()->index();
+            $table->foreign('image_id')->references('id')->on('file_managers');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

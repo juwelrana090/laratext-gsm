@@ -42,7 +42,6 @@ class BusinessController extends Controller
      */
     public function create(Request $request)
     {
-
         $categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
         return view('backend.business.business_add', [
             'categories' => $categories

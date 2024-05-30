@@ -122,7 +122,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'experts'], function () {
         Route::get('/', 'ExpertsController@index')->name('experts.index');
-        Route::post('/create', 'ExpertsController@create')->name('experts.create');
+        Route::get('/create', 'ExpertsController@create')->name('experts.create');
         Route::get('/edit/{id}', 'ExpertsController@edit')->name('experts.edit');
         Route::put('/update/{id}', 'ExpertsController@update')->name('experts.update');
         Route::delete('/destroy/{id}', 'ExpertsController@destroy')->name('experts.destroy');

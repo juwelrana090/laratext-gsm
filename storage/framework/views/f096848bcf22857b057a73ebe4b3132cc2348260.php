@@ -77,7 +77,9 @@
 
                             </div>
                             <div class="col-lg-12 mb-5">
-                                
+                                <!-- Pagination Links -->
+                                <?php echo e($businesses->links()); ?>
+
                             </div>
                         </div>
 

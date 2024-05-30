@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     @yield('meta')
-    <title>Best Cool Auto Spare Parts - UAE</title>
-    <meta name="application-name" content="Best Cool Auto Spare Parts - UAE" >
-    <meta name="description" content="Cool Source General Trading LLC Dubai, Established in 1997, a manufacturer and wholesaler specialized in Automotive Aftermarket Ac compressors. Best Cool Auto Spare Parts is our new venture located in Sharjah and Abu Dhabi. We are ready to serve customers from the Middle East and Africa to find high quality Auto Ac products.">
+    <title>GSP Auto Spare Parts - UAE</title>
+    <meta name="application-name" content="GSP Auto Spare Parts - UAE" >
+    <meta name="description" content="GSP Gulf Space Parts, Established in 1997, a manufacturer and wholesaler specialized in Automotive Aftermarket Ac compressors. GSP Auto Spare Parts is our new venture located in Sharjah and Abu Dhabi. We are ready to serve customers from the Middle East and Africa to find high quality Auto Ac products.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Frontend/desktop/img/logo/logo.png') }}">
     <!-- Place favicon.ico in the root directory -->
@@ -41,14 +41,14 @@
     <script type='text/javascript'
         src='https://platform-api.sharethis.com/js/sharethis.js#property=613330f9ad38cf0012acf12d&product=sop'
         async='async'></script>
-        
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-227215570-1"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-        
+
           gtag('config', 'UA-227215570-1');
         </script>
 

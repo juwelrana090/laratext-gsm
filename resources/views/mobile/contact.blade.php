@@ -7,7 +7,7 @@
         <div class="row pt-5">
             <div class="col-lg-6">
                 <div>
-                    <h5 class="font-weight-bold">Best Cool Auto Spare Parts Trading Sharjah</h5>
+                    <h5 class="font-weight-bold">GSP Gulf Space Parts</h5>
                     <p>
                         Tel: {{sharjah_address()?sharjah_address()->tel:''}}<br>
                         Mob: {{sharjah_address()?sharjah_address()->mobile:''}} <br>
@@ -16,7 +16,7 @@
 
                 </div>
                 <div>
-                    <h5 class="font-weight-bold">Cool Source General Trading LLC Dubai</h5>
+                    <h5 class="font-weight-bold">GSP Gulf Space Parts</h5>
                     <p>
                         Tel: {{dubai_address()?dubai_address()->tel:''}}<br>
                         Mob: {{dubai_address()?dubai_address()->mobile:''}} <br>
@@ -25,7 +25,7 @@
 
                 </div>
                 <div>
-                    <h5 class="font-weight-bold">Best Cool Auto Spare Parts Trading Musaffa</h5>
+                    <h5 class="font-weight-bold">GSP Gulf Space Parts</h5>
                     <p>
                         Tel: {{abu_dabi_address()?abu_dabi_address()->tel:''}}<br>
                         Mob: {{abu_dabi_address()?abu_dabi_address()->mobile:''}} <br>
@@ -33,7 +33,7 @@
                         @if(abu_dabi_address()->map) <a href="{{abu_dabi_address()->map}}">View Map</a>@endif
                 </div>
                 <div>
-                    <h5 class="font-weight-bold">Cool Source General Trading LLC Ras Al Khor</h5>
+                    <h5 class="font-weight-bold">GSP Gulf Space Parts</h5>
                     <p>
                         Tel: {{dubai_ras_al_khor_address()?dubai_ras_al_khor_address()->tel:''}}<br>
                         Mob: {{dubai_ras_al_khor_address()?dubai_ras_al_khor_address()->mobile:''}} <br>
@@ -50,7 +50,7 @@
                 </div> --}}
             </div>
             <div class="col-lg-6 mt-3">
-                <h5 class="font-weight-bold">Best Cool Auto Spare Parts (Wholesale) Trader</h5>
+                <h5 class="font-weight-bold">GSP Gulf Space Parts</h5>
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14426.73840401649!2d55.3968691!3d25.3147987!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbdc5d9d760b9a4f8!2sBest%20cool%20auto%20spare%20parts%20tr!5e0!3m2!1sen!2sae!4v1650265128822!5m2!1sen!2sae"
                     width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>

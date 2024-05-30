@@ -4,8 +4,20 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Experts;
+
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
+use App\Models\Experts;
+use App\Models\FileManager;
+use App\Models\ExpertsCategories;
+
 
 class ExpertsController extends Controller
 {
@@ -16,7 +28,11 @@ class ExpertsController extends Controller
      */
     public function index(Request $request)
     {
-        //
+
+        $experts = Experts::latest()->orderBy('id', 'desc')->paginate(20);
+        return view('backend.experts.experts', [
+            'experts' => $experts
+        ]);
     }
 
     /**
@@ -26,7 +42,10 @@ class ExpertsController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        $categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
+        return view('backend.experts.experts_add', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -37,7 +56,114 @@ class ExpertsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'contact_person_name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'mobile' => 'required',
+            'whatsapp_number' => 'required',
+            'price' => 'required',
+            'title' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'about' => 'required',
+            'working_hours' => 'required',
+            'services' => 'required',
+            'starting_prices' => 'required',
+            'expert_image' => 'required|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:2048',
+        ]);
+
+
+        $uniqid = uniqid();
+        $user_id = auth()->user()->id;
+
+        $title = $request->title;
+        $slug = Str::slug($title);
+
+        $experts = Experts::where('slug', 'LIKE', "%{$slug}%")->get();
+        $count = $experts->count();
+
+        if ($count > 0) {;
+            foreach ($experts as $expert) {
+                $data[] = $expert['slug'];
+            }
+
+            if (in_array($slug, $data)) {
+                $expert_count = 0;
+                while (in_array(($slug . '-' . ++$expert_count), $data));
+                $title = $title . " " . $expert_count;
+                $slug = $slug . '-' . $expert_count;
+            }
+        }
+
+        $expert_category = ExpertsCategories::find($request->expert_category_id);
+
+        $now_day = date('F_Y');
+
+        $file_location = "";
+        $image_id = "";
+
+        if ($request->hasFile('expert_image')) {
+            $path = public_path('uploads/files/' . $now_day);
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $file = $request->file('expert_image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+            }
+
+            $image_id = $fileModel->id;
+        }
+
+
+        $data = [
+            'experts_categories_id' => $request->experts_categories_id,
+            'contact_person_name' => $request->contact_person_name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'mobile' => $request->mobile,
+            'telephone' => $request->telephone,
+            'whatsapp_number' => $request->whatsapp_number,
+            'price' => $request->price,
+            'title' => $title,
+            'slug' => $slug,
+            'about' => $request->about,
+            'working_hours' => $request->working_hours,
+            'description' => $request->description,
+            'services' => $request->services,
+            'starting_prices' => $request->starting_prices,
+            'social_profile' => $request->social_profile,
+            'google_map' => $request->google_map,
+            'ratings' => $request->ratings,
+            'reviews' => $request->reviews,
+            'website' => $request->website,
+            'city' => $request->city,
+            'country' => $request->country,
+            'seo_title' => $request->seo_title,
+            'seo_keywords' => $request->seo_keywords,
+            'seo_description' => $request->seo_description,
+            'expert_image' => $file_location,
+            'image_id' => $image_id,
+        ];
+
+
+        $expert_create = Experts::create($data);
+        return redirect()->route('experts.index')->with('success', 'Expert created successfully');
     }
 
     /**
