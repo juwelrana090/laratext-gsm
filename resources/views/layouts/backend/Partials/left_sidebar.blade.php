@@ -141,9 +141,11 @@
             </li>
 
             <li class="navigation-header active"><span>Frontend Settings</span>
-            <li class=" {{ Route::is('admin.frontend.settings') ? 'active' : '' }} nav-item"><a
+            {{-- <li class=" {{ Route::is('admin.frontend.settings') ? 'active' : '' }} nav-item"><a
                     href="{{ route('admin.frontend.settings') }}"><i class="feather icon-zap"></i><span
-                        class="menu-title" data-i18n="Dashboard">Settings</span></a></li>
+                        class="menu-title" data-i18n="Dashboard">Settings</span></a>
+            </li> --}}
+
             <li class=" {{ Route::is('admin.frontend.about_us') ? 'active' : '' }} nav-item"><a
                     href="{{ route('admin.frontend.about_us') }}"><i class="feather icon-zap"></i><span
                         class="menu-title" data-i18n="Dashboard">About Us</span></a></li>

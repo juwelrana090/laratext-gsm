@@ -36,8 +36,42 @@ Route::get('/clear', function () {
 });
 
 Route::group(['namespace' => 'Frontend'], function () {
-    Route::get('/', 'DashboardController@index')->name('welcome');
+    Route::get('/', 'DashboardController@index')->name('home');
 
+    Route::get('/about-us', 'DashboardController@aboutUs')->name('about.us');
+    Route::get('/contact-us', 'DashboardController@contactUs')->name('contact.us');
+
+    Route::group(['prefix' => 'businesses'], function () {
+        Route::get('/', 'DashboardController@businessList')->name('business.list');
+        Route::get('/{slug}', 'DashboardController@businessDetails')->name('business.details');
+    });
+
+    Route::group(['prefix' => 'expert'], function () {
+        Route::get('/', 'DashboardController@expertList')->name('expert.list');
+        Route::get('/{slug}', 'DashboardController@expertDetails')->name('expert.details');
+    });
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/', 'DashboardController@productList')->name('product.list');
+        Route::get('/{slug}', 'DashboardController@productDetails')->name('product.details');
+    });
+
+    Route::group(['prefix' => 'brand'], function () {
+        Route::get('/', 'DashboardController@brandsList')->name('brand.list');
+        Route::get('/{slug}', 'DashboardController@brandDetails')->name('brand.details');
+    });
+
+    Route::group(['prefix' => 'blog'], function () {
+        Route::get('/', 'DashboardController@blogList')->name('blog.list');
+        Route::get('/{slug}', 'DashboardController@blogDetails')->name('blog.details');
+    });
+
+    Route::get('/listing', 'DashboardController@listing')->name('listing');
+    Route::get('/terms-and-conditions', 'DashboardController@termsConditions')->name('terms-and-conditions');
+    Route::get('/privacy-policy', 'DashboardController@privacyPolicy')->name('privacy-policy');
+
+
+    /*
     Route::get('/bestcool/brands', 'DashboardController@brands')->name('bestcool.brands');
     Route::get('/bestcool/brands/details/{id}/{brand_type}', 'DashboardController@brandsDetails')->name('bestcool.brand.details');
     Route::get('/product/details/{id}/{sulug?}/{slug?}', 'DashboardController@details')->name('car.details');
@@ -69,7 +103,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/about_us', 'DashboardController@abouts')->name('about_us');
     Route::post('/store/contact/form', 'DashboardController@contact_form')->name('store_contact_form');
 
-    Route::get('/mobile_search_page', 'DashboardController@mobile_search_page')->name('mobile_search_page');
+    Route::get('/mobile_search_page', 'DashboardController@mobile_search_page')->name('mobile_search_page');*/
 });
 
 Auth::routes(['register' => false, 'verify' => false,]);
@@ -148,7 +182,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
     Route::get('/car_image/delete/{car_image_id}', 'DataController@carImageDelete')->name('car.image.delete');
 
 
-    Route::get('/admin/frontend/settings', 'DataController@frontendSettings')->name('admin.frontend.settings');
+    // Route::get('/admin/frontend/settings', 'DataController@frontendSettings')->name('admin.frontend.settings');
     Route::post('/admin/social_media/whatsApp/update', 'DataController@SocialWhatsAppUpdate')->name('admin.social.whatsApp.update');
     Route::post('/admin/office/location/update/{office_name}', 'DataController@OfficeLocationUpdate')->name('admin.setting.office.location_update');
 

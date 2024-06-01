@@ -33,10 +33,28 @@ class CreateCarsTable extends Migration
             $table->string('manufaturer')->nullable();
             $table->string('year')->nullable();
             $table->text('general_dsc')->nullable();
-
             $table->text('security_env')->nullable();
-
             $table->string('pub_place')->default('new_arrivals');
+
+            $table->string('product_name')->nullable();
+            $table->string('category_id')->nullable();
+            $table->string('category_title')->nullable();
+            $table->string('sub_category_id')->nullable();
+            $table->string('sub_category_title')->nullable();
+            $table->string('type')->nullable();
+            $table->string('condition')->nullable();
+            $table->string('application')->nullable();
+            $table->string('uses')->nullable();
+            $table->string('product_note')->nullable();
+            $table->string('delivery_note')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('made')->nullable();
+            $table->string('payment_options')->nullable();
+
+            $table->string('seo_title')->nullable();
+            $table->string('seo_keywords')->nullable();
+            $table->string('seo_description')->nullable();
+
             $table->timestamps();
         });
     }

@@ -17,7 +17,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Image;
+// use Image;
+
+use Intervention\Image\ImageManagerStatic as Image;
 
 class CarController extends Controller
 {
@@ -102,6 +104,25 @@ class CarController extends Controller
             'manufaturer'=>$request->manufaturer,
             'general_dsc'=>$request->general_dsc,
             'pub_place'=>$request->pub_place,
+
+            'product_name' => $request->product_name,
+            'category_id' => $request->category_id,
+            'category_title' => $request->category_title,
+            'sub_category_id' => $request->sub_category_id,
+            'sub_category_title' => $request->sub_category_title,
+            'type' => $request->type,
+            'condition' => $request->condition,
+            'application' => $request->application,
+            'uses' => $request->uses,
+            'product_note' => $request->product_note,
+            'delivery_note' => $request->delivery_note,
+            'brand' => $request->brand,
+            'made' => $request->made,
+            'payment_options' => $request->payment_options,
+            'seo_title' => $request->seo_title,
+            'seo_keywords' => $request->seo_keywords,
+            'seo_description' => $request->seo_description,
+
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now(),
         ];
@@ -204,6 +225,25 @@ class CarController extends Controller
             'manufaturer'=>$request->manufaturer,
             'general_dsc'=>$request->general_dsc,
             'pub_place'=>$request->pub_place,
+
+            'product_name' => $request->product_name,
+            'category_id' => $request->category_id,
+            'category_title' => $request->category_title,
+            'sub_category_id' => $request->sub_category_id,
+            'sub_category_title' => $request->sub_category_title,
+            'type' => $request->type,
+            'condition' => $request->condition,
+            'application' => $request->application,
+            'uses' => $request->uses,
+            'product_note' => $request->product_note,
+            'delivery_note' => $request->delivery_note,
+            'brand' => $request->brand,
+            'made' => $request->made,
+            'payment_options' => $request->payment_options,
+            'seo_title' => $request->seo_title,
+            'seo_keywords' => $request->seo_keywords,
+            'seo_description' => $request->seo_description,
+
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now(),
         ];

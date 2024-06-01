@@ -169,8 +169,6 @@
                                     <label class="form-check-label text-white" for="sold">AC Parts</label>
                                 </div>
                             </div>
-                            <hr>
-                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>
@@ -200,89 +198,165 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body" style="position: relative;">
-                            <h4 class="card-title text-uppercase">Interior Design</h4>
+                            <h4 class="card-title text-uppercase">Product Specs</h4>
                             <hr>
+                            <div class="form-group row">
+                                <label for="product_name" class="col-sm-2 col-form-label">Product Name </label>
+                                <div class="col-sm-10">
+                                    <input name="product_name" type="text" class="form-control" id="product_name"
+                                        placeholder="Product Name" value="{{ $car->product_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="category" class="col-sm-2 col-form-label">Category</label>
+                                <div class="col-sm-10">
+                                    <input name="category" type="text" class="form-control" id="category"
+                                        placeholder="Category" value="{{ $car->category }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="sub_category" class="col-sm-2 col-form-label">Sub Category</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="sub_category" class="form-control datepicker-2" id="sub_category"
+                                        placeholder="Sub Category" value="{{ $car->sub_category }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="type" class="col-sm-2 col-form-label">Type</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="type" class="form-control" id="type"
+                                        placeholder="Type" value="{{ $car->type }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="condition" class="col-sm-2 col-form-label">Condition</label>
+                                <div class="col-sm-10">
+                                    <input name="condition" type="text" class="form-control" id="condition"
+                                        placeholder="condition" value="{{ $car->condition }}">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="part_no" class="col-sm-2 col-form-label">Part No</label>
                                 <div class="col-sm-10">
-                                    <input name="part_no" value="{{ $car->part_no }}" type="text" class="form-control" id="part_no"
-                                        placeholder="Part No">
+                                    <input name="part_no" type="text" class="form-control" id="part_no"
+                                        placeholder="Part No" value="{{ $car->part_no }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="vehicle" class="col-sm-2 col-form-label">Vehicle</label>
+                                <label for="application" class="col-sm-2 col-form-label">Application</label>
                                 <div class="col-sm-10">
-                                    <input name="vehicle" value="{{ $car->vehicle }}" type="text" class="form-control" id="vehicle"
-                                        placeholder="Vehiclle No">
+                                    <input name="application" type="text" class="form-control" id="application"
+                                        placeholder="Application" value="{{ $car->application }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="year" class="col-sm-2 col-form-label">Year</label>
+                                <label for="uses" class="col-sm-2 col-form-label">Uses</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="car_year" value="{{ $car->year }}"
-                                        class="form-control datepicker-2" id="year" placeholder="Select Year">
+                                    <input name="uses" type="text" class="form-control" id="uses"
+                                        placeholder="Uses" value="{{ $car->uses }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="grooves" class="col-sm-2 col-form-label">No. of Grooves</label>
+                                <label for="product_note" class="col-sm-2 col-form-label">Product Note</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="grooves" value="{{ $car->grooves }}" class="form-control" id="grooves"
-                                        placeholder="Grooves">
+                                    <input name="product_note" type="text" class="form-control" id="product_note"
+                                        placeholder="Product Note" value="{{ $car->product_note }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Application</label>
+                                <label for="delivery_note" class="col-sm-2 col-form-label">Delivery Note</label>
                                 <div class="col-sm-10">
-                                    <input name="voltage" type="text" value="{{ $car->voltage }}" class="form-control" id="inputPassword"
-                                        placeholder="Application">
+                                    <input name="delivery_note" type="text" class="form-control" id="delivery_note"
+                                        placeholder="Delivery Note" value="{{ $car->delivery_note }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="brand" class="col-sm-2 col-form-label">Brand</label>
+                                <div class="col-sm-10">
+                                    <input name="brand" type="text" class="form-control" id="brand"
+                                        placeholder="Brand" value="{{ $car->brand }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="made" class="col-sm-2 col-form-label">Made</label>
+                                <div class="col-sm-10">
+                                    <input name="made" type="text" class="form-control" id="made"
+                                        placeholder="Made" value="{{ $car->made }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="Cylinders" class="col-sm-2 col-form-label">No. of Cylinders</label>
+                                <label for="payment_options" class="col-sm-2 col-form-label">Payment Options</label>
                                 <div class="col-sm-10">
-                                    <input name="cylinder" value="{{ $car->cylinder }}" type="text" class="form-control" id="Cylinders"
-                                        placeholder="No. of Cylinders">
+                                    <input name="payment_options" type="text" class="form-control" id="payment_options"
+                                        placeholder="Payment Options" value="{{ $car->payment_options }}">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="Sensor" class="col-sm-2 col-form-label">Control Valve / Sensor</label>
-                                <div class="col-sm-10">
-                                    <input name="sensor" value="{{ $car->sensor }}" type="text" class="form-control" id="Sensor"
-                                        placeholder="Control Valve / Sensor">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="pulley" class="col-sm-2 col-form-label">Pulley Diameter</label>
-                                <div class="col-sm-10">
-                                    <input name="pully_diameter" value="{{ $car->pully_diameter }}" type="text" class="form-control" id="pulley"
-                                        placeholder="Pulley Diameter">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="origin" class="col-sm-2 col-form-label">Origin</label>
-                                <div class="col-sm-10">
-                                    <input name="origin" type="text" value="{{ $car->origin }}" class="form-control" id="origin"
-                                        placeholder="Origin">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="menufacturer" class="col-sm-2 col-form-label">Manufacturer</label>
-                                <div class="col-sm-10">
-                                    <input name="menufacturer" value="{{ $car->menufacturer }}" type="text" class="form-control" id="menufacturer"
-                                        placeholder="Manufacturer">
-                                </div>
-                            </div>
-                            <hr>
-                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body" style="position: relative;">
+                            <h4 class="card-title">SEO Info</h4>
+                            <hr>
+                            <div class="form-group row">
+                                <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="seo_title" class="form-control @error('seo_title') is-invalid @enderror" id="seo_title" placeholder="SEO Title" value="{{ $car->seo_title }}">
+                                </div>
+                                @error('seo_title')
+                                <span class="invalid-feedback" role="alert">
+                                    <span>{{ $message }}</span>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="seo_keywords" class="col-sm-2 col-form-label">SEO Keywords</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="seo_keywords" class="form-control @error('seo_keywords') is-invalid @enderror" id="seo_keywords" placeholder="SEO Keywords" value="{{ $car->seo_keywords }}">
+                                </div>
+                                @error('seo_keywords')
+                                <span class="invalid-feedback" role="alert">
+                                    <span>{{ $message }}</span>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="seo_description" class="col-sm-2 col-form-label">SEO Description</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="seo_description" id="seo_description" rows="3" placeholder="SEO Description">
+                                        {{ $car->seo_description }}
+                                    </textarea>
+                                </div>
+                                @error('seo_description')
+                                <span class="invalid-feedback" role="alert">
+                                    <span>{{ $message }}</span>
+                                </span>
+                                @enderror
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <hr>
             </div>
         </div>
+
     </form>
 @endsection
 

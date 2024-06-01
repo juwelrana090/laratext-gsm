@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
-
 use App\Models\Business;
 use App\Models\FileManager;
 use App\Models\BusinessCategories;
 
-use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class BusinessController extends Controller
 {

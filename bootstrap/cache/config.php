@@ -1,7 +1,7 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'GSP',
     'env' => 'local',
     'debug' => true,
     'url' => 'https://bestcoolautoac.com',
@@ -36,12 +36,13 @@
       19 => 'Illuminate\\Translation\\TranslationServiceProvider',
       20 => 'Illuminate\\Validation\\ValidationServiceProvider',
       21 => 'Illuminate\\View\\ViewServiceProvider',
-      22 => 'Spatie\\Permission\\PermissionServiceProvider',
-      23 => 'Jenssegers\\Agent\\AgentServiceProvider',
-      24 => 'App\\Providers\\AppServiceProvider',
-      25 => 'App\\Providers\\AuthServiceProvider',
-      26 => 'App\\Providers\\EventServiceProvider',
-      27 => 'App\\Providers\\RouteServiceProvider',
+      22 => 'Intervention\\Image\\ImageServiceProvider',
+      23 => 'Spatie\\Permission\\PermissionServiceProvider',
+      24 => 'Jenssegers\\Agent\\AgentServiceProvider',
+      25 => 'App\\Providers\\AppServiceProvider',
+      26 => 'App\\Providers\\AuthServiceProvider',
+      27 => 'App\\Providers\\EventServiceProvider',
+      28 => 'App\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -84,6 +85,7 @@
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Agent' => 'Jenssegers\\Agent\\Facades\\Agent',
       'Share' => 'Jorenvh\\Share\\ShareFacade',
+      'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
   'auth' => 
@@ -231,7 +233,7 @@
         'driver' => 'octane',
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'gsp_cache',
   ),
   'cors' => 
   array (
@@ -330,7 +332,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'gsp_database_',
       ),
       'default' => 
       array (
@@ -654,7 +656,7 @@
     'from' => 
     array (
       'address' => NULL,
-      'name' => 'Laravel',
+      'name' => 'GSP',
     ),
     'markdown' => 
     array (
@@ -808,7 +810,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'gsp_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,

@@ -14,21 +14,73 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $NewArrivalsCars = Car::where('pub_place', 'new_arrivals')->orderBy('id', 'DESC')->take(12)->get();
-        // $BestSellingCars = Car::where('pub_place', 'best_selling')->orderBy('id', 'DESC')->take(12)->get();
-        // $ac_parts = Car::where('pub_place', 'AC Parts')->orderBy('id', 'DESC')->take(12)->get();
-        // // $brands =Brand::paginate(6);
-        // if (!MoBileView()) {
-        //     $brands = Brand::all();
-        //     $vehicle_brands = FuelType::all(); //vehicle Brands
-        //     return view('welcome', compact('brands', 'vehicle_brands', 'NewArrivalsCars', 'BestSellingCars','ac_parts'));
-        // } else {
-        //     $brands = Brand::paginate(6);
-        //     $vehicle_brands = FuelType::paginate(6); //vehicle Brands
-        //     return view('mobile.welcome', compact('vehicle_brands', 'brands', 'NewArrivalsCars', 'BestSellingCars','ac_parts'));
-        // }
-
         return view('home');
+    }
+
+    public function aboutUs()
+    {
+        return view('about-us');
+    }
+
+    public function contactUs()
+    {
+        return view('contact-us');
+    }
+
+
+    public function businessList()
+    {
+        return view('business.index');
+    }
+
+    public function businessDetails()
+    {
+        return view('business.details');
+    }
+
+    public function expertList()
+    {
+        return view('expert.index');
+    }
+
+    public function expertDetails()
+    {
+        return view('expert.details');
+    }
+
+    public function productList()
+    {
+        return view('product.index');
+    }
+
+    public function productDetails()
+    {
+        return view('product.details');
+    }
+
+    public function brandsList()
+    {
+        return view('brands.index');
+    }
+
+    public function blogList()
+    {
+        return view('blogs.index');
+    }
+
+    public function blogDetails()
+    {
+        return view('blog.details');
+    }
+
+    public function listing()
+    {
+        return view('listing');
+    }
+
+    public function termsConditions()
+    {
+        return view('terms-and-conditions');
     }
 
     public function details($id)
