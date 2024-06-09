@@ -12,9 +12,11 @@ class BlogCategories extends Model
         'category_title',
         'category_slug',
         'category_image',
+        'category_description',
         'meta_tags',
         'meta_title',
         'meta_keywords',
         'meta_description',
+        'image_id',
     ];
 }

@@ -38,7 +38,7 @@ class BlogCategoriesController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'category_name' => 'required|max:100|unique:blogs_categories',
+            'category_title' => 'required|max:100|unique:blogs_categories',
             'category_image' => 'nullable|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:500',
         ]);
 
@@ -74,9 +74,13 @@ class BlogCategoriesController extends Controller
         }
 
         $category_create  = BlogCategories::create([
-            'category_name' => $request->category_name,
+            'category_title' => $request->category_title,
             'category_image' => $file_location,
             'category_description' => $request->category_description,
+            'meta_tags' => $request->meta_tags,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
             'image_id' => $image_id,
         ]);
 
@@ -137,7 +141,7 @@ class BlogCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'category_name' => 'required|max:100|unique:blogs_categories,category_name,' . $id,
+            'category_title' => 'required|max:100|unique:blogs_categories,category_title,' . $id,
             'category_image' => 'nullable|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:500',
         ]);
 
@@ -182,9 +186,13 @@ class BlogCategoriesController extends Controller
         }
 
         $category_create  = BlogCategories::where('id', "=", $request->id)->update([
-            'category_name' => $request->category_name,
+            'category_title' => $request->category_title,
             'category_image' => $file_location,
             'category_description' => $request->category_description,
+            'meta_tags' => $request->meta_tags,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
             'image_id' => $image_id,
         ]);
 

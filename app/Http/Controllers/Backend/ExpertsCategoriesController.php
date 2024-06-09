@@ -77,6 +77,10 @@ class ExpertsCategoriesController extends Controller
             'category_name' => $request->category_name,
             'category_image' => $file_location,
             'category_description' => $request->category_description,
+            'meta_tags' => $request->meta_tags,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
             'image_id' => $image_id,
         ]);
 
@@ -183,6 +187,10 @@ class ExpertsCategoriesController extends Controller
             'category_name' => $request->category_name,
             'category_image' => $file_location,
             'category_description' => $request->category_description,
+            'meta_tags' => $request->meta_tags,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
             'image_id' => $image_id,
         ]);
 

@@ -12,6 +12,10 @@ class ExpertsCategories extends Model
         'category_name',
         'category_image',
         'category_description',
+        'meta_tags',
+        'meta_title',
+        'meta_keywords',
+        'meta_description',
         'image_id',
     ];
 }

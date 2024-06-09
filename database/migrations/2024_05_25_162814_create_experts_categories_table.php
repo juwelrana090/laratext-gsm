@@ -18,6 +18,11 @@ class CreateExpertsCategoriesTable extends Migration
             $table->string('category_name');
             $table->string('category_image');
             $table->string('category_description');
+            $table->text('meta_title')->nullable();
+            $table->text('meta_tags')->nullable();
+            $table->text('meta_keywords')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_canonical_url')->nullable();
             $table->integer('image_id')->nullable()->unsigned()->index();
             $table->foreign('image_id')->references('id')->on('file_managers');
             $table->timestamps();
