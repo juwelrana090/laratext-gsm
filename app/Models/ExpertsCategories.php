@@ -10,6 +10,7 @@ class ExpertsCategories extends Model
     use HasFactory;
     protected $fillable = [
         'category_name',
+        'category_slug',
         'category_image',
         'category_description',
         'meta_tags',

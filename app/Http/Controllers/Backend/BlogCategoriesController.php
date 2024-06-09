@@ -73,8 +73,29 @@ class BlogCategoriesController extends Controller
             $image_id = $fileModel->id;
         }
 
+
+        $category_title = $request->category_title;
+        $category_slug = Str::slug($category_title);
+
+        $blog_category = BlogCategories::where('category_slug', 'LIKE', "%{$category_slug}%")->get();
+        $count = $blog_category->count();
+
+        if ($count > 0) {
+            foreach ($blog_category as $category) {
+                $data[] = $category['category_slug'];
+            }
+
+            if (in_array($category_slug, $data)) {
+                $category_count = 0;
+                while (in_array(($category_slug . '-' . ++$category_count), $data));
+                $category_title = $category_title . " " . $category_count;
+                $category_slug = $category_slug . '-' . $category_count;
+            }
+        }
+
         $category_create  = BlogCategories::create([
-            'category_title' => $request->category_title,
+            'category_title' => $category_title,
+            'category_slug' => $category_slug,
             'category_image' => $file_location,
             'category_description' => $request->category_description,
             'meta_tags' => $request->meta_tags,
@@ -185,8 +206,28 @@ class BlogCategoriesController extends Controller
             $image_id = $fileModel->id;
         }
 
+        $category_title = $request->category_title;
+        $category_slug = Str::slug($category_title);
+
+        $blog_category = BlogCategories::where('category_slug', 'LIKE', "%{$category_slug}%")->get();
+        $count = $blog_category->count();
+
+        if ($count > 0) {
+            foreach ($blog_category as $category) {
+                $data[] = $category['category_slug'];
+            }
+
+            if (in_array($category_slug, $data)) {
+                $category_count = 0;
+                while (in_array(($category_slug . '-' . ++$category_count), $data));
+                $category_title = $category_title . " " . $category_count;
+                $category_slug = $category_slug . '-' . $category_count;
+            }
+        }
+
         $category_create  = BlogCategories::where('id', "=", $request->id)->update([
-            'category_title' => $request->category_title,
+            'category_title' => $category_title,
+            'category_slug' => $category_slug,
             'category_image' => $file_location,
             'category_description' => $request->category_description,
             'meta_tags' => $request->meta_tags,

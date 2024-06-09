@@ -16,6 +16,7 @@ class CreateExpertsCategoriesTable extends Migration
         Schema::create('experts_categories', function (Blueprint $table) {
             $table->increments('id')->autoIncrement();
             $table->string('category_name');
+            $table->string('category_slug');
             $table->string('category_image');
             $table->string('category_description');
             $table->text('meta_title')->nullable();

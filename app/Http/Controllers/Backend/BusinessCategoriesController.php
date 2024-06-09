@@ -73,8 +73,29 @@ class BusinessCategoriesController extends Controller
             $image_id = $fileModel->id;
         }
 
+
+        $category_name = $request->category_name;
+        $category_slug = Str::slug($category_name);
+
+        $business_category = BusinessCategories::where('category_slug', 'LIKE', "%{$category_slug}%")->get();
+        $count = $business_category->count();
+
+        if ($count > 0) {
+            foreach ($business_category as $category) {
+                $data[] = $category['category_slug'];
+            }
+
+            if (in_array($category_slug, $data)) {
+                $category_count = 0;
+                while (in_array(($category_slug . '-' . ++$category_count), $data));
+                $category_name = $category_name . " " . $category_count;
+                $category_slug = $category_slug . '-' . $category_count;
+            }
+        }
+
         $category_create  = BusinessCategories::create([
-            'category_name' => $request->category_name,
+            'category_name' => $category_name,
+            'category_slug' => $category_slug,
             'category_image' => $file_location,
             'category_description' => $request->category_description,
             'meta_tags' => $request->meta_tags,
@@ -185,8 +206,28 @@ class BusinessCategoriesController extends Controller
             $image_id = $fileModel->id;
         }
 
+        $category_name = $request->category_name;
+        $category_slug = Str::slug($category_name);
+
+        $business_category = BusinessCategories::where('category_slug', 'LIKE', "%{$category_slug}%")->get();
+        $count = $business_category->count();
+
+        if ($count > 0) {
+            foreach ($business_category as $category) {
+                $data[] = $category['category_slug'];
+            }
+
+            if (in_array($category_slug, $data)) {
+                $category_count = 0;
+                while (in_array(($category_slug . '-' . ++$category_count), $data));
+                $category_name = $category_name . " " . $category_count;
+                $category_slug = $category_slug . '-' . $category_count;
+            }
+        }
+
         $category_create  = BusinessCategories::where('id', "=", $request->id)->update([
-            'category_name' => $request->category_name,
+            'category_name' => $category_name,
+            'category_slug' => $category_slug,
             'category_image' => $file_location,
             'category_description' => $request->category_description,
             'meta_tags' => $request->meta_tags,

@@ -35,8 +35,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="category_name"
-                                            placeholder="Category Name">
+unset($__errorArgs, $__bag); ?>"
+                                            name="category_name" placeholder="Category Name">
                                         <?php $__errorArgs = ['category_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -52,20 +52,21 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="catImage">Category Image</label>
-                                        <input type="file" class="form-control-file" name="category_image" id="catImage">
+                                        <input type="file" class="form-control-file" name="category_image"
+                                            id="catImage">
                                     </div>
                                     <div class="form-group">
                                         <label for="categoryDsc">Category Description</label>
                                         <textarea class="form-control" name="category_description" id="categoryDsc" rows="3"></textarea>
                                     </div>
 
-                            <h4 class="card-title">SEO Info</h4>
-                            <hr>
-                            <div class="form-group row">
-                                <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="seo_title"
-                                        class="form-control <?php $__errorArgs = ['seo_title'];
+                                    <h4 class="card-title">SEO Info</h4>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <label for="seo_title" class="col-sm-12 col-form-label">SEO Title </label>
+                                        <div class="col-sm-12">
+                                            <input type="text" name="seo_title"
+                                                class="form-control <?php $__errorArgs = ['seo_title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -73,27 +74,27 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" id="seo_title"
-                                        placeholder="SEO Title">
-                                </div>
-                                <?php $__errorArgs = ['seo_title'];
+                                                placeholder="SEO Title">
+                                        </div>
+                                        <?php $__errorArgs = ['seo_title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="invalid-feedback" role="alert">
-                                        <span><?php echo e($message); ?></span>
-                                    </span>
-                                <?php unset($message);
+                                            <span class="invalid-feedback" role="alert">
+                                                <span><?php echo e($message); ?></span>
+                                            </span>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                            </div>
+                                    </div>
 
-                            <div class="form-group row">
-                                <label for="seo_keywords" class="col-sm-2 col-form-label">SEO Keywords</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="seo_keywords"
-                                        class="form-control <?php $__errorArgs = ['seo_keywords'];
+                                    <div class="form-group row">
+                                        <label for="seo_keywords" class="col-sm-12 col-form-label">SEO Keywords</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" name="seo_keywords"
+                                                class="form-control <?php $__errorArgs = ['seo_keywords'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -101,41 +102,41 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                        id="seo_keywords" placeholder="SEO Keywords">
-                                </div>
-                                <?php $__errorArgs = ['seo_keywords'];
+                                                id="seo_keywords" placeholder="SEO Keywords">
+                                        </div>
+                                        <?php $__errorArgs = ['seo_keywords'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="invalid-feedback" role="alert">
-                                        <span><?php echo e($message); ?></span>
-                                    </span>
-                                <?php unset($message);
+                                            <span class="invalid-feedback" role="alert">
+                                                <span><?php echo e($message); ?></span>
+                                            </span>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                            </div>
+                                    </div>
 
-                            <div class="form-group row">
-                                <label for="seo_description" class="col-sm-2 col-form-label">SEO Description</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
-                                        placeholder="SEO Description"></textarea>
-                                </div>
-                                <?php $__errorArgs = ['seo_description'];
+                                    <div class="form-group row">
+                                        <label for="seo_description" class="col-sm-12 col-form-label">SEO
+                                            Description</label>
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" name="seo_description" id="seo_description" rows="3" placeholder="SEO Description"></textarea>
+                                        </div>
+                                        <?php $__errorArgs = ['seo_description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="invalid-feedback" role="alert">
-                                        <span><?php echo e($message); ?></span>
-                                    </span>
-                                <?php unset($message);
+                                            <span class="invalid-feedback" role="alert">
+                                                <span><?php echo e($message); ?></span>
+                                            </span>
+                                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                            </div>
+                                    </div>
 
 
                                     <button type="submit" class="btn btn-success">Create</button>
