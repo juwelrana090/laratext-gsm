@@ -52,8 +52,8 @@
                                     <h4 class="card-title">SEO Info</h4>
                                     <hr>
                                     <div class="form-group row">
-                                        <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
-                                        <div class="col-sm-10">
+                                        <label for="seo_title" class="col-sm-12 col-form-label">SEO Title </label>
+                                        <div class="col-sm-12">
                                             <input type="text" name="seo_title"
                                                 class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
                                                 placeholder="SEO Title" value="{{ $category->seo_title }}">
@@ -66,8 +66,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="seo_keywords" class="col-sm-2 col-form-label">SEO Keywords</label>
-                                        <div class="col-sm-10">
+                                        <label for="seo_keywords" class="col-sm-12 col-form-label">SEO Keywords</label>
+                                        <div class="col-sm-12">
                                             <input type="text" name="seo_keywords"
                                                 class="form-control @error('seo_keywords') is-invalid @enderror"
                                                 id="seo_keywords" placeholder="SEO Keywords"
@@ -81,8 +81,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="seo_description" class="col-sm-2 col-form-label">SEO Description</label>
-                                        <div class="col-sm-10">
+                                        <label for="seo_description" class="col-sm-12 col-form-label">SEO Description</label>
+                                        <div class="col-sm-12">
                                             <textarea class="form-control" name="seo_description" id="seo_description" rows="3" placeholder="SEO Description">
                                                 {{ $category->seo_description }}
                                             </textarea>
