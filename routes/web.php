@@ -128,6 +128,24 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
     Route::resource('show_rooms', 'ShowRoomController', ['names' => 'admin.show_rooms']);
     Route::resource('expert_status', 'ExpertController', ['names' => 'admin.expert_status']);
 
+
+    Route::group(['prefix' => 'blogs'], function () {
+        Route::get('/', 'BlogsController@index')->name('blogs.index');
+        Route::get('/create', 'BlogsController@create')->name('blogs.create');
+        Route::post('/store', 'BlogsController@store')->name('blogs.store');
+        Route::get('/edit/{id}', 'BlogsController@edit')->name('blogs.edit');
+        Route::put('/update/{id}', 'BlogsController@update')->name('blogs.update');
+        Route::delete('/destroy/{id}', 'BlogsController@destroy')->name('blogs.destroy');
+
+        Route::group(['prefix' => 'category'], function () {
+            Route::get('/', 'BlogCategoriesController@index')->name('blogs.category.index');
+            Route::post('/create', 'BlogCategoriesController@create')->name('blogs.category.create');
+            Route::get('/edit/{id}', 'BlogCategoriesController@edit')->name('blogs.category.edit');
+            Route::put('/update/{id}', 'BlogCategoriesController@update')->name('blogs.category.update');
+            Route::delete('/destroy/{id}', 'BlogCategoriesController@destroy')->name('blogs.category.destroy');
+        });
+    });
+
     Route::group(['prefix' => 'business'], function () {
         Route::get('/', 'BusinessController@index')->name('business.index');
         Route::get('/create', 'BusinessController@create')->name('business.create');
