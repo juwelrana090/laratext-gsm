@@ -29,9 +29,9 @@
                                     <div class="form-group">
                                         <label for="first-name-vertical">Category Name</label>
                                         <input type="text" id="first-name-vertical"
-                                            class="form-control @error('category_name') is-invalid @enderror"
-                                            name="category_name" placeholder="Category Name">
-                                        @error('category_name')
+                                            class="form-control @error('category_title') is-invalid @enderror"
+                                            name="category_title" placeholder="Category Name">
+                                        @error('category_title')
                                             <span class="invalid-feedback" role="alert">
                                                 <span>{{ $message }}</span>
                                             </span>

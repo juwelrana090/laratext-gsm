@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\BlogCategories;
 use App\Models\FileManager;
@@ -37,10 +38,16 @@ class BlogCategoriesController extends Controller
      */
     public function create(Request $request)
     {
-        $request->validate([
-            'category_title' => 'required|max:100|unique:blogs_categories',
+        $validator = Validator::make($request->all(), [
+            'category_title' => 'required|max:100|unique:blog_categories',
             'category_image' => 'nullable|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:500',
         ]);
+
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
 
         $now_day = date('F_Y');
 
@@ -161,10 +168,15 @@ class BlogCategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'category_title' => 'required|max:100|unique:blogs_categories,category_title,' . $id,
+        $validator = Validator::make($request->all(), [
+            'category_title' => 'required|max:100|unique:blog_categories,category_title,' . $id,
             'category_image' => 'nullable|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:500',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
 
         $category = BlogCategories::find($request->id);
         $fileManager = FileManager::where('id', '=', $category->image_id)->first();

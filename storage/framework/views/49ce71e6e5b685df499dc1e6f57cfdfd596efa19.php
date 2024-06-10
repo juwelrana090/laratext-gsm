@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label for="first-name-vertical">Category Name</label>
                                         <input type="text" id="first-name-vertical"
-                                            class="form-control <?php $__errorArgs = ['category_name'];
+                                            class="form-control <?php $__errorArgs = ['category_title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -36,8 +36,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                            name="category_name" placeholder="Category Name">
-                                        <?php $__errorArgs = ['category_name'];
+                                            name="category_title" placeholder="Category Name">
+                                        <?php $__errorArgs = ['category_title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
