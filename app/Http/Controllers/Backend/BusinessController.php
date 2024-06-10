@@ -102,7 +102,6 @@ class BusinessController extends Controller
 
         $now_day = date('F_Y');
 
-
         if ($request->hasFile('business_images')) {
             foreach ($request->file('business_images') as $key => $file) {
                 $path = public_path('uploads/files/' . $now_day);

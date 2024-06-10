@@ -30,6 +30,7 @@ class CreateBlogsTable extends Migration
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('meta_canonical_url')->nullable();
+            $table->integer('image_id')->nullable();
             $table->integer('view_count')->default(0);
             $table->timestamps();
         });
