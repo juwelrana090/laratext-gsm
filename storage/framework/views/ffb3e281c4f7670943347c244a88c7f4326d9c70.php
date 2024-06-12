@@ -1,11 +1,10 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Blank details | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="container-fluid container-lg bg-white mt-3 mt-md-5">
             <div class="row">
@@ -15,17 +14,17 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">{{ $blog->post_title }}</h1>
+                            <h1 class="fw-bolder mb-1"><?php echo e($blog->post_title); ?></h1>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">Posted on
-                                {{ date('F d, Y', strtotime($blog->created_at)) }}</div>
+                                <?php echo e(date('F d, Y', strtotime($blog->created_at))); ?></div>
                             <!-- Post categories-->
                             <a class="badge bg-secondary text-decoration-none link-light"
-                                href="#!">{{ $blog->post_category_title }}</a>
+                                href="#!"><?php echo e($blog->post_category_title); ?></a>
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4">
-                            <img class="img-fluid rounded" src="{{ asset($blog->post_image) }}" alt="{{ $blog->post_title }}"
+                            <img class="img-fluid rounded" src="<?php echo e(asset($blog->post_image)); ?>" alt="<?php echo e($blog->post_title); ?>"
                                 style="width: 900px; height: 400px" />
                         </figure>
                         <!-- Post content-->
@@ -52,26 +51,24 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <ul class="row list-unstyled mb-0">
-                                        @foreach ($categories as $category)
-                                            <li class="col-6 col-lg-6"><a href="#">{{ $category->category_title }}</a>
+                                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li class="col-6 col-lg-6"><a href="#"><?php echo e($category->category_title); ?></a>
                                             </li>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Side widget-->
-                    {{-- <div class="card mb-4">
-                            <div class="card-header">Side Widget</div>
-                            <div class="card-body">You can put anything you want inside of these side widgets. They are
-                                easy to use, and feature the card component!</div>
-                        </div> --}}
+                    
                 </div>
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/blogs/details.blade.php ENDPATH**/ ?>

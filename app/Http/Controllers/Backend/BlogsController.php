@@ -27,6 +27,9 @@ class BlogsController extends Controller
     public function index(Request $request)
     {
         $blogs = Blogs::latest()->orderBy('id', 'desc')->paginate(10);
+        return view('backend.blogs.blog', [
+            'blogs' => $blogs
+        ]);
     }
 
 
@@ -95,8 +98,6 @@ class BlogsController extends Controller
      */
     public function create(Request $request)
     {
-        $blog_categories = BlogCategories::latest()->get();
-
         $categories = BlogCategories::latest()->orderBy('id', 'desc')->get();
         return view('backend.blogs.blog_add', [
             'categories' => $categories
@@ -108,38 +109,42 @@ class BlogsController extends Controller
 
         $validator = Validator::make($request->all(), [
             'post_title' => 'required',
-            'post_slug' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return back()->withErrors($validator)->withInput();
         }
 
         $uniqid = uniqid();
         $post_title = $request->post_title;
-        $post_slug = Str::slug($request->post_slug);
+        $post_slug = Str::slug($request->post_title);
 
         $blogs = Blogs::where('post_slug', 'LIKE', "%{$post_slug}%")->get();
         $count = $blogs->count();
 
-        if ($count > 0) {;
-            foreach ($blogs as $cat) {
-                $data[] = $cat['post_slug'];
+        if ($count > 0) {
+            $data = [];
+            foreach ($blogs as $blog) {
+                $data[] = $blog['post_slug'];
             }
 
             if (in_array($post_slug, $data)) {
-                $cat_count = 0;
-                while (in_array(($post_slug . '-' . ++$cat_count), $data));
-                $post_title = $post_title . " " . $cat_count;
-                $post_slug = $post_slug . '-' . $cat_count;
+                $blog_count = 0;
+                while (in_array(($post_slug . '-' . ++$blog_count), $data));
+                $post_title = $post_title . " " . $blog_count;
+                $post_slug = $post_slug . '-' . $blog_count;
             }
         }
+
 
         $user_id = Auth::user()->id;
         $user_id = auth()->user()->id;
 
         $now_day = date('F_Y');
         $image_id = "";
+        $file_location = "";
+
+        $category = BlogCategories::find($request->post_category_id);
 
         if ($request->hasFile('post_image')) {
             $file = $request->file('post_image');
@@ -173,10 +178,11 @@ class BlogsController extends Controller
             'user_id' => $user_id,
             'post_title' => $post_title,
             'post_slug' => $post_slug,
-            'post_description' => json_encode($request->post_description),
+            'post_description' => $request->post_description,
             'post_image' => $file_location,
+            'post_category_id' => $category->id,
+            'post_category_title' => $category->category_title,
             'post_status' => $request->post_status,
-            'is_featured' => $request->is_featured,
             'meta_title' => $request->meta_title,
             'meta_tags' => $request->meta_tags,
             'meta_keywords' => $request->meta_keywords,
@@ -184,6 +190,8 @@ class BlogsController extends Controller
             'meta_canonical_url' => $request->meta_canonical_url,
             'image_id' => $image_id,
         ]);
+
+        return redirect()->route('blogs.index')->with('success', 'Blog created successfully');
     }
 
     /**
@@ -199,11 +207,11 @@ class BlogsController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return back()->withErrors($validator)->withInput();
         }
 
         $post_title = $request->post_title;
-        $post_slug = Str::slug($request->post_slug);
+        $post_slug = Str::slug($request->post_title);
 
         $blogs = Blogs::where('post_slug', 'LIKE', "%{$post_slug}%")->get();
         $count = $blogs->count();
@@ -217,26 +225,69 @@ class BlogsController extends Controller
                 }
 
                 if (in_array($post_slug, $data)) {
-                    $cat_count = 0;
-                    while (in_array(($post_slug . '-' . ++$cat_count), $data));
-                    $post_title = $post_title . " " . $cat_count;
-                    $post_slug = $post_slug . '-' . $cat_count;
+                    $blog_count = 0;
+                    while (in_array(($post_slug . '-' . ++$blog_count), $data));
+                    $post_title = $post_title . " " . $blog_count;
+                    $post_slug = $post_slug . '-' . $blog_count;
                 }
             }
+        }
+
+        $blog = Blogs::find($request->id);
+        $fileManager = FileManager::where('id', '=', $blog->image_id)->first();
+
+        $now_day = date('F_Y');
+
+        $image_id = $blog->image_id;
+        $file_location = $fileManager->file_path;
+
+        $category = BlogCategories::find($request->post_category_id);
+
+        if ($request->hasFile('post_image')) {
+
+            $fileManager->delete();
+            unlink($fileManager->file_path);
+
+            $file = $request->file('post_image');
+            $path = public_path('uploads/files/' . $now_day);
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+            }
+
+            $image_id = $fileModel->id;
         }
 
         $blog_update = $blog->update([
             'post_title' => $post_title,
             'post_slug' => $post_slug,
             'post_description' => $request->post_description,
-            'post_image' => $request->post_image,
+            'post_image' => $file_location,
+            'post_category_id' => $category->id,
+            'post_category_title' => $category->category_title,
             'post_status' => $request->post_status,
-            'is_featured' => $request->is_featured,
             'meta_title' => $request->meta_title,
             'meta_tags' => $request->meta_tags,
             'meta_keywords' => $request->meta_keywords,
             'meta_description' => $request->meta_description,
             'meta_canonical_url' => $request->meta_canonical_url,
+            'image_id' => $image_id,
         ]);
 
         return response()->json([

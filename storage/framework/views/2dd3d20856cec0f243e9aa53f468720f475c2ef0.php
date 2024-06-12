@@ -1,12 +1,11 @@
-@extends('layouts.backend.master')
-@section('title', 'Blog List')
-@push('meta')
-@endpush
-@push('theme_css')
-@endpush
-@push('page_css')
-@endpush
-@push('custom_css')
+<?php $__env->startSection('title', 'Blog List'); ?>
+<?php $__env->startPush('meta'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('theme_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_css'); ?>
     <style>
         .bg_image {
             width: 100%;
@@ -32,12 +31,12 @@
             filter: contrast(120%);
         }
     </style>
-@endpush
-@push('head')
-@endpush
-@section('breadcrumb')
-@endsection
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('head'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card">
@@ -59,18 +58,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($blogs as $blog)
+                                        <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td class="product-category">{{ $blog->post_title }}</td>
-                                                <td class="product-category">{{ $blog->post_category_title }}</td>
-                                                <td class="product-category">{{ route('home') }}/blog/{{ $blog->post_slug }}</td>
+                                                <td class="product-category"><?php echo e($blog->post_title); ?></td>
+                                                <td class="product-category"><?php echo e($blog->post_category_title); ?></td>
+                                                <td class="product-category"><?php echo e(route('home')); ?>/blog/<?php echo e($blog->post_slug); ?></td>
                                                 <td class="product-category">
-                                                    <a href="{{ route('blogs.edit', $blog->id) }}"
+                                                    <a href="<?php echo e(route('blogs.edit', $blog->id)); ?>"
                                                         class="btn btn-sm btn-primary text-white">edit</a>
                                                     <a href="#" class="btn btn-sm btn-danger text-white"
                                                         data-toggle="modal"
-                                                        data-target="#typeDelete{{ $blog->id }}">x</a>
-                                                        <div class="modal fade" id="typeDelete{{ $blog->id }}" tabindex="-1" role="dialog"
+                                                        data-target="#typeDelete<?php echo e($blog->id); ?>">x</a>
+                                                        <div class="modal fade" id="typeDelete<?php echo e($blog->id); ?>" tabindex="-1" role="dialog"
                                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
@@ -81,21 +80,21 @@
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        Are You Sure You want to delete {{ $blog->post_title }} Type?
+                                                                        Are You Sure You want to delete <?php echo e($blog->post_title); ?> Type?
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close</button>
                                                                         <a onclick="event.preventDefault();
-                                                                  document.getElementById('delete-form-{{ $blog->id }}').submit();"
-                                                                            href="{{ route('blogs.destroy', $blog->id) }}"
+                                                                  document.getElementById('delete-form-<?php echo e($blog->id); ?>').submit();"
+                                                                            href="<?php echo e(route('blogs.destroy', $blog->id)); ?>"
                                                                             class="btn btn-danger text-white" data-toggle="modal"
                                                                             data-target="#colorDelete">Delete</a>
-                                                                        <form id="delete-form-{{ $blog->id }}"
-                                                                            action="{{ route('blogs.destroy', $blog->id) }}" method="POST"
+                                                                        <form id="delete-form-<?php echo e($blog->id); ?>"
+                                                                            action="<?php echo e(route('blogs.destroy', $blog->id)); ?>" method="POST"
                                                                             class="d-none">
-                                                                            @method('DELETE')
-                                                                            @csrf
+                                                                            <?php echo method_field('DELETE'); ?>
+                                                                            <?php echo csrf_field(); ?>
                                                                         </form>
                                                                     </div>
                                                                 </div>
@@ -103,14 +102,15 @@
                                                         </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
 
                             </div>
                             <div class="col-lg-12 mb-5">
                                 <!-- Pagination Links -->
-                                {{ $blogs->links() }}
+                                <?php echo e($blogs->links()); ?>
+
                             </div>
                         </div>
 
@@ -119,12 +119,12 @@
             </div>
         </div>
     </div>
-@endsection
-@push('theme_js')
-@endpush
-@push('page_js')
-@endpush
-@push('custom_js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('theme_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_js'); ?>
     <script>
         var dataThumbView = $(".data-thumb-view").DataTable({
             responsive: false,
@@ -157,4 +157,6 @@
             }
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.backend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/backend/blogs/blog.blade.php ENDPATH**/ ?>

@@ -1,11 +1,10 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>blogs | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="container-fluid container-lg bg-white mt-3 mt-md-5">
 
@@ -24,40 +23,30 @@
                     <!-- Blog entries-->
                     <div class="col-lg-8">
                         <!-- Featured blog post-->
-                        {{-- <div class="card mb-4">
-                            <a href="./blog_details.html"><img class="card-img-top"
-                                    src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg') }}" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted">January 1, 2023</div>
-                                <h2 class="card-title">Featured Post Title</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta
-                                    expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                                <a class="btn btn-primary" href="./blog_details.html">Read more →</a>
-                            </div>
-                        </div> --}}
+                        
                         <!-- Nested row for non-featured blog posts-->
                         <div class="row">
-                            @foreach ($blogs as $blog)
+                            <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="col-lg-6">
                                     <!-- Blog post-->
                                     <div class="card mb-4">
                                         <a href="./blog_details.html">
-                                            <img class="card-img-top" src="{{ asset($blog->post_image) }}"
-                                                alt="{{ $blog->post_title }}" />
+                                            <img class="card-img-top" src="<?php echo e(asset($blog->post_image)); ?>"
+                                                alt="<?php echo e($blog->post_title); ?>" />
                                         </a>
                                         <div class="card-body">
-                                            <div class="small text-muted">{{date("F d, Y", strtotime($blog->created_at)) }}</div>
-                                            <h2 class="card-title h4">{{ $blog->post_title }}</h2>
-                                            <p class="card-text">{{ $blog->meta_description }}</p>
-                                            <a class="btn btn-primary" href="{{ route('home') }}/blog/{{ $blog->post_slug }}">Read more →</a>
+                                            <div class="small text-muted"><?php echo e(date("F d, Y", strtotime($blog->created_at))); ?></div>
+                                            <h2 class="card-title h4"><?php echo e($blog->post_title); ?></h2>
+                                            <p class="card-text"><?php echo e($blog->meta_description); ?></p>
+                                            <a class="btn btn-primary" href="<?php echo e(route('home')); ?>/blog/<?php echo e($blog->post_slug); ?>">Read more →</a>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                         <!-- Pagination Links -->
-                        {{ $blogs->links() }}
+                        <?php echo e($blogs->links()); ?>
+
                     </div>
                     <!-- Side widgets-->
                     <div class="col-lg-4">
@@ -79,26 +68,24 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <ul class="row list-unstyled mb-0">
-                                            @foreach ($categories as $category)
-                                            <li class="col-6 col-lg-6"><a href="#">{{$category->category_title}}</a></li>
-                                            @endforeach
+                                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li class="col-6 col-lg-6"><a href="#"><?php echo e($category->category_title); ?></a></li>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Side widget-->
-                        {{-- <div class="card mb-4">
-                            <div class="card-header">Side Widget</div>
-                            <div class="card-body">You can put anything you want inside of these side widgets. They are
-                                easy to use, and feature the card component!</div>
-                        </div> --}}
+                        
                     </div>
                 </div>
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/blogs/index.blade.php ENDPATH**/ ?>

@@ -56,7 +56,7 @@ class ExpertsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'contact_person_name' => 'required',
             'email' => 'required',
             'address' => 'required',
@@ -74,6 +74,10 @@ class ExpertsController extends Controller
         ]);
 
 
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
         $uniqid = uniqid();
         $user_id = auth()->user()->id;
 
@@ -83,7 +87,8 @@ class ExpertsController extends Controller
         $experts = Experts::where('slug', 'LIKE', "%{$slug}%")->get();
         $count = $experts->count();
 
-        if ($count > 0) {;
+        if ($count > 0) {
+            $data = [];
             foreach ($experts as $expert) {
                 $data[] = $expert['slug'];
             }
@@ -96,7 +101,7 @@ class ExpertsController extends Controller
             }
         }
 
-        $expert_category = ExpertsCategories::find($request->expert_category_id);
+        $expert_category = ExpertsCategories::find($request->experts_categories_id);
 
         $now_day = date('F_Y');
 
@@ -130,9 +135,9 @@ class ExpertsController extends Controller
             $image_id = $fileModel->id;
         }
 
-
-        $data = [
-            'experts_categories_id' => $request->experts_categories_id,
+        $expert_create = Experts::create([
+            'experts_categories_id' => $expert_category->id,
+            'experts_categories_name' => $expert_category->category_name,
             'contact_person_name' => $request->contact_person_name,
             'email' => $request->email,
             'address' => $request->address,
@@ -159,10 +164,7 @@ class ExpertsController extends Controller
             'seo_description' => $request->seo_description,
             'expert_image' => $file_location,
             'image_id' => $image_id,
-        ];
-
-
-        $expert_create = Experts::create($data);
+        ]);
         return redirect()->route('experts.index')->with('success', 'Expert created successfully');
     }
 

@@ -15,8 +15,8 @@ class CreateExpertsTable extends Migration
     {
         Schema::create('experts', function (Blueprint $table) {
             $table->increments('id')->autoIncrement();
-            $table->integer('experts_categories_id')->nullable()->unsigned()->index();
-            $table->foreign('experts_categories_id')->references('id')->on('experts_categories');
+            $table->integer('experts_categories_id')->nullable();
+            $table->string('experts_categories_name')->nullable();
             $table->string('contact_person_name');
             $table->string('email');
             $table->string('address');
@@ -31,7 +31,7 @@ class CreateExpertsTable extends Migration
             $table->string('description')->nullable();
             $table->string('services');
             $table->string('starting_prices');
-            $table->json('social_profile')->nullable();
+            $table->string('social_profile')->nullable();
             $table->string('google_map')->nullable();
             $table->integer('ratings')->nullable();
             $table->string('reviews')->nullable();

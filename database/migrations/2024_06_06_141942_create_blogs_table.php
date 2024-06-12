@@ -20,8 +20,9 @@ class CreateBlogsTable extends Migration
             $table->string('uniqid', 255)->index();
             $table->text('post_title');
             $table->text('post_slug');
-            $table->json('post_description')->nullable();
-            $table->json('post_categories')->nullable();
+            $table->longText('post_description')->nullable();
+            $table->integer('post_category_id')->nullable();
+            $table->text('post_category_title')->nullable();
             $table->text('post_image')->nullable();
             $table->enum('post_status', ['draft', 'published'])->default('draft');
             $table->boolean('is_featured')->default(false);

@@ -7,6 +7,11 @@ use App\Models\Brand;
 use App\Models\Car;
 use App\Models\Contact;
 use App\Models\FuelType;
+
+use App\Models\Blogs;
+use App\Models\BlogCategories;
+use App\Models\FileManager;
+
 use Exception;
 use Illuminate\Http\Request;
 
@@ -65,12 +70,25 @@ class DashboardController extends Controller
 
     public function blogList()
     {
-        return view('blogs.index');
+        $blogs = Blogs::latest()->orderBy('id', 'desc')->paginate(20);
+        $categories = BlogCategories::latest()->orderBy('id', 'desc')->get();
+
+        return view('blogs.index', [
+            'blogs' => $blogs,
+            'categories' => $categories
+        ]);
     }
 
-    public function blogDetails()
+    public function blogDetails(Request $request)
     {
-        return view('blog.details');
+        $blog = Blogs::where('post_slug', $request->slug)->first();
+        $category = Blogs::where('id', $blog->post_category_id)->first();
+        $categories = BlogCategories::latest()->orderBy('id', 'desc')->get();
+        return view('blogs.details', [
+            'blog' => $blog,
+            'category' => $category,
+            'categories' => $categories
+        ]);
     }
 
     public function listing()

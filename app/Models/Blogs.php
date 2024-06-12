@@ -14,7 +14,8 @@ class Blogs extends Model
         'post_title',
         'post_slug',
         'post_description',
-        'post_categories',
+        'post_category_id',
+        'post_category_title',
         'post_image',
         'post_status',
         'is_featured',
@@ -23,6 +24,7 @@ class Blogs extends Model
         'meta_keywords',
         'meta_description',
         'meta_canonical_url',
+        'image_id',
         'view_count',
     ];
 }
