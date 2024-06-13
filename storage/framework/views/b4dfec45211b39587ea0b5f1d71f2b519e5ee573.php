@@ -1,11 +1,10 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Product details | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="container-fluid container-lg product-details my-5">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
@@ -17,35 +16,35 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route('home') }}/product" class="text-decoration-none">
+                        <a href="<?php echo e(route('home')); ?>/product" class="text-decoration-none">
                             <small class="fw-semibold text-muted">Product</small>
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        <small class="fw-semibold"> {{ $car->title }}</small>
+                        <small class="fw-semibold"> <?php echo e($car->title); ?></small>
                     </li>
                 </ol>
             </nav>
 
             <div class="d-flex flex-column flex-md-row flex-row justify-content-between">
-                <h2 style="color: var(--dark_blue);"> {{ $car->title }}</h2>
-                <h4 style="color: var(--deep-orrange);">AED {{ $car->original_price }}</h4>
+                <h2 style="color: var(--dark_blue);"> <?php echo e($car->title); ?></h2>
+                <h4 style="color: var(--deep-orrange);">AED <?php echo e($car->original_price); ?></h4>
             </div>
 
             <i class="bi bi-calendar3" style="color: var(--sky-blue);">
-                <small class="fw-semibold text-muted">{{ $car->created_at->diffForHumans() }}</small>
+                <small class="fw-semibold text-muted"><?php echo e($car->created_at->diffForHumans()); ?></small>
             </i>
 
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-9">
                     <div id="carouselBusinessList_1" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner rounded overflow-hidden z-1 mt-4">
-                            @foreach ($car_images as $car_image)
+                            <?php $__currentLoopData = $car_images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $car_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="carousel-item active p-3">
-                                    <img src="{{ thumbnail($car_image->image) }}" class="img-fluid d-block w-100 rounded"
-                                        alt="{{ $car->title }}" title=" {{ $car->title }}" style="height: 300px;">
+                                    <img src="<?php echo e(thumbnail($car_image->image)); ?>" class="img-fluid d-block w-100 rounded"
+                                        alt="<?php echo e($car->title); ?>" title=" <?php echo e($car->title); ?>" style="height: 300px;">
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
 
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselBusinessList_1"
@@ -70,7 +69,7 @@
                                 </td>
                                 <td style="width: 15px;">:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->category_title }}</small>
+                                    <small class="fw-semibold">4 doors</small>
                                 </td>
                             </tr>
                             <tr>
@@ -79,7 +78,7 @@
                                 </td>
                                 <td>:</td>
                                 <td style="text-align: justify;">
-                                    <small class="fw-semibold">{{ $car->sub_category_title }}</small>
+                                    <small class="fw-semibold">Good Condition</small>
                                 </td>
                             </tr>
                             <tr>
@@ -88,7 +87,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->type }}</small>
+                                    <small class="fw-semibold">Good Condition</small>
                                 </td>
                             </tr>
                             <tr>
@@ -97,7 +96,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->Brand ? $car->Brand->name : '' }}</small>
+                                    <small class="fw-semibold">Automatic</small>
                                 </td>
                             </tr>
                             <tr>
@@ -106,7 +105,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->condition }}</small>
+                                    <small class="fw-semibold">SEDAN</small>
                                 </td>
                             </tr>
                             <tr>
@@ -115,7 +114,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->part_no }}</small>
+                                    <small class="fw-semibold">4</small>
                                 </td>
                             </tr>
                             <tr>
@@ -124,7 +123,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->application }}</small>
+                                    <small class="fw-semibold">GCC Specs</small>
                                 </td>
                             </tr>
                             <tr>
@@ -133,7 +132,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->uses }}</small>
+                                    <small class="fw-semibold">Airbags front and side , ABS ,</small>
                                 </td>
                             </tr>
                             <tr>
@@ -142,7 +141,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->product_note }}</small>
+                                    <small class="fw-semibold">Dealer</small>
                                 </td>
                             </tr>
                             <tr>
@@ -151,7 +150,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->delivery_note }}</small>
+                                    <small class="fw-semibold">Dealer</small>
                                 </td>
                             </tr>
                             <tr>
@@ -160,7 +159,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->made }}</small>
+                                    <small class="fw-semibold">Dealer</small>
                                 </td>
                             </tr>
                             <tr>
@@ -169,13 +168,59 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <small class="fw-semibold">{{ $car->payment_options }}</small>
+                                    <small class="fw-semibold">Dealer</small>
                                 </td>
                             </tr>
                             <tr>
                                 <td scope="row" colspan="3">
                                     <h4>Description</h4>
-                                    <div><?php echo $car->general_dsc; ?></div>
+                                    <div>
+                                        <p>
+                                            TOYOTA COROLLA 1.6L 2023
+                                            WE HAVE OVER 200 STOCK OF EXCELLENT CARS
+                                            1. IF YOU PAY 20% DOWN PAYMENT MONTHLY AED 1147/=
+                                            2. ZERO DOWN PAYMENT MONTHLY AED 1434/=
+                                            3. 100% BANK LOAN WITHOUT DOWN PAYMENT + (INSURANCE, REGISTRATION, LOAN
+                                            PROCESSING & PASSING) MONTHLY AED 1513/=
+                                            TOYOTA COROLLA 1.6L 2023
+                                            Airbags, Original Paint, Accident Free, Low Km, Single Owner, Very Good
+                                            Condition.
+                                            HURRY LIMITED PERIOD OFFER.
+                                            FEATURES:
+                                            100 % finance available
+                                            3.24% starting profit rate
+                                            No down payments
+                                            First payment after 90 days.
+                                            Finance up to 60 month.
+                                            Insurance service and finance available
+                                            REQUIREMENTS FOR PERSONAL:-
+                                            Minimum salary AED: 3000/= Only
+                                            1. Salary certificate
+                                            2. Passport and Visa Copy
+                                            3. Emirates ID copy
+                                            4. Driving License Copy
+                                            5. Last Three month bank statement.
+                                            MANY THINGS WE CAN HELP YOU AS YOUR REQUIREMENTS:
+                                            Window Tinting
+                                            Parking sensors
+                                            Reg. service and insurance service
+                                            AAA road side assistance
+                                            NOTE: If u are a serious buyer don’t hesitate to call us or come and see the
+                                            car.
+                                            Friday Open From 4pm to 11pm
+                                            PLEASE CALL:
+                                            A.K AZAD:0505781258
+                                            MR SHANKAR:0509415863
+                                            MR SHANAWAZ:0509415936
+                                            MR PARVEEZ:0509415625
+                                            EMAIL: MOONCARCARE(AT)HOTMAIL(.)COM
+                                            FACEBOOK PAGE:
+                                            EMAIL: MOONCARCARE(AT)HOTMAIL(.)COM
+                                            FACEBOOK PAGE:
+                                            AUTO AGENT DETAILS:
+                                            NAME: MOON CAR USED AUTOMOBILE TRADING
+                                        </p>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -231,7 +276,9 @@
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/product/details.blade.php ENDPATH**/ ?>

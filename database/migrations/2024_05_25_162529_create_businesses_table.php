@@ -45,7 +45,7 @@ class CreateBusinessesTable extends Migration
             $table->text('seo_title')->nullable();
             $table->text('seo_keywords')->nullable();
             $table->text('seo_description')->nullable();
-
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }

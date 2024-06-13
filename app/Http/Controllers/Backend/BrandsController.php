@@ -7,6 +7,7 @@ use App\Models\Brand;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class BrandsController extends Controller
 {
@@ -17,8 +18,8 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        $brands =Brand::all();
-        return view('backend.brands.index',compact('brands'));
+        $brands = Brand::all();
+        return view('backend.brands.index', compact('brands'));
     }
 
     /**
@@ -39,28 +40,32 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>'required|max:100|unique:brands',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:100|unique:brands',
             'image' => 'nullable|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:500',
-       ]);
+        ]);
 
-       if($request->image){
-            $imageName = 'images/brands/'.time().'.'.$request->image->extension();
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        if ($request->image) {
+            $imageName = 'images/brands/' . time() . '.' . $request->image->extension();
             $request->image->move(public_path('images/brands'), $imageName);
-        }else{
-            $imageName=null;
+        } else {
+            $imageName = null;
         }
 
 
 
         $brand = Brand::create([
-            'name'=>$request->name,
-            'brnad_description'=>$request->brnad_description,
-            'image'=>$imageName,
-            'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now(),
+            'name' => $request->name,
+            'brnad_description' => $request->brnad_description,
+            'image' => $imageName,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
-        if($brand){
+        if ($brand) {
             toastr()->success('Brand has been created', 'Success');
         }
         return back();
@@ -86,7 +91,7 @@ class BrandsController extends Controller
     public function edit($id)
     {
         $brand = Brand::find($id);
-        return view('backend.brands.edit',compact('brand'));
+        return view('backend.brands.edit', compact('brand'));
     }
 
     /**
@@ -99,28 +104,27 @@ class BrandsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|max:100|unique:brands,name,'.$id,
+            'name' => 'required|max:100|unique:brands,name,' . $id,
             'image' => 'nullable|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:500',
-       ]);
-       $brand = Brand::find($id);
-       if($request->image){
-            if (File::exists($brand->image))
-            {
+        ]);
+        $brand = Brand::find($id);
+        if ($request->image) {
+            if (File::exists($brand->image)) {
                 File::delete($brand->image);
             }
-            $imageName = 'images/brands/'.time().'.'.$request->image->extension();
+            $imageName = 'images/brands/' . time() . '.' . $request->image->extension();
             $request->image->move(public_path('images/brands'), $imageName);
-        }else{
-            $imageName=$brand->image;
+        } else {
+            $imageName = $brand->image;
         }
 
         $brand->update([
-            'name'=>$request->name,
-            'brnad_description'=>$request->brnad_description,
-            'image'=>$imageName,
-            'updated_at'=>Carbon::now(),
+            'name' => $request->name,
+            'brnad_description' => $request->brnad_description,
+            'image' => $imageName,
+            'updated_at' => Carbon::now(),
         ]);
-        if($brand){
+        if ($brand) {
             toastr()->success('Brand has been updated', 'Success');
         }
         return redirect()->route('admin.brands.index');
@@ -135,12 +139,11 @@ class BrandsController extends Controller
     public function destroy($id)
     {
         $brand = Brand::find($id);
-        if (File::exists($brand->image))
-        {
+        if (File::exists($brand->image)) {
             File::delete($brand->image);
         }
-        $Is_Delete=$brand->delete();
-        if($Is_Delete){
+        $Is_Delete = $brand->delete();
+        if ($Is_Delete) {
             toastr()->success('Brand Deleted Successfully', 'Success');
         }
         return back();

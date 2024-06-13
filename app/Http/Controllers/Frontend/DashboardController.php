@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Car;
+use App\Models\CarImage;
 use App\Models\Contact;
 use App\Models\FuelType;
+use App\Models\Business;
+use App\Models\Experts;
 
 use App\Models\Blogs;
 use App\Models\BlogCategories;
@@ -17,58 +20,88 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('home');
     }
 
-    public function aboutUs()
+    public function aboutUs(Request $request)
     {
         return view('about-us');
     }
 
-    public function contactUs()
+    public function contactUs(Request $request)
     {
         return view('contact-us');
     }
 
 
-    public function businessList()
+    public function businessList(Request $request)
     {
-        return view('business.index');
+        $businesses = Business::latest()->orderBy('id', 'desc')->paginate(20);
+        $featured = Business::where('is_featured', 1)->paginate(20);
+
+        return view('business.index', [
+            'businesses' => $businesses,
+            'featured' => $featured
+        ]);
     }
 
-    public function businessDetails()
+    public function businessDetails(Request $request)
     {
         return view('business.details');
     }
 
-    public function expertList()
+    public function expertList(Request $request)
     {
-        return view('expert.index');
+        $experts = Experts::latest()->orderBy('id', 'desc')->paginate(20);
+        return view('expert.index', [
+            'experts' => $experts
+        ]);
     }
 
-    public function expertDetails()
+    public function expertDetails(Request $request)
     {
         return view('expert.details');
     }
 
-    public function productList()
+    public function productList(Request $request)
     {
-        return view('product.index');
+        $cars = [];
+        $name = $request->search;
+        if ($name) {
+            $cars = Car::where('pub_place', '!=', 'Sold')
+                ->where('title', 'LIKE', '%' . $name . '%')
+                ->orWhere('vehicle', 'LIKE', '%' . $name . '%')
+                ->orWhere('part_no', 'LIKE', '%' . $name . '%')
+                ->orWhere('grooves', 'LIKE', '%' . $name . '%')
+                ->orWhere('origin', 'LIKE', '%' . $name . '%')
+                ->orWhere('manufaturer', 'LIKE', '%' . $name . '%')
+                ->orWhere('year', 'LIKE', '%' . $name . '%')
+                ->orWhere('cylinder', 'LIKE', '%' . $name . '%')
+                ->orWhere('pully_diameter', 'LIKE', '%' . $name . '%')
+                ->orWhere('general_dsc', 'LIKE', '%' . $name . '%')
+                ->paginate(20);
+        } else {
+            $cars = Car::orderBy('id', 'DESC')->paginate(20);
+        }
+
+        return view('product.index', compact('cars'));
     }
 
-    public function productDetails()
+    public function productDetails(Request $request)
     {
-        return view('product.details');
+        $car = Car::where('slug', '=', $request->slug)->first();
+        $car_images = CarImage::where('car_id', '=', $car->id)->get();
+        return view('product.details', compact('car', 'car_images'));
     }
 
-    public function brandsList()
+    public function brandsList(Request $request)
     {
         return view('brands.index');
     }
 
-    public function blogList()
+    public function blogList(Request $request)
     {
         $blogs = Blogs::latest()->orderBy('id', 'desc')->paginate(20);
         $categories = BlogCategories::latest()->orderBy('id', 'desc')->get();
@@ -91,7 +124,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function listing()
+    public function listing(Request $request)
     {
         return view('listing');
     }

@@ -1,15 +1,14 @@
-@extends('layouts.backend.master')
-@section('title', 'Product Add')
-@push('meta')
-@endpush
-@push('theme_css')
-@endpush
-@push('page_css')
+<?php $__env->startSection('title', 'Product Add'); ?>
+<?php $__env->startPush('meta'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('theme_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_css'); ?>
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('Backend/app-assets/vendors/css/forms/select/select2.min.css') }}">
+        href="<?php echo e(asset('Backend/app-assets/vendors/css/forms/select/select2.min.css')); ?>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
-@endpush
-@push('custom_css')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_css'); ?>
     <style>
         input[type="radio"],
         input[type="checkbox"] {
@@ -31,16 +30,16 @@
         }
 
     </style>
-    <link rel="stylesheet" type="text/css" href="{{ asset('Backend/assets/css/image-uploader.min.css') }}">
-@endpush
-@push('head')
-@endpush
-@section('breadcrumb')
-@endsection
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('Backend/assets/css/image-uploader.min.css')); ?>">
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('head'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+<?php $__env->stopSection(); ?>
 
-@section('content')
-    <form action="{{ route('admin.cars.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+<?php $__env->startSection('content'); ?>
+    <form action="<?php echo e(route('admin.cars.store')); ?>" method="POST" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
         <div class="row">
             <div class="col-lg-7">
                 <div class="card">
@@ -51,23 +50,37 @@
                             <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Product Title</label>
                                 <div class="col-sm-10">
-                                    <input type="text" onkeyup="convertToSlug(this.value)" name="title" class="form-control @error('title') is-invalid @enderror"
+                                    <input type="text" onkeyup="convertToSlug(this.value)" name="title" class="form-control <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                         id="title" placeholder="Title">
                                 </div>
-                                @error('title')
+                                <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
                                 <label for="brandSelect" class="col-sm-2 col-form-label">Menufacturer Brands</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" name="brand_id" id="brandSelect">
-                                        @foreach ($brands as $brand)
-                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($brand->id); ?>"><?php echo e($brand->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -75,9 +88,9 @@
                                 <label for="vehicle_brands" class="col-sm-2 col-form-label">Vehicle Brands</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" name="vehicle_brands" id="vehicle_brands">
-                                        @foreach ($fuels as $fuel)
-                                            <option value="{{ $fuel->id }}" {{$fuel->name=='Unknown'?'selected':''}}>{{ $fuel->name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $fuels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fuel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($fuel->id); ?>" <?php echo e($fuel->name=='Unknown'?'selected':''); ?>><?php echo e($fuel->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -138,9 +151,9 @@
                                 <label for="car_type" class="col-sm-2 col-form-label">Catgory</label>
                                 <div class="col-sm-10">
                                     <select name="car_type_id" class="form-control select2" id="car_type">
-                                        @foreach ($car_types as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $car_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -149,9 +162,9 @@
                                 <label for="sub_category_id" class="col-sm-2 col-form-label">Sub Category</label>
                                 <div class="col-sm-10">
                                     <select name="sub_category_id" class="form-control select2" id="sub_category_id">
-                                        @foreach ($categories as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -243,28 +256,56 @@
                                 <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
                                 <div class="col-sm-10">
                                     <input type="text" name="seo_title"
-                                        class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
+                                        class="form-control <?php $__errorArgs = ['seo_title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="seo_title"
                                         placeholder="SEO Title">
                                 </div>
-                                @error('seo_title')
+                                <?php $__errorArgs = ['seo_title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
                                 <label for="seo_keywords" class="col-sm-2 col-form-label">SEO Keywords</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="seo_keywords"
-                                        class="form-control @error('seo_keywords') is-invalid @enderror"
+                                        class="form-control <?php $__errorArgs = ['seo_keywords'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                         id="seo_keywords" placeholder="SEO Keywords">
                                 </div>
-                                @error('seo_keywords')
+                                <?php $__errorArgs = ['seo_keywords'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -273,11 +314,18 @@
                                     <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
                                         placeholder="SEO Description"></textarea>
                                 </div>
-                                @error('seo_description')
+                                <?php $__errorArgs = ['seo_description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                         </div>
@@ -291,18 +339,18 @@
             </div>
         </div>
     </form>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('theme_js')
-@endpush
-@push('page_js')
-    <script src="{{ asset('Backend/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<?php $__env->startPush('theme_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_js'); ?>
+    <script src="<?php echo e(asset('Backend/app-assets/vendors/js/forms/select/select2.full.min.js')); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
-@endpush
-@push('custom_js')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_js'); ?>
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 
-    <script src="{{ asset('Backend/assets/js/image-uploader.min.js') }}"></script>
+    <script src="<?php echo e(asset('Backend/assets/js/image-uploader.min.js')); ?>"></script>
     <script>
         $('.input-images-1').imageUploader();
     </script>
@@ -383,4 +431,6 @@
         });
     </script>
 
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.backend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/backend/car/index.blade.php ENDPATH**/ ?>

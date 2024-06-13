@@ -121,6 +121,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
     Route::resource('brands', 'BrandsController', ['names' => 'admin.brands']);
     Route::resource('colors', 'ColorController', ['names' => 'admin.colors']);
     Route::resource('car_types', 'CarTypeController', ['names' => 'admin.car_types']);
+    Route::resource('car_sub_category', 'CarSubCategoriesController', ['names' => 'admin.car_sub_category']);
     Route::resource('car_models', 'CarModelController', ['names' => 'admin.car_models']);
     Route::resource('fuel_types', 'FuelTypeController', ['names' => 'admin.fuel_types']);
     Route::resource('m_conditions', 'MConditionController', ['names' => 'admin.m_conditions']);
@@ -152,6 +153,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
         Route::post('/store', 'BusinessController@store')->name('business.store');
         Route::get('/edit/{id}', 'BusinessController@edit')->name('business.edit');
         Route::put('/update/{id}', 'BusinessController@update')->name('business.update');
+        Route::get('/status-update/{id}', 'BusinessController@statusUpdate')->name('business.status_update');
         Route::delete('/destroy/{id}', 'BusinessController@destroy')->name('business.destroy');
 
         Route::group(['prefix' => 'category'], function () {

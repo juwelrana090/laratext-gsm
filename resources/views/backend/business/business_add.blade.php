@@ -549,10 +549,21 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select name="status" class="form-control select2" id="status">
+                                        <option value="active">Active</option>
                                         <option value="pending">Pending</option>
-                                        <option value="approved">Approved</option>
                                         <option value="inactive">Inactive</option>
                                         <option value="rejected">Rejected</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="is_featured" class="col-sm-2 col-form-label">Featured <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <select name="is_featured" class="form-control select2" id="is_featured">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
                                     </select>
                                 </div>
                             </div>

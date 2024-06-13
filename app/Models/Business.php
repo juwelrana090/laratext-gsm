@@ -10,6 +10,7 @@ class Business extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
+        'uniqid',
         'contact_person_name',
         'contact_email',
         'contact_mobile',
@@ -36,5 +37,6 @@ class Business extends Model
         'seo_title',
         'seo_keywords',
         'seo_description',
+        'is_featured',
     ];
 }

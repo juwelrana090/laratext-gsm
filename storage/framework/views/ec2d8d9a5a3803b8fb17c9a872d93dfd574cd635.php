@@ -13,14 +13,13 @@
             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                     <th scope="row"><?php echo e($key + 1); ?></th>
-                    <td><?php echo e($item->category_name); ?></td>
-                    <td><img src="<?php echo e(asset($item->category_image)); ?>" width="70px"></td>
-                    <td><?php echo e($item->category_description); ?></td>
+                    <td><?php echo e($item->name); ?></td>
+                    <td><img src="<?php echo e(asset($item->image)); ?>" width="70px"></td>
+                    <td><?php echo e($item->description); ?></td>
                     <td>
-                        <a href="<?php echo e(route('blogs.category.edit', $item->id)); ?>"
+                        <a href="<?php echo e(route('admin.car_sub_category.edit', $item->id)); ?>"
                             class="btn btn-sm btn-primary text-white">edit</a>
-                        <a href="#" class="btn btn-sm btn-danger text-white" data-toggle="modal"
-                            data-target="#typeDelete<?php echo e($item->id); ?>">x</a>
+                        
                         <div class="modal fade" id="typeDelete<?php echo e($item->id); ?>" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -32,18 +31,18 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Are You Sure You want to delete <?php echo e($item->category_name); ?> Type?
+                                        Are You Sure You want to delete <?php echo e($item->name); ?> Type?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
                                         <a onclick="event.preventDefault();
                                   document.getElementById('delete-form-<?php echo e($item->id); ?>').submit();"
-                                            href="<?php echo e(route('blogs.category.destroy', $item->id)); ?>"
+                                            href="<?php echo e(route('admin.car_sub_category.destroy', $item->id)); ?>"
                                             class="btn btn-danger text-white" data-toggle="modal"
                                             data-target="#colorDelete">Delete</a>
                                         <form id="delete-form-<?php echo e($item->id); ?>"
-                                            action="<?php echo e(route('blogs.category.destroy', $item->id)); ?>" method="POST"
+                                            action="<?php echo e(route('admin.car_sub_category.destroy', $item->id)); ?>" method="POST"
                                             class="d-none">
                                             <?php echo method_field('DELETE'); ?>
                                             <?php echo csrf_field(); ?>
@@ -56,11 +55,8 @@
                     </td>
                 </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
         </tbody>
     </table>
-
-    <!-- Pagination Links -->
-    <?php echo e($categories->links()); ?>
-
 </div>
-<?php /**PATH C:\laragon\www\app_gsp\resources\views/backend/blogs/categories/categories_list.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\laragon\www\app_gsp\resources\views/backend/carSubCategory/type_list.blade.php ENDPATH**/ ?>

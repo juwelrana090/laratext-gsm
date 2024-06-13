@@ -84,6 +84,12 @@
                                 data-i18n="Alerts">Category</span>
                         </a>
                     </li>
+                    <li class="{{ Route::is('admin.car_sub_category.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.car_sub_category.index') }}">
+                            <i class="feather icon-circle"></i><span class="menu-item"
+                                data-i18n="Alerts">Sub Category</span>
+                        </a>
+                    </li>
                     <li class="{{ Route::is('admin.brands.index') ? 'active' : '' }}">
                         <a href="{{ route('admin.brands.index') }}">
                             <i class="feather icon-circle"></i><span class="menu-item" data-i18n="Alerts">M.

@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Car;
 use App\Models\CarImage;
 use App\Models\CarType;
+use App\Models\CarSubCategories;
 use App\Models\Color;
 use App\Models\ExpertStatus;
 use App\Models\FuelType;
@@ -30,27 +31,26 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $cars=[];
+        $cars = [];
         $name = $request->search;
-        if($name){
-            $cars= Car::
-            where('pub_place','!=','Sold')
-            ->where('title','LIKE','%'.$name.'%')
-            ->orWhere('vehicle','LIKE','%'.$name.'%')
-            ->orWhere('part_no','LIKE','%'.$name.'%')
-            ->orWhere('grooves','LIKE','%'.$name.'%')
-            ->orWhere('origin','LIKE','%'.$name.'%')
-            ->orWhere('manufaturer','LIKE','%'.$name.'%')
-            ->orWhere('year','LIKE','%'.$name.'%')
-            ->orWhere('cylinder','LIKE','%'.$name.'%')
-            ->orWhere('pully_diameter','LIKE','%'.$name.'%')
-            ->orWhere('general_dsc','LIKE','%'.$name.'%')
-            ->get();
-        }else{
-            $cars = Car::orderBy('id','DESC')->get();
+        if ($name) {
+            $cars = Car::where('pub_place', '!=', 'Sold')
+                ->where('title', 'LIKE', '%' . $name . '%')
+                ->orWhere('vehicle', 'LIKE', '%' . $name . '%')
+                ->orWhere('part_no', 'LIKE', '%' . $name . '%')
+                ->orWhere('grooves', 'LIKE', '%' . $name . '%')
+                ->orWhere('origin', 'LIKE', '%' . $name . '%')
+                ->orWhere('manufaturer', 'LIKE', '%' . $name . '%')
+                ->orWhere('year', 'LIKE', '%' . $name . '%')
+                ->orWhere('cylinder', 'LIKE', '%' . $name . '%')
+                ->orWhere('pully_diameter', 'LIKE', '%' . $name . '%')
+                ->orWhere('general_dsc', 'LIKE', '%' . $name . '%')
+                ->get();
+        } else {
+            $cars = Car::orderBy('id', 'DESC')->get();
         }
 
-        return view('backend.car.list',compact('cars'));
+        return view('backend.car.list', compact('cars'));
     }
 
     /**
@@ -60,15 +60,16 @@ class CarController extends Controller
      */
     public function create()
     {
-        $brands=Brand::all(['id','name']);
-        $colors=Color::all(['id','name']);
-        $statuses=ExpertStatus::all(['id','status']);
-        $wheels=Wheel::all(['id','name']);
-        $showRooms=ShowRoom::all(['id','name']);
-        $car_types=CarType::all(['id','name']);
-        $m_conditions=MCondition::all(['id','name']);
-        $fuels=FuelType::all(['id','name']);
-        return view('backend.car.index',compact('statuses','colors','brands','car_types','m_conditions','fuels','showRooms','wheels'));
+        $brands = Brand::all(['id', 'name']);
+        $colors = Color::all(['id', 'name']);
+        $statuses = ExpertStatus::all(['id', 'status']);
+        $wheels = Wheel::all(['id', 'name']);
+        $showRooms = ShowRoom::all(['id', 'name']);
+        $car_types = CarType::all(['id', 'name']);
+        $categories = CarSubCategories::all(['id', 'car_type_id', 'name']);
+        $m_conditions = MCondition::all(['id', 'name']);
+        $fuels = FuelType::all(['id', 'name']);
+        return view('backend.car.index', compact('statuses', 'colors', 'brands', 'car_types', 'categories', 'm_conditions', 'fuels', 'showRooms', 'wheels'));
     }
 
     /**
@@ -80,36 +81,57 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
+            'title' => 'required',
         ]);
 
-        $data =[
-            'title'=>$request->title,
-            'brand_id'=>$request->brand_id,
-            'year'=>$request->car_year,
-            'slug'=>$request->slug,
+        $category = CarSubCategories::where('id', $request->sub_category_id)->first();
+        $carType = CarType::where('id', $request->car_type_id)->first();
 
+        $title = $request->title;
+        $slug = Str::slug($title);
 
-            'car_type_id'=>$request->car_type_id,
-            'fuel_type_id'=>$request->vehicle_brands,
+        $cars = Car::where('slug', 'LIKE', "%{$slug}%")->get();
+        $count = $cars->count();
 
-            'cylinder'=>$request->cylinder,
-            'part_no'=>$request->part_no,
-            'vehicle'=>$request->vehicle,
-            'grooves'=>$request->grooves,
-            'voltage'=>$request->voltage,
-            'sensor'=>$request->sensor,
-            'pully_diameter'=>$request->pully_diameter,
-            'origin'=>$request->origin,
-            'manufaturer'=>$request->manufaturer,
-            'general_dsc'=>$request->general_dsc,
-            'pub_place'=>$request->pub_place,
+        if ($count > 0) {
+            foreach ($cars as $car) {
+                $data[] = $car['slug'];
+            }
+
+            if (in_array($slug, $data)) {
+                $car_count = 0;
+                while (in_array(($slug . '-' . ++$car_count), $data));
+                $title = $title . " " . $car_count;
+                $slug = $slug . '-' . $car_count;
+            }
+        }
+
+        $data = [
+            'title' => $title,
+            'brand_id' => $request->brand_id,
+            'year' => $request->car_year,
+            'slug' => $slug,
+
+            'car_type_id' => $request->car_type_id,
+            'fuel_type_id' => $request->vehicle_brands,
+
+            'cylinder' => $request->cylinder,
+            'part_no' => $request->part_no,
+            'vehicle' => $request->vehicle,
+            'grooves' => $request->grooves,
+            'voltage' => $request->voltage,
+            'sensor' => $request->sensor,
+            'pully_diameter' => $request->pully_diameter,
+            'origin' => $request->origin,
+            'manufaturer' => $request->manufaturer,
+            'general_dsc' => $request->general_dsc,
+            'pub_place' => $request->pub_place,
 
             'product_name' => $request->product_name,
-            'category_id' => $request->category_id,
-            'category_title' => $request->category_title,
-            'sub_category_id' => $request->sub_category_id,
-            'sub_category_title' => $request->sub_category_title,
+            'category_id' => $carType->id,
+            'category_title' => $carType->name,
+            'sub_category_id' => $category->id,
+            'sub_category_title' => $category->name,
             'type' => $request->type,
             'condition' => $request->condition,
             'application' => $request->application,
@@ -122,17 +144,16 @@ class CarController extends Controller
             'seo_title' => $request->seo_title,
             'seo_keywords' => $request->seo_keywords,
             'seo_description' => $request->seo_description,
-
-            'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now(),
         ];
-        $result=Car::create($data);
-        if ($request->hasFile('images')){
-            $productId= $result->id;
-            foreach ($request->file('images') as $key=>$file){
-                $ext=$file->getClientOriginalName();
-                $t=time();
-                $filename=($key+1).'-'.$t.'-'.Str::slug($request->title).uniqid().'.'.'webp';
+
+        $result = Car::create($data);
+
+        if ($request->hasFile('images')) {
+            $productId = $result->id;
+            foreach ($request->file('images') as $key => $file) {
+                $ext = $file->getClientOriginalName();
+                $t = time();
+                $filename = ($key + 1) . '-' . $t . '-' . Str::slug($request->title) . uniqid() . '.' . 'webp';
 
                 $thumbnailPath = public_path('/images/car_image/thumbnail');
                 $mediumPath = public_path('/images/car_image/medium_image');
@@ -144,17 +165,17 @@ class CarController extends Controller
                 // thumbnail image resize
                 $img->resize(250, 150, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save($thumbnailPath.'/'.$filename);
+                })->save($thumbnailPath . '/' . $filename);
                 // medium image resize
-                $medium_img->encode('webp', 50)->save($mediumPath.'/'.$filename);
+                $medium_img->encode('webp', 50)->save($mediumPath . '/' . $filename);
                 CarImage::create([
-                    'car_id'=>$productId,
-                    'image'=>$filename,
+                    'car_id' => $productId,
+                    'image' => $filename,
                 ]);
             }
         }
 
-        if($result){
+        if ($result) {
             toastr()->success('Product has been added', 'Success');
         }
         return back();
@@ -179,16 +200,16 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        $brands=Brand::all(['id','name']);
-        $colors=Color::all(['id','name']);
-        $statuses=ExpertStatus::all(['id','status']);
-        $wheels=Wheel::all(['id','name']);
-        $showRooms=ShowRoom::all(['id','name']);
-        $car_types=CarType::all(['id','name']);
-        $m_conditions=MCondition::all(['id','name']);
-        $fuels=FuelType::all(['id','name']);
+        $brands = Brand::all(['id', 'name']);
+        $colors = Color::all(['id', 'name']);
+        $statuses = ExpertStatus::all(['id', 'status']);
+        $wheels = Wheel::all(['id', 'name']);
+        $showRooms = ShowRoom::all(['id', 'name']);
+        $car_types = CarType::all(['id', 'name']);
+        $m_conditions = MCondition::all(['id', 'name']);
+        $fuels = FuelType::all(['id', 'name']);
         $car = Car::find($id);
-        return view('backend.car.edit',compact('statuses','colors','brands','car_types','m_conditions','fuels','showRooms','wheels','car'));
+        return view('backend.car.edit', compact('statuses', 'colors', 'brands', 'car_types', 'm_conditions', 'fuels', 'showRooms', 'wheels', 'car'));
     }
 
     /**
@@ -201,30 +222,30 @@ class CarController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'=>'required',
-       ]);
+            'title' => 'required',
+        ]);
 
-        $data =[
-            'title'=>$request->title,
-            'brand_id'=>$request->brand_id,
-            'year'=>$request->car_year,
-            'slug'=>$request->slug,
+        $data = [
+            'title' => $request->title,
+            'brand_id' => $request->brand_id,
+            'year' => $request->car_year,
+            'slug' => $request->slug,
 
 
-            'car_type_id'=>$request->car_type_id,
-            'fuel_type_id'=>$request->vehicle_brands,
+            'car_type_id' => $request->car_type_id,
+            'fuel_type_id' => $request->vehicle_brands,
 
-            'cylinder'=>$request->cylinder,
-            'part_no'=>$request->part_no,
-            'vehicle'=>$request->vehicle,
-            'grooves'=>$request->grooves,
-            'voltage'=>$request->voltage,
-            'sensor'=>$request->sensor,
-            'pully_diameter'=>$request->pully_diameter,
-            'origin'=>$request->origin,
-            'manufaturer'=>$request->manufaturer,
-            'general_dsc'=>$request->general_dsc,
-            'pub_place'=>$request->pub_place,
+            'cylinder' => $request->cylinder,
+            'part_no' => $request->part_no,
+            'vehicle' => $request->vehicle,
+            'grooves' => $request->grooves,
+            'voltage' => $request->voltage,
+            'sensor' => $request->sensor,
+            'pully_diameter' => $request->pully_diameter,
+            'origin' => $request->origin,
+            'manufaturer' => $request->manufaturer,
+            'general_dsc' => $request->general_dsc,
+            'pub_place' => $request->pub_place,
 
             'product_name' => $request->product_name,
             'category_id' => $request->category_id,
@@ -244,15 +265,15 @@ class CarController extends Controller
             'seo_keywords' => $request->seo_keywords,
             'seo_description' => $request->seo_description,
 
-            'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
-        $result=Car::find($id)->update($data);
-        if ($request->hasFile('images')){
-            foreach ($request->file('images') as $key=>$file){
-                $ext=$file->getClientOriginalName();
-                $t=time();
-                $filename=($key+1).'-'.$t.'-'.Str::slug($request->title).uniqid().'.'.'webp';
+        $result = Car::find($id)->update($data);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $ext = $file->getClientOriginalName();
+                $t = time();
+                $filename = ($key + 1) . '-' . $t . '-' . Str::slug($request->title) . uniqid() . '.' . 'webp';
 
                 $thumbnailPath = public_path('/images/car_image/thumbnail');
                 $mediumPath = public_path('/images/car_image/medium_image');
@@ -264,18 +285,18 @@ class CarController extends Controller
                 // thumbnail image resize
                 $img->encode('webp', 50)->resize(250, 150, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save($thumbnailPath.'/'.$filename);
+                })->save($thumbnailPath . '/' . $filename);
                 // medium image resize
-                $medium_img->encode('webp', 10)->save($mediumPath.'/'.$filename,15);
+                $medium_img->encode('webp', 10)->save($mediumPath . '/' . $filename, 15);
 
                 CarImage::create([
-                    'car_id'=>$id,
-                    'image'=>$filename,
+                    'car_id' => $id,
+                    'image' => $filename,
                 ]);
             }
         }
 
-        if($result){
+        if ($result) {
             toastr()->success('Product Information Updated', 'Success');
         }
         return redirect()->route('admin.cars.index');
@@ -290,19 +311,17 @@ class CarController extends Controller
     public function destroy($id)
     {
         $car = Car::find($id);
-        $carImage = CarImage::where('car_id',$id)->get();
-        foreach($carImage as $image){
-            if (File::exists('images/car_image/medium_image/'.$image->image))
-            {
-                File::delete('images/car_image/medium_image/'.$image->image);
+        $carImage = CarImage::where('car_id', $id)->get();
+        foreach ($carImage as $image) {
+            if (File::exists('images/car_image/medium_image/' . $image->image)) {
+                File::delete('images/car_image/medium_image/' . $image->image);
             }
-             if (File::exists('images/car_image/thumbnail/'.$image->image))
-            {
-                File::delete('images/car_image/thumbnail/'.$image->image);
+            if (File::exists('images/car_image/thumbnail/' . $image->image)) {
+                File::delete('images/car_image/thumbnail/' . $image->image);
             }
         }
         $car->delete();
-        if($car){
+        if ($car) {
             toastr()->success('Car Deleted', 'Success');
         }
         return back();

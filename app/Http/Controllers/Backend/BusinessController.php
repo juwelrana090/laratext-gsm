@@ -55,14 +55,13 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'contact_person_name' => 'required',
             'contact_email' => 'required',
             'contact_mobile' => 'required',
             'contact_whatsapp' => 'required',
             'contact_address' => 'required',
             'company_name' => 'required',
-            'company_slug' => 'required',
             'company_mobile' => 'required',
             'company_email' => 'required',
             'business_type' => 'required',
@@ -73,6 +72,9 @@ class BusinessController extends Controller
             'status' => 'required',
         ]);
 
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
         $uniqid = uniqid();
         $user_id = auth()->user()->id;
@@ -102,8 +104,8 @@ class BusinessController extends Controller
 
         $now_day = date('F_Y');
 
-        if ($request->hasFile('business_images')) {
-            foreach ($request->file('business_images') as $key => $file) {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
                 $path = public_path('uploads/files/' . $now_day);
 
                 if (!File::isDirectory($path)) {
@@ -133,7 +135,8 @@ class BusinessController extends Controller
             }
         }
 
-        $data = [
+        $business_images = json_encode($business_images);
+        $business = Business::create([
             'user_id' => $user_id,
             'uniqid' => $uniqid,
             'contact_person_name' => $request->contact_person_name,
@@ -162,9 +165,9 @@ class BusinessController extends Controller
             'seo_title' => $request->seo_title,
             'seo_keywords' => $request->seo_keywords,
             'seo_description' => $request->seo_description,
-        ];
+            'is_featured' => $request->is_featured,
+        ]);
 
-        $business = Business::create($data);
         return redirect()->route('business.index')->with('success', 'Business created successfully');
     }
 
@@ -202,14 +205,34 @@ class BusinessController extends Controller
         //
     }
 
+    public function statusUpdate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'status' => 'required',
+        ]);
+
+        $business = Business::where('id', '=', $request->id)->first();
+        $business->update([
+            'status' => $request->status
+        ]);
+
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Business  $business
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Business $business)
+    public function destroy(Request $request, Business $business)
     {
-        //
+        $business = Business::where('id', '=', $request->id)->first();
+
+        if ($business) {
+            $business->delete();
+            return back();
+        }
     }
 }

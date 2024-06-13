@@ -5,8 +5,7 @@
 @push('theme_css')
 @endpush
 @push('page_css')
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('Backend/app-assets/vendors/css/forms/select/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Backend/app-assets/vendors/css/forms/select/select2.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
 @endpush
 @push('custom_css')
@@ -61,7 +60,6 @@
         .form-check-label {
             margin-left: 12px;
         }
-
     </style>
 @endpush
 @push('head')
@@ -83,7 +81,8 @@
                             <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Prouct Title</label>
                                 <div class="col-sm-10">
-                                    <input type="text" onkeyup="convertToSlug(this.value)" name="title" value="{{ $car->title }}"
+                                    <input type="text" onkeyup="convertToSlug(this.value)" name="title"
+                                        value="{{ $car->title }}"
                                         class="form-control @error('title') is-invalid @enderror" id="title"
                                         placeholder="Title">
                                 </div>
@@ -93,16 +92,9 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group row">
-                                <label for="title_slug" class="col-sm-2 col-form-label">Product Slug</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="slug" value="{{ $car->slug}}" class="form-control" id="title_slug"
-                                        placeholder="Slug">
-                                </div>
-                            </div>
 
                             <div class="form-group row">
-                                <label for="car_type" class="col-sm-2 col-form-label">Select Catgory</label>
+                                <label for="car_type" class="col-sm-2 col-form-label">Catgory</label>
                                 <div class="col-sm-10">
                                     <select name="car_type_id" class="form-control select2" id="car_type">
                                         @foreach ($car_types as $item)
@@ -114,6 +106,20 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="sub_category_id" class="col-sm-2 col-form-label">Sub Category</label>
+                                <div class="col-sm-10">
+                                    <select name="sub_category_id" class="form-control select2" id="sub_category_id">
+                                        @foreach ($categories as $item)
+                                            <option value="{{ $item->id }}"
+                                                {{ $car->sub_category_id == $item->id ? 'selected' : '' }}>
+                                                {{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="brandSelect" class="col-sm-2 col-form-label">Menufacturer Brands</label>
                                 <div class="col-sm-10">
@@ -144,8 +150,7 @@
                             <h4 class="card-title">General Description</h4>
                             <div class="form-group mt-1">
                                 <label for="exampleFormControlSelect1" class="font-weight-bold">English</label>
-                                <textarea name="general_dsc" class="form-control ckeditor" id="exampleFormControlTextarea1"
-                                    rows="3">{{ $car->general_dsc }}</textarea>
+                                <textarea name="general_dsc" class="form-control ckeditor" id="exampleFormControlTextarea1" rows="3">{{ $car->general_dsc }}</textarea>
                             </div>
                             <hr>
                             <div style="background-color: red;color:white" class="p-2">
@@ -160,12 +165,13 @@
                                     <input class="form-check-input" type="radio"
                                         {{ $car->pub_place == 'best_selling' ? 'checked' : '' }} name="pub_place"
                                         id="best_selling" value="best_selling">
-                                    <label class="form-check-label text-white" for="best_selling">Condensers & Evaporators</label>
+                                    <label class="form-check-label text-white" for="best_selling">Condensers &
+                                        Evaporators</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio"
-                                        {{ $car->pub_place == 'AC Parts' ? 'checked' : '' }} name="pub_place" id="sold"
-                                        value="AC Parts">
+                                        {{ $car->pub_place == 'AC Parts' ? 'checked' : '' }} name="pub_place"
+                                        id="sold" value="AC Parts">
                                     <label class="form-check-label text-white" for="sold">AC Parts</label>
                                 </div>
                             </div>
@@ -178,8 +184,8 @@
                     <div class="card-content">
                         <div class="card-body" style="position: relative;">
                             <h4 class="card-title text-uppercase">Car Images
-                                {{--<a href="{{ route('car_image_reset', $car->id) }}">Reset Image</a>--}}
-                                </h4>
+                                {{-- <a href="{{ route('car_image_reset', $car->id) }}">Reset Image</a> --}}
+                            </h4>
                             <hr>
                             <div class="previews_car">
                                 @if ($car->CarImage)
@@ -211,18 +217,40 @@
                                         placeholder="Product Name" value="{{ $car->product_name }}">
                                 </div>
                             </div>
+
+
                             <div class="form-group row">
-                                <label for="category" class="col-sm-2 col-form-label">Category</label>
+                                <label for="car_type" class="col-sm-2 col-form-label">Catgory</label>
                                 <div class="col-sm-10">
-                                    <input name="category" type="text" class="form-control" id="category"
-                                        placeholder="Category" value="{{ $car->category }}">
+                                    <select name="car_type_id" class="form-control select2" id="car_type">
+                                        @foreach ($car_types as $item)
+                                            <option value="{{ $item->id }}"
+                                                {{ $car->car_type_id == $item->id ? 'selected' : '' }}>
+                                                {{ $item->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="sub_category_id" class="col-sm-2 col-form-label">Sub Category</label>
+                                <div class="col-sm-10">
+                                    <select name="sub_category_id" class="form-control select2" id="sub_category_id">
+                                        @foreach ($categories as $item)
+                                            <option value="{{ $item->id }}"
+                                                {{ $car->sub_category_id == $item->id ? 'selected' : '' }}>
+                                                {{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="sub_category" class="col-sm-2 col-form-label">Sub Category</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="sub_category" class="form-control datepicker-2" id="sub_category"
-                                        placeholder="Sub Category" value="{{ $car->sub_category }}">
+                                    <input type="text" name="sub_category" class="form-control datepicker-2"
+                                        id="sub_category" placeholder="Sub Category" value="{{ $car->sub_category }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -293,8 +321,9 @@
                             <div class="form-group row">
                                 <label for="payment_options" class="col-sm-2 col-form-label">Payment Options</label>
                                 <div class="col-sm-10">
-                                    <input name="payment_options" type="text" class="form-control" id="payment_options"
-                                        placeholder="Payment Options" value="{{ $car->payment_options }}">
+                                    <input name="payment_options" type="text" class="form-control"
+                                        id="payment_options" placeholder="Payment Options"
+                                        value="{{ $car->payment_options }}">
                                 </div>
                             </div>
                         </div>
@@ -311,38 +340,43 @@
                             <div class="form-group row">
                                 <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="seo_title" class="form-control @error('seo_title') is-invalid @enderror" id="seo_title" placeholder="SEO Title" value="{{ $car->seo_title }}">
+                                    <input type="text" name="seo_title"
+                                        class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
+                                        placeholder="SEO Title" value="{{ $car->seo_title }}">
                                 </div>
                                 @error('seo_title')
-                                <span class="invalid-feedback" role="alert">
-                                    <span>{{ $message }}</span>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
                                 @enderror
                             </div>
 
                             <div class="form-group row">
                                 <label for="seo_keywords" class="col-sm-2 col-form-label">SEO Keywords</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="seo_keywords" class="form-control @error('seo_keywords') is-invalid @enderror" id="seo_keywords" placeholder="SEO Keywords" value="{{ $car->seo_keywords }}">
+                                    <input type="text" name="seo_keywords"
+                                        class="form-control @error('seo_keywords') is-invalid @enderror" id="seo_keywords"
+                                        placeholder="SEO Keywords" value="{{ $car->seo_keywords }}">
                                 </div>
                                 @error('seo_keywords')
-                                <span class="invalid-feedback" role="alert">
-                                    <span>{{ $message }}</span>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
                                 @enderror
                             </div>
 
                             <div class="form-group row">
                                 <label for="seo_description" class="col-sm-2 col-form-label">SEO Description</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" name="seo_description" id="seo_description" rows="3" placeholder="SEO Description">
+                                    <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
+                                        placeholder="SEO Description">
                                         {{ $car->seo_description }}
                                     </textarea>
                                 </div>
                                 @error('seo_description')
-                                <span class="invalid-feedback" role="alert">
-                                    <span>{{ $message }}</span>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
                                 @enderror
                             </div>
 
@@ -372,7 +406,7 @@
     <script>
         $('.input-images-1').imageUploader();
     </script>
-     <script type="text/javascript">
+    <script type="text/javascript">
         function convertToSlug(str) {
             console.log(str)
             //replace all special characters | symbols with a space
