@@ -159,6 +159,7 @@ class ExpertsController extends Controller
             'website' => $request->website,
             'city' => $request->city,
             'country' => $request->country,
+            'status' => $request->status,
             'seo_title' => $request->seo_title,
             'seo_keywords' => $request->seo_keywords,
             'seo_description' => $request->seo_description,
@@ -200,6 +201,22 @@ class ExpertsController extends Controller
     public function update(Request $request, Experts $experts)
     {
         //
+    }
+
+
+    public function statusUpdate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'status' => 'required',
+        ]);
+
+        $expert = Experts::where('id', '=', $request->id)->first();
+        $expert->update([
+            'status' => $request->status
+        ]);
+
+        return back();
     }
 
     /**

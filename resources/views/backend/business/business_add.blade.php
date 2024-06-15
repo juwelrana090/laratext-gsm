@@ -137,13 +137,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact Website</label>
+                                <label for="title" class="col-sm-2 col-form-label">Contact Photo</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="contact_website"
-                                        class="form-control @error('contact_website') is-invalid @enderror"
-                                        id="contact_website" placeholder="Contact Website">
+                                    <input type="file" name="contact_image"
+                                        class="form-control @error('contact_image') is-invalid @enderror" id="contact_image"
+                                        placeholder="Contact Website">
                                 </div>
-                                @error('contact_website')
+                                @error('contact_image')
                                     <span class="invalid-feedback" role="alert">
                                         <span>{{ $message }}</span>
                                     </span>
@@ -246,6 +246,22 @@
                                     </span>
                                 @enderror
                             </div>
+
+                            <div class="form-group row">
+                                <label for="business_price" class="col-sm-2 col-form-label">Business Price <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="business_price"
+                                        class="form-control @error('business_price') is-invalid @enderror"
+                                        id="business_price" placeholder="Business Price">
+                                </div>
+                                @error('business_price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
 
                             <div class="form-group row">
                                 <label for="business_category_id" class="col-sm-2 col-form-label">Business Catgory <span

@@ -1,11 +1,10 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Blank | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="container-fluid container-lg business-details my-5">
             <div class="row">
@@ -14,65 +13,67 @@
                         aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('home') }}" class="text-decoration-none">
+                                <a href="<?php echo e(route('home')); ?>" class="text-decoration-none">
                                     <small class="fw-semibold text-muted">Home</small>
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('business.list') }}" class="text-decoration-none">
+                                <a href="<?php echo e(route('business.list')); ?>" class="text-decoration-none">
                                     <small class="fw-semibold text-muted">Business</small>
                                 </a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <small class="fw-semibold">{{ $businesses->company_name }}</small>
+                                <small class="fw-semibold"><?php echo e($businesses->company_name); ?></small>
                             </li>
                         </ol>
                     </nav>
 
 
                     <!-- <div class="info">
-                                                                            <i class="bi bi-geo-alt-fill me-3">
-                                                                              <small class="fw-semibold">Rue de Tracy</small>
-                                                                            </i>
+                                                                        <i class="bi bi-geo-alt-fill me-3">
+                                                                          <small class="fw-semibold">Rue de Tracy</small>
+                                                                        </i>
 
-                                                                            <i class="bi bi-tags-fill me-3">
-                                                                              <small class="fw-semibold">For Rent</small>
-                                                                            </i>
+                                                                        <i class="bi bi-tags-fill me-3">
+                                                                          <small class="fw-semibold">For Rent</small>
+                                                                        </i>
 
-                                                                            <i class="bi bi-calendar3">
-                                                                              <small class="fw-semibold">July 3, 2023</small>
-                                                                            </i>
-                                                                          </div> -->
+                                                                        <i class="bi bi-calendar3">
+                                                                          <small class="fw-semibold">July 3, 2023</small>
+                                                                        </i>
+                                                                      </div> -->
 
                     <div id="carouselBusinessList_1" class="carousel slide position-relative" data-bs-ride="carousel">
                         <small
                             class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                            {{ $businesses->business_type }}
+                            <?php echo e($businesses->business_type); ?>
+
                         </small>
 
                         <small
                             class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
                             <i class="bi bi-geo-alt-fill"></i>
-                            {{ $businesses->contact_address }}
+                            <?php echo e($businesses->contact_address); ?>
+
                         </small>
 
                         <?php $images = json_decode($businesses->business_images); ?>
 
                         <div class="carousel-inner rounded overflow-hidden z-1 mt-4">
-                            @foreach ($images as $image)
+                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="carousel-item active">
-                                    <img src="{{ asset($image->image_path) }}" class="img-fluid d-block w-100 rounded"
-                                        alt="{{ $businesses->company_name }}" title="{{ $businesses->company_name }}"
+                                    <img src="<?php echo e(asset($image->image_path)); ?>" class="img-fluid d-block w-100 rounded"
+                                        alt="<?php echo e($businesses->company_name); ?>" title="<?php echo e($businesses->company_name); ?>"
                                         style="height: 400px;">
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
 
-                        <h2 style="color: var(--dark_blue);">{{ $businesses->company_name }}</h2>
+                        <h2 style="color: var(--dark_blue);"><?php echo e($businesses->company_name); ?></h2>
 
                         <h3 class="rounded-4 text-center py-3 mb-5"
                             style="background-color: #d3ecfa; color: var(--sky-blue);">
-                            ${{ $businesses->business_price }} Per Month</h3>
+                            $<?php echo e($businesses->business_price); ?> Per Month</h3>
 
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselBusinessList_1"
                             data-bs-slide="prev">
@@ -272,19 +273,19 @@
 
                     <div class="card profile p-2 border-0">
                         <div class="img-container rounded pt-2">
-                            <img src="{{ asset($businesses->contact_image) }}" class="img-fluid rounded d-block m-auto"
-                                alt="{{ $businesses->contact_person_name }}"
-                                title="{{ $businesses->contact_person_name }}" style="width: auto; height: 235px;">
+                            <img src="<?php echo e(asset($businesses->contact_image)); ?>" class="img-fluid rounded d-block m-auto"
+                                alt="<?php echo e($businesses->contact_person_name); ?>"
+                                title="<?php echo e($businesses->contact_person_name); ?>" style="width: auto; height: 235px;">
                         </div>
 
                         <div class="card-body d-flex flex-column align-items-center">
                             <p class="card-text my-0">Real Estate Agent</p>
-                            <h4 class="card-title mb-3">{{ $businesses->contact_person_name }}</h4>
+                            <h4 class="card-title mb-3"><?php echo e($businesses->contact_person_name); ?></h4>
 
-                            <small class="fw-semibold">Office:{{ $businesses->contact_whatsapp }}</small>
-                            <small class="fw-semibold">Mobile: {{ $businesses->contact_mobile }}</small>
-                            <small class="fw-semibold">Email: {{ $businesses->contact_email }}</small>
-                            <small class="fw-semibold">Website: {{ $businesses->contact_website }}</small>
+                            <small class="fw-semibold">Office:<?php echo e($businesses->contact_whatsapp); ?></small>
+                            <small class="fw-semibold">Mobile: <?php echo e($businesses->contact_mobile); ?></small>
+                            <small class="fw-semibold">Email: <?php echo e($businesses->contact_email); ?></small>
+                            <small class="fw-semibold">Website: <?php echo e($businesses->contact_website); ?></small>
 
                             <div class="mt-4">
                                 <a class="icon-link rounded-circle px-2 py-1 me-2" href="#"
@@ -314,25 +315,25 @@
                 <div class="row row-cols-2 row-cols-md-4">
                     <div class="col text-center">
                         <i class="bi bi-house-fill d-block"></i>
-                        <span>{{ $businesses->company_description }}</span>
+                        <span><?php echo e($businesses->company_description); ?></span>
                     </div>
 
                     <div class="col text-center">
                         <i class="bi bi-telephone-forward-fill"></i>
                         <span class="d-block">Telephone</span>
-                        <span>{{ $businesses->company_mobile }}</span>
+                        <span><?php echo e($businesses->company_mobile); ?></span>
                     </div>
 
                     <div class="col text-center mt-4 mt-md-0">
                         <i class="bi bi-envelope-fill"></i>
                         <span class="d-block">Email</span>
-                        <span>{{ $businesses->company_mobile }}</span>
+                        <span><?php echo e($businesses->company_mobile); ?></span>
                     </div>
 
                     <div class="col text-center mt-4 mt-md-0">
                         <i class="bi bi-cash-coin"></i>
                         <span class="d-block">Demo Price</span>
-                        <span>{{ $businesses->business_price }}</span>
+                        <span><?php echo e($businesses->business_price); ?></span>
                     </div>
                 </div>
             </div>
@@ -345,8 +346,8 @@
                     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <!-- <button class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill"
-                                                                                data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
-                                                                                aria-selected="true">Overview</button> -->
+                                                                            data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
+                                                                            aria-selected="true">Overview</button> -->
 
                             <h5 style="margin-top: 10px;">Overview</h5>
                         </li>
@@ -368,7 +369,7 @@
                                         </td>
                                         <td style="border-top: none">:</td>
                                         <td style="border-top: none">
-                                            <small class="fw-semibold">{{ $businesses->company_name }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->company_name); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -377,7 +378,7 @@
                                         </td>
                                         <td>:</td>
                                         <td style="text-align: justify;">
-                                            <small class="fw-semibold">{{ $businesses->company_description }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->company_description); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -386,7 +387,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->business_hours }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->business_hours); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -395,7 +396,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->seo_description }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->seo_description); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -404,7 +405,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->business_price }}$</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->business_price); ?>$</small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -413,7 +414,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->company_email }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->company_email); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -422,7 +423,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->company_mobile }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->company_mobile); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -456,14 +457,15 @@
                             </table>
                         </div>
                         <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-                            {{ $businesses->company_description }}</div>
+                            <?php echo e($businesses->company_description); ?></div>
                     </div>
 
 
                     <h4 class="mt-4 mb-3">Description</h4>
                     <div style="text-align: justify;">
                         <small class="fw-semibold">
-                            <?php echo $businesses->company_description; ?>
+                            <?php echo e($businesses->company_description); ?>
+
                         </small>
                     </div>
 
@@ -471,7 +473,7 @@
                     <div class="mt-2">
                         <iframe class="rounded-3" width="100%" height="400" frameborder="0" scrolling="no"
                             marginheight="0" marginwidth="0" id="gmap_canvas"
-                            src="{{ $businesses->contact_google_map }}"></iframe>
+                            src="<?php echo e($businesses->contact_google_map); ?>&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
                         <a href="https://www.embedmap.net/">google maps widget</a>
                         <script type="text/javascript"
                             src="https://embedmaps.com/google-maps-authorization/script.js?id=aeba0eb2a2d1830cfe370c5ed5bd90dfce1c73be">
@@ -479,14 +481,14 @@
                     </div>
 
                     <!-- <div class="mt-2">
-                                                                            <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                                                                              id="gmap_canvas"
-                                                                              src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%20New%20Haven+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                                                                            <a href="https://www.embedmap.net/">google maps widget</a>
-                                                                            <script type="text/javascript"
-                                                                                src="https://embedmaps.com/google-maps-authorization/script.js?id=aeba0eb2a2d1830cfe370c5ed5bd90dfce1c73be">
-                                                                            </script>
-                                                                          </div> -->
+                                                                        <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                                                          id="gmap_canvas"
+                                                                          src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%20New%20Haven+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                                                                        <a href="https://www.embedmap.net/">google maps widget</a>
+                                                                        <script type="text/javascript"
+                                                                            src="https://embedmaps.com/google-maps-authorization/script.js?id=aeba0eb2a2d1830cfe370c5ed5bd90dfce1c73be">
+                                                                        </script>
+                                                                      </div> -->
                 </div>
 
                 <div class="col-12 col-md-5 contact">
@@ -562,30 +564,30 @@
 
                     <h5 class="mt-4">Featured Businesses</h5>
                     <div class="row row-cols-1 mt-3 g-2">
-                        @foreach ($featured as $item)
+                        <?php $__currentLoopData = $featured; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $images = json_decode($item->business_images); ?>
                             <div class="col">
                                 <div class="card feature-list border-0">
                                     <div class="row g-0">
                                         <div class="col-4 p-2">
-                                            <img src="{{ asset($images[0]->image_path) }}"
+                                            <img src="<?php echo e(asset($images[0]->image_path)); ?>"
                                                 class="img-fluid rounded d-block m-auto w-100" alt="..."
                                                 title="..." style="height: 65px;">
                                         </div>
                                         <div class="col-8">
                                             <div class="card-body p-2">
                                                 <h6 class="card-subtitle text-muted">
-                                                    <small>{{ $item->company_name }}</small>
+                                                    <small><?php echo e($item->company_name); ?></small>
                                                 </h6>
                                                 <h6 class="card-title mt-1" style="color: var(--sky-blue);">
-                                                    ${{ $item->business_price }} Per Month
+                                                    $<?php echo e($item->business_price); ?> Per Month
                                                 </h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>
@@ -1171,7 +1173,9 @@
 
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/business/details.blade.php ENDPATH**/ ?>

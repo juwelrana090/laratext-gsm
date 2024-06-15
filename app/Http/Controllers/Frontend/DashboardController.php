@@ -49,7 +49,9 @@ class DashboardController extends Controller
 
     public function businessDetails(Request $request)
     {
-        return view('business.details');
+        $businesses = Business::where('company_slug', $request->slug)->first();
+        $featured = Business::where('is_featured', 1)->paginate(20);
+        return view('business.details', compact('businesses', 'featured'));
     }
 
     public function expertList(Request $request)
@@ -62,7 +64,8 @@ class DashboardController extends Controller
 
     public function expertDetails(Request $request)
     {
-        return view('expert.details');
+        $expert = Experts::where('slug', $request->slug)->first();
+        return view('expert.details', compact('expert'));
     }
 
     public function productList(Request $request)

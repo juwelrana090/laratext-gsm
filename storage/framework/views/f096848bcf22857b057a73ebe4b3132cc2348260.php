@@ -54,6 +54,7 @@
                                             <th>Company name</th>
                                             <th>Company mobile</th>
                                             <th>Company email</th>
+                                            <th>Business Price</th>
                                             <th>Business Type</th>
                                             <th>Category</th>
                                             <th>Business hours</th>
@@ -68,6 +69,7 @@
                                                 <td class="product-category"><?php echo e($business->company_name); ?></td>
                                                 <td class="product-category"><?php echo e($business->company_mobile); ?></td>
                                                 <td class="product-category"><?php echo e($business->company_email); ?></td>
+                                                <td class="product-category"><?php echo e($business->business_price); ?></td>
                                                 <td class="product-category"><?php echo e($business->business_type); ?></td>
                                                 <td class="product-category"><?php echo e($business->business_category_title); ?></td>
                                                 <td class="product-category"><?php echo e($business->business_hours); ?></td>

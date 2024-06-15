@@ -25,11 +25,14 @@ class CreateBusinessesTable extends Migration
             $table->string('contact_google_map')->nullable();
             $table->string('contact_address');
             $table->string('contact_website')->nullable();
+            $table->string('contact_image')->nullable();
+            $table->string('contact_image_id')->nullable();
             $table->string('company_name');
             $table->string('company_slug');
             $table->string('company_mobile');
             $table->string('company_description')->nullable();
             $table->string('company_email');
+            $table->string('business_price');
             $table->string('business_type');
             $table->string('business_hours');
             $table->json('business_images');

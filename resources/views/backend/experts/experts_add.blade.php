@@ -186,7 +186,8 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <select name="experts_categories_id" class="form-control select2" id="experts_categories_id">
+                                    <select name="experts_categories_id" class="form-control select2"
+                                        id="experts_categories_id">
                                         @foreach ($categories as $item)
                                             <option value="{{ $item->id }}">{{ $item->category_name }}</option>
                                         @endforeach
@@ -525,7 +526,18 @@
                                 @enderror
                             </div>
 
-
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-2 col-form-label">Status <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <select name="status" class="form-control select2" id="status">
+                                        <option value="active">Active</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="rejected">Rejected</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

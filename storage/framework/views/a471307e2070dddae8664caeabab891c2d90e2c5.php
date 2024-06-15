@@ -1,25 +1,23 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Blank | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="expert-profile pb-5">
             <div class="container-fluid p-0">
-                <img src="{{ asset('images/hospital.jpg') }}" class="img-fluid w-100" alt="..." title="..."
+                <img src="<?php echo e(asset('images/hospital.jpg')); ?>" class="img-fluid w-100" alt="..." title="..."
                     style="max-height: 400px" />
             </div>
 
             <div class="container-fluid container-lg">
                 <div class="row">
                     <div class="col-3 col-lg-2 position-relative">
-                        <img src="{{ asset($expert->expert_image) }}"
-                            class="img-fluid d-block m-auto rounded-circle position-absolute profile-picture"
-                            alt="{{ $expert->title }}" title="{{ $expert->title }}"
-                            style="height: 170px; width: 170px; top: -20px" />
+                        <img src="<?php echo e(asset('images/person1.png')); ?>"
+                            class="img-fluid d-block m-auto rounded-circle position-absolute profile-picture" alt="..."
+                            title="..." style="height: 170px; width: 170px; top: -20px" />
                     </div>
 
                     <div class="col-9 col-md-6 col-lg-4">
@@ -34,19 +32,19 @@
                             <small class="ms-3 text-muted rating-text fw-semibold">3 Out Of 5</small>
                         </div>
 
-                        <h3 class="mt-1 mb-3 expert-name">{{ $expert->contact_person_name }}</h3>
+                        <h3 class="mt-1 mb-3 expert-name">Herman Rehema, CL</h3>
 
-                        {{-- <div class="header-info">
+                        <div class="header-info">
                             <small class="bg-color p-1 rounded">Demo Text 1</small>
                             <small class="text-muted"> | </small>
                             <small class="bg-color-2 p-1 rounded">Demo Text 2</small>
                             <small class="text-muted"> | </small>
                             <small class="bg-color-2 p-1 rounded">Demo Text 3</small>
-                        </div> --}}
+                        </div>
                     </div>
 
                     <div class="col-12 col-md-3 col-lg-6 d-flex justify-content-center align-items-center">
-                        <a href="tel:{{ $expert->mobile }}" class="btn bg-color call-btn mt-3">
+                        <a href="tel:+" class="btn bg-color call-btn mt-3">
                             <i class="bi bi-telephone-forward-fill"></i>
                             Call Now
                         </a>
@@ -59,25 +57,25 @@
                     <div class="row row-cols-2 row-cols-md-4">
                         <div class="col text-center">
                             <i class="bi bi-house-fill d-block"></i>
-                            <span>{{ $expert->title }}</span>
+                            <span>Lorem ipsum dolor sit amet consectet adipi.</span>
                         </div>
 
                         <div class="col text-center">
                             <i class="bi bi-telephone-forward-fill"></i>
                             <span class="d-block">Telephone</span>
-                            <span>{{ $expert->telephone }}</span>
+                            <span>555552534534</span>
                         </div>
 
                         <div class="col text-center mt-4 mt-md-0">
                             <i class="bi bi-envelope-fill"></i>
                             <span class="d-block">Email</span>
-                            <span>{{ $expert->email }}</span>
+                            <span>demo@gmail.com</span>
                         </div>
 
                         <div class="col text-center mt-4 mt-md-0">
                             <i class="bi bi-cash-coin"></i>
                             <span class="d-block">Demo Price</span>
-                            <span>{{ $expert->price }}</span>
+                            <span>1050</span>
                         </div>
                     </div>
                 </div>
@@ -110,7 +108,7 @@
                                             </td>
                                             <td style="border-top: none">:</td>
                                             <td style="border-top: none">
-                                                <small class="fw-semibold">{{ $expert->title }}</small>
+                                                <small class="fw-semibold">Mark</small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -119,7 +117,15 @@
                                             </td>
                                             <td>:</td>
                                             <td style="text-align: justify;">
-                                                <small class="fw-semibold">{{ $expert->about }}</small>
+                                                <small class="fw-semibold">Lorem ipsum, dolor sit amet consectetur
+                                                    adipisicing elit. Provident
+                                                    quasi fugit autem optio, repudiandae commodi doloribus nostrum culpa
+                                                    laudantium iste
+                                                    reprehenderit odit recusandae nemo. Repudiandae ad deleniti eos possimus
+                                                    nemo ducimus autem,
+                                                    reprehenderit veritatis libero nam, quibusdam dolore amet, mollitia
+                                                    commodi est quae
+                                                    voluptas.</small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -128,7 +134,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->working_hours }}</small>
+                                                <small class="fw-semibold">Mon-Fri : 09:30 AM - 05:30 PM</small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -137,7 +143,9 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->services }}</small>
+                                                <small class="fw-semibold">Lorem ipsum dolor sit amet consectetur
+                                                    adipisicing elit. Nihil,
+                                                    vero!</small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -146,7 +154,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->starting_prices }}$</small>
+                                                <small class="fw-semibold">10$</small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -155,7 +163,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->email }}</small>
+                                                <small class="fw-semibold">example@gmail.com</small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -164,7 +172,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->telephone }}</small>
+                                                <small class="fw-semibold">3456435634563</small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -198,13 +206,28 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="pills-review" role="tabpanel"
-                                aria-labelledby="pills-review-tab"><?php echo $expert->description; ?></div>
+                                aria-labelledby="pills-review-tab">Lorem
+                                ipsum dolor sit amet consectetur adipisicing elit. Architecto nesciunt neque impedit
+                                obcaecati explicabo
+                                temporibus ad molestiae omnis quas? Harum in perferendis voluptatum delectus ratione
+                                laudantium
+                                dignissimos, deserunt sunt dolorem libero sapiente nihil quidem sit architecto voluptatem,
+                                culpa ab
+                                pariatur sequi quam. Rem itaque dicta nisi odio, quasi ex voluptatem exercitationem maiores
+                                impedit quis
+                                placeat error fuga unde? Inventore, ea saepe aliquam animi laboriosam fugit ipsam provident
+                                enim quidem
+                                cupiditate sed quaerat tenetur ab sint distinctio aspernatur aut corporis facere ipsum
+                                facilis
+                                perferendis similique? Dolorem consequuntur reiciendis accusantium rerum eveniet eos fugit
+                                illum quod
+                                consequatur aliquid, vero aliquam perferendis reprehenderit.</div>
                         </div>
 
                         <div class="mt-2">
                             <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0"
                                 marginwidth="0" id="gmap_canvas"
-                                src="{{ $expert->google_map }}"></iframe>
+                                src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%20New%20Haven+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
                             <a href="https://www.embedmap.net/">google maps widget</a>
                             <script type="text/javascript"
                                 src="https://embedmaps.com/google-maps-authorization/script.js?id=aeba0eb2a2d1830cfe370c5ed5bd90dfce1c73be">
@@ -286,7 +309,9 @@
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/expert/details.blade.php ENDPATH**/ ?>

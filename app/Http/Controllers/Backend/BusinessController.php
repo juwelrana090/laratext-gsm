@@ -61,9 +61,11 @@ class BusinessController extends Controller
             'contact_mobile' => 'required',
             'contact_whatsapp' => 'required',
             'contact_address' => 'required',
+            'contact_image' => 'required',
             'company_name' => 'required',
             'company_mobile' => 'required',
             'company_email' => 'required',
+            'business_price' => 'required',
             'business_type' => 'required',
             'business_hours' => 'required',
             'business_category_id' => 'required',
@@ -103,6 +105,36 @@ class BusinessController extends Controller
         $business_images = [];
 
         $now_day = date('F_Y');
+        $contact_image = "";
+        $contact_image_id = "";
+
+        if ($request->hasFile('contact_image')) {
+            $path = public_path('uploads/files/' . $now_day);
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $file = $request->file('contact_image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+            }
+
+            $contact_image = $file_location;
+            $contact_image_id = $fileModel->id;
+        }
+
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $file) {
@@ -146,11 +178,14 @@ class BusinessController extends Controller
             'contact_google_map' => $request->contact_google_map,
             'contact_address' => $request->contact_address,
             'contact_website' => $request->contact_website,
+            'contact_image' => $contact_image,
+            'contact_image_id' => $contact_image_id,
             'company_name' => $company_name,
             'company_slug' => $company_slug,
             'company_mobile' => $request->company_mobile,
             'company_description' => $request->company_description,
             'company_email' => $request->company_email,
+            'business_price' => $request->business_price,
             'business_type' => $request->business_type,
             'business_hours' => $request->business_hours,
             'business_images' => $business_images,
@@ -202,7 +237,159 @@ class BusinessController extends Controller
      */
     public function update(Request $request, Business $business)
     {
-        //
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'contact_person_name' => 'required',
+            'contact_email' => 'required',
+            'contact_mobile' => 'required',
+            'contact_whatsapp' => 'required',
+            'contact_address' => 'required',
+            'contact_image' => 'required',
+            'company_name' => 'required',
+            'company_mobile' => 'required',
+            'company_email' => 'required',
+            'business_price' => 'required',
+            'business_type' => 'required',
+            'business_hours' => 'required',
+            'business_category_id' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $business = Business::find($request->id);
+
+        if (!$business) {
+            return redirect()->route('business.index')->with('error', 'Business not found');
+        }
+
+        $company_name = $request->company_name;
+        $company_slug = Str::slug($company_name);
+
+        $businesses = Business::where('company_slug', 'LIKE', "%{$company_slug}%")->get();
+        $count = $businesses->count();
+
+        if ($count > 0) {;
+            foreach ($businesses as $business) {
+                $data[] = $business['company_slug'];
+            }
+
+            if (in_array($company_slug, $data)) {
+                $business_count = 0;
+                while (in_array(($company_slug . '-' . ++$business_count), $data));
+                $company_name = $company_name . " " . $business_count;
+                $company_slug = $company_slug . '-' . $business_count;
+            }
+        }
+
+        $business_category = BusinessCategories::find($request->business_category_id);
+
+        $business_images = [];
+
+        $now_day = date('F_Y');
+
+        $contact_image = "";
+        $contact_image_id = "";
+
+        if ($request->hasFile('contact_image')) {
+            $path = public_path('uploads/files/' . $now_day);
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $file = $request->file('contact_image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+            }
+
+            $contact_image = $file_location;
+            $contact_image_id = $fileModel->id;
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $path = public_path('uploads/files/' . $now_day);
+
+                if (!File::isDirectory($path)) {
+                    File::makeDirectory($path, 0777, true, true);
+                }
+
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $filePath = $file->move($path, $fileName);
+                $fileModel = new FileManager;
+                $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+                $file_type = explode('/', $file->getClientMimeType());
+
+                if ($filePath) {
+                    $fileModel->file_name = $fileName;
+                    $fileModel->file_type = $file_type[0];
+                    $fileModel->file_format = $file->getClientOriginalExtension();
+                    $fileModel->file_thumbnail = $file_location;
+                    $fileModel->file_path = $file_location;
+                    $fileModel->save();
+                }
+
+                $business_images[] = [
+                    'image_id' => $fileModel->id,
+                    'image_path' => $file_location,
+                ];
+            }
+        }
+
+
+        $business_images = json_encode($business_images);
+        $business = Business::where('id', $request->id)->update([
+            'contact_person_name' => $request->contact_person_name,
+            'contact_email' => $request->contact_email,
+            'contact_mobile' => $request->contact_mobile,
+            'contact_whatsapp' => $request->contact_whatsapp,
+            'contact_google_map' => $request->contact_google_map,
+            'contact_address' => $request->contact_address,
+            'contact_website' => $request->contact_website,
+            'contact_image' => $contact_image,
+            'contact_image_id' => $contact_image_id,
+            'company_name' => $company_name,
+            'company_slug' => $company_slug,
+            'company_mobile' => $request->company_mobile,
+            'company_description' => $request->company_description,
+            'company_email' => $request->company_email,
+            'business_price' => $request->business_price,
+            'business_type' => $request->business_type,
+            'business_hours' => $request->business_hours,
+            'business_images' => $business_images,
+            'business_category_id' => $business_category->id,
+            'business_category_title' => $business_category->category_name,
+            'whatsapp_number' => $request->whatsapp_number,
+            'social_media' => $request->social_media,
+            'website' => $request->website,
+            'city' => $request->city,
+            'country' => $request->country,
+            'status' => $request->status,
+            'seo_title' => $request->seo_title,
+            'seo_keywords' => $request->seo_keywords,
+            'seo_description' => $request->seo_description,
+            'is_featured' => $request->is_featured,
+        ]);
+
+        return redirect()->route('business.index')->with('success', 'Business created successfully');
     }
 
     public function statusUpdate(Request $request)

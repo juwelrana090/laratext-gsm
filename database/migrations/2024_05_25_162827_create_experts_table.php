@@ -38,6 +38,7 @@ class CreateExpertsTable extends Migration
             $table->string('website')->nullable();
             $table->string('city');
             $table->string('country');
+            $table->enum('status', ['pending', 'active', 'inactive', 'rejected'])->default('pending');
             $table->text('seo_title')->nullable();
             $table->text('seo_keywords')->nullable();
             $table->text('seo_description')->nullable();

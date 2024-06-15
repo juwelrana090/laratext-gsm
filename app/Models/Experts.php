@@ -31,6 +31,7 @@ class Experts extends Model
         'website',
         'city',
         'country',
+        'status',
         'seo_title',
         'seo_keywords',
         'seo_description',

@@ -58,6 +58,7 @@
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Price</th>
+                                            <th>Status</th>
                                             <th>ACTION</th>
                                         </tr>
                                     </thead>
@@ -70,7 +71,25 @@
                                                 <td class="product-category">{{ $expert->title }}</td>
                                                 <td class="product-category"></td>
                                                 <td class="product-category">{{ $expert->price }}</td>
+                                                <td class="product-category">{{ $expert->status }}</td>
                                                 <td class="product-category">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-secondary dropdown-toggle"
+                                                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                            Status
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('business.status_update', $business->id) }}?status=active">Active</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('business.status_update', $business->id) }}?status=pending">Pending</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('business.status_update', $business->id) }}?status=inactive">Inactive</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('business.status_update', $business->id) }}?status=rejected">Rejected</a>
+                                                        </div>
+                                                    </div>
                                                     <a href="{{ route('experts.edit', $expert->id) }}"
                                                         class="btn btn-sm btn-primary text-white">edit</a>
                                                     <a href="#" class="btn btn-sm btn-danger text-white"
