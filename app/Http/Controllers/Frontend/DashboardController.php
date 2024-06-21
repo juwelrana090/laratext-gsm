@@ -12,6 +12,7 @@ use App\Models\Business;
 use App\Models\Experts;
 
 use App\Models\Blogs;
+use App\Models\Plans;
 
 use App\Models\BlogCategories;
 use App\Models\BusinessCategories;
@@ -31,11 +32,20 @@ class DashboardController extends Controller
         $experts_categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
         $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
 
+        $plan_1 = Plans::where('id', 1)->first();
+        $plan_2 = Plans::where('id', 2)->first();
+        $plan_3 = Plans::where('id', 3)->first();
+        $plan_4 = Plans::where('id', 4)->first();
+
         return view('home', [
             'brand' => $brand,
             'car_type' => $car_type,
             'experts_categories' => $experts_categories,
             'business_categories' => $business_categories,
+            'plan_1' => $plan_1,
+            'plan_2' => $plan_2,
+            'plan_3' => $plan_3,
+            'plan_4' => $plan_4
         ]);
     }
 
