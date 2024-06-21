@@ -103,7 +103,7 @@ class PlansController extends Controller
             array_push($description, $new_des);
         }
 
-        $plan = Plans::where('id', 1)->first();
+        $plan = Plans::where('id', $request->id)->first();
 
         $plan->update([
             'name' => $request->name,
