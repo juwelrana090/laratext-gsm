@@ -69,6 +69,13 @@ header .nav-link:hover {
     border: 1px solid #12bcff;
 }
 
+.whatsapp-btn{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #25D366 !important;
+}
+
 .banner input {
     border-top: 1px solid #12bcff;
     border-bottom: 1px solid #12bcff;

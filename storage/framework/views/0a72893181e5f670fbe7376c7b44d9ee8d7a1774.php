@@ -1,11 +1,10 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Home | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="container-fluid container-lg bg-img mt-3 mt-md-5 rounded banner">
             <div class="d-flex flex-column justify-content-center align-items-center h-100">
@@ -40,7 +39,7 @@
         <div class="container-fluid container-lg mt-5 mb-3">
             <div class="card category-card border-0">
                 <div class="card-body p-0 mb-3">
-                    <!-- <img src="{{ asset('images/maintenance.png') }}" alt="" title="" style="width: 50px; height: 50px" /> -->
+                    <!-- <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" /> -->
                     <!-- <span class="fw-semibold ms-2" style="font-size: 1.2rem">Business Listing</span> -->
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem" ;>Business Listing</span>
@@ -50,20 +49,20 @@
             </div>
 
             <div class="row row-cols-2 row-cols-md-4 row-cols-md-6 g-3">
-                @foreach ($business_categories as $item)
+                <?php $__currentLoopData = $business_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col">
                         <div class="card category-list-card border- py-2" style="width: 100%">
-                            <img class="card-img-top d-block m-auto" src="{{ asset($item->category_image) }}"
-                                alt="{{ $item->category_name }}" title="{{ $item->category_name }}"
+                            <img class="card-img-top d-block m-auto" src="<?php echo e(asset($item->category_image)); ?>"
+                                alt="<?php echo e($item->category_name); ?>" title="<?php echo e($item->category_name); ?>"
                                 style="width: 3rem; height: 3rem" />
                             <div class="card-body text-truncate py-2">
                                 <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
-                                    {{ $item->category_name }}</h6>
+                                    <?php echo e($item->category_name); ?></h6>
                                 <a href="#" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
 
@@ -71,14 +70,14 @@
         <div class="container-fluid container-lg mt-5 mb-2">
             <!-- <div class="card category-card border-0">
                             <div class="card-body py-2">
-                              <img src="{{ asset('images/maintenance.png') }}" alt="" title="" style="width: 50px; height: 50px" />
+                              <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
                               <span class="fw-semibold ms-2" style="font-size: 1.2rem">Experts</span>
                             </div>
                           </div> -->
 
             <div class="card category-card border-0">
                 <div class="card-body p-0 mb-3">
-                    <!-- <img src="{{ asset('images/maintenance.png') }}" alt="" title="" style="width: 50px; height: 50px" /> -->
+                    <!-- <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" /> -->
                     <!-- <span class="fw-semibold ms-2" style="font-size: 1.2rem">Business Listing</span> -->
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem" ;>Expert Listing</span>
@@ -89,18 +88,18 @@
             </div>
 
             <div class="row row-cols-2 row-cols-md-4 row-cols-md-6 g-3">
-                @foreach ($experts_categories as $item)
+                <?php $__currentLoopData = $experts_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col">
                         <div class="card category-list-card border- py-2" style="width: 100%">
-                            <img class="card-img-top d-block m-auto" src="{{ asset($item->category_image) }}" alt="{{ $item->category_name }}""
-                                title="{{ $item->category_name }}" style="width: 3rem; height: 3rem" />
+                            <img class="card-img-top d-block m-auto" src="<?php echo e(asset($item->category_image)); ?>" alt="<?php echo e($item->category_name); ?>""
+                                title="<?php echo e($item->category_name); ?>" style="width: 3rem; height: 3rem" />
                             <div class="card-body text-truncate py-2">
-                                <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">{{ $item->category_name }}"</h6>
+                                <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem"><?php echo e($item->category_name); ?>"</h6>
                                 <a href="#" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
 
@@ -108,14 +107,14 @@
         <div class="container-fluid container-lg mt-5 mb-3">
             <!-- <div class="card category-card border-0">
                             <div class="card-body py-2">
-                              <img src="{{ asset('images/maintenance.png') }}" alt="" title="" style="width: 50px; height: 50px" />
+                              <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
                               <span class="fw-semibold ms-2" style="font-size: 1.2rem">Products</span>
                             </div>
                           </div> -->
 
             <div class="card category-card border-0">
                 <div class="card-body p-0 mb-3">
-                    <!-- <img src="{{ asset('images/maintenance.png') }}" alt="" title="" style="width: 50px; height: 50px" /> -->
+                    <!-- <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" /> -->
                     <!-- <span class="fw-semibold ms-2" style="font-size: 1.2rem">Business Listing</span> -->
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem" ;>Product Listing</span>
@@ -126,32 +125,32 @@
             </div>
 
             <div class="row row-cols-2 row-cols-md-4 row-cols-md-6 g-3">
-                @foreach ($car_type as $item)
+                <?php $__currentLoopData = $car_type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col">
                     <div class="card category-list-card border- py-2" style="width: 100%">
-                        <img class="card-img-top d-block m-auto" src="{{ asset($item->image) }}" alt="{{ $item->name }}"
-                            title="{{ $item->name }}" style="width: 3rem; height: 3rem" />
+                        <img class="card-img-top d-block m-auto" src="<?php echo e(asset($item->image)); ?>" alt="<?php echo e($item->name); ?>"
+                            title="<?php echo e($item->name); ?>" style="width: 3rem; height: 3rem" />
                         <div class="card-body text-truncate py-2">
-                            <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">{{ $item->name }}</h6>
+                            <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem"><?php echo e($item->name); ?></h6>
                             <a href="#" class="stretched-link"></a>
                         </div>
                     </div>
                 </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
 
         <div class="container-fluid container-lg mt-5 mb-2">
             <!-- <div class="card category-card border-0">
                             <div class="card-body py-2">
-                              <img src="{{ asset('images/maintenance.png') }}" alt="" title="" style="width: 50px; height: 50px" />
+                              <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
                               <span class="fw-semibold ms-2" style="font-size: 1.2rem">Brands</span>
                             </div>
                           </div> -->
 
             <div class="card category-card border-0">
                 <div class="card-body p-0 mb-3">
-                    <!-- <img src="{{ asset('images/maintenance.png') }}" alt="" title="" style="width: 50px; height: 50px" /> -->
+                    <!-- <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" /> -->
                     <!-- <span class="fw-semibold ms-2" style="font-size: 1.2rem">Business Listing</span> -->
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem" ;>Brand Listing</span>
@@ -162,18 +161,18 @@
             </div>
 
             <div class="row row-cols-2 row-cols-md-4 row-cols-md-6 g-3">
-                @foreach ($brand as $item)
+                <?php $__currentLoopData = $brand; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col">
                     <div class="card category-list-card border- py-2" style="width: 100%">
-                        <img class="card-img-top d-block m-auto" src="{{ asset($item->image) }}" alt="{{ $item->name }}"
-                            title="{{ $item->name }}" style="width: 3rem; height: 3rem" />
+                        <img class="card-img-top d-block m-auto" src="<?php echo e(asset($item->image)); ?>" alt="<?php echo e($item->name); ?>"
+                            title="<?php echo e($item->name); ?>" style="width: 3rem; height: 3rem" />
                         <div class="card-body text-truncate py-2">
-                            <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">{{ $item->name }}</h6>
+                            <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem"><?php echo e($item->name); ?></h6>
                             <a href="#" class="stretched-link"></a>
                         </div>
                     </div>
                 </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
 
@@ -492,4 +491,6 @@
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/home.blade.php ENDPATH**/ ?>

@@ -12,7 +12,11 @@ use App\Models\Business;
 use App\Models\Experts;
 
 use App\Models\Blogs;
+
 use App\Models\BlogCategories;
+use App\Models\BusinessCategories;
+use App\Models\ExpertsCategories;
+use App\Models\CarType;
 use App\Models\FileManager;
 
 use Exception;
@@ -22,7 +26,17 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        return view('home');
+        $brand = Brand::latest()->orderBy('id', 'desc')->get();
+        $car_type = CarType::latest()->orderBy('id', 'desc')->get();
+        $experts_categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
+        $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
+
+        return view('home', [
+            'brand' => $brand,
+            'car_type' => $car_type,
+            'experts_categories' => $experts_categories,
+            'business_categories' => $business_categories,
+        ]);
     }
 
     public function aboutUs(Request $request)

@@ -1,11 +1,10 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Business List| GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
 
         <div class="container-fluid container-lg business-list my-5">
@@ -454,36 +453,36 @@
                     <div class="row row-cols-1 mt-3 g-2">
 
 
-                        @foreach ($featured as $item)
+                        <?php $__currentLoopData = $featured; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $images = json_decode($item->business_images); ?>
                             <div class="col">
                                 <div class="card feature-list border-0">
                                     <div class="row g-0">
                                         <div class="col-4 p-2">
-                                            <img src="{{ asset($images[0]->image_path) }}"
-                                                class="img-fluid rounded d-block m-auto w-100" alt="{{ $item->company_name }}"
-                                                title="{{ $item->company_name }}" style="height: 65px;">
+                                            <img src="<?php echo e(asset($images[0]->image_path)); ?>"
+                                                class="img-fluid rounded d-block m-auto w-100" alt="<?php echo e($item->company_name); ?>"
+                                                title="<?php echo e($item->company_name); ?>" style="height: 65px;">
                                         </div>
                                         <div class="col-8">
                                             <div class="card-body p-2">
                                                 <h6 class="card-subtitle text-muted">
-                                                    <small>{{ $item->company_name }}</small>
+                                                    <small><?php echo e($item->company_name); ?></small>
                                                 </h6>
                                                 <h6 class="card-title mt-1" style="color: var(--sky-blue);">
-                                                    {{ $item->business_price }}</h6>
+                                                    <?php echo e($item->business_price); ?></h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
 
                 <div class="col-12 col-md-8 col-lg-9">
                     <div class="row row-cols-1 g-4">
 
-                        @foreach ($businesses as $item)
+                        <?php $__currentLoopData = $businesses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $images = json_decode($item->business_images); ?>
                             <div class="col">
                                 <div class="card border-0">
@@ -503,14 +502,14 @@
                                                 </small>
 
                                                 <div class="carousel-inner rounded overflow-hidden z-1">
-                                                    @foreach ($images as $image)
+                                                    <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <div class="carousel-item active">
-                                                            <img src="{{ asset($image->image_path) }}"
+                                                            <img src="<?php echo e(asset($image->image_path)); ?>"
                                                                 class="img-fluid d-block w-100 rounded"
-                                                                alt="{{ $item->company_name }}"
-                                                                title="{{ $item->company_name }}" style="height: 330px;">
+                                                                alt="<?php echo e($item->company_name); ?>"
+                                                                title="<?php echo e($item->company_name); ?>" style="height: 330px;">
                                                         </div>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </div>
 
                                                 <button class="carousel-control-prev" type="button"
@@ -531,12 +530,12 @@
                                             <div class="card-body">
                                                 <h5 class="card-title mt-1 mb-2 fw-bolder">
                                                     <a href="http://" class="text-decoration-none"
-                                                        style="color: #0d293d;">{{ $item->company_name }}</a>
+                                                        style="color: #0d293d;"><?php echo e($item->company_name); ?></a>
                                                 </h5>
                                                 <h6 class="card-title mt-1 mb-2 fw-bolder" style="color: #12bcff;">
-                                                    {{ $item->business_category_title }}</h6>
+                                                    <?php echo e($item->business_category_title); ?></h6>
                                                 <p class="card-text text-truncate fw-semibold text-muted">
-                                                    <small>{{ $item->company_description }}</small>
+                                                    <small><?php echo e($item->company_description); ?></small>
                                                 </p>
 
                                                 <ul class="list-group list-group-flush">
@@ -548,7 +547,7 @@
                                                         </div>
 
                                                         <small
-                                                            class="fw-semibold text-muted">{{ $item->business_type }}</small>
+                                                            class="fw-semibold text-muted"><?php echo e($item->business_type); ?></small>
                                                     </li>
 
                                                     <li
@@ -559,7 +558,7 @@
                                                         </div>
 
                                                         <small
-                                                            class="fw-semibold text-muted">{{ $item->business_category_title }}</small>
+                                                            class="fw-semibold text-muted"><?php echo e($item->business_category_title); ?></small>
                                                     </li>
 
                                                     <li
@@ -570,7 +569,7 @@
                                                         </div>
 
                                                         <small
-                                                            class="fw-semibold text-muted">{{ $item->business_hours }}</small>
+                                                            class="fw-semibold text-muted"><?php echo e($item->business_hours); ?></small>
                                                     </li>
 
                                                     <li
@@ -581,26 +580,22 @@
                                                         </div>
 
                                                         <small
-                                                            class="fw-semibold text-muted">{{ $item->company_mobile }}</small>
+                                                            class="fw-semibold text-muted"><?php echo e($item->company_mobile); ?></small>
                                                     </li>
                                                 </ul>
 
                                                 <div class="mt-3">
-                                                    {{-- <a class="btn btn-primary rounded-5 py-1 px-3 message-btn fw-semibold me-lg-2 border-0"
-                                                        href={{ $item->contact_google_map }} role="button">
-                                                        <i class="bi bi-geo-alt"></i>
-                                                        <small>View Map</small>
-                                                    </a> --}}
+                                                    
 
                                                     <a class="btn btn-primary rounded-5 py-1 px-3 whatsapp-btn fw-semibold border-0"
-                                                        href="https://api.whatsapp.com/send?phone={{ $item->contact_whatsapp }}"
+                                                        href="https://api.whatsapp.com/send?phone=<?php echo e($item->contact_whatsapp); ?>"
                                                         role="button">
                                                         <i class="bi bi-whatsapp"></i>
                                                         <small>Whatsapp</small>
                                                     </a>
 
                                                     <a class="btn rounded-5 float-end py-1 px-3 profile-btn fw-semibold border-0"
-                                                        href="{{ route('business.details', $item->company_slug) }}"
+                                                        href="<?php echo e(route('business.details', $item->company_slug)); ?>"
                                                         role="button">
                                                         <small>View</small>
                                                     </a>
@@ -610,13 +605,15 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/business/index.blade.php ENDPATH**/ ?>
