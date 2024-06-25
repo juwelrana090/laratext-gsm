@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plans;
+use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -114,6 +115,30 @@ class PlansController extends Controller
         ]);
 
         return redirect()->route('plans.index')->with('success', 'Blog created successfully');
+    }
+
+    public function subscribe(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'plan_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'phone_number' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $subscribe = Subscribe::create([
+            'plan_id' => $request->plan_id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'description' => $request->price_year,
+        ]);
+
+        return redirect()->back()->with('success', 'Applied successfully');
     }
 
     /**

@@ -150,6 +150,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'plans'], function () {
         Route::get('/', 'PlansController@index')->name('plans.index');
         Route::post('/update/{id}', 'PlansController@update')->name('plans.update');
+        Route::post('/subscribe', 'PlansController@subscribe')->name('plans.subscribe');
     });
 
     Route::group(['prefix' => 'business'], function () {
