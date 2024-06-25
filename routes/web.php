@@ -43,16 +43,19 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::group(['prefix' => 'businesses'], function () {
         Route::get('/', 'DashboardController@businessList')->name('business.list');
+        Route::get('/category', 'DashboardController@businessCategory')->name('business.category');
         Route::get('/{slug}', 'DashboardController@businessDetails')->name('business.details');
     });
 
     Route::group(['prefix' => 'expert'], function () {
         Route::get('/', 'DashboardController@expertList')->name('expert.list');
+        Route::get('/category', 'DashboardController@expertCategory')->name('expert.category');
         Route::get('/{slug}', 'DashboardController@expertDetails')->name('expert.details');
     });
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', 'DashboardController@productList')->name('product.list');
+        Route::get('/category', 'DashboardController@productCategory')->name('product.category');
         Route::get('/{slug}', 'DashboardController@productDetails')->name('product.details');
     });
 
@@ -63,6 +66,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'DashboardController@blogList')->name('blog.list');
+        Route::get('/category', 'DashboardController@blogCategory')->name('blog.category');
         Route::get('/{slug}', 'DashboardController@blogDetails')->name('blog.details');
     });
 

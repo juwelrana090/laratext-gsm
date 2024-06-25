@@ -80,12 +80,12 @@
                                         </div>
 
 
-                                        <div>
-                                            <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0"
+                                        <div class="d-flex justify-content-between mb-3">
+                                            {{-- <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 message-btn fw-semibold me-md-2 border-0"
                                                 href="sms:{{ $expert->mobile }}" role="button">
                                                 <i class="bi bi-envelope"></i>
                                                 <small>Message</small>
-                                            </a>
+                                            </a> --}}
 
                                             <a class="btn btn-primary rounded-5 py-1 px-2 px-md-4 whatsapp-btn fw-semibold border-0"
                                                 href="#" role="button">
@@ -93,7 +93,7 @@
                                                 <small>Whatsapp</small>
                                             </a>
 
-                                            <a class="btn rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0"
+                                            <a class="btn btn-secondary rounded-5 float-end py-1 px-2 px-md-4 profile-btn fw-semibold border-0"
                                                 href="{{ route('expert.details', $expert->slug) }}" role="button">
                                                 <small>View Profile</small>
                                             </a>

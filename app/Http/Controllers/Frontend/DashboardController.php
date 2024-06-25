@@ -27,10 +27,10 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $brand = Brand::latest()->orderBy('id', 'desc')->get();
-        $car_type = CarType::latest()->orderBy('id', 'desc')->get();
-        $experts_categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
-        $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
+        $brand = Brand::latest()->orderBy('id', 'desc')->paginate(12);
+        $car_type = CarType::latest()->orderBy('id', 'desc')->paginate(12);
+        $experts_categories = ExpertsCategories::latest()->orderBy('id', 'desc')->paginate(12);
+        $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->paginate(12);
 
         $plan_1 = Plans::where('id', 1)->first();
         $plan_2 = Plans::where('id', 2)->first();
@@ -71,6 +71,14 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function businessCategory(Request $request)
+    {
+        $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
+        return view('business.category', [
+            'business_categories' => $business_categories,
+        ]);
+    }
+
     public function businessDetails(Request $request)
     {
         $businesses = Business::where('company_slug', $request->slug)->first();
@@ -83,6 +91,14 @@ class DashboardController extends Controller
         $experts = Experts::latest()->orderBy('id', 'desc')->paginate(20);
         return view('expert.index', [
             'experts' => $experts
+        ]);
+    }
+
+    public function expertCategory(Request $request)
+    {
+        $experts_categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
+        return view('expert.category', [
+            'experts_categories' => $experts_categories
         ]);
     }
 
@@ -116,6 +132,14 @@ class DashboardController extends Controller
         return view('product.index', compact('cars'));
     }
 
+    public function productCategory(Request $request)
+    {
+        $car_type = CarType::latest()->orderBy('id', 'desc')->get();
+        return view('product.category.index', [
+            'car_type' => $car_type,
+        ]);
+    }
+
     public function productDetails(Request $request)
     {
         $car = Car::where('slug', '=', $request->slug)->first();
@@ -125,7 +149,8 @@ class DashboardController extends Controller
 
     public function brandsList(Request $request)
     {
-        return view('brands.index');
+        $brand = Brand::latest()->orderBy('id', 'desc')->get();
+        return view('brand.index', ['brand' => $brand]);
     }
 
     public function blogList(Request $request)
