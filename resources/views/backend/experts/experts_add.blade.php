@@ -258,9 +258,41 @@
                                 <label for="title" class="col-sm-2 col-form-label">Social Profile<span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="social_profile"
-                                        class="form-control @error('social_profile') is-invalid @enderror"
-                                        id="social_profile" placeholder="Starting Prices">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Facebook</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="facebook" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Instagram</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="instagram" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Twitter</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="twitter" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Linkedin</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="linkedin" value=""
+                                            required>
+                                    </div>
                                 </div>
                                 @error('social_profile')
                                     <span class="invalid-feedback" role="alert">

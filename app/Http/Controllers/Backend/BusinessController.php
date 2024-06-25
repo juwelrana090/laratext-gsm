@@ -67,7 +67,6 @@ class BusinessController extends Controller
             'company_email' => 'required',
             'business_price' => 'required',
             'business_type' => 'required',
-            'business_hours' => 'required',
             'business_category_id' => 'required',
             'city' => 'required',
             'country' => 'required',
@@ -167,6 +166,24 @@ class BusinessController extends Controller
             }
         }
 
+        $business_hours =  json_encode([
+            "sunday_hours" => $request->sunday_hours,
+            "monday_hours" => $request->monday_hours,
+            "tuesday_hours" => $request->tuesday_hours,
+            "wednesday_hours" => $request->wednesday_hours,
+            "thursday_hours" => $request->thursday_hours,
+            "friday_hours" => $request->friday_hours,
+            "saturday_hours" => $request->saturday_hours,
+        ]);
+
+        $social_media = json_encode([
+            "facebook" => $request->facebook,
+            "instagram" => $request->instagram,
+            "twitter" => $request->twitter,
+            "linkedin" => $request->linkedin,
+        ]);
+
+
         $business_images = json_encode($business_images);
         $business = Business::create([
             'user_id' => $user_id,
@@ -187,12 +204,12 @@ class BusinessController extends Controller
             'company_email' => $request->company_email,
             'business_price' => $request->business_price,
             'business_type' => $request->business_type,
-            'business_hours' => $request->business_hours,
+            'business_hours' => $business_hours,
             'business_images' => $business_images,
             'business_category_id' => $business_category->id,
             'business_category_title' => $business_category->category_name,
             'whatsapp_number' => $request->whatsapp_number,
-            'social_media' => $request->social_media,
+            'social_media' => $social_media,
             'website' => $request->website,
             'city' => $request->city,
             'country' => $request->country,
@@ -223,9 +240,14 @@ class BusinessController extends Controller
      * @param  \App\Models\Business  $business
      * @return \Illuminate\Http\Response
      */
-    public function edit(Business $business)
+    public function edit($id)
     {
-        //
+        $business = Business::where('id', $id)->first();
+        $categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
+        return view('backend.business.business_edit', [
+            'business' => $business,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -237,7 +259,6 @@ class BusinessController extends Controller
      */
     public function update(Request $request, Business $business)
     {
-
         $validator = Validator::make($request->all(), [
             'id' => 'required',
             'contact_person_name' => 'required',
@@ -251,7 +272,6 @@ class BusinessController extends Controller
             'company_email' => 'required',
             'business_price' => 'required',
             'business_type' => 'required',
-            'business_hours' => 'required',
             'business_category_id' => 'required',
             'city' => 'required',
             'country' => 'required',
@@ -354,6 +374,23 @@ class BusinessController extends Controller
             }
         }
 
+        $business_hours =  json_encode([
+            "sunday_hours" => $request->sunday_hours,
+            "monday_hours" => $request->monday_hours,
+            "tuesday_hours" => $request->tuesday_hours,
+            "wednesday_hours" => $request->wednesday_hours,
+            "thursday_hours" => $request->thursday_hours,
+            "friday_hours" => $request->friday_hours,
+            "saturday_hours" => $request->saturday_hours,
+        ]);
+
+
+        $social_media = json_encode([
+            "facebook" => $request->facebook,
+            "instagram" => $request->instagram,
+            "twitter" => $request->twitter,
+            "linkedin" => $request->linkedin,
+        ]);
 
         $business_images = json_encode($business_images);
         $business = Business::where('id', $request->id)->update([
@@ -373,12 +410,12 @@ class BusinessController extends Controller
             'company_email' => $request->company_email,
             'business_price' => $request->business_price,
             'business_type' => $request->business_type,
-            'business_hours' => $request->business_hours,
+            'business_hours' => $business_hours,
             'business_images' => $business_images,
             'business_category_id' => $business_category->id,
             'business_category_title' => $business_category->category_name,
             'whatsapp_number' => $request->whatsapp_number,
-            'social_media' => $request->social_media,
+            'social_media' => $social_media,
             'website' => $request->website,
             'city' => $request->city,
             'country' => $request->country,

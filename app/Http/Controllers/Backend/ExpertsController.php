@@ -135,6 +135,15 @@ class ExpertsController extends Controller
             $image_id = $fileModel->id;
         }
 
+
+
+        $social_profile = json_encode([
+            "facebook" => $request->facebook,
+            "instagram" => $request->instagram,
+            "twitter" => $request->twitter,
+            "linkedin" => $request->linkedin,
+        ]);
+
         $expert_create = Experts::create([
             'experts_categories_id' => $expert_category->id,
             'experts_categories_name' => $expert_category->category_name,
@@ -152,7 +161,7 @@ class ExpertsController extends Controller
             'description' => $request->description,
             'services' => $request->services,
             'starting_prices' => $request->starting_prices,
-            'social_profile' => $request->social_profile,
+            'social_profile' => $social_profile,
             'google_map' => $request->google_map,
             'ratings' => $request->ratings,
             'reviews' => $request->reviews,
@@ -186,9 +195,14 @@ class ExpertsController extends Controller
      * @param  \App\Models\Experts  $experts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Experts $experts)
+    public function edit($id)
     {
-        //
+        $expert = Experts::where('id', '=', $id)->first();
+        $categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
+        return view('backend.experts.experts_edit', [
+            'expert' => $expert,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -198,9 +212,141 @@ class ExpertsController extends Controller
      * @param  \App\Models\Experts  $experts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Experts $experts)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'contact_person_name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'mobile' => 'required',
+            'whatsapp_number' => 'required',
+            'price' => 'required',
+            'title' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'about' => 'required',
+            'working_hours' => 'required',
+            'services' => 'required',
+            'starting_prices' => 'required',
+            'expert_image' => 'required|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:2048',
+        ]);
+
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $uniqid = uniqid();
+        $user_id = auth()->user()->id;
+
+        $title = $request->title;
+        $slug = Str::slug($title);
+
+        $experts = Experts::where('slug', 'LIKE', "%{$slug}%")->get();
+        $count = $experts->count();
+
+        if ($count > 0) {
+            $data = [];
+            foreach ($experts as $expert) {
+                $data[] = $expert['slug'];
+            }
+
+            if (in_array($slug, $data)) {
+                $expert_count = 0;
+                while (in_array(($slug . '-' . ++$expert_count), $data));
+                $title = $title . " " . $expert_count;
+                $slug = $slug . '-' . $expert_count;
+            }
+        }
+
+        $expert_category = ExpertsCategories::find($request->experts_categories_id);
+
+        $now_day = date('F_Y');
+
+        $file_location = "";
+        $image_id = "";
+
+
+        $expert = Experts::where('id', '=', $id)->first();
+
+        if ($request->hasFile('expert_image')) {
+            $path = public_path('uploads/files/' . $now_day);
+
+
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $file = $request->file('expert_image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+
+                $image = FileManager::find($expert->image_id);
+                if ($image) {
+                    $image->delete();
+                    unlink(public_path($image->file_path));
+                }
+            }
+
+            $image_id = $fileModel->id;
+        } else {
+            $file_location = $expert->expert_image;
+            $image_id = $expert->image_id;
+        }
+
+        $social_profile = json_encode([
+            "facebook" => $request->facebook,
+            "instagram" => $request->instagram,
+            "twitter" => $request->twitter,
+            "linkedin" => $request->linkedin,
+        ]);
+
+
+        $expert->update([
+            'experts_categories_id' => $expert_category->id,
+            'experts_categories_name' => $expert_category->category_name,
+            'contact_person_name' => $request->contact_person_name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'mobile' => $request->mobile,
+            'telephone' => $request->telephone,
+            'whatsapp_number' => $request->whatsapp_number,
+            'price' => $request->price,
+            'title' => $title,
+            'slug' => $slug,
+            'about' => $request->about,
+            'working_hours' => $request->working_hours,
+            'description' => $request->description,
+            'services' => $request->services,
+            'starting_prices' => $request->starting_prices,
+            'social_profile' => $social_profile,
+            'google_map' => $request->google_map,
+            'ratings' => $request->ratings,
+            'reviews' => $request->reviews,
+            'website' => $request->website,
+            'city' => $request->city,
+            'country' => $request->country,
+            'status' => $request->status,
+            'seo_title' => $request->seo_title,
+            'seo_keywords' => $request->seo_keywords,
+            'seo_description' => $request->seo_description,
+            'expert_image' => $file_location,
+            'image_id' => $image_id,
+        ]);
+        return redirect()->route('experts.index')->with('success', 'Expert created successfully');
     }
 
 

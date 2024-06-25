@@ -53,7 +53,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_person_name"
                                         class="form-control @error('contact_person_name') is-invalid @enderror"
-                                        id="contact_person_name" placeholder="Contact Person Name">
+                                        id="contact_person_name" placeholder="Contact Person Name"
+                                        value="{{ old('contact_person_name') }}">
                                 </div>
                                 @error('contact_person_name')
                                     <span class="invalid-feedback" role="alert">
@@ -68,7 +69,7 @@
                                 <div class="col-sm-10">
                                     <input type="email" name="contact_email"
                                         class="form-control @error('contact_email') is-invalid @enderror" id="contact_email"
-                                        placeholder="Contact Email">
+                                        placeholder="Contact Email" value="{{ old('contact_email') }}">
                                 </div>
                                 @error('contact_email')
                                     <span class="invalid-feedback" role="alert">
@@ -108,7 +109,9 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact Google Map</label>
+                                <label for="title" class="col-sm-2 col-form-label">
+                                    Contact Google Map
+                                </label>
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_google_map"
                                         class="form-control @error('contact_google_map') is-invalid @enderror"
@@ -140,8 +143,8 @@
                                 <label for="title" class="col-sm-2 col-form-label">Contact Photo</label>
                                 <div class="col-sm-10">
                                     <input type="file" name="contact_image"
-                                        class="form-control @error('contact_image') is-invalid @enderror" id="contact_image"
-                                        placeholder="Contact Website">
+                                        class="form-control @error('contact_image') is-invalid @enderror"
+                                        id="contact_image" placeholder="Contact Website">
                                 </div>
                                 @error('contact_image')
                                     <span class="invalid-feedback" role="alert">
@@ -280,9 +283,68 @@
                                 <label for="title" class="col-sm-2 col-form-label">Business Hours <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="business_hours"
-                                        class="form-control @error('business_hours') is-invalid @enderror"
-                                        id="business_hours" placeholder="Business Hours">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Sunday</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="sunday_hours" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Monday</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="monday_hours" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Tuesday</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="tuesday_hours" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Wednesday</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="wednesday_hours" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Thursday</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="thursday_hours" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Friday</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="friday_hours" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Saturday</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="saturday_hours" value=""
+                                            required>
+                                    </div>
                                 </div>
                                 @error('business_hours')
                                     <span class="invalid-feedback" role="alert">
@@ -308,9 +370,41 @@
                             <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Social Media</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="social_media"
-                                        class="form-control @error('social_media') is-invalid @enderror"
-                                        id="social_media" placeholder="Social Media">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Facebook</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="facebook" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Instagram</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="instagram" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Twitter</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="twitter" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="form-control input-group-text" style="width: 100px;"
+                                                disabled>Linkedin</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="linkedin" value=""
+                                            required>
+                                    </div>
                                 </div>
                                 @error('social_media')
                                     <span class="invalid-feedback" role="alert">

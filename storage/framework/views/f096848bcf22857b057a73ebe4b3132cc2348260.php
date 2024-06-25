@@ -1,12 +1,11 @@
-@extends('layouts.backend.master')
-@section('title', 'Businesses List')
-@push('meta')
-@endpush
-@push('theme_css')
-@endpush
-@push('page_css')
-@endpush
-@push('custom_css')
+<?php $__env->startSection('title', 'Businesses List'); ?>
+<?php $__env->startPush('meta'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('theme_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_css'); ?>
     <style>
         .bg_image {
             width: 100%;
@@ -32,12 +31,12 @@
             filter: contrast(120%);
         }
     </style>
-@endpush
-@push('head')
-@endpush
-@section('breadcrumb')
-@endsection
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('head'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card">
@@ -65,56 +64,64 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($businesses as $business)
+                                        <?php $__currentLoopData = $businesses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $business): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td class="product-category">{{ $business->company_name }}</td>
-                                                <td class="product-category">{{ $business->company_mobile }}</td>
-                                                <td class="product-category">{{ $business->company_email }}</td>
-                                                <td class="product-category">{{ $business->business_price }}</td>
-                                                <td class="product-category">{{ $business->business_type }}</td>
-                                                <td class="product-category">{{ $business->business_category_title }}</td>
+                                                <td class="product-category"><?php echo e($business->company_name); ?></td>
+                                                <td class="product-category"><?php echo e($business->company_mobile); ?></td>
+                                                <td class="product-category"><?php echo e($business->company_email); ?></td>
+                                                <td class="product-category"><?php echo e($business->business_price); ?></td>
+                                                <td class="product-category"><?php echo e($business->business_type); ?></td>
+                                                <td class="product-category"><?php echo e($business->business_category_title); ?></td>
                                                 <td class="product-category">
                                                     <?php $business_hours = json_decode($business->business_hours); ?>
                                                     <p>
                                                         <small class="fw-semibold">
-                                                            Sunday : {{ $business_hours->sunday_hours }}
+                                                            Sunday : <?php echo e($business_hours->sunday_hours); ?>
+
                                                         </small>
                                                     </p>
                                                     <p>
                                                         <small class="fw-semibold">
-                                                            Monday : {{ $business_hours->monday_hours }}
+                                                            Monday : <?php echo e($business_hours->monday_hours); ?>
+
                                                         </small>
                                                     </p>
                                                     <p>
                                                         <small class="fw-semibold">
-                                                            Tuesday : {{ $business_hours->tuesday_hours }}
+                                                            Tuesday : <?php echo e($business_hours->tuesday_hours); ?>
+
                                                         </small>
                                                     </p>
                                                     <p>
                                                         <small class="fw-semibold">
-                                                            Wednesday : {{ $business_hours->wednesday_hours }}
+                                                            Wednesday : <?php echo e($business_hours->wednesday_hours); ?>
+
                                                         </small>
                                                     </p>
                                                     <p>
                                                         <small class="fw-semibold">
-                                                            Thursday : {{ $business_hours->thursday_hours }}
+                                                            Thursday : <?php echo e($business_hours->thursday_hours); ?>
+
                                                         </small>
                                                     </p>
                                                     <p>
                                                         <small class="fw-semibold">
-                                                            Friday : {{ $business_hours->friday_hours }}
+                                                            Friday : <?php echo e($business_hours->friday_hours); ?>
+
                                                         </small>
                                                     </p>
                                                     <p>
                                                         <small class="fw-semibold">
-                                                            Saturday : {{ $business_hours->saturday_hours }}
+                                                            Saturday : <?php echo e($business_hours->saturday_hours); ?>
+
                                                         </small>
                                                     </p>
                                                 </td>
                                                 <td class="product-category text-capitalize">
-                                                    {{ $business->is_featured ? 'Yes' : 'No' }}
+                                                    <?php echo e($business->is_featured ? 'Yes' : 'No'); ?>
+
                                                 </td>
-                                                <td class="product-category text-capitalize">{{ $business->status }}</td>
+                                                <td class="product-category text-capitalize"><?php echo e($business->status); ?></td>
                                                 <td class="d-flex justify-content-cente gap-3" style="gap: 5px">
                                                     <div class="dropdown">
                                                         <button class="btn btn-sm btn-secondary dropdown-toggle"
@@ -124,21 +131,21 @@
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                             <a class="dropdown-item"
-                                                                href="{{ route('business.status_update', $business->id) }}?status=active">Active</a>
+                                                                href="<?php echo e(route('business.status_update', $business->id)); ?>?status=active">Active</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('business.status_update', $business->id) }}?status=pending">Pending</a>
+                                                                href="<?php echo e(route('business.status_update', $business->id)); ?>?status=pending">Pending</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('business.status_update', $business->id) }}?status=inactive">Inactive</a>
+                                                                href="<?php echo e(route('business.status_update', $business->id)); ?>?status=inactive">Inactive</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('business.status_update', $business->id) }}?status=rejected">Rejected</a>
+                                                                href="<?php echo e(route('business.status_update', $business->id)); ?>?status=rejected">Rejected</a>
                                                         </div>
                                                     </div>
-                                                    <a href="{{ route('business.edit', $business->id) }}"
+                                                    <a href="<?php echo e(route('business.edit', $business->id)); ?>"
                                                         class="btn btn-sm btn-primary text-white">edit</a>
                                                     <a href="#" class="btn btn-sm btn-danger text-white"
                                                         data-toggle="modal"
-                                                        data-target="#typeDelete{{ $business->id }}">x</a>
-                                                    <div class="modal fade" id="typeDelete{{ $business->id }}"
+                                                        data-target="#typeDelete<?php echo e($business->id); ?>">x</a>
+                                                    <div class="modal fade" id="typeDelete<?php echo e($business->id); ?>"
                                                         tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
@@ -153,23 +160,24 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     Are You Sure You want to delete
-                                                                    {{ $business->post_title }}
+                                                                    <?php echo e($business->post_title); ?>
+
                                                                     Type?
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</button>
                                                                     <a onclick="event.preventDefault();
-                                                                  document.getElementById('delete-form-{{ $business->id }}').submit();"
-                                                                        href="{{ route('business.destroy', $business->id) }}"
+                                                                  document.getElementById('delete-form-<?php echo e($business->id); ?>').submit();"
+                                                                        href="<?php echo e(route('business.destroy', $business->id)); ?>"
                                                                         class="btn btn-danger text-white"
                                                                         data-toggle="modal"
                                                                         data-target="#colorDelete">Delete</a>
-                                                                    <form id="delete-form-{{ $business->id }}"
-                                                                        action="{{ route('business.destroy', $business->id) }}"
+                                                                    <form id="delete-form-<?php echo e($business->id); ?>"
+                                                                        action="<?php echo e(route('business.destroy', $business->id)); ?>"
                                                                         method="POST" class="d-none">
-                                                                        @method('DELETE')
-                                                                        @csrf
+                                                                        <?php echo method_field('DELETE'); ?>
+                                                                        <?php echo csrf_field(); ?>
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -177,14 +185,15 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
 
                             </div>
                             <div class="col-lg-12 mb-5">
                                 <!-- Pagination Links -->
-                                {{ $businesses->links() }}
+                                <?php echo e($businesses->links()); ?>
+
                             </div>
                         </div>
 
@@ -193,12 +202,12 @@
             </div>
         </div>
     </div>
-@endsection
-@push('theme_js')
-@endpush
-@push('page_js')
-@endpush
-@push('custom_js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('theme_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_js'); ?>
     <script>
         var dataThumbView = $(".data-thumb-view").DataTable({
             responsive: false,
@@ -231,4 +240,6 @@
             }
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.backend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/backend/business/business.blade.php ENDPATH**/ ?>

@@ -76,7 +76,7 @@
 
                         <div class="col text-center mt-4 mt-md-0">
                             <i class="bi bi-cash-coin"></i>
-                            <span class="d-block">Demo Price</span>
+                            <span class="d-block">Price</span>
                             <span>{{ $expert->price }}</span>
                         </div>
                     </div>
@@ -173,25 +173,39 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <a class="icon-link text-decoration-none me-2" href="#">
-                                                    <i class="bi bi-twitter-x text-color"></i>
-                                                    Twitter
-                                                </a>
+                                                <?php $social_media = json_decode($expert->social_profile); ?>
 
-                                                <a class="icon-link text-decoration-none me-2" href="#">
-                                                    <i class="bi bi-linkedin text-color"></i>
-                                                    Linkedin
-                                                </a>
+                                                @if (!empty($social_media->facebook))
+                                                    <a class="icon-link text-decoration-none me-2"
+                                                        href="{{ $social_media->facebook }}">
+                                                        <i class="bi bi-facebook text-color"></i>
+                                                        Facebook
+                                                    </a>
+                                                @endif
 
-                                                <a class="icon-link text-decoration-none me-2" href="#">
-                                                    <i class="bi bi-instagram text-color"></i>
-                                                    Instagram
-                                                </a>
+                                                @if (!empty($social_media->instagram))
+                                                    <a class="icon-link text-decoration-none me-2"
+                                                        href="{{ $social_media->instagram }}">
+                                                        <i class="bi bi-instagram text-color"></i>
+                                                        Instagram
+                                                    </a>
+                                                @endif
 
-                                                <a class="icon-link text-decoration-none me-2" href="#">
-                                                    <i class="bi bi-telegram text-color"></i>
-                                                    Telegram
-                                                </a>
+                                                @if (!empty($social_media->twitter))
+                                                    <a class="icon-link text-decoration-none me-2"
+                                                        href="{{ $social_media->twitter }}">
+                                                        <i class="bi bi-twitter-x text-color"></i>
+                                                        Twitter
+                                                    </a>
+                                                @endif
+
+                                                @if (!empty($social_media->linkedin))
+                                                    <a class="icon-link text-decoration-none me-2"
+                                                        href="{{ $social_media->linkedin }}">
+                                                        <i class="bi bi-linkedin text-color"></i>
+                                                        Linkedin
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     </tbody>
@@ -202,13 +216,24 @@
                         </div>
 
                         <div class="mt-2">
+
+                            <?php
+                            function mapEmbed($googleMapsUrl)
+                            {
+                                if (preg_match('/@([0-9\.\,\-a-zA-Z]*)/', $googleMapsUrl, $matches)) {
+                                    $coordsArray = explode(',', $matches[1]);
+                                    $embedUrl = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d20000!2d' . $coordsArray[1] . '!3d' . $coordsArray[0] . '!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1486486434098';
+                                    return $embedUrl;
+                                } else {
+                                    return 'Invalid Google Maps URL';
+                                }
+                            }
+
+                            $embedUrl = mapEmbed($expert->google_map);
+                            ?>
+
                             <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0"
-                                marginwidth="0" id="gmap_canvas"
-                                src="{{ $expert->google_map }}"></iframe>
-                            <a href="https://www.embedmap.net/">google maps widget</a>
-                            <script type="text/javascript"
-                                src="https://embedmaps.com/google-maps-authorization/script.js?id=aeba0eb2a2d1830cfe370c5ed5bd90dfce1c73be">
-                            </script>
+                                marginwidth="0" id="gmap_canvas" src="{{ $embedUrl }}"></iframe>
                         </div>
                     </div>
 

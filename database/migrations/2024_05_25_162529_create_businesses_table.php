@@ -34,13 +34,13 @@ class CreateBusinessesTable extends Migration
             $table->string('company_email');
             $table->string('business_price');
             $table->string('business_type');
-            $table->string('business_hours');
+            $table->json('business_hours');
             $table->json('business_images');
             $table->integer('business_category_id')->nullable()->unsigned()->index();
             $table->foreign('business_category_id')->references('id')->on('business_categories');
             $table->string('business_category_title');
             $table->string('whatsapp_number')->nullable();
-            $table->string('social_media')->nullable();
+            $table->json('social_media')->nullable();
             $table->string('website')->nullable();
             $table->string('city');
             $table->string('country');
