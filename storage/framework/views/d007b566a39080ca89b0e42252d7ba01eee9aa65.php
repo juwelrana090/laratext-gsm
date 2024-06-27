@@ -5,10 +5,52 @@
     <?php echo $__env->make('includes.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->yieldContent('custom_head'); ?>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <body>
     <?php echo $__env->make('includes.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+    <?php if(session()->has('success')): ?>
+        <script>
+            Toastify({
+                text: '<?php echo session()->get('success'); ?>',
+                className: 'info',
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: 'bottom',
+                position: 'center',
+                stopOnFocus: true,
+                style: {
+                    background: 'linear-gradient(to right, #f40608, #fb3738)',
+                },
+                onClick: function() {}
+            }).showToast();
+        </script>
+    <?php endif; ?>
+
+    <?php if(session()->has('error')): ?>
+        <script>
+            Toastify({
+                text: '<?php echo session()->get('error'); ?>',
+                className: 'info',
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: 'bottom',
+                position: 'center',
+                stopOnFocus: true,
+                style: {
+                    background: 'linear-gradient(to right, var(--bs-pink), var(--bs-danger))',
+                },
+                onClick: function() {}
+            }).showToast();
+        </script>
+    <?php endif; ?>
+
+
     <?php echo $__env->yieldContent('content'); ?>
     <?php echo $__env->make('includes.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

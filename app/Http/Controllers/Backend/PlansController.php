@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Plans;
 use App\Models\Subscribe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PlansController extends Controller
@@ -34,9 +35,24 @@ class PlansController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function subscribeList(Request  $request)
     {
-        //
+        $subscribes = DB::table('subscribes')
+            ->leftJoin('plans', 'subscribes.plan_id', '=', 'plans.id')
+            ->select([
+                'subscribes.id',
+                'subscribes.name',
+                'subscribes.email',
+                'subscribes.phone_number',
+                'subscribes.description',
+                'plans.name as plan_name',
+            ])
+            ->orderBy('subscribes.id', 'DESC')
+            ->paginate(20);
+
+        return view('backend.plans.subscribe', [
+            'subscribes' => $subscribes
+        ]);
     }
 
     /**
@@ -135,7 +151,7 @@ class PlansController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
-            'description' => $request->price_year,
+            'description' => $request->description,
         ]);
 
         return redirect()->back()->with('success', 'Applied successfully');

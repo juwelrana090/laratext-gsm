@@ -1,3 +1,13 @@
+<?php
+
+use App\Models\SocialLink;
+$socialLInk = SocialLink::orderBy('id', 'DESC')->first();
+
+$address = json_decode($socialLInk->dubai_address);
+
+?>
+
+
 <footer>
     <div class="footer">
         <div class="container-fluid bg-dark pt-4 pb-1">
@@ -22,32 +32,26 @@
                     <div class="m-3">
                         <h4>Contact Info</h4>
                         <hr class="mt-0 horizontal_line">
-                        <a href="#" class="text-decoration-none d-block mb-1" title="Phone Number">
+                        <a href="tel:<?php echo e($address->mobile); ?>" class="text-decoration-none d-block mb-1"
+                            title="Phone Number">
                             <i class="bi bi-telephone fs-6"></i>
-                            <span class="fs-6 ms-1">0123456789</span>
+                            <span class="fs-6 ms-1"><?php echo e($address->mobile); ?></span>
                         </a>
-                        <a href="#" class="text-decoration-none d-block mb-1" title="Email Link">
+                        <a href="mailto:<?php echo e($address->email); ?>" class="text-decoration-none d-block mb-1"
+                            title="Email Link">
                             <i class="bi bi-envelope fs-6"></i>
-                            <span class="fs-6 ms-1">example@gmail.com</span>
+                            <span class="fs-6 ms-1"><?php echo e($address->email); ?></span>
                         </a>
-                        <a href="#" class="text-decoration-none d-block mb-1" target="_blank"
-                            title="Whatsapp Link">
+                        <a href="https://api.whatsapp.com/send?phone=<?php echo e($socialLInk->whatsApp); ?>"
+                            class="text-decoration-none d-block mb-1" target="_blank" title="Whatsapp Link">
                             <i class="bi bi-whatsapp fs-6"></i>
                             <span class="fs-6 ms-1">Whatsapp</span>
                         </a>
-                        <a href="#" class="text-decoration-none d-block mb-1" target="_blank"
-                            title="Facebook Messenger link">
-                            <i class="bi bi-messenger fs-6"></i>
-                            <span class="fs-6 ms-1">Messenger</span>
-                        </a>
-                        <a href="#" class="text-decoration-none d-block mb-1" target="_blank" title="Skype link">
-                            <i class="bi bi-skype fs-6"></i>
-                            <span class="fs-6 ms-1">Skype</span>
-                        </a>
-                        <a href="#" class="text-decoration-none d-block mb-1" target="_blank"
+                        
+                        <a href="<?php echo e($address->map); ?>" class="text-decoration-none d-block mb-1" target="_blank"
                             title="Google map direction">
                             <i class="bi bi-geo-alt fs-6"></i>
-                            <span class="fs-6 ms-1">Sharjah, UAE</span>
+                            <span class="fs-6 ms-1"><?php echo e($address->address); ?></span>
                         </a>
                     </div>
                 </div>
@@ -119,7 +123,8 @@
                     <p>Copyright <i class="bi bi-c-circle"></i> 2024 xxx xxx xxx | All Rights Reserved</p>
                 </div>
                 <div class="col text-center policy mb-3 mb-md-0">
-                    <a href="<?php echo e(route('privacy-policy')); ?>" class="text-decoration-none" title="Visit privacy policy page">
+                    <a href="<?php echo e(route('privacy-policy')); ?>" class="text-decoration-none"
+                        title="Visit privacy policy page">
                         Privacy Policy
                     </a>
                     <span class="mx-1 text-primary">|</span>

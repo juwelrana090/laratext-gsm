@@ -13,11 +13,17 @@
                     <div class="card-header">
                         Product Category
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <?php $__currentLoopData = $car_type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li class="list-group-item" style="cursor: pointer"><?php echo e($item->name); ?></li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </ul>
+                    <div class="card-body d-flex justify-content-center">
+                        <div class="list-group w-100">
+                            <?php $__currentLoopData = $car_type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <a class="list-group-item list-group-item-action"
+                                    href="<?php echo e(route('product.list.category', $item->id)); ?>">
+                                    <?php echo e($item->name); ?>
+
+                                </a>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-9">
@@ -26,7 +32,7 @@
                         <!-- <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" /> -->
                         <!-- <span class="fw-semibold ms-2" style="font-size: 1.2rem">Business Listing</span> -->
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem" ;>Product Category</span>
+                            <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem;">Product Category</span>
                         </div>
                     </div>
                 </div>
@@ -41,7 +47,7 @@
                                 <div class="card-body text-truncate py-2">
                                     <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                         <?php echo e($item->name); ?></h6>
-                                    <a href="#" class="stretched-link"></a>
+                                    <a href="<?php echo e(route('product.list.category', $item->id)); ?>" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>

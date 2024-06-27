@@ -5,10 +5,52 @@
     @include('includes.head')
     @yield('custom_head')
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <body>
     @include('includes.header')
+
+    @if (session()->has('success'))
+        <script>
+            Toastify({
+                text: '<?php echo session()->get('success'); ?>',
+                className: 'info',
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: 'bottom',
+                position: 'center',
+                stopOnFocus: true,
+                style: {
+                    background: 'linear-gradient(to right, #f40608, #fb3738)',
+                },
+                onClick: function() {}
+            }).showToast();
+        </script>
+    @endif
+
+    @if (session()->has('error'))
+        <script>
+            Toastify({
+                text: '<?php echo session()->get('error'); ?>',
+                className: 'info',
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: 'bottom',
+                position: 'center',
+                stopOnFocus: true,
+                style: {
+                    background: 'linear-gradient(to right, var(--bs-pink), var(--bs-danger))',
+                },
+                onClick: function() {}
+            }).showToast();
+        </script>
+    @endif
+
+
     @yield('content')
     @include('includes.footer')
 

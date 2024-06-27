@@ -13,13 +13,18 @@
                 <div class="col-sm-12 col-md-3">
                     <div class="card">
                         <div class="card-header">
-                            Business Category
+                            Brand List
                         </div>
-                        <ul class="list-group list-group-flush">
-                            @foreach ($brand as $item)
-                                <li class="list-group-item" style="cursor: pointer">{{ $item->name }}</li>
-                            @endforeach
-                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="list-group w-100">
+                                @foreach ($brand as $item)
+                                    <a class="list-group-item list-group-item-action"
+                                        href="{{ route('product.list.brand', $item->id) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-9">
@@ -35,19 +40,20 @@
 
                     <div class="row row-cols-2 row-cols-md-4 g-3">
                         @foreach ($brand as $item)
-                        <div class="col">
-                            <div class="card category-list-card border- py-2" style="width: 100%">
-                                <img class="card-img-top d-block m-auto" src="{{ asset($item->image) }}"
-                                    alt="{{ $item->name }}" title="{{ $item->name }}"
-                                    style="width: 3rem; height: 3rem" />
-                                <div class="card-body text-truncate py-2">
-                                    <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
-                                        {{ $item->name }}</h6>
-                                    <a href="#" class="stretched-link"></a>
+                            <div class="col">
+                                <div class="card category-list-card border- py-2" style="width: 100%">
+                                    <img class="card-img-top d-block m-auto" src="{{ asset($item->image) }}"
+                                        alt="{{ $item->name }}" title="{{ $item->name }}"
+                                        style="width: 3rem; height: 3rem" />
+                                    <div class="card-body text-truncate py-2">
+                                        <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
+                                            {{ $item->name }}</h6>
+                                        <a href="{{ route('product.list.brand', $item->id) }}"
+                                            class="stretched-link"></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>

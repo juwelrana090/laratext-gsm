@@ -61,7 +61,7 @@
                             <div class="card-body text-truncate py-2">
                                 <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                     <?php echo e($item->category_name); ?></h6>
-                                <a href="#" class="stretched-link"></a>
+                                <a href="<?php echo e(route('business.list.category', $item->category_slug)); ?>" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             <div class="card-body text-truncate py-2">
                                 <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                     <?php echo e($item->category_name); ?></h6>
-                                <a href="#" class="stretched-link"></a>
+                                <a href="<?php echo e(route('expert.list.category', $item->category_slug)); ?>" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                             <div class="card-body text-truncate py-2">
                                 <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                     <?php echo e($item->name); ?></h6>
-                                <a href="#" class="stretched-link"></a>
+                                <a href="<?php echo e(route('product.list.category', $item->id)); ?>" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                             <div class="card-body text-truncate py-2">
                                 <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                     <?php echo e($item->name); ?></h6>
-                                <a href="#" class="stretched-link"></a>
+                                <a href="<?php echo e(route('product.list.brand', $item->id)); ?>" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -486,7 +486,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Confirm Subscribe</button>
+                    <button type="submit" class="btn btn-primary">Confirm Subscribe</button>
                 </div>
             </form>
         </div>
@@ -535,7 +535,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Confirm Subscribe</button>
+                    <button type="submit" class="btn btn-primary">Confirm Subscribe</button>
                 </div>
             </form>
         </div>
@@ -584,7 +584,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Confirm Subscribe</button>
+                    <button type="submit" class="btn btn-primary">Confirm Subscribe</button>
                 </div>
             </form>
         </div>
@@ -633,12 +633,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Confirm Subscribe</button>
+                    <button type="submit" class="btn btn-primary">Confirm Subscribe</button>
                 </div>
             </form>
         </div>
     </div>
-
 
     <script type="text/javascript">
         $(document).ready(function() {

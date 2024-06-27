@@ -82,9 +82,11 @@ class DataController extends Controller
         $data=[
             'tel'=>$request->tel,
             'mobile'=>$request->mobile,
+            'email'=>$request->email,
             'address'=>$request->address,
             'map'=>$request->map,
         ];
+
         if($officeName=='dubai'){
             $socialLInk= SocialLink::find(1)->update([
                 'dubai_address'=>json_encode($data)

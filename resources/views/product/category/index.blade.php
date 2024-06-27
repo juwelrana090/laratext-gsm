@@ -14,11 +14,16 @@
                     <div class="card-header">
                         Product Category
                     </div>
-                    <ul class="list-group list-group-flush">
-                        @foreach ($car_type as $item)
-                            <li class="list-group-item" style="cursor: pointer">{{ $item->name }}</li>
-                        @endforeach
-                    </ul>
+                    <div class="card-body d-flex justify-content-center">
+                        <div class="list-group w-100">
+                            @foreach ($car_type as $item)
+                                <a class="list-group-item list-group-item-action"
+                                    href="{{ route('product.list.category', $item->id) }}">
+                                    {{ $item->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-9">
@@ -42,7 +47,7 @@
                                 <div class="card-body text-truncate py-2">
                                     <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                         {{ $item->name }}</h6>
-                                    <a href="#" class="stretched-link"></a>
+                                    <a href="{{ route('product.list.category', $item->id) }}" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>

@@ -12,13 +12,19 @@
                 <div class="col-sm-12 col-md-3">
                     <div class="card">
                         <div class="card-header">
-                            Business Category
+                            Brand List
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <?php $__currentLoopData = $brand; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li class="list-group-item"><?php echo e($item->name); ?></li>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="list-group w-100">
+                                <?php $__currentLoopData = $brand; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a class="list-group-item list-group-item-action"
+                                        href="<?php echo e(route('product.list.brand', $item->id)); ?>">
+                                        <?php echo e($item->name); ?>
+
+                                    </a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-9">
@@ -34,19 +40,20 @@
 
                     <div class="row row-cols-2 row-cols-md-4 g-3">
                         <?php $__currentLoopData = $brand; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col">
-                            <div class="card category-list-card border- py-2" style="width: 100%">
-                                <img class="card-img-top d-block m-auto" src="<?php echo e(asset($item->image)); ?>"
-                                    alt="<?php echo e($item->name); ?>" title="<?php echo e($item->name); ?>"
-                                    style="width: 3rem; height: 3rem" />
-                                <div class="card-body text-truncate py-2">
-                                    <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
-                                        <?php echo e($item->name); ?></h6>
-                                    <a href="#" class="stretched-link"></a>
+                            <div class="col">
+                                <div class="card category-list-card border- py-2" style="width: 100%">
+                                    <img class="card-img-top d-block m-auto" src="<?php echo e(asset($item->image)); ?>"
+                                        alt="<?php echo e($item->name); ?>" title="<?php echo e($item->name); ?>"
+                                        style="width: 3rem; height: 3rem" />
+                                    <div class="card-body text-truncate py-2">
+                                        <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
+                                            <?php echo e($item->name); ?></h6>
+                                        <a href="<?php echo e(route('product.list.brand', $item->id)); ?>"
+                                            class="stretched-link"></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>

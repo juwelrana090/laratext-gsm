@@ -71,6 +71,18 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function businessListCategory(Request $request)
+    {
+        $category = BusinessCategories::where('category_slug', $request->slug)->first();
+        $businesses = Business::where('business_category_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(20);
+        $featured = Business::where('is_featured', 1)->paginate(20);
+
+        return view('business.index', [
+            'businesses' => $businesses,
+            'featured' => $featured
+        ]);
+    }
+
     public function businessCategory(Request $request)
     {
         $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
@@ -93,6 +105,18 @@ class DashboardController extends Controller
             'experts' => $experts
         ]);
     }
+
+    public function expertListCategory(Request $request)
+    {
+        $category = ExpertsCategories::where('category_slug', $request->slug)->first();
+        $experts = Experts::where('experts_categories_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(20);
+        return view('expert.index', [
+            'experts' => $experts
+        ]);
+    }
+
+
+    // experts_categories_id
 
     public function expertCategory(Request $request)
     {
@@ -131,6 +155,59 @@ class DashboardController extends Controller
 
         return view('product.index', compact('cars'));
     }
+
+    public function productListCategory(Request $request)
+    {
+        $car_type = CarType::where('id', '=', $request->id)->first();
+        $cars = [];
+        $name = $request->search;
+        if ($name) {
+            $cars = Car::where('pub_place', '!=', 'Sold')
+                ->where('car_type_id', '=', $car_type->id)
+                ->where('title', 'LIKE', '%' . $name . '%')
+                ->orWhere('vehicle', 'LIKE', '%' . $name . '%')
+                ->orWhere('part_no', 'LIKE', '%' . $name . '%')
+                ->orWhere('grooves', 'LIKE', '%' . $name . '%')
+                ->orWhere('origin', 'LIKE', '%' . $name . '%')
+                ->orWhere('manufaturer', 'LIKE', '%' . $name . '%')
+                ->orWhere('year', 'LIKE', '%' . $name . '%')
+                ->orWhere('cylinder', 'LIKE', '%' . $name . '%')
+                ->orWhere('pully_diameter', 'LIKE', '%' . $name . '%')
+                ->orWhere('general_dsc', 'LIKE', '%' . $name . '%')
+                ->paginate(20);
+        } else {
+            $cars = Car::orderBy('id', 'DESC')->paginate(20);
+        }
+
+        return view('product.index', compact('cars'));
+    }
+
+    public function productListBrands(Request $request)
+    {
+        $brand = Brand::where('id', $request->id)->first();
+        $cars = [];
+        $name = $request->search;
+        if ($name) {
+            $cars = Car::where('pub_place', '!=', 'Sold')
+                ->where('brand_id', '=', $brand->id)
+                ->where('title', 'LIKE', '%' . $name . '%')
+                ->orWhere('vehicle', 'LIKE', '%' . $name . '%')
+                ->orWhere('part_no', 'LIKE', '%' . $name . '%')
+                ->orWhere('grooves', 'LIKE', '%' . $name . '%')
+                ->orWhere('origin', 'LIKE', '%' . $name . '%')
+                ->orWhere('manufaturer', 'LIKE', '%' . $name . '%')
+                ->orWhere('year', 'LIKE', '%' . $name . '%')
+                ->orWhere('cylinder', 'LIKE', '%' . $name . '%')
+                ->orWhere('pully_diameter', 'LIKE', '%' . $name . '%')
+                ->orWhere('general_dsc', 'LIKE', '%' . $name . '%')
+                ->paginate(20);
+        } else {
+            $cars = Car::orderBy('id', 'DESC')->paginate(20);
+        }
+
+        return view('product.index', compact('cars'));
+    }
+
 
     public function productCategory(Request $request)
     {

@@ -14,11 +14,17 @@
                         <div class="card-header">
                             Business Category
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <?php $__currentLoopData = $business_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li class="list-group-item"><?php echo e($item->category_name); ?></li>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="list-group w-100">
+                                <?php $__currentLoopData = $business_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a class="list-group-item list-group-item-action"
+                                        href="<?php echo e(route('business.list.category', $item->category_slug)); ?>">
+                                        <?php echo e($item->category_name); ?>
+
+                                    </a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-9">
@@ -43,7 +49,8 @@
                                     <div class="card-body text-truncate py-2">
                                         <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                             <?php echo e($item->category_name); ?></h6>
-                                        <a href="#" class="stretched-link"></a>
+                                        <a href="<?php echo e(route('business.list.category', $item->category_slug)); ?>"
+                                            class="stretched-link"></a>
                                     </div>
                                 </div>
                             </div>

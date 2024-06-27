@@ -44,18 +44,22 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::group(['prefix' => 'businesses'], function () {
         Route::get('/', 'DashboardController@businessList')->name('business.list');
         Route::get('/category', 'DashboardController@businessCategory')->name('business.category');
+        Route::get('/category/{slug}', 'DashboardController@businessListCategory')->name('business.list.category');
         Route::get('/{slug}', 'DashboardController@businessDetails')->name('business.details');
     });
 
     Route::group(['prefix' => 'expert'], function () {
         Route::get('/', 'DashboardController@expertList')->name('expert.list');
         Route::get('/category', 'DashboardController@expertCategory')->name('expert.category');
+        Route::get('/category/{slug}', 'DashboardController@expertListCategory')->name('expert.list.category');
         Route::get('/{slug}', 'DashboardController@expertDetails')->name('expert.details');
     });
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', 'DashboardController@productList')->name('product.list');
         Route::get('/category', 'DashboardController@productCategory')->name('product.category');
+        Route::get('/category/{id}', 'DashboardController@productListCategory')->name('product.list.category');
+        Route::get('/brand/{id}', 'DashboardController@productListBrands')->name('product.list.brand');
         Route::get('/{slug}', 'DashboardController@productDetails')->name('product.details');
     });
 
@@ -155,6 +159,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
         Route::get('/', 'PlansController@index')->name('plans.index');
         Route::post('/update/{id}', 'PlansController@update')->name('plans.update');
         Route::post('/subscribe', 'PlansController@subscribe')->name('plans.subscribe');
+        Route::get('/subscribe-list', 'PlansController@subscribeList')->name('plans.subscribeList');
     });
 
     Route::group(['prefix' => 'business'], function () {
@@ -213,7 +218,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
     Route::get('/car_image/delete/{car_image_id}', 'DataController@carImageDelete')->name('car.image.delete');
 
 
-    // Route::get('/admin/frontend/settings', 'DataController@frontendSettings')->name('admin.frontend.settings');
+    Route::get('/admin/frontend/settings', 'DataController@frontendSettings')->name('admin.frontend.settings');
     Route::post('/admin/social_media/whatsApp/update', 'DataController@SocialWhatsAppUpdate')->name('admin.social.whatsApp.update');
     Route::post('/admin/office/location/update/{office_name}', 'DataController@OfficeLocationUpdate')->name('admin.setting.office.location_update');
 

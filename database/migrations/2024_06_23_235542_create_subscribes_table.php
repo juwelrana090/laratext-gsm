@@ -20,7 +20,7 @@ class CreateSubscribesTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone_number');
-            $table->json('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
