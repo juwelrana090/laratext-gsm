@@ -27,7 +27,7 @@ class CreateExpertsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('about');
-            $table->string('working_hours');
+            $table->json('working_hours');
             $table->string('description')->nullable();
             $table->string('services');
             $table->string('starting_prices');
@@ -37,6 +37,7 @@ class CreateExpertsTable extends Migration
             $table->string('reviews')->nullable();
             $table->string('website')->nullable();
             $table->string('city');
+            $table->integer('locations_id')->nullable();
             $table->string('country');
             $table->enum('status', ['pending', 'active', 'inactive', 'rejected'])->default('pending');
             $table->text('seo_title')->nullable();

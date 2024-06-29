@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\Business;
 use App\Models\FileManager;
+use App\Models\Locations;
 use App\Models\BusinessCategories;
 
 use Intervention\Image\ImageManagerStatic as Image;
@@ -29,6 +30,7 @@ class BusinessController extends Controller
     public function index(Request $request)
     {
         $businesses = Business::latest()->orderBy('id', 'desc')->paginate(20);
+
         return view('backend.business.business', [
             'businesses' => $businesses
         ]);
@@ -42,8 +44,11 @@ class BusinessController extends Controller
     public function create(Request $request)
     {
         $categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
+        $locations = Locations::latest()->orderBy('id', 'desc')->get();
+
         return view('backend.business.business_add', [
-            'categories' => $categories
+            'categories' => $categories,
+            'locations' => $locations,
         ]);
     }
 
@@ -183,6 +188,7 @@ class BusinessController extends Controller
             "linkedin" => $request->linkedin,
         ]);
 
+        $locations = Locations::where('id', '=', $request->city)->first();
 
         $business_images = json_encode($business_images);
         $business = Business::create([
@@ -211,7 +217,8 @@ class BusinessController extends Controller
             'whatsapp_number' => $request->whatsapp_number,
             'social_media' => $social_media,
             'website' => $request->website,
-            'city' => $request->city,
+            'city' => $locations->title,
+            'locations_id' => $locations->id,
             'country' => $request->country,
             'status' => $request->status,
             'seo_title' => $request->seo_title,
@@ -219,6 +226,12 @@ class BusinessController extends Controller
             'seo_description' => $request->seo_description,
             'is_featured' => $request->is_featured,
         ]);
+
+
+
+        if($business){
+            toastr()->success('Business created successfully', 'Success');
+        }
 
         return redirect()->route('business.index')->with('success', 'Business created successfully');
     }
@@ -244,9 +257,11 @@ class BusinessController extends Controller
     {
         $business = Business::where('id', $id)->first();
         $categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
+        $locations = Locations::latest()->orderBy('id', 'desc')->get();
         return view('backend.business.business_edit', [
             'business' => $business,
-            'categories' => $categories
+            'categories' => $categories,
+            'locations' => $locations,
         ]);
     }
 
@@ -266,7 +281,6 @@ class BusinessController extends Controller
             'contact_mobile' => 'required',
             'contact_whatsapp' => 'required',
             'contact_address' => 'required',
-            'contact_image' => 'required',
             'company_name' => 'required',
             'company_mobile' => 'required',
             'company_email' => 'required',
@@ -341,6 +355,9 @@ class BusinessController extends Controller
 
             $contact_image = $file_location;
             $contact_image_id = $fileModel->id;
+        }else{
+            $contact_image = $business->contact_image;
+            $contact_image_id = $business->contact_image_id;
         }
 
         if ($request->hasFile('images')) {
@@ -372,6 +389,8 @@ class BusinessController extends Controller
                     'image_path' => $file_location,
                 ];
             }
+        } else {
+            $business_images = json_decode($business->business_images);
         }
 
         $business_hours =  json_encode([
@@ -393,6 +412,9 @@ class BusinessController extends Controller
         ]);
 
         $business_images = json_encode($business_images);
+
+        $locations = Locations::where('id', '=', $request->city)->first();
+
         $business = Business::where('id', $request->id)->update([
             'contact_person_name' => $request->contact_person_name,
             'contact_email' => $request->contact_email,
@@ -417,7 +439,8 @@ class BusinessController extends Controller
             'whatsapp_number' => $request->whatsapp_number,
             'social_media' => $social_media,
             'website' => $request->website,
-            'city' => $request->city,
+            'city' => $locations->title,
+            'locations_id' => $locations->id,
             'country' => $request->country,
             'status' => $request->status,
             'seo_title' => $request->seo_title,
@@ -426,7 +449,11 @@ class BusinessController extends Controller
             'is_featured' => $request->is_featured,
         ]);
 
-        return redirect()->route('business.index')->with('success', 'Business created successfully');
+        if($business){
+            toastr()->success('Business update successfully', 'Success');
+        }
+
+        return redirect()->route('business.index')->with('success', 'Business update successfully');
     }
 
     public function statusUpdate(Request $request)

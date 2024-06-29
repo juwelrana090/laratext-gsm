@@ -68,6 +68,11 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('/{slug}', 'DashboardController@brandDetails')->name('brand.details');
     });
 
+    Route::group(['prefix' => 'locations-list'], function () {
+        Route::get('/', 'DashboardController@locationsList')->name('locations.list');
+        Route::get('/{slug}', 'DashboardController@locationsListView')->name('locations.list.view');
+    });
+
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'DashboardController@blogList')->name('blog.list');
         Route::get('/category', 'DashboardController@blogCategory')->name('blog.category');
@@ -162,12 +167,20 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
         Route::get('/subscribe-list', 'PlansController@subscribeList')->name('plans.subscribeList');
     });
 
+    Route::group(['prefix' => 'locations'], function () {
+        Route::get('/', 'LocationsController@index')->name('locations.index');
+        Route::post('/create', 'LocationsController@create')->name('locations.create');
+        Route::get('/edit/{id}', 'LocationsController@edit')->name('locations.edit');
+        Route::put('/update/{id}', 'LocationsController@update')->name('locations.update');
+        Route::delete('/destroy/{id}', 'LocationsController@destroy')->name('locations.destroy');
+    });
+
     Route::group(['prefix' => 'business'], function () {
         Route::get('/', 'BusinessController@index')->name('business.index');
         Route::get('/create', 'BusinessController@create')->name('business.create');
         Route::post('/store', 'BusinessController@store')->name('business.store');
         Route::get('/edit/{id}', 'BusinessController@edit')->name('business.edit');
-        Route::put('/update/{id}', 'BusinessController@update')->name('business.update');
+        Route::post('/update/{id}', 'BusinessController@update')->name('business.update');
         Route::get('/status-update/{id}', 'BusinessController@statusUpdate')->name('business.status_update');
         Route::delete('/destroy/{id}', 'BusinessController@destroy')->name('business.destroy');
 
@@ -194,7 +207,8 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
         Route::get('/create', 'ExpertsController@create')->name('experts.create');
         Route::post('/store', 'ExpertsController@store')->name('experts.store');
         Route::get('/edit/{id}', 'ExpertsController@edit')->name('experts.edit');
-        Route::put('/update/{id}', 'ExpertsController@update')->name('experts.update');
+        Route::post('/update/{id}', 'ExpertsController@update')->name('experts.update');
+        Route::get('/status-update/{id}', 'ExpertsController@statusUpdate')->name('experts.status_update');
         Route::delete('/destroy/{id}', 'ExpertsController@destroy')->name('experts.destroy');
 
         Route::group(['prefix' => 'category'], function () {

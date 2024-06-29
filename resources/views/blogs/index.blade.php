@@ -42,7 +42,7 @@
                                 <div class="col-lg-6">
                                     <!-- Blog post-->
                                     <div class="card mb-4">
-                                        <a href="./blog_details.html">
+                                        <a href="{{ route('home') }}/blog/{{ $blog->post_slug }}" class="nav-link">
                                             <img class="card-img-top" src="{{ asset($blog->post_image) }}"
                                                 alt="{{ $blog->post_title }}" />
                                         </a>

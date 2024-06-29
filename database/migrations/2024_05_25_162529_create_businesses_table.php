@@ -30,7 +30,7 @@ class CreateBusinessesTable extends Migration
             $table->string('company_name');
             $table->string('company_slug');
             $table->string('company_mobile');
-            $table->string('company_description')->nullable();
+            $table->longText('company_description')->nullable();
             $table->string('company_email');
             $table->string('business_price');
             $table->string('business_type');
@@ -43,6 +43,7 @@ class CreateBusinessesTable extends Migration
             $table->json('social_media')->nullable();
             $table->string('website')->nullable();
             $table->string('city');
+            $table->integer('locations_id')->nullable();
             $table->string('country');
             $table->enum('status', ['pending', 'active', 'inactive', 'rejected'])->default('pending');
             $table->text('seo_title')->nullable();

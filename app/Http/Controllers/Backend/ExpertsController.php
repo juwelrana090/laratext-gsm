@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Experts;
+use App\Models\Locations;
 use App\Models\FileManager;
 use App\Models\ExpertsCategories;
 
@@ -31,7 +32,7 @@ class ExpertsController extends Controller
 
         $experts = Experts::latest()->orderBy('id', 'desc')->paginate(20);
         return view('backend.experts.experts', [
-            'experts' => $experts
+            'experts' => $experts,
         ]);
     }
 
@@ -43,8 +44,10 @@ class ExpertsController extends Controller
     public function create(Request $request)
     {
         $categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
+        $locations = Locations::latest()->orderBy('id', 'desc')->get();
         return view('backend.experts.experts_add', [
-            'categories' => $categories
+            'categories' => $categories,
+            'locations' => $locations,
         ]);
     }
 
@@ -67,7 +70,6 @@ class ExpertsController extends Controller
             'city' => 'required',
             'country' => 'required',
             'about' => 'required',
-            'working_hours' => 'required',
             'services' => 'required',
             'starting_prices' => 'required',
             'expert_image' => 'required|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:2048',
@@ -101,7 +103,7 @@ class ExpertsController extends Controller
             }
         }
 
-        $expert_category = ExpertsCategories::find($request->experts_categories_id);
+        $expert_category =  ExpertsCategories::where('id', '=', $request->experts_categories_id)->first();
 
         $now_day = date('F_Y');
 
@@ -144,6 +146,18 @@ class ExpertsController extends Controller
             "linkedin" => $request->linkedin,
         ]);
 
+        $working_hours = json_encode([
+            "sunday_hours" => $request->sunday_hours,
+            "monday_hours" => $request->monday_hours,
+            "tuesday_hours" => $request->tuesday_hours,
+            "wednesday_hours" => $request->wednesday_hours,
+            "thursday_hours" => $request->thursday_hours,
+            "friday_hours" => $request->friday_hours,
+            "saturday_hours" => $request->saturday_hours,
+        ]);
+
+        $locations = Locations::where('id', '=', $request->city)->first();
+
         $expert_create = Experts::create([
             'experts_categories_id' => $expert_category->id,
             'experts_categories_name' => $expert_category->category_name,
@@ -157,7 +171,7 @@ class ExpertsController extends Controller
             'title' => $title,
             'slug' => $slug,
             'about' => $request->about,
-            'working_hours' => $request->working_hours,
+            'working_hours' => $working_hours,
             'description' => $request->description,
             'services' => $request->services,
             'starting_prices' => $request->starting_prices,
@@ -166,7 +180,8 @@ class ExpertsController extends Controller
             'ratings' => $request->ratings,
             'reviews' => $request->reviews,
             'website' => $request->website,
-            'city' => $request->city,
+            'city' => $locations->title,
+            'locations_id' => $locations->id,
             'country' => $request->country,
             'status' => $request->status,
             'seo_title' => $request->seo_title,
@@ -175,6 +190,10 @@ class ExpertsController extends Controller
             'expert_image' => $file_location,
             'image_id' => $image_id,
         ]);
+
+        if ($expert_create) {
+            toastr()->success('Expert created successfully', 'Success');
+        }
         return redirect()->route('experts.index')->with('success', 'Expert created successfully');
     }
 
@@ -199,9 +218,11 @@ class ExpertsController extends Controller
     {
         $expert = Experts::where('id', '=', $id)->first();
         $categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
+        $locations = Locations::latest()->orderBy('id', 'desc')->get();
         return view('backend.experts.experts_edit', [
             'expert' => $expert,
-            'categories' => $categories
+            'categories' => $categories,
+            'locations' => $locations,
         ]);
     }
 
@@ -225,10 +246,8 @@ class ExpertsController extends Controller
             'city' => 'required',
             'country' => 'required',
             'about' => 'required',
-            'working_hours' => 'required',
             'services' => 'required',
             'starting_prices' => 'required',
-            'expert_image' => 'required|mimes:png,PNG,JPG,jpg,jpeg,JPEG|max:2048',
         ]);
 
 
@@ -259,7 +278,7 @@ class ExpertsController extends Controller
             }
         }
 
-        $expert_category = ExpertsCategories::find($request->experts_categories_id);
+        $expert_category = ExpertsCategories::where('id', '=', $request->experts_categories_id)->first();
 
         $now_day = date('F_Y');
 
@@ -314,6 +333,17 @@ class ExpertsController extends Controller
             "linkedin" => $request->linkedin,
         ]);
 
+        $working_hours = json_encode([
+            "sunday_hours" => $request->sunday_hours,
+            "monday_hours" => $request->monday_hours,
+            "tuesday_hours" => $request->tuesday_hours,
+            "wednesday_hours" => $request->wednesday_hours,
+            "thursday_hours" => $request->thursday_hours,
+            "friday_hours" => $request->friday_hours,
+            "saturday_hours" => $request->saturday_hours,
+        ]);
+
+        $locations = Locations::where('id', '=', $request->city)->first();
 
         $expert->update([
             'experts_categories_id' => $expert_category->id,
@@ -328,7 +358,7 @@ class ExpertsController extends Controller
             'title' => $title,
             'slug' => $slug,
             'about' => $request->about,
-            'working_hours' => $request->working_hours,
+            'working_hours' => $working_hours,
             'description' => $request->description,
             'services' => $request->services,
             'starting_prices' => $request->starting_prices,
@@ -337,7 +367,8 @@ class ExpertsController extends Controller
             'ratings' => $request->ratings,
             'reviews' => $request->reviews,
             'website' => $request->website,
-            'city' => $request->city,
+            'city' => $locations->title,
+            'locations_id' => $locations->id,
             'country' => $request->country,
             'status' => $request->status,
             'seo_title' => $request->seo_title,
@@ -346,7 +377,14 @@ class ExpertsController extends Controller
             'expert_image' => $file_location,
             'image_id' => $image_id,
         ]);
-        return redirect()->route('experts.index')->with('success', 'Expert created successfully');
+
+
+
+        if ($expert) {
+            toastr()->success('Expert update successfully', 'Success');
+        }
+
+        return redirect()->route('experts.index')->with('success', 'Expert update successfully');
     }
 
 

@@ -48,12 +48,13 @@
                             <h4 class="card-title">Expert Info</h4>
                             <hr>
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact Person Name <span
+                                <label for="contact_person_name" class="col-sm-2 col-form-label">Contact Person Name <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_person_name"
                                         class="form-control @error('contact_person_name') is-invalid @enderror"
-                                        id="contact_person_name" placeholder="Contact Person Name">
+                                        id="contact_person_name" placeholder="Contact Person Name"
+                                        value="{{ old('contact_person_name') }}">
                                 </div>
                                 @error('contact_person_name')
                                     <span class="invalid-feedback" role="alert">
@@ -63,12 +64,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Email <span
+                                <label for="email" class="col-sm-2 col-form-label">Email <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="email" name="email"
                                         class="form-control @error('email') is-invalid @enderror" id="email"
-                                        placeholder="Email">
+                                        placeholder="Email" value="{{ old('email') }}">
                                 </div>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -78,12 +79,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Address <span
+                                <label for="address" class="col-sm-2 col-form-label">Address <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="address"
                                         class="form-control @error('address') is-invalid @enderror" id="address"
-                                        placeholder="Address">
+                                        placeholder="Address" value="{{ old('address') }}">
                                 </div>
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -93,12 +94,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Mobile <span
+                                <label for="mobile" class="col-sm-2 col-form-label">Mobile <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="mobile"
                                         class="form-control @error('mobile') is-invalid @enderror" id="mobile"
-                                        placeholder="Mobile">
+                                        placeholder="Mobile" value="{{ old('mobile') }}">
                                 </div>
                                 @error('mobile')
                                     <span class="invalid-feedback" role="alert">
@@ -108,12 +109,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Telephone <span
+                                <label for="telephone" class="col-sm-2 col-form-label">Telephone <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="telephone"
                                         class="form-control @error('telephone') is-invalid @enderror" id="telephone"
-                                        placeholder="Telephone">
+                                        placeholder="Telephone" value="{{ old('telephone') }}">
                                 </div>
                                 @error('telephone')
                                     <span class="invalid-feedback" role="alert">
@@ -123,12 +124,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">WhatsApp <span
+                                <label for="whatsapp_number" class="col-sm-2 col-form-label">WhatsApp <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="whatsapp_number"
                                         class="form-control @error('whatsapp_number') is-invalid @enderror"
-                                        id="whatsapp_number" placeholder="WhatsApp">
+                                        id="whatsapp_number" placeholder="WhatsApp" value="{{ old('whatsapp_number') }}">
                                 </div>
                                 @error('whatsapp_number')
                                     <span class="invalid-feedback" role="alert">
@@ -138,12 +139,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Price <span
+                                <label for="price" class="col-sm-2 col-form-label">Price <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="price"
                                         class="form-control @error('price') is-invalid @enderror" id="price"
-                                        placeholder="Price">
+                                        placeholder="Price" value="{{ old('price') }}">
                                 </div>
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -158,7 +159,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="title"
                                         class="form-control @error('title') is-invalid @enderror" id="title"
-                                        placeholder="Title">
+                                        placeholder="Title" value="{{ old('title') }}">
                                 </div>
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -168,10 +169,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">About <span
+                                <label for="about" class="col-sm-2 col-form-label">About <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" name="about" id="about" rows="3"></textarea>
+                                    <textarea class="form-control" name="about" id="about" rows="3">{{ old('about') }}</textarea>
                                 </div>
                                 @error('about')
                                     <span class="invalid-feedback" role="alert">
@@ -189,18 +190,83 @@
                                     <select name="experts_categories_id" class="form-control select2"
                                         id="experts_categories_id">
                                         @foreach ($categories as $item)
-                                            <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                                            <option value="{{ $item->id }}"
+                                                {{ old('experts_categories_id') == $item->id ? 'selected' : '' }}>
+                                                {{ $item->category_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Working Hours</label>
+                                <label for="working_hours" class="col-sm-2 col-form-label">Working Hours</label>
+
+
                                 <div class="col-sm-10">
-                                    <input type="text" name="working_hours"
-                                        class="form-control @error('working_hours') is-invalid @enderror"
-                                        id="working_hours" placeholder="Contact Google Map">
+                                    <div class="col-sm-10">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="form-control input-group-text" style="width: 100px;"
+                                                    disabled>Sunday</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="sunday_hours"
+                                                value="" required>
+                                        </div>
+
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="form-control input-group-text" style="width: 100px;"
+                                                    disabled>Monday</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="monday_hours"
+                                                value="" required>
+                                        </div>
+
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="form-control input-group-text" style="width: 100px;"
+                                                    disabled>Tuesday</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="tuesday_hours"
+                                                value="" required>
+                                        </div>
+
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="form-control input-group-text" style="width: 100px;"
+                                                    disabled>Wednesday</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="wednesday_hours"
+                                                value="" required>
+                                        </div>
+
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="form-control input-group-text" style="width: 100px;"
+                                                    disabled>Thursday</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="thursday_hours"
+                                                value="" required>
+                                        </div>
+
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="form-control input-group-text" style="width: 100px;"
+                                                    disabled>Friday</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="friday_hours"
+                                                value="" required>
+                                        </div>
+
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="form-control input-group-text" style="width: 100px;"
+                                                    disabled>Saturday</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="saturday_hours"
+                                                value="" required>
+                                        </div>
+                                    </div>
                                 </div>
                                 @error('working_hours')
                                     <span class="invalid-feedback" role="alert">
@@ -215,7 +281,9 @@
                                     <h4 class="card-title">Description</h4>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea name="general_dsc" class="form-control ckeditor" id="description" rows="6"></textarea>
+                                    <textarea name="description" class="form-control ckeditor" id="description" rows="6">
+                                        {{ old('description') }}
+                                    </textarea>
                                 </div>
                                 <div class="col-md-12">
                                     @error('description')
@@ -227,10 +295,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Services <span
+                                <label for="services " class="col-sm-2 col-form-label">Services <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" name="services" id="about" rows="3"></textarea>
+                                    <textarea class="form-control" name="services" id="services" rows="3">
+                                        {{ old('services') }}
+                                    </textarea>
                                 </div>
                                 @error('services')
                                     <span class="invalid-feedback" role="alert">
@@ -240,12 +310,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Starting Prices <span
+                                <label for="starting_prices" class="col-sm-2 col-form-label">Starting Prices <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="starting_prices"
                                         class="form-control @error('starting_prices') is-invalid @enderror"
-                                        id="starting_prices" placeholder="Starting Prices">
+                                        id="starting_prices" placeholder="Starting Prices"
+                                        value="{{ old('starting_prices') }}">
                                 </div>
                                 @error('starting_prices')
                                     <span class="invalid-feedback" role="alert">
@@ -255,7 +326,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Social Profile<span
+                                <label for="social_profile" class="col-sm-2 col-form-label">Social Profile<span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <div class="input-group mb-2">
@@ -302,11 +373,11 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Contact Google Map</label>
+                                <label for="google_map" class="col-sm-2 col-form-label">Contact Google Map</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="google_map"
                                         class="form-control @error('google_map') is-invalid @enderror" id="google_map"
-                                        placeholder="Contact Google Map">
+                                        placeholder="Contact Google Map" value="{{ old('google_map') }}">
                                 </div>
                                 @error('google_map')
                                     <span class="invalid-feedback" role="alert">
@@ -318,11 +389,11 @@
 
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Website</label>
+                                <label for="website" class="col-sm-2 col-form-label">Website</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="social_media"
+                                    <input type="text" name="website"
                                         class="form-control @error('website') is-invalid @enderror" id="website"
-                                        placeholder="Website">
+                                        placeholder="Website" value="{{ old('website') }}">
                                 </div>
                                 @error('website')
                                     <span class="invalid-feedback" role="alert">
@@ -332,12 +403,17 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">City <span
+                                <label for="city" class="col-sm-2 col-form-label">City <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="city"
-                                        class="form-control @error('city') is-invalid @enderror" id="city"
-                                        placeholder="City">
+                                    <select name="city" class="form-control select2 @error('city') is-invalid @enderror"
+                                    id="city">
+                                    @foreach ($locations as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ old('city') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->title }}</option>
+                                    @endforeach
+                                </select>
                                 </div>
                                 @error('city')
                                     <span class="invalid-feedback" role="alert">
@@ -347,7 +423,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Country <span
+                                <label for="country" class="col-sm-2 col-form-label">Country <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select class="form-select select2" aria-label="Select Country"
@@ -563,7 +639,7 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select name="status" class="form-control select2" id="status">
-                                        <option value="active">Active</option>
+                                        <option value="active" selected>Active</option>
                                         <option value="pending">Pending</option>
                                         <option value="inactive">Inactive</option>
                                         <option value="rejected">Rejected</option>
@@ -584,9 +660,9 @@
                             <div class="form-group row">
                                 <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="company_name"
+                                    <input type="text" name="seo_title"
                                         class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
-                                        placeholder="SEO Title">
+                                        placeholder="SEO Title" value="{{ old('seo_title') }}">
                                 </div>
                                 @error('seo_title')
                                     <span class="invalid-feedback" role="alert">
@@ -600,7 +676,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="seo_keywords"
                                         class="form-control @error('seo_keywords') is-invalid @enderror"
-                                        id="seo_keywords" placeholder="SEO Keywords">
+                                        id="seo_keywords" placeholder="SEO Keywords" value="{{ old('seo_keywords') }}">
                                 </div>
                                 @error('seo_keywords')
                                     <span class="invalid-feedback" role="alert">
@@ -613,7 +689,9 @@
                                 <label for="seo_description" class="col-sm-2 col-form-label">SEO Description</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
-                                        placeholder="SEO Description"></textarea>
+                                        placeholder="SEO Description">
+                                        {{ old('seo_description') }}
+                                    </textarea>
                                 </div>
                                 @error('seo_description')
                                     <span class="invalid-feedback" role="alert">

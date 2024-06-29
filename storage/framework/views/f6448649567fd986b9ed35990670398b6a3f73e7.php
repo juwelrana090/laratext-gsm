@@ -1,12 +1,11 @@
-@extends('layouts.backend.master')
-@section('title', 'Experts List')
-@push('meta')
-@endpush
-@push('theme_css')
-@endpush
-@push('page_css')
-@endpush
-@push('custom_css')
+<?php $__env->startSection('title', 'Experts List'); ?>
+<?php $__env->startPush('meta'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('theme_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_css'); ?>
     <style>
         .bg_image {
             width: 100%;
@@ -32,12 +31,12 @@
             filter: contrast(120%);
         }
     </style>
-@endpush
-@push('head')
-@endpush
-@section('breadcrumb')
-@endsection
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('head'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card">
@@ -63,15 +62,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($experts as $expert)
+                                        <?php $__currentLoopData = $experts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $expert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td class="product-category">{{ $expert->contact_person_name }}</td>
-                                                <td class="product-category">{{ $expert->mobile }}</td>
-                                                <td class="product-category">{{ $expert->email }}</td>
-                                                <td class="product-category">{{ $expert->title }}</td>
-                                                <td class="product-category">{{ $expert->experts_categories_name }}</td>
-                                                <td class="product-category">{{ $expert->price }}</td>
-                                                <td class="product-category">{{ $expert->status }}</td>
+                                                <td class="product-category"><?php echo e($expert->contact_person_name); ?></td>
+                                                <td class="product-category"><?php echo e($expert->mobile); ?></td>
+                                                <td class="product-category"><?php echo e($expert->email); ?></td>
+                                                <td class="product-category"><?php echo e($expert->title); ?></td>
+                                                <td class="product-category"><?php echo e($expert->experts_categories_name); ?></td>
+                                                <td class="product-category"><?php echo e($expert->price); ?></td>
+                                                <td class="product-category"><?php echo e($expert->status); ?></td>
                                                 <td class="product-category">
                                                     <div class="dropdown">
                                                         <button class="btn btn-sm btn-secondary dropdown-toggle"
@@ -81,21 +80,21 @@
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                             <a class="dropdown-item"
-                                                                href="{{ route('experts.status_update', $expert->id) }}?status=active">Active</a>
+                                                                href="<?php echo e(route('experts.status_update', $expert->id)); ?>?status=active">Active</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('experts.status_update', $expert->id) }}?status=pending">Pending</a>
+                                                                href="<?php echo e(route('experts.status_update', $expert->id)); ?>?status=pending">Pending</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('experts.status_update', $expert->id) }}?status=inactive">Inactive</a>
+                                                                href="<?php echo e(route('experts.status_update', $expert->id)); ?>?status=inactive">Inactive</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('experts.status_update', $expert->id) }}?status=rejected">Rejected</a>
+                                                                href="<?php echo e(route('experts.status_update', $expert->id)); ?>?status=rejected">Rejected</a>
                                                         </div>
                                                     </div>
-                                                    <a href="{{ route('experts.edit', $expert->id) }}"
+                                                    <a href="<?php echo e(route('experts.edit', $expert->id)); ?>"
                                                         class="btn btn-sm btn-primary text-white">edit</a>
                                                     <a href="#" class="btn btn-sm btn-danger text-white"
                                                         data-toggle="modal"
-                                                        data-target="#typeDelete{{ $expert->id }}">x</a>
-                                                    <div class="modal fade" id="typeDelete{{ $expert->id }}"
+                                                        data-target="#typeDelete<?php echo e($expert->id); ?>">x</a>
+                                                    <div class="modal fade" id="typeDelete<?php echo e($expert->id); ?>"
                                                         tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
@@ -109,23 +108,23 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    Are You Sure You want to delete " {{ $expert->title }}"
+                                                                    Are You Sure You want to delete " <?php echo e($expert->title); ?>"
                                                                     Type?
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</button>
                                                                     <a onclick="event.preventDefault();
-                                                                  document.getElementById('delete-form-{{ $expert->id }}').submit();"
-                                                                        href="{{ route('experts.destroy', $expert->id) }}"
+                                                                  document.getElementById('delete-form-<?php echo e($expert->id); ?>').submit();"
+                                                                        href="<?php echo e(route('experts.destroy', $expert->id)); ?>"
                                                                         class="btn btn-danger text-white"
                                                                         data-toggle="modal"
                                                                         data-target="#colorDelete">Delete</a>
-                                                                    <form id="delete-form-{{ $expert->id }}"
-                                                                        action="{{ route('experts.destroy', $expert->id) }}"
+                                                                    <form id="delete-form-<?php echo e($expert->id); ?>"
+                                                                        action="<?php echo e(route('experts.destroy', $expert->id)); ?>"
                                                                         method="POST" class="d-none">
-                                                                        @method('DELETE')
-                                                                        @csrf
+                                                                        <?php echo method_field('DELETE'); ?>
+                                                                        <?php echo csrf_field(); ?>
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -133,13 +132,14 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
 
                             </div>
                             <div class="col-lg-12 mb-5">
-                                {{ $experts->links() }}
+                                <?php echo e($experts->links()); ?>
+
                             </div>
                         </div>
 
@@ -148,12 +148,12 @@
             </div>
         </div>
     </div>
-@endsection
-@push('theme_js')
-@endpush
-@push('page_js')
-@endpush
-@push('custom_js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('theme_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_js'); ?>
     <script>
         var dataThumbView = $(".data-thumb-view").DataTable({
             responsive: false,
@@ -186,4 +186,6 @@
             }
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.backend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/backend/experts/experts.blade.php ENDPATH**/ ?>

@@ -167,12 +167,20 @@
                 </ul>
             </li>
 
+            <li class=" {{ Route::is('locations.index') ? 'active' : '' }} nav-item">
+                <a href="{{ route('locations.index') }}">
+                    <i class="fa fa-map"></i>
+                    <span class="menu-title" data-i18n="Dashboard">Locations</span>
+                </a>
+            </li>
+
             <li class=" {{ Route::is('plans.index') ? 'active' : '' }} nav-item">
                 <a href="{{ route('plans.index') }}">
                     <i class="fa fa-usd"></i>
                     <span class="menu-title" data-i18n="Dashboard">Plans Settings</span>
                 </a>
             </li>
+
             <li class=" {{ Route::is('plans.subscribeList') ? 'active' : '' }} nav-item">
                 <a href="{{ route('plans.subscribeList') }}">
                     <i class="fa fa-usd"></i>

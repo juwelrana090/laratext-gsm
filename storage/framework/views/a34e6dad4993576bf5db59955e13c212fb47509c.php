@@ -167,12 +167,20 @@
                 </ul>
             </li>
 
+            <li class=" <?php echo e(Route::is('locations.index') ? 'active' : ''); ?> nav-item">
+                <a href="<?php echo e(route('locations.index')); ?>">
+                    <i class="fa fa-map"></i>
+                    <span class="menu-title" data-i18n="Dashboard">Locations</span>
+                </a>
+            </li>
+
             <li class=" <?php echo e(Route::is('plans.index') ? 'active' : ''); ?> nav-item">
                 <a href="<?php echo e(route('plans.index')); ?>">
                     <i class="fa fa-usd"></i>
                     <span class="menu-title" data-i18n="Dashboard">Plans Settings</span>
                 </a>
             </li>
+
             <li class=" <?php echo e(Route::is('plans.subscribeList') ? 'active' : ''); ?> nav-item">
                 <a href="<?php echo e(route('plans.subscribeList')); ?>">
                     <i class="fa fa-usd"></i>

@@ -177,8 +177,10 @@ class CarController extends Controller
 
         if ($result) {
             toastr()->success('Product has been added', 'Success');
+            return redirect()->route('admin.cars')->with('success', 'Product has been added');
+        } else {
+            return back();
         }
-        return back();
     }
 
     /**
@@ -206,10 +208,11 @@ class CarController extends Controller
         $wheels = Wheel::all(['id', 'name']);
         $showRooms = ShowRoom::all(['id', 'name']);
         $car_types = CarType::all(['id', 'name']);
+        $categories = CarSubCategories::all(['id', 'car_type_id', 'name']);
         $m_conditions = MCondition::all(['id', 'name']);
         $fuels = FuelType::all(['id', 'name']);
         $car = Car::find($id);
-        return view('backend.car.edit', compact('statuses', 'colors', 'brands', 'car_types', 'm_conditions', 'fuels', 'showRooms', 'wheels', 'car'));
+        return view('backend.car.edit', compact('statuses', 'colors', 'brands', 'car_types', 'categories', 'm_conditions', 'fuels', 'showRooms', 'wheels', 'car'));
     }
 
     /**

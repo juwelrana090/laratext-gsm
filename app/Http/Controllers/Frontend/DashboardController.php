@@ -14,6 +14,7 @@ use App\Models\Experts;
 use App\Models\Blogs;
 use App\Models\Plans;
 
+use App\Models\Locations;
 use App\Models\BlogCategories;
 use App\Models\BusinessCategories;
 use App\Models\ExpertsCategories;
@@ -31,6 +32,7 @@ class DashboardController extends Controller
         $car_type = CarType::latest()->orderBy('id', 'desc')->paginate(12);
         $experts_categories = ExpertsCategories::latest()->orderBy('id', 'desc')->paginate(12);
         $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->paginate(12);
+        $locations = Locations::latest()->orderBy('id', 'desc')->paginate(12);
 
         $plan_1 = Plans::where('id', 1)->first();
         $plan_2 = Plans::where('id', 2)->first();
@@ -42,6 +44,7 @@ class DashboardController extends Controller
             'car_type' => $car_type,
             'experts_categories' => $experts_categories,
             'business_categories' => $business_categories,
+            'locations' => $locations,
             'plan_1' => $plan_1,
             'plan_2' => $plan_2,
             'plan_3' => $plan_3,
@@ -60,10 +63,32 @@ class DashboardController extends Controller
     }
 
 
+    public function locationsList(Request $request)
+    {
+        $locations = Locations::latest()->orderBy('id', 'desc')->paginate(24);
+        return view('locations.index', [
+            'locations' => $locations,
+        ]);
+    }
+
+    public function locationsListView(Request $request)
+    {
+        $locations = Locations::latest()->orderBy('id', 'desc')->paginate(24);
+        $locations_view = Locations::where('slug', $request->slug)->first();
+        $businesses = Business::where('locations_id', $locations_view->id)->orderBy('id', 'desc')->paginate(24);
+        $experts = Experts::where('locations_id', $locations_view->id)->orderBy('id', 'desc')->paginate(24);
+
+        return view('locations.view', [
+            'locations' => $locations,
+            'businesses' => $businesses,
+            'experts' => $experts,
+        ]);
+    }
+
     public function businessList(Request $request)
     {
-        $businesses = Business::latest()->orderBy('id', 'desc')->paginate(20);
-        $featured = Business::where('is_featured', 1)->paginate(20);
+        $businesses = Business::latest()->orderBy('id', 'desc')->paginate(24);
+        $featured = Business::where('is_featured', 1)->paginate(24);
 
         return view('business.index', [
             'businesses' => $businesses,
@@ -74,8 +99,8 @@ class DashboardController extends Controller
     public function businessListCategory(Request $request)
     {
         $category = BusinessCategories::where('category_slug', $request->slug)->first();
-        $businesses = Business::where('business_category_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(20);
-        $featured = Business::where('is_featured', 1)->paginate(20);
+        $businesses = Business::where('business_category_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(24);
+        $featured = Business::where('is_featured', 1)->paginate(24);
 
         return view('business.index', [
             'businesses' => $businesses,
@@ -94,13 +119,13 @@ class DashboardController extends Controller
     public function businessDetails(Request $request)
     {
         $businesses = Business::where('company_slug', $request->slug)->first();
-        $featured = Business::where('is_featured', 1)->paginate(20);
+        $featured = Business::where('is_featured', 1)->paginate(24);
         return view('business.details', compact('businesses', 'featured'));
     }
 
     public function expertList(Request $request)
     {
-        $experts = Experts::latest()->orderBy('id', 'desc')->paginate(20);
+        $experts = Experts::latest()->orderBy('id', 'desc')->paginate(24);
         return view('expert.index', [
             'experts' => $experts
         ]);
@@ -109,7 +134,7 @@ class DashboardController extends Controller
     public function expertListCategory(Request $request)
     {
         $category = ExpertsCategories::where('category_slug', $request->slug)->first();
-        $experts = Experts::where('experts_categories_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(20);
+        $experts = Experts::where('experts_categories_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(24);
         return view('expert.index', [
             'experts' => $experts
         ]);
@@ -148,9 +173,9 @@ class DashboardController extends Controller
                 ->orWhere('cylinder', 'LIKE', '%' . $name . '%')
                 ->orWhere('pully_diameter', 'LIKE', '%' . $name . '%')
                 ->orWhere('general_dsc', 'LIKE', '%' . $name . '%')
-                ->paginate(20);
+                ->paginate(24);
         } else {
-            $cars = Car::orderBy('id', 'DESC')->paginate(20);
+            $cars = Car::orderBy('id', 'DESC')->paginate(24);
         }
 
         return view('product.index', compact('cars'));
@@ -159,25 +184,10 @@ class DashboardController extends Controller
     public function productListCategory(Request $request)
     {
         $car_type = CarType::where('id', '=', $request->id)->first();
-        $cars = [];
-        $name = $request->search;
-        if ($name) {
-            $cars = Car::where('pub_place', '!=', 'Sold')
-                ->where('car_type_id', '=', $car_type->id)
-                ->where('title', 'LIKE', '%' . $name . '%')
-                ->orWhere('vehicle', 'LIKE', '%' . $name . '%')
-                ->orWhere('part_no', 'LIKE', '%' . $name . '%')
-                ->orWhere('grooves', 'LIKE', '%' . $name . '%')
-                ->orWhere('origin', 'LIKE', '%' . $name . '%')
-                ->orWhere('manufaturer', 'LIKE', '%' . $name . '%')
-                ->orWhere('year', 'LIKE', '%' . $name . '%')
-                ->orWhere('cylinder', 'LIKE', '%' . $name . '%')
-                ->orWhere('pully_diameter', 'LIKE', '%' . $name . '%')
-                ->orWhere('general_dsc', 'LIKE', '%' . $name . '%')
-                ->paginate(20);
-        } else {
-            $cars = Car::orderBy('id', 'DESC')->paginate(20);
-        }
+        $cars = Car::where('pub_place', '!=', 'Sold')
+            ->where('car_type_id', '=', $car_type->id)
+            ->orderBy('id', 'DESC')
+            ->paginate(24);
 
         return view('product.index', compact('cars'));
     }
@@ -185,25 +195,10 @@ class DashboardController extends Controller
     public function productListBrands(Request $request)
     {
         $brand = Brand::where('id', $request->id)->first();
-        $cars = [];
-        $name = $request->search;
-        if ($name) {
-            $cars = Car::where('pub_place', '!=', 'Sold')
-                ->where('brand_id', '=', $brand->id)
-                ->where('title', 'LIKE', '%' . $name . '%')
-                ->orWhere('vehicle', 'LIKE', '%' . $name . '%')
-                ->orWhere('part_no', 'LIKE', '%' . $name . '%')
-                ->orWhere('grooves', 'LIKE', '%' . $name . '%')
-                ->orWhere('origin', 'LIKE', '%' . $name . '%')
-                ->orWhere('manufaturer', 'LIKE', '%' . $name . '%')
-                ->orWhere('year', 'LIKE', '%' . $name . '%')
-                ->orWhere('cylinder', 'LIKE', '%' . $name . '%')
-                ->orWhere('pully_diameter', 'LIKE', '%' . $name . '%')
-                ->orWhere('general_dsc', 'LIKE', '%' . $name . '%')
-                ->paginate(20);
-        } else {
-            $cars = Car::orderBy('id', 'DESC')->paginate(20);
-        }
+        $cars = Car::where('pub_place', '!=', 'Sold')
+            ->where('brand_id', '=', $brand->id)
+            ->orderBy('id', 'DESC')
+            ->paginate(24);
 
         return view('product.index', compact('cars'));
     }
@@ -232,7 +227,7 @@ class DashboardController extends Controller
 
     public function blogList(Request $request)
     {
-        $blogs = Blogs::latest()->orderBy('id', 'desc')->paginate(20);
+        $blogs = Blogs::latest()->orderBy('id', 'desc')->paginate(24);
         $categories = BlogCategories::latest()->orderBy('id', 'desc')->get();
 
         return view('blogs.index', [

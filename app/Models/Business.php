@@ -35,6 +35,7 @@ class Business extends Model
         'social_media',
         'website',
         'city',
+        'locations_id',
         'country',
         'status',
         'seo_title',

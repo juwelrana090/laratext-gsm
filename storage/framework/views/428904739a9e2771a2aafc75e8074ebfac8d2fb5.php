@@ -1,14 +1,13 @@
-@extends('layouts.backend.master')
-@section('title', 'Expert Add')
-@push('meta')
-@endpush
-@push('theme_css')
-@endpush
-@push('page_css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('Backend/app-assets/vendors/css/forms/select/select2.min.css') }}">
+<?php $__env->startSection('title', 'Expert Add'); ?>
+<?php $__env->startPush('meta'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('theme_css'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_css'); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('Backend/app-assets/vendors/css/forms/select/select2.min.css')); ?>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
-@endpush
-@push('custom_css')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_css'); ?>
     <style>
         input[type="radio"],
         input[type="checkbox"] {
@@ -29,16 +28,16 @@
             height: 325px !important;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="{{ asset('Backend/assets/css/image-uploader.min.css') }}">
-@endpush
-@push('head')
-@endpush
-@section('breadcrumb')
-@endsection
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('Backend/assets/css/image-uploader.min.css')); ?>">
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('head'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+<?php $__env->stopSection(); ?>
 
-@section('content')
-    <form action="{{ route('experts.update', $expert->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
+<?php $__env->startSection('content'); ?>
+    <form action="<?php echo e(route('experts.update', $expert->id)); ?>" method="POST" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
         <div class="row">
 
             <div class="col-md-12">
@@ -52,15 +51,29 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_person_name"
-                                        class="form-control @error('contact_person_name') is-invalid @enderror"
+                                        class="form-control <?php $__errorArgs = ['contact_person_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                         id="contact_person_name" placeholder="Contact Person Name"
-                                        value="{{ $expert->contact_person_name }}">
+                                        value="<?php echo e($expert->contact_person_name); ?>">
                                 </div>
-                                @error('contact_person_name')
+                                <?php $__errorArgs = ['contact_person_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -68,14 +81,28 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="email" name="email"
-                                        class="form-control @error('email') is-invalid @enderror" id="email"
-                                        placeholder="Email" value="{{ $expert->email }}">
+                                        class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="email"
+                                        placeholder="Email" value="<?php echo e($expert->email); ?>">
                                 </div>
-                                @error('email')
+                                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -83,14 +110,28 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="address"
-                                        class="form-control @error('address') is-invalid @enderror" id="address"
-                                        placeholder="Address" value="{{ $expert->address }}">
+                                        class="form-control <?php $__errorArgs = ['address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="address"
+                                        placeholder="Address" value="<?php echo e($expert->address); ?>">
                                 </div>
-                                @error('address')
+                                <?php $__errorArgs = ['address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -98,14 +139,28 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="mobile"
-                                        class="form-control @error('mobile') is-invalid @enderror" id="mobile"
-                                        placeholder="Mobile" value="{{ $expert->mobile }}">
+                                        class="form-control <?php $__errorArgs = ['mobile'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="mobile"
+                                        placeholder="Mobile" value="<?php echo e($expert->mobile); ?>">
                                 </div>
-                                @error('mobile')
+                                <?php $__errorArgs = ['mobile'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -113,14 +168,28 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="telephone"
-                                        class="form-control @error('telephone') is-invalid @enderror" id="telephone"
-                                        placeholder="Telephone" value="{{ $expert->telephone }}">
+                                        class="form-control <?php $__errorArgs = ['telephone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="telephone"
+                                        placeholder="Telephone" value="<?php echo e($expert->telephone); ?>">
                                 </div>
-                                @error('telephone')
+                                <?php $__errorArgs = ['telephone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -128,14 +197,28 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="whatsapp_number"
-                                        class="form-control @error('whatsapp_number') is-invalid @enderror"
-                                        id="whatsapp_number" placeholder="WhatsApp" value="{{ $expert->whatsapp_number }}">
+                                        class="form-control <?php $__errorArgs = ['whatsapp_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                        id="whatsapp_number" placeholder="WhatsApp" value="<?php echo e($expert->whatsapp_number); ?>">
                                 </div>
-                                @error('whatsapp_number')
+                                <?php $__errorArgs = ['whatsapp_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -143,14 +226,28 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="price"
-                                        class="form-control @error('price') is-invalid @enderror" id="price"
-                                        placeholder="Price" value="{{ $expert->price }}">
+                                        class="form-control <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="price"
+                                        placeholder="Price" value="<?php echo e($expert->price); ?>">
                                 </div>
-                                @error('price')
+                                <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -158,27 +255,48 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="title"
-                                        class="form-control @error('title') is-invalid @enderror" id="title"
-                                        placeholder="Title" value="{{ $expert->title }}">
+                                        class="form-control <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="title"
+                                        placeholder="Title" value="<?php echo e($expert->title); ?>">
                                 </div>
-                                @error('title')
+                                <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
                                 <label for="about" class="col-sm-2 col-form-label">About <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" name="about" id="about" rows="3">{{ $expert->about }}</textarea>
+                                    <textarea class="form-control" name="about" id="about" rows="3"><?php echo e($expert->about); ?></textarea>
                                 </div>
-                                @error('about')
+                                <?php $__errorArgs = ['about'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
 
@@ -189,11 +307,11 @@
                                 <div class="col-sm-10">
                                     <select name="experts_categories_id" class="form-control select2"
                                         id="experts_categories_id">
-                                        @foreach ($categories as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ $item->id == $expert->experts_categories_id ? 'selected' : '' }}>
-                                                {{ $item->category_name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($item->id); ?>"
+                                                <?php echo e($item->id == $expert->experts_categories_id ? 'selected' : ''); ?>>
+                                                <?php echo e($item->category_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -209,7 +327,7 @@
                                                 disabled>Sunday</span>
                                         </div>
                                         <input type="text" class="form-control" name="sunday_hours"
-                                            value="{{ $working_hours->sunday_hours }}" required>
+                                            value="<?php echo e($working_hours->sunday_hours); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -218,7 +336,7 @@
                                                 disabled>Monday</span>
                                         </div>
                                         <input type="text" class="form-control" name="monday_hours"
-                                            value="{{ $working_hours->monday_hours }}" required>
+                                            value="<?php echo e($working_hours->monday_hours); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -227,7 +345,7 @@
                                                 disabled>Tuesday</span>
                                         </div>
                                         <input type="text" class="form-control" name="tuesday_hours"
-                                            value="{{ $working_hours->tuesday_hours }}" required>
+                                            value="<?php echo e($working_hours->tuesday_hours); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -236,7 +354,7 @@
                                                 disabled>Wednesday</span>
                                         </div>
                                         <input type="text" class="form-control" name="wednesday_hours"
-                                            value="{{ $working_hours->wednesday_hours }}" required>
+                                            value="<?php echo e($working_hours->wednesday_hours); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -245,7 +363,7 @@
                                                 disabled>Thursday</span>
                                         </div>
                                         <input type="text" class="form-control" name="thursday_hours"
-                                            value="{{ $working_hours->thursday_hours }}" required>
+                                            value="<?php echo e($working_hours->thursday_hours); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -254,7 +372,7 @@
                                                 disabled>Friday</span>
                                         </div>
                                         <input type="text" class="form-control" name="friday_hours"
-                                            value="{{ $working_hours->friday_hours }}" required>
+                                            value="<?php echo e($working_hours->friday_hours); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -263,14 +381,21 @@
                                                 disabled>Saturday</span>
                                         </div>
                                         <input type="text" class="form-control" name="saturday_hours"
-                                            value="{{ $working_hours->saturday_hours }}" required>
+                                            value="<?php echo e($working_hours->saturday_hours); ?>" required>
                                     </div>
                                 </div>
-                                @error('working_hours')
+                                <?php $__errorArgs = ['working_hours'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
 
@@ -279,14 +404,21 @@
                                     <h4 class="card-title">Description</h4>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea name="description" class="form-control ckeditor" id="description" rows="6">{{ $expert->description }}</textarea>
+                                    <textarea name="description" class="form-control ckeditor" id="description" rows="6"><?php echo e($expert->description); ?></textarea>
                                 </div>
                                 <div class="col-md-12">
-                                    @error('description')
+                                    <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                         <span class="invalid-feedback" role="alert">
-                                            <span>{{ $message }}</span>
+                                            <span><?php echo e($message); ?></span>
                                         </span>
-                                    @enderror
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
 
@@ -294,13 +426,20 @@
                                 <label for="services" class="col-sm-2 col-form-label">Services <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" name="services" id="about" rows="3">{{ $expert->services }}</textarea>
+                                    <textarea class="form-control" name="services" id="about" rows="3"><?php echo e($expert->services); ?></textarea>
                                 </div>
-                                @error('services')
+                                <?php $__errorArgs = ['services'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -308,15 +447,29 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" name="starting_prices"0
-                                        class="form-control @error('starting_prices') is-invalid @enderror"
+                                        class="form-control <?php $__errorArgs = ['starting_prices'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                         id="starting_prices" placeholder="Starting Prices"
-                                        value="{{ $expert->starting_prices }}">
+                                        value="<?php echo e($expert->starting_prices); ?>">
                                 </div>
-                                @error('starting_prices')
+                                <?php $__errorArgs = ['starting_prices'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -330,7 +483,7 @@
                                                 disabled>Facebook</span>
                                         </div>
                                         <input type="text" class="form-control" name="facebook"
-                                            value="{{ $social_profile->facebook }}" required>
+                                            value="<?php echo e($social_profile->facebook); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -339,7 +492,7 @@
                                                 disabled>Instagram</span>
                                         </div>
                                         <input type="text" class="form-control" name="instagram"
-                                            value="{{ $social_profile->instagram }}" required>
+                                            value="<?php echo e($social_profile->instagram); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -348,7 +501,7 @@
                                                 disabled>Twitter</span>
                                         </div>
                                         <input type="text" class="form-control" name="twitter"
-                                            value="{{ $social_profile->twitter }}" required>
+                                            value="<?php echo e($social_profile->twitter); ?>" required>
                                     </div>
 
                                     <div class="input-group mb-2">
@@ -357,28 +510,49 @@
                                                 disabled>Linkedin</span>
                                         </div>
                                         <input type="text" class="form-control" name="linkedin"
-                                            value="{{ $social_profile->linkedin }}" required>
+                                            value="<?php echo e($social_profile->linkedin); ?>" required>
                                     </div>
                                 </div>
-                                @error('social_profile')
+                                <?php $__errorArgs = ['social_profile'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
                                 <label for="google_map" class="col-sm-2 col-form-label">Contact Google Map</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="google_map"
-                                        class="form-control @error('google_map') is-invalid @enderror" id="google_map"
-                                        placeholder="Contact Google Map" value="{{ $expert->google_map }}">
+                                        class="form-control <?php $__errorArgs = ['google_map'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="google_map"
+                                        placeholder="Contact Google Map" value="<?php echo e($expert->google_map); ?>">
                                 </div>
-                                @error('google_map')
+                                <?php $__errorArgs = ['google_map'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
 
@@ -387,33 +561,61 @@
                                 <label for="website" class="col-sm-2 col-form-label">Website</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="website"
-                                        class="form-control @error('website') is-invalid @enderror" id="website"
-                                        placeholder="Website" value="{{ $expert->website }}">
+                                        class="form-control <?php $__errorArgs = ['website'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="website"
+                                        placeholder="Website" value="<?php echo e($expert->website); ?>">
                                 </div>
-                                @error('website')
+                                <?php $__errorArgs = ['website'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
                                 <label for="city" class="col-sm-2 col-form-label">City <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <select name="city" class="form-control select2 @error('city') is-invalid @enderror" id="city">
-                                        @foreach ($locations as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ $expert->locations_id == $item->id ? 'selected' : '' }}>
-                                                {{ $item->title }}</option>
-                                        @endforeach
+                                    <select name="city" class="form-control select2 <?php $__errorArgs = ['city'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="city">
+                                        <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($item->id); ?>"
+                                                <?php echo e($expert->locations_id == $item->id ? 'selected' : ''); ?>>
+                                                <?php echo e($item->title); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
-                                @error('city')
+                                <?php $__errorArgs = ['city'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -621,11 +823,18 @@
                                         <option value="Zimbabwe">Zimbabwe</option>
                                     </select>
                                 </div>
-                                @error('country')
+                                <?php $__errorArgs = ['country'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -633,13 +842,13 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select name="status" class="form-control select2" id="status">
-                                        <option value="active" @if ($expert->status == 'active') selected @endif>Active
+                                        <option value="active" <?php if($expert->status == 'active'): ?> selected <?php endif; ?>>Active
                                         </option>
-                                        <option value="pending" @if ($expert->status == 'pending') selected @endif>Pending
+                                        <option value="pending" <?php if($expert->status == 'pending'): ?> selected <?php endif; ?>>Pending
                                         </option>
-                                        <option value="inactive" @if ($expert->status == 'inactive') selected @endif>
+                                        <option value="inactive" <?php if($expert->status == 'inactive'): ?> selected <?php endif; ?>>
                                             Inactive</option>
-                                        <option value="rejected" @if ($expert->status == 'rejected') selected @endif>
+                                        <option value="rejected" <?php if($expert->status == 'rejected'): ?> selected <?php endif; ?>>
                                             Rejected</option>
                                     </select>
                                 </div>
@@ -659,29 +868,57 @@
                                 <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
                                 <div class="col-sm-10">
                                     <input type="text" name="seo_title"
-                                        class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
-                                        placeholder="SEO Title" value="{{ $expert->seo_title }}">
+                                        class="form-control <?php $__errorArgs = ['seo_title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="seo_title"
+                                        placeholder="SEO Title" value="<?php echo e($expert->seo_title); ?>">
                                 </div>
-                                @error('seo_title')
+                                <?php $__errorArgs = ['seo_title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
                                 <label for="seo_keywords" class="col-sm-2 col-form-label">SEO Keywords</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="seo_keywords"
-                                        class="form-control @error('seo_keywords') is-invalid @enderror"
+                                        class="form-control <?php $__errorArgs = ['seo_keywords'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                         id="seo_keywords" placeholder="SEO Keywords"
-                                        value="{{ $expert->seo_keywords }}">
+                                        value="<?php echo e($expert->seo_keywords); ?>">
                                 </div>
-                                @error('seo_keywords')
+                                <?php $__errorArgs = ['seo_keywords'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="form-group row">
@@ -689,14 +926,22 @@
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
                                         placeholder="SEO Description">
-                                    {{ $expert->seo_description }}
+                                    <?php echo e($expert->seo_description); ?>
+
                                 </textarea>
                                 </div>
-                                @error('seo_description')
+                                <?php $__errorArgs = ['seo_description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
+                                        <span><?php echo e($message); ?></span>
                                     </span>
-                                @enderror
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                         </div>
@@ -710,8 +955,8 @@
                         <div class="card-body" style="position: relative;">
                             <h4 class="card-title">Expert Image <span class="text-danger">*</span></h4>
                             <hr>
-                            <img src="{{ asset($expert->expert_image) }}" class="img-fluid rounded d-block"
-                                alt="{{ $expert->title }}" title="{{ $expert->title }}"
+                            <img src="<?php echo e(asset($expert->expert_image)); ?>" class="img-fluid rounded d-block"
+                                alt="<?php echo e($expert->title); ?>" title="<?php echo e($expert->title); ?>"
                                 style="width: auto; height: 235px;">
                             <hr>
                             <input type="file" class="form-control" id="expert_image" name="expert_image" />
@@ -726,18 +971,18 @@
 
         </div>
     </form>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('theme_js')
-@endpush
-@push('page_js')
-    <script src="{{ asset('Backend/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<?php $__env->startPush('theme_js'); ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('page_js'); ?>
+    <script src="<?php echo e(asset('Backend/app-assets/vendors/js/forms/select/select2.full.min.js')); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
-@endpush
-@push('custom_js')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('custom_js'); ?>
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 
-    <script src="{{ asset('Backend/assets/js/image-uploader.min.js') }}"></script>
+    <script src="<?php echo e(asset('Backend/assets/js/image-uploader.min.js')); ?>"></script>
     <script>
         $('.experts-images').imageUploader();
     </script>
@@ -817,4 +1062,6 @@
             $('.ckeditor').ckeditor();
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.backend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/backend/experts/experts_edit.blade.php ENDPATH**/ ?>

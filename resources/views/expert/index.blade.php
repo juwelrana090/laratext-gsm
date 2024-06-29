@@ -9,23 +9,27 @@
     <main>
         <div class="container-fluid container-lg expert my-5">
             <div class="row row-cols-1 g-4">
-
                 @foreach ($experts as $expert)
                     <div class="col">
                         <div class="card expert-list border-0">
                             <div class="row g-0">
                                 <div class="col-md-4 p-2">
                                     <div class="img-container rounded">
-                                        <img src="{{ asset($expert->expert_image) }}" class="img-fluid rounded d-block m-auto"
-                                            alt="{{ $expert->title }}" title="{{ $expert->title }}"
-                                            style="width: auto; height: 235px;">
+                                        <a href="{{ route('expert.details', $expert->slug) }}" class="nav-link">
+                                            <img src="{{ asset($expert->expert_image) }}"
+                                                class="img-fluid rounded d-block m-auto" alt="{{ $expert->title }}"
+                                                title="{{ $expert->title }}" style="width: auto; height: 235px;">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h6 class="card-subtitle text-muted"><small>Real State Agent</small></h6>
-                                        <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">
-                                            {{ $expert->contact_person_name }}</h5>
+                                        <a href="{{ route('expert.details', $expert->slug) }}" class="nav-link">
+                                            <h5 class="card-title mt-1 mb-2 fw-bolder" style="color: #0d293d;">
+                                                {{ $expert->contact_person_name }}
+                                            </h5>
+                                        </a>
 
                                         <div class="social-media-link">
                                             <a href="http://" class="icon-link me-1 fs-5" target="_blank">

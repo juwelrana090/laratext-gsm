@@ -30,6 +30,7 @@ class Experts extends Model
         'reviews',
         'website',
         'city',
+        'locations_id',
         'country',
         'status',
         'seo_title',

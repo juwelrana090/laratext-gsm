@@ -247,13 +247,6 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="sub_category" class="col-sm-2 col-form-label">Sub Category</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="sub_category" class="form-control datepicker-2"
-                                        id="sub_category" placeholder="Sub Category" value="{{ $car->sub_category }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label for="type" class="col-sm-2 col-form-label">Type</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="type" class="form-control" id="type"

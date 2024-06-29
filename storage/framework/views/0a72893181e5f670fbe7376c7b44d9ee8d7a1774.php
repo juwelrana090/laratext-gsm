@@ -61,7 +61,8 @@
                             <div class="card-body text-truncate py-2">
                                 <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                     <?php echo e($item->category_name); ?></h6>
-                                <a href="<?php echo e(route('business.list.category', $item->category_slug)); ?>" class="stretched-link"></a>
+                                <a href="<?php echo e(route('business.list.category', $item->category_slug)); ?>"
+                                    class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -72,11 +73,11 @@
 
         <div class="container-fluid container-lg mt-5 mb-2">
             <!-- <div class="card category-card border-0">
-                                                                                                                                                                                                                                                                                                                            <div class="card-body py-2">
-                                                                                                                                                                                                                                                                                                                              <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
-                                                                                                                                                                                                                                                                                                                              <span class="fw-semibold ms-2" style="font-size: 1.2rem">Experts</span>
-                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                          </div> -->
+                                                                                                                                                                                                                                                                                                                                <div class="card-body py-2">
+                                                                                                                                                                                                                                                                                                                                  <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
+                                                                                                                                                                                                                                                                                                                                  <span class="fw-semibold ms-2" style="font-size: 1.2rem">Experts</span>
+                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                              </div> -->
 
             <div class="card category-card border-0">
                 <div class="card-body p-0 mb-3">
@@ -102,7 +103,8 @@
                             <div class="card-body text-truncate py-2">
                                 <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                     <?php echo e($item->category_name); ?></h6>
-                                <a href="<?php echo e(route('expert.list.category', $item->category_slug)); ?>" class="stretched-link"></a>
+                                <a href="<?php echo e(route('expert.list.category', $item->category_slug)); ?>"
+                                    class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -113,11 +115,11 @@
 
         <div class="container-fluid container-lg mt-5 mb-3">
             <!-- <div class="card category-card border-0">
-                                                                                                                                                                                                                                                                                                                            <div class="card-body py-2">
-                                                                                                                                                                                                                                                                                                                              <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
-                                                                                                                                                                                                                                                                                                                              <span class="fw-semibold ms-2" style="font-size: 1.2rem">Products</span>
-                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                          </div> -->
+                                                                                                                                                                                                                                                                                                                                <div class="card-body py-2">
+                                                                                                                                                                                                                                                                                                                                  <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
+                                                                                                                                                                                                                                                                                                                                  <span class="fw-semibold ms-2" style="font-size: 1.2rem">Products</span>
+                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                              </div> -->
 
             <div class="card category-card border-0">
                 <div class="card-body p-0 mb-3">
@@ -153,18 +155,18 @@
 
         <div class="container-fluid container-lg mt-5 mb-2">
             <!-- <div class="card category-card border-0">
-                                                                                                                                                                                                                                                                                                                            <div class="card-body py-2">
-                                                                                                                                                                                                                                                                                                                              <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
-                                                                                                                                                                                                                                                                                                                              <span class="fw-semibold ms-2" style="font-size: 1.2rem">Brands</span>
-                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                          </div> -->
+                                                                                                                                                                                                                                                                                                                                <div class="card-body py-2">
+                                                                                                                                                                                                                                                                                                                                  <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
+                                                                                                                                                                                                                                                                                                                                  <span class="fw-semibold ms-2" style="font-size: 1.2rem">Brands</span>
+                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                              </div> -->
 
             <div class="card category-card border-0">
                 <div class="card-body p-0 mb-3">
                     <!-- <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" /> -->
                     <!-- <span class="fw-semibold ms-2" style="font-size: 1.2rem">Business Listing</span> -->
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem" ;>Brand Listing</span>
+                        <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem;">Brand Listing</span>
 
                         <a href="<?php echo e(route('brand.list')); ?>">
                             <button type="button" class="btn border-0 fw-semibold" style="font-size: 1.2rem;">View
@@ -192,20 +194,62 @@
             </div>
         </div>
 
+
+        <div class="container-fluid container-lg mt-5 mb-2">
+            <!-- <div class="card category-card border-0">
+                                                                                                                                                                                                                                                                                                                                <div class="card-body py-2">
+                                                                                                                                                                                                                                                                                                                                  <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" />
+                                                                                                                                                                                                                                                                                                                                  <span class="fw-semibold ms-2" style="font-size: 1.2rem">Brands</span>
+                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                              </div> -->
+
+            <div class="card category-card border-0">
+                <div class="card-body p-0 mb-3">
+                    <!-- <img src="<?php echo e(asset('images/maintenance.png')); ?>" alt="" title="" style="width: 50px; height: 50px" /> -->
+                    <!-- <span class="fw-semibold ms-2" style="font-size: 1.2rem">Business Listing</span> -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem;">Locations Listing</span>
+
+                        <a href="<?php echo e(route('locations.list')); ?>">
+                            <button type="button" class="btn border-0 fw-semibold" style="font-size: 1.2rem;">View
+                                All</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-2 row-cols-md-4 row-cols-md-6 g-3">
+                <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col">
+                        <div class="card category-list-card border- py-2" style="width: 100%">
+                            <img class="card-img-top d-block m-auto" src="<?php echo e(asset($item->image)); ?>"
+                                alt="<?php echo e($item->title); ?>" title="<?php echo e($item->title); ?>"
+                                style="width: 3rem; height: 3rem" />
+                            <div class="card-body text-truncate py-2">
+                                <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
+                                    <?php echo e($item->title); ?></h6>
+                                <a href="<?php echo e(route('locations.list')); ?>" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        </div>
+
         <div class="container my-5 py-5 price-card bg-light">
             <!-- <div class="row mb-5">
-                                                                                                                                                                                                                                                                                                                              <div class="col-sm-12 col-md-5">
-                                                                                                                                                                                                                                                                                                                                <h1 class="mb-3 mb-md-0">
-                                                                                                                                                                                                                                                                                                                                  <span style="color: var(--sky-blue);"> Grow Your </span>
-                                                                                                                                                                                                                                                                                                                                  <br />
-                                                                                                                                                                                                                                                                                                                                  <span style="color: var(--deep-orrange);"> Digital Footprint </span>
-                                                                                                                                                                                                                                                                                                                                </h1>
-                                                                                                                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                                                                                  <div class="col-sm-12 col-md-5">
+                                                                                                                                                                                                                                                                                                                                    <h1 class="mb-3 mb-md-0">
+                                                                                                                                                                                                                                                                                                                                      <span style="color: var(--sky-blue);"> Grow Your </span>
+                                                                                                                                                                                                                                                                                                                                      <br />
+                                                                                                                                                                                                                                                                                                                                      <span style="color: var(--deep-orrange);"> Digital Footprint </span>
+                                                                                                                                                                                                                                                                                                                                    </h1>
+                                                                                                                                                                                                                                                                                                                                  </div>
 
-                                                                                                                                                                                                                                                                                                                              <div class="col-sm-12 col-md-7">
-                                                                                                                                                                                                                                                                                                                                <p style="text-align: justify">Boost your online presence and improve your chances of being found by potential customers with Aiwa's business listing. From free listings and prime position adverts to SEO services, Aiwa offers a diverse suite of features to help your business reach a wider audience in the UAE. Our subscription plans are designed to accommodate the diverse needs of businesses. Whether you are a budding entrepreneur, a solopreneur, or a thriving retail chain, there is a plan for you.</p>
-                                                                                                                                                                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                  <div class="col-sm-12 col-md-7">
+                                                                                                                                                                                                                                                                                                                                    <p style="text-align: justify">Boost your online presence and improve your chances of being found by potential customers with Aiwa's business listing. From free listings and prime position adverts to SEO services, Aiwa offers a diverse suite of features to help your business reach a wider audience in the UAE. Our subscription plans are designed to accommodate the diverse needs of businesses. Whether you are a budding entrepreneur, a solopreneur, or a thriving retail chain, there is a plan for you.</p>
+                                                                                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                                                                                                </div> -->
 
             <div class="d-flex flex-column justify-content-center align-items-center mb-5 gap-2">
                 <h4 class="show-plan">Show Plans</h4>

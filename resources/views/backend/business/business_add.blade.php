@@ -213,7 +213,7 @@
                                     <h4 class="card-title">Company Description</h4>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea name="general_dsc" class="form-control ckeditor" id="company_description" rows="6"></textarea>
+                                    <textarea class="form-control ckeditor" id="company_description" name="company_description" rows="6"></textarea>
                                 </div>
                                 <div class="col-md-12">
                                     @error('company_description')
@@ -431,9 +431,14 @@
                                 <label for="title" class="col-sm-2 col-form-label">City <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="city"
-                                        class="form-control @error('city') is-invalid @enderror" id="city"
-                                        placeholder="City">
+                                    <select name="city" class="form-control select2 @error('city') is-invalid @enderror"
+                                    id="city">
+                                    @foreach ($locations as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ old('city') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->title }}</option>
+                                    @endforeach
+                                </select>
                                 </div>
                                 @error('city')
                                     <span class="invalid-feedback" role="alert">
@@ -692,7 +697,7 @@
                             <div class="form-group row">
                                 <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="company_name"
+                                    <input type="text" name="seo_title"
                                         class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
                                         placeholder="SEO Title">
                                 </div>

@@ -39,6 +39,7 @@
 @section('content')
     <form action="{{ route('business.update', $business->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="id" value="{{ $business->id }}">
         <div class="row">
 
             <div class="col-md-12">
@@ -53,7 +54,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_person_name"
                                         class="form-control @error('contact_person_name') is-invalid @enderror"
-                                        id="contact_person_name" placeholder="Contact Person Name" value="{{ $business->contact_person_name }}">
+                                        id="contact_person_name" placeholder="Contact Person Name"
+                                        value="{{ $business->contact_person_name }}">
                                 </div>
                                 @error('contact_person_name')
                                     <span class="invalid-feedback" role="alert">
@@ -83,7 +85,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_mobile"
                                         class="form-control @error('contact_mobile') is-invalid @enderror"
-                                        id="contact_mobile" placeholder="Contact Mobile" value="{{ $business->contact_mobile }}">
+                                        id="contact_mobile" placeholder="Contact Mobile"
+                                        value="{{ $business->contact_mobile }}">
                                 </div>
                                 @error('contact_mobile')
                                     <span class="invalid-feedback" role="alert">
@@ -98,7 +101,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_whatsapp"
                                         class="form-control @error('contact_whatsapp') is-invalid @enderror"
-                                        id="contact_whatsapp" placeholder="Contact WhatsApp" value="{{ $business->contact_whatsapp }}">
+                                        id="contact_whatsapp" placeholder="Contact WhatsApp"
+                                        value="{{ $business->contact_whatsapp }}">
                                 </div>
                                 @error('contact_whatsapp')
                                     <span class="invalid-feedback" role="alert">
@@ -112,7 +116,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_google_map"
                                         class="form-control @error('contact_google_map') is-invalid @enderror"
-                                        id="contact_google_map" placeholder="Contact Google Map" value="{{ $business->contact_google_map }}">
+                                        id="contact_google_map" placeholder="Contact Google Map"
+                                        value="{{ $business->contact_google_map }}">
                                 </div>
                                 @error('contact_google_map')
                                     <span class="invalid-feedback" role="alert">
@@ -127,7 +132,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact_address"
                                         class="form-control @error('contact_address') is-invalid @enderror"
-                                        id="contact_address" placeholder="Contact Address" value="{{ $business->contact_address }}">
+                                        id="contact_address" placeholder="Contact Address"
+                                        value="{{ $business->contact_address }}">
                                 </div>
                                 @error('contact_address')
                                     <span class="invalid-feedback" role="alert">
@@ -140,8 +146,8 @@
                                 <label for="title" class="col-sm-2 col-form-label">Contact Photo</label>
                                 <div class="col-sm-10">
                                     <input type="file" name="contact_image"
-                                        class="form-control @error('contact_image') is-invalid @enderror" id="contact_image"
-                                        placeholder="Contact Website">
+                                        class="form-control @error('contact_image') is-invalid @enderror"
+                                        id="contact_image" placeholder="Contact Website">
                                 </div>
                                 @error('contact_image')
                                     <span class="invalid-feedback" role="alert">
@@ -181,7 +187,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="company_mobile"
                                         class="form-control @error('company_mobile') is-invalid @enderror"
-                                        id="company_mobile" placeholder="Company Mobile" value="{{ $business->company_mobile }}">
+                                        id="company_mobile" placeholder="Company Mobile"
+                                        value="{{ $business->company_mobile }}">
                                 </div>
                                 @error('company_mobile')
                                     <span class="invalid-feedback" role="alert">
@@ -196,7 +203,8 @@
                                 <div class="col-sm-10">
                                     <input type="email" name="company_email"
                                         class="form-control @error('company_email') is-invalid @enderror"
-                                        id="company_email" placeholder="Company Email" value="{{ $business->company_email }}">
+                                        id="company_email" placeholder="Company Email"
+                                        value="{{ $business->company_email }}">
                                 </div>
                                 @error('company_email')
                                     <span class="invalid-feedback" role="alert">
@@ -210,7 +218,7 @@
                                     <h4 class="card-title">Company Description</h4>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea name="general_dsc" class="form-control ckeditor" id="company_description" rows="6">{{ $business->company_description }}</textarea>
+                                    <textarea class="form-control ckeditor" id="company_description" name="company_description" rows="6">{{ $business->company_description }}</textarea>
                                 </div>
                                 <div class="col-md-12">
                                     @error('company_description')
@@ -238,7 +246,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="business_type"
                                         class="form-control @error('business_type') is-invalid @enderror"
-                                        id="business_type" placeholder="Business Type" value="{{ $business->business_type }}">
+                                        id="business_type" placeholder="Business Type"
+                                        value="{{ $business->business_type }}">
                                 </div>
                                 @error('business_type')
                                     <span class="invalid-feedback" role="alert">
@@ -253,7 +262,8 @@
                                 <div class="col-sm-10">
                                     <input type="number" name="business_price"
                                         class="form-control @error('business_price') is-invalid @enderror"
-                                        id="business_price" placeholder="Business Price" value="{{ $business->business_price }}">
+                                        id="business_price" placeholder="Business Price"
+                                        value="{{ $business->business_price }}">
                                 </div>
                                 @error('business_price')
                                     <span class="invalid-feedback" role="alert">
@@ -270,7 +280,9 @@
                                     <select name="business_category_id" class="form-control select2"
                                         id="business_category_id">
                                         @foreach ($categories as $item)
-                                            <option value="{{ $item->id }}" {{ $business->business_category_id == $item->id ? 'selected' : '' }}>{{ $item->category_name }}</option>
+                                            <option value="{{ $item->id }}"
+                                                {{ $business->business_category_id == $item->id ? 'selected' : '' }}>
+                                                {{ $item->category_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -356,7 +368,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="whatsapp_number"
                                         class="form-control @error('whatsapp_number') is-invalid @enderror"
-                                        id="whatsapp_number" placeholder="WhatsApp Number" value="{{ $business->whatsapp_number }}">
+                                        id="whatsapp_number" placeholder="WhatsApp Number"
+                                        value="{{ $business->whatsapp_number }}">
                                 </div>
                                 @error('whatsapp_number')
                                     <span class="invalid-feedback" role="alert">
@@ -430,9 +443,13 @@
                                 <label for="title" class="col-sm-2 col-form-label">City <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="city"
-                                        class="form-control @error('city') is-invalid @enderror" id="city"
-                                        placeholder="City" value="{{ $business->city }}">
+                                        <select name="city" class="form-control select2 @error('city') is-invalid @enderror" id="city">
+                                            @foreach ($locations as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $business->locations_id == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->title }}</option>
+                                            @endforeach
+                                        </select>
                                 </div>
                                 @error('city')
                                     <span class="invalid-feedback" role="alert">
@@ -658,10 +675,10 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select name="status" class="form-control select2" id="status">
-                                        <option value="active">Active</option>
-                                        <option value="pending">Pending</option>
-                                        <option value="inactive">Inactive</option>
-                                        <option value="rejected">Rejected</option>
+                                        <option value="active" @if($business->status == 'active') selected @endif>Active</option>
+                                        <option value="pending" @if($business->status == 'pending') selected @endif>Pending</option>
+                                        <option value="inactive" @if($business->status == 'inactive') selected @endif>Inactive</option>
+                                        <option value="rejected" @if($business->status == 'rejected') selected @endif>Rejected</option>
                                     </select>
                                 </div>
                             </div>
@@ -671,8 +688,8 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select name="is_featured" class="form-control select2" id="is_featured">
-                                        <option value="0" >No</option>
-                                        <option value="1" >Yes</option>
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
                                     </select>
                                 </div>
                             </div>
@@ -691,7 +708,7 @@
                             <div class="form-group row">
                                 <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="company_name"
+                                    <input type="text" name="seo_title"
                                         class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
                                         placeholder="SEO Title" value="{{ $business->seo_title }}">
                                 </div>
@@ -707,7 +724,8 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="seo_keywords"
                                         class="form-control @error('seo_keywords') is-invalid @enderror"
-                                        id="seo_keywords" placeholder="SEO Keywords" value="{{ $business->seo_keywords }}">
+                                        id="seo_keywords" placeholder="SEO Keywords"
+                                        value="{{ $business->seo_keywords }}">
                                 </div>
                                 @error('seo_keywords')
                                     <span class="invalid-feedback" role="alert">
@@ -749,7 +767,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Update</button>
                 <hr>
             </div>
 

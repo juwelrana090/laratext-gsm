@@ -373,7 +373,7 @@
                                             <small class="fw-semibold">{{ $businesses->company_name }}</small>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td scope="row">
                                             <small class="fw-semibold">About</small>
                                         </td>
@@ -381,7 +381,7 @@
                                         <td style="text-align: justify;">
                                             <small class="fw-semibold">{{ $businesses->company_description }}</small>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td scope="row">
                                             <small class="fw-semibold">Business Hours</small>
