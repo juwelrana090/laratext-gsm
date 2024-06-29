@@ -18,14 +18,13 @@ class CreateLocationsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('image');
-            $table->string('description');
+            $table->longText('description');
             $table->text('meta_title')->nullable();
             $table->text('meta_tags')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('meta_canonical_url')->nullable();
-            $table->integer('image_id')->nullable()->unsigned()->index();
-            $table->foreign('image_id')->references('id')->on('file_managers');
+            $table->integer('image_id')->nullable();
             $table->timestamps();
         });
     }

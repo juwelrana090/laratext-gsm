@@ -28,7 +28,7 @@ class CreateExpertsTable extends Migration
             $table->string('slug');
             $table->string('about');
             $table->json('working_hours');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('services');
             $table->string('starting_prices');
             $table->string('social_profile')->nullable();
@@ -44,8 +44,7 @@ class CreateExpertsTable extends Migration
             $table->text('seo_keywords')->nullable();
             $table->text('seo_description')->nullable();
             $table->string('expert_image');
-            $table->integer('image_id')->nullable()->unsigned()->index();
-            $table->foreign('image_id')->references('id')->on('file_managers');
+            $table->integer('image_id')->nullable();
             $table->timestamps();
         });
     }

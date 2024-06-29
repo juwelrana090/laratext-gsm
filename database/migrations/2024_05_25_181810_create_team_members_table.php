@@ -18,11 +18,11 @@ class CreateTeamMembersTable extends Migration
             $table->integer('businesses_id')->nullable()->unsigned()->index();
             $table->foreign('businesses_id')->references('id')->on('businesses');
             $table->string('name');
-            $table->string('designation');
+            $table->text('designation');
             $table->string('years_of_experience');
             $table->string('language');
             $table->string('profile_image');
-            $table->integer('image_id');
+            $table->integer('image_id')->nullable();
             $table->timestamps();
         });
     }

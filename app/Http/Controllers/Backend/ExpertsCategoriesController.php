@@ -174,9 +174,6 @@ class ExpertsCategoriesController extends Controller
 
         if ($request->hasFile('category_image')) {
 
-            $fileManager->delete();
-            unlink($fileManager->file_path);
-
             $path = public_path('uploads/files/' . $now_day);
 
             if (!File::isDirectory($path)) {
@@ -238,7 +235,7 @@ class ExpertsCategoriesController extends Controller
             toastr()->success('Categories has been Update', 'Success');
         }
 
-        return redirect()->route('business.category.index');
+        return redirect()->route('experts.category.index');
     }
 
     /**

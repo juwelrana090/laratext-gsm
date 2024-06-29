@@ -111,7 +111,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body" style="position: relative;">
-                        @include('backend.business.categories.categories_list')
+                        @include('backend.experts.categories.categories_list')
                     </div>
                 </div>
             </div>

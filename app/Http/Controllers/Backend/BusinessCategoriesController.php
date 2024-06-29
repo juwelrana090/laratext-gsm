@@ -180,6 +180,7 @@ class BusinessCategoriesController extends Controller
             $fileManager->delete();
             unlink($fileManager->file_path);
 
+
             $path = public_path('uploads/files/' . $now_day);
 
             if (!File::isDirectory($path)) {
@@ -239,6 +240,11 @@ class BusinessCategoriesController extends Controller
 
         if ($category_create) {
             toastr()->success('Categories has been Update', 'Success');
+
+            if ($request->hasFile('category_image')) {
+                $fileManager->delete();
+                unlink($fileManager->file_path);
+            }
         }
 
         return redirect()->route('business.category.index');
