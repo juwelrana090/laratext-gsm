@@ -261,22 +261,25 @@ class ExpertsController extends Controller
         $title = $request->title;
         $slug = Str::slug($title);
 
+        $expert = Experts::where('id', '=', $id)->first();
         $experts = Experts::where('slug', 'LIKE', "%{$slug}%")->get();
         $count = $experts->count();
 
-        if ($count > 0) {
-            $data = [];
-            foreach ($experts as $expert) {
-                $data[] = $expert['slug'];
-            }
+        if ($title != $expert->title && $slug != $expert->slug) {
+            if ($count > 0) {
+                foreach ($experts as $expert) {
+                    $data[] = $expert['slug'];
+                }
 
-            if (in_array($slug, $data)) {
-                $expert_count = 0;
-                while (in_array(($slug . '-' . ++$expert_count), $data));
-                $title = $title . " " . $expert_count;
-                $slug = $slug . '-' . $expert_count;
+                if (in_array($slug, $data)) {
+                    $expert_count = 0;
+                    while (in_array(($slug . '-' . ++$expert_count), $data));
+                    $title = $title . " " . $expert_count;
+                    $slug = $slug . '-' . $expert_count;
+                }
             }
         }
+
 
         $expert_category = ExpertsCategories::where('id', '=', $request->experts_categories_id)->first();
 
@@ -285,8 +288,6 @@ class ExpertsController extends Controller
         $file_location = "";
         $image_id = "";
 
-
-        $expert = Experts::where('id', '=', $id)->first();
 
         if ($request->hasFile('expert_image')) {
             $path = public_path('uploads/files/' . $now_day);

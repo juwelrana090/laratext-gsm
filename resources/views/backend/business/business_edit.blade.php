@@ -240,7 +240,7 @@
                         <div class="card-body" style="position: relative;">
                             <h4 class="card-title">Business Info</h4>
                             <hr>
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Business Type <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
@@ -254,7 +254,7 @@
                                         <span>{{ $message }}</span>
                                     </span>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="form-group row">
                                 <label for="business_price" class="col-sm-2 col-form-label">Business Price <span

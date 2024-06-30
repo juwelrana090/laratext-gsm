@@ -9,7 +9,7 @@
     <main>
         <div class="container-fluid container-lg business-details my-5">
             <div class="row">
-                <div class="col-12 col-md-8 col-lg-9">
+                <div class="col-12 col-md-12 col-lg-12">
                     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
                         aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -31,61 +31,18 @@
 
 
                     <!-- <div class="info">
-                                                                                                                                                        <i class="bi bi-geo-alt-fill me-3">
-                                                                                                                                                          <small class="fw-semibold">Rue de Tracy</small>
-                                                                                                                                                        </i>
+                                                                                                                                                                                                                                                                                                <i class="bi bi-geo-alt-fill me-3">
+                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">Rue de Tracy</small>
+                                                                                                                                                                                                                                                                                                </i>
 
-                                                                                                                                                        <i class="bi bi-tags-fill me-3">
-                                                                                                                                                          <small class="fw-semibold">For Rent</small>
-                                                                                                                                                        </i>
+                                                                                                                                                                                                                                                                                                <i class="bi bi-tags-fill me-3">
+                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">For Rent</small>
+                                                                                                                                                                                                                                                                                                </i>
 
-                                                                                                                                                        <i class="bi bi-calendar3">
-                                                                                                                                                          <small class="fw-semibold">July 3, 2023</small>
-                                                                                                                                                        </i>
-                                                                                                                                                      </div> -->
-
-                    <div id="carouselBusinessList_1" class="carousel slide position-relative" data-bs-ride="carousel">
-                        <small
-                            class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                            {{ $businesses->business_type }}
-                        </small>
-
-                        {{-- <small
-                            class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
-                            <i class="bi bi-geo-alt-fill"></i>
-                            {{ $businesses->contact_address }}
-                        </small> --}}
-
-                        <?php $images = json_decode($businesses->business_images); ?>
-
-                        <div class="carousel-inner rounded overflow-hidden z-1 mt-4">
-                            @foreach ($images as $image)
-                                <div class="carousel-item active">
-                                    <img src="{{ asset($image->image_path) }}" class="img-fluid d-block w-100 rounded"
-                                        alt="{{ $businesses->company_name }}" title="{{ $businesses->company_name }}"
-                                        style="height: 400px;">
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <h2 style="color: var(--dark_blue);">{{ $businesses->company_name }}</h2>
-
-                        {{-- <h3 class="rounded-4 text-center py-3 mb-5"
-                            style="background-color: #d3ecfa; color: var(--sky-blue);">
-                            ${{ $businesses->business_price }} Per Month</h3> --}}
-
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselBusinessList_1"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselBusinessList_1"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                                                                                                                                                                                                                                                                                                <i class="bi bi-calendar3">
+                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">July 3, 2023</small>
+                                                                                                                                                                                                                                                                                                </i>
+                                                                                                                                                                                                                                                                                              </div> -->
 
                     <!--<h4 class="mt-4 mb-3">Overview</h4>-->
                     <!--<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">-->
@@ -268,78 +225,160 @@
 
                 </div>
 
-                <div class="col-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div id="carouselBusinessList_1" class="carousel slide position-relative" data-bs-ride="carousel">
+                        {{-- <small
+                            class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
+                            {{ $businesses->business_type }}
+                        </small> --}}
 
-                    <div class="card profile p-2 border-0">
-                        <div class="img-container rounded pt-2">
-                            <img src="{{ asset($businesses->contact_image) }}" class="img-fluid rounded d-block m-auto"
-                                alt="{{ $businesses->contact_person_name }}"
-                                title="{{ $businesses->contact_person_name }}" style="width: auto; height: 235px;">
+                        {{-- <small
+                            class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            {{ $businesses->contact_address }}
+                        </small> --}}
+
+                        <?php $images = json_decode($businesses->business_images); ?>
+
+                        <div class="carousel-inner rounded overflow-hidden z-1 mt-4">
+                            @foreach ($images as $image)
+                                <div class="carousel-item active">
+                                    <img src="{{ asset($image->image_path) }}" class="img-fluid d-block w-100 rounded"
+                                        alt="{{ $businesses->company_name }}" title="{{ $businesses->company_name }}"
+                                        style="height: 400px;">
+                                </div>
+                            @endforeach
                         </div>
+                        {{-- <h3 class="rounded-4 text-center py-3 mb-5"
+                            style="background-color: #d3ecfa; color: var(--sky-blue);">
+                            ${{ $businesses->business_price }} Per Month</h3> --}}
 
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <p class="card-text my-0">Real Estate Agent</p>
-                            <h4 class="card-title mb-3">{{ $businesses->contact_person_name }}</h4>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselBusinessList_1"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
 
-                            <small class="fw-semibold">Office:{{ $businesses->contact_whatsapp }}</small>
-                            <small class="fw-semibold">Mobile: {{ $businesses->contact_mobile }}</small>
-                            <small class="fw-semibold">Email: {{ $businesses->contact_email }}</small>
-                            <small class="fw-semibold">Website: {{ $businesses->contact_website }}</small>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselBusinessList_1"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="row mt-2">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <div class="row">
+                                <div class="col-sm-12 mb-3">
+                                    <h1 style="color: var(--dark_blue);">{{ $businesses->company_name }}</h1>
+                                </div>
+                                <div class="col-sm-12 d-flex align-items-center gap-5 mb-3">
+                                    <div class="d-flex gap-1 text-center">
+                                        <i class="bi bi-house-fill d-block"></i>
+                                        <span class="d-block fw-semibold">Address : </span>
+                                        <span>{{ $businesses->contact_address }}</span>
+                                    </div>
 
-                            <div class="mt-4">
-                                <a class="icon-link rounded-circle px-2 py-1 me-2"
-                                    href="tel:{{ $businesses->contact_mobile }}"
-                                    style="background-color: var(--dark_blue);">
-                                    <i class="bi bi-telephone fs-5 mb-2 text-white"></i>
-                                </a>
+                                    <div class="d-flex gap-1 text-center mt-4 mt-md-0">
+                                        <i class="bi bi-cash-coin"></i>
+                                        <span class="d-block fw-semibold">Price : </span>
+                                        <span>{{ $businesses->business_price }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 d-flex align-items-center gap-1" style="height: 45px;">
+                                    <a class="btn btn-outline-info d-flex align-items-center gap-1 px-2 py-1"
+                                        style="width: 130px; height: 35px;" href="tel:{{ $businesses->company_mobile }}">
+                                        <i class="bi bi-telephone fs-5"></i>
+                                        <span>Click to Call</span>
+                                    </a>
 
-                                <a class="icon-link rounded-circle px-2 py-1 me-2"
-                                    href="https://api.whatsapp.com/send?phone={{ $businesses->contact_whatsapp }}"
-                                    style="background-color: #25D366;">
-                                    <i class="bi bi-whatsapp fs-5 mb-2 text-white"></i>
-                                </a>
+                                    <a class="btn btn-outline-success d-flex justify-content-center align-items-center gap-1 px-2 py-1"
+                                        style="width: 120px; height: 35px;"
+                                        href="https://api.whatsapp.com/send?phone={{ $businesses->contact_whatsapp }}">
+                                        <i class="bi bi-whatsapp fs-5"></i>
+                                        <span>Whatsapp</span>
+                                    </a>
 
-                                <a class="icon-link rounded-circle px-2 py-1"
-                                    href="mail:{{ $businesses->contact_email }}" style="background-color: #4b4b4b;">
-                                    <i class="bi bi-envelope fs-5 mb-2 text-white"></i>
-                                </a>
+                                    <a class="btn btn-outline-secondary d-flex justify-content-center align-items-center gap-1 px-2 py-1"
+                                        style="width: 140px; height: 35px;" href="mail:{{ $businesses->company_email }}">
+                                        <i class="bi bi-envelope fs-5"></i>
+                                        <span>Click to Email</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-12 col-md-4 col-lg-4 d-flex justify-content-center">
+                            <div class="card border shadow-sm"
+                                style="width: auto; height: 235px; border-color: #c8c8c83b !important; border-radius: 05px;">
+                                <div class="card-body p-0 overflow-hidden">
+                                    <div class="d-flex overflow-hidden">
+                                        <div class="flex-shrink-0">
+                                            <img src="{{ asset($businesses->contact_image) }}"
+                                                alt="{{ $businesses->contact_person_name }}"
+                                                title="{{ $businesses->contact_person_name }}" class="img-fluid"
+                                                style="width: 200px; height: 235px; border-radius: 5px;">
+                                        </div>
+                                        <div class="flex-grow-1 p-1 ms-3">
+                                            <h5 class="mb-1">{{ $businesses->contact_person_name }}</h5>
+                                            <p class="mb-2 pb-1">Real Estate Agent</p>
+                                            <div class="row rounded-3 mt-2 py-2 bg-body-tertiary">
+                                                <small
+                                                    class="col-sm-12 fw-semibold">Office:{{ $businesses->contact_whatsapp }}</small>
+                                                <small class="col-sm-12 fw-semibold">Mobile:
+                                                    {{ $businesses->contact_mobile }}</small>
+                                                <small class="col-sm-12 fw-semibold">Email:
+                                                    {{ $businesses->contact_email }}</small>
+                                                <small class="col-sm-12 fw-semibold">Website:
+                                                    {{ $businesses->contact_website }}</small>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mt-2 px-1 py-2"
+                                                style="height: 45px;">
+                                                <a class="icon-link rounded-circle px-2 py-1 me-2"
+                                                    href="tel:{{ $businesses->contact_mobile }}"
+                                                    style="background-color: var(--dark_blue);">
+                                                    <i class="bi bi-telephone fs-5 mb-2 text-white"></i>
+                                                </a>
 
+                                                <a class="icon-link rounded-circle px-2 py-1 me-2"
+                                                    href="https://api.whatsapp.com/send?phone={{ $businesses->contact_whatsapp }}"
+                                                    style="background-color: #25D366;">
+                                                    <i class="bi bi-whatsapp fs-5 mb-2 text-white"></i>
+                                                </a>
+
+                                                <a class="icon-link rounded-circle px-2 py-1"
+                                                    href="mail:{{ $businesses->contact_email }}"
+                                                    style="background-color: #4b4b4b;">
+                                                    <i class="bi bi-envelope fs-5 mb-2 text-white"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <div class="card profile p-2 border-0 shadow-sm">
+                                <div class="img-container rounded pt-2">
+                                    <img src="{{ asset($businesses->contact_image) }}"
+                                        class="img-fluid rounded d-block m-auto"
+                                        alt="{{ $businesses->contact_person_name }}"
+                                        title="{{ $businesses->contact_person_name }}"
+                                        style="width: auto; height: 235px;">
+                                </div>
+
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <p class="card-text my-0">Real Estate Agent</p>
+                                    <h4 class="card-title mb-3">{{ $businesses->contact_person_name }}</h4>
+                                    <small class="fw-semibold">Office:{{ $businesses->contact_whatsapp }}</small>
+                                    <small class="fw-semibold">Mobile: {{ $businesses->contact_mobile }}</small>
+                                    <small class="fw-semibold">Email: {{ $businesses->contact_email }}</small>
+                                    <small class="fw-semibold">Website: {{ $businesses->contact_website }}</small>
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="mt-5 py-4 contact-info" style="background-color: white;">
-            <div class="container-fluid container-lg">
-                <div class="row row-cols-2 row-cols-md-4">
-                    <div class="col text-center">
-                        <i class="bi bi-house-fill d-block"></i>
-                        <span>{{ $businesses->contact_address }}</span>
-                    </div>
-
-                    <div class="col text-center">
-                        <i class="bi bi-telephone-forward-fill"></i>
-                        <span class="d-block">Telephone</span>
-                        <span>{{ $businesses->company_mobile }}</span>
-                    </div>
-
-                    <div class="col text-center mt-4 mt-md-0">
-                        <i class="bi bi-envelope-fill"></i>
-                        <span class="d-block">Email</span>
-                        <span>{{ $businesses->company_mobile }}</span>
-                    </div>
-
-                    <div class="col text-center mt-4 mt-md-0">
-                        <i class="bi bi-cash-coin"></i>
-                        <span class="d-block">Price</span>
-                        <span>{{ $businesses->business_price }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
         <div class="container-fluid container-lg mt-5">
             <div class="row">
@@ -347,8 +386,8 @@
                     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <!-- <button class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill"
-                                                                                                                                                            data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
-                                                                                                                                                            aria-selected="true">Overview</button> -->
+                                                                                                                                                                                                                                                                                                    data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
+                                                                                                                                                                                                                                                                                                    aria-selected="true">Overview</button> -->
 
                             <h5 style="margin-top: 10px;">Overview</h5>
                         </li>
@@ -647,551 +686,82 @@
 
                 <h4 class="mt-5">Similar Businesses</h4>
                 <div class="row row-cols-md-2 row-cols-lg-3 g-3">
-                    <div class="col">
-                        <div class="card border-0 similar-properties-card">
-                            <div class="card-body p-2">
-                                <div id="carouselBusinessList_2" class="carousel slide position-relative hover-play mb-2">
-                                    <small
+
+                    @foreach ($similar as $item)
+                        <div class="col">
+                            <div class="card border-0 similar-properties-card">
+                                <div class="card-body p-2">
+                                    <div id="carouselBusinessList_2"
+                                        class="carousel slide position-relative hover-play mb-2">
+                                        {{-- <small
                                         class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
                                         For Rent
-                                    </small>
+                                    </small> --}}
 
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
-                                        <i class="bi bi-geo-alt-fill"></i>
-                                        Dhaka, Bangladesh
-                                    </small>
+                                        <small
+                                            class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
+                                            <i class="bi bi-geo-alt-fill"></i>
+                                            {{ $item->city }}, {{ $item->country }}
+                                        </small>
 
-                                    <div class="carousel-inner rounded overflow-hidden z-1">
-                                        <div class="carousel-item active">
-                                            <img src="./images/room_1.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
+                                        <div class="carousel-inner rounded overflow-hidden z-1">
+                                            <?php $images = json_decode($item->business_images); ?>
+                                            @foreach ($images as $image)
+                                                <div class="carousel-item active">
+                                                    <img src="{{ asset($image->image_path) }}"
+                                                        class="img-fluid d-block w-100 rounded"
+                                                        alt="{{ $item->company_name }}"
+                                                        title="{{ $item->company_name }}" style="height: 330px;">
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_2.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_3.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_4.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_5.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_6.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_7.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_8.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
+
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselBusinessList_2" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselBusinessList_2" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
                                     </div>
 
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-
-                                <div class="mx-0 mx-md-2">
-                                    <small class="card-text fw-semibold text-muted">August 14, 2023</small>
-                                    <h5 class="card-title text-truncate fw-bold mt-2">Modern and Luxury Apartment</h5>
-                                    <h6 class="card-text fw-bold" style="color: var(--sky-blue);">$3,600 per Month</h6>
+                                    <div class="mx-0 mx-md-2">
+                                        <small class="card-text fw-semibold text-muted">
+                                            <?php
+                                            echo date('M d, Y', strtotime($item->created_at));
+                                            ?>
+                                        </small>
+                                        <h5 class="card-title text-truncate fw-bold mt-2">{{ $item->company_name }}</h5>
+                                        <h6 class="card-text fw-bold" style="color: var(--sky-blue);">
+                                            ${{ $item->business_price }}</h6>
 
 
-                                    <div class="mb-2 mt-3 d-flex justify-content-between">
-                                        <i class="bi bi-buildings-fill me-1">
-                                            <small class="fw-semibold">Villa</small>
-                                        </i>
+                                        {{-- <div class="mb-2 mt-3 d-flex justify-content-between">
+                                            <i class="bi bi-buildings-fill me-1">
+                                                <small class="fw-semibold">Villa</small>
+                                            </i>
 
-                                        <i class="bi bi-diagram-3-fill me-1">
-                                            <small class="fw-semibold">1,800 sqft</small>
-                                        </i>
+                                            <i class="bi bi-diagram-3-fill me-1">
+                                                <small class="fw-semibold">1,800 sqft</small>
+                                            </i>
 
-                                        <i class="bi bi-door-open-fill me-1">
-                                            <small class="fw-semibold">5</small>
-                                        </i>
+                                            <i class="bi bi-door-open-fill me-1">
+                                                <small class="fw-semibold">5</small>
+                                            </i>
 
-                                        <i class="bi bi-door-open">
-                                            <small class="fw-semibold">3</small>
-                                        </i>
+                                            <i class="bi bi-door-open">
+                                                <small class="fw-semibold">3</small>
+                                            </i>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card border-0 similar-properties-card">
-                            <div class="card-body p-2">
-                                <div id="carouselBusinessList_2" class="carousel slide position-relative hover-play mb-2">
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                                        For Rent
-                                    </small>
-
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
-                                        <i class="bi bi-geo-alt-fill"></i>
-                                        Dhaka, Bangladesh
-                                    </small>
-
-                                    <div class="carousel-inner rounded overflow-hidden z-1">
-                                        <div class="carousel-item active">
-                                            <img src="./images/room_4.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_2.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_3.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_4.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_5.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_6.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_7.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_8.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                    </div>
-
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-
-                                <div class="mx-0 mx-md-2">
-                                    <small class="card-text fw-semibold text-muted">August 14, 2023</small>
-                                    <h5 class="card-title text-truncate fw-bold mt-2">Modern and Luxury Apartment</h5>
-                                    <h6 class="card-text fw-bold" style="color: var(--sky-blue);">$3,600 per Month</h6>
-
-
-                                    <div class="mb-2 mt-3 d-flex justify-content-between">
-                                        <i class="bi bi-buildings-fill me-1">
-                                            <small class="fw-semibold">Villa</small>
-                                        </i>
-
-                                        <i class="bi bi-diagram-3-fill me-1">
-                                            <small class="fw-semibold">1,800 sqft</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open-fill me-1">
-                                            <small class="fw-semibold">5</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open">
-                                            <small class="fw-semibold">3</small>
-                                        </i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card border-0 similar-properties-card">
-                            <div class="card-body p-2">
-                                <div id="carouselBusinessList_2" class="carousel slide position-relative hover-play mb-2">
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                                        For Rent
-                                    </small>
-
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
-                                        <i class="bi bi-geo-alt-fill"></i>
-                                        Dhaka, Bangladesh
-                                    </small>
-
-                                    <div class="carousel-inner rounded overflow-hidden z-1">
-                                        <div class="carousel-item active">
-                                            <img src="./images/room_8.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_2.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_3.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_4.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_5.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_6.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_7.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_8.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                    </div>
-
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-
-                                <div class="mx-0 mx-md-2">
-                                    <small class="card-text fw-semibold text-muted">August 14, 2023</small>
-                                    <h5 class="card-title text-truncate fw-bold mt-2">Modern and Luxury Apartment</h5>
-                                    <h6 class="card-text fw-bold" style="color: var(--sky-blue);">$3,600 per Month</h6>
-
-
-                                    <div class="mb-2 mt-3 d-flex justify-content-between">
-                                        <i class="bi bi-buildings-fill me-1">
-                                            <small class="fw-semibold">Villa</small>
-                                        </i>
-
-                                        <i class="bi bi-diagram-3-fill me-1">
-                                            <small class="fw-semibold">1,800 sqft</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open-fill me-1">
-                                            <small class="fw-semibold">5</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open">
-                                            <small class="fw-semibold">3</small>
-                                        </i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card border-0 similar-properties-card">
-                            <div class="card-body p-2">
-                                <div id="carouselBusinessList_2" class="carousel slide position-relative hover-play mb-2">
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                                        For Rent
-                                    </small>
-
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
-                                        <i class="bi bi-geo-alt-fill"></i>
-                                        Dhaka, Bangladesh
-                                    </small>
-
-                                    <div class="carousel-inner rounded overflow-hidden z-1">
-                                        <div class="carousel-item active">
-                                            <img src="./images/room_7.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_2.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_3.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_4.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_5.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_6.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_7.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_8.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                    </div>
-
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-
-                                <div class="mx-0 mx-md-2">
-                                    <small class="card-text fw-semibold text-muted">August 14, 2023</small>
-                                    <h5 class="card-title text-truncate fw-bold mt-2">Modern and Luxury Apartment</h5>
-                                    <h6 class="card-text fw-bold" style="color: var(--sky-blue);">$3,600 per Month</h6>
-
-
-                                    <div class="mb-2 mt-3 d-flex justify-content-between">
-                                        <i class="bi bi-buildings-fill me-1">
-                                            <small class="fw-semibold">Villa</small>
-                                        </i>
-
-                                        <i class="bi bi-diagram-3-fill me-1">
-                                            <small class="fw-semibold">1,800 sqft</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open-fill me-1">
-                                            <small class="fw-semibold">5</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open">
-                                            <small class="fw-semibold">3</small>
-                                        </i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card border-0 similar-properties-card">
-                            <div class="card-body p-2">
-                                <div id="carouselBusinessList_2" class="carousel slide position-relative hover-play mb-2">
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                                        For Rent
-                                    </small>
-
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
-                                        <i class="bi bi-geo-alt-fill"></i>
-                                        Dhaka, Bangladesh
-                                    </small>
-
-                                    <div class="carousel-inner rounded overflow-hidden z-1">
-                                        <div class="carousel-item active">
-                                            <img src="./images/room_6.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_2.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_3.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_4.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_5.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_6.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_7.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_8.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                    </div>
-
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-
-                                <div class="mx-0 mx-md-2">
-                                    <small class="card-text fw-semibold text-muted">August 14, 2023</small>
-                                    <h5 class="card-title text-truncate fw-bold mt-2">Modern and Luxury Apartment</h5>
-                                    <h6 class="card-text fw-bold" style="color: var(--sky-blue);">$3,600 per Month</h6>
-
-
-                                    <div class="mb-2 mt-3 d-flex justify-content-between">
-                                        <i class="bi bi-buildings-fill me-1">
-                                            <small class="fw-semibold">Villa</small>
-                                        </i>
-
-                                        <i class="bi bi-diagram-3-fill me-1">
-                                            <small class="fw-semibold">1,800 sqft</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open-fill me-1">
-                                            <small class="fw-semibold">5</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open">
-                                            <small class="fw-semibold">3</small>
-                                        </i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card border-0 similar-properties-card">
-                            <div class="card-body p-2">
-                                <div id="carouselBusinessList_2" class="carousel slide position-relative hover-play mb-2">
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                                        For Rent
-                                    </small>
-
-                                    <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
-                                        <i class="bi bi-geo-alt-fill"></i>
-                                        Dhaka, Bangladesh
-                                    </small>
-
-                                    <div class="carousel-inner rounded overflow-hidden z-1">
-                                        <div class="carousel-item active">
-                                            <img src="./images/room_5.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_5.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_3.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_4.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_5.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_6.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_7.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./images/room_8.jpg" class="img-fluid d-block w-100 rounded"
-                                                alt="..." title="..." style="height: 200px;">
-                                        </div>
-                                    </div>
-
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselBusinessList_2" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-
-                                <div class="mx-0 mx-md-2">
-                                    <small class="card-text fw-semibold text-muted">August 14, 2023</small>
-                                    <h5 class="card-title text-truncate fw-bold mt-2">Modern and Luxury Apartment</h5>
-                                    <h6 class="card-text fw-bold" style="color: var(--sky-blue);">$3,600 per Month</h6>
-
-
-                                    <div class="mb-2 mt-3 d-flex justify-content-between">
-                                        <i class="bi bi-buildings-fill me-1">
-                                            <small class="fw-semibold">Villa</small>
-                                        </i>
-
-                                        <i class="bi bi-diagram-3-fill me-1">
-                                            <small class="fw-semibold">1,800 sqft</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open-fill me-1">
-                                            <small class="fw-semibold">5</small>
-                                        </i>
-
-                                        <i class="bi bi-door-open">
-                                            <small class="fw-semibold">3</small>
-                                        </i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
 

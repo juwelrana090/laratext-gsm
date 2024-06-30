@@ -71,7 +71,6 @@ class BusinessController extends Controller
             'company_mobile' => 'required',
             'company_email' => 'required',
             'business_price' => 'required',
-            'business_type' => 'required',
             'business_category_id' => 'required',
             'city' => 'required',
             'country' => 'required',
@@ -209,7 +208,6 @@ class BusinessController extends Controller
             'company_description' => $request->company_description,
             'company_email' => $request->company_email,
             'business_price' => $request->business_price,
-            'business_type' => $request->business_type,
             'business_hours' => $business_hours,
             'business_images' => $business_images,
             'business_category_id' => $business_category->id,
@@ -285,7 +283,6 @@ class BusinessController extends Controller
             'company_mobile' => 'required',
             'company_email' => 'required',
             'business_price' => 'required',
-            'business_type' => 'required',
             'business_category_id' => 'required',
             'city' => 'required',
             'country' => 'required',
@@ -303,21 +300,23 @@ class BusinessController extends Controller
         }
 
         $company_name = $request->company_name;
-        $company_slug = Str::slug($company_name);
+        $company_slug = Str::slug($request->company_name);
 
         $businesses = Business::where('company_slug', 'LIKE', "%{$company_slug}%")->get();
         $count = $businesses->count();
 
-        if ($count > 0) {;
-            foreach ($businesses as $business) {
-                $data[] = $business['company_slug'];
-            }
+        if ($company_name != $business->company_name && $company_slug != $business->company_slug) {
+            if ($count > 0) {
+                foreach ($businesses as $expert) {
+                    $data[] = $expert['company_slug'];
+                }
 
-            if (in_array($company_slug, $data)) {
-                $business_count = 0;
-                while (in_array(($company_slug . '-' . ++$business_count), $data));
-                $company_name = $company_name . " " . $business_count;
-                $company_slug = $company_slug . '-' . $business_count;
+                if (in_array($company_slug, $data)) {
+                    $company_count = 0;
+                    while (in_array(($company_slug . '-' . ++$company_count), $data));
+                    $company_name = $company_name . " " . $company_count;
+                    $company_slug = $company_slug . '-' . $company_count;
+                }
             }
         }
 
@@ -431,7 +430,6 @@ class BusinessController extends Controller
             'company_description' => $request->company_description,
             'company_email' => $request->company_email,
             'business_price' => $request->business_price,
-            'business_type' => $request->business_type,
             'business_hours' => $business_hours,
             'business_images' => $business_images,
             'business_category_id' => $business_category->id,

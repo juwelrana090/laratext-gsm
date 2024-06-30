@@ -152,7 +152,7 @@
                                 <label for="exampleFormControlSelect1" class="font-weight-bold">English</label>
                                 <textarea name="general_dsc" class="form-control ckeditor" id="exampleFormControlTextarea1" rows="3">{{ $car->general_dsc }}</textarea>
                             </div>
-                            <hr>
+                            {{-- <hr>
                             <div style="background-color: red;color:white" class="p-2">
                                 <h4 class="card-title text-white">Select What you are showing</h4>
                                 <div class="form-check form-check-inline">
@@ -174,7 +174,63 @@
                                         id="sold" value="AC Parts">
                                     <label class="form-check-label text-white" for="sold">AC Parts</label>
                                 </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body" style="position: relative;">
+                            <h4 class="card-title">SEO Info</h4>
+                            <hr>
+                            <div class="form-group row">
+                                <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="seo_title"
+                                        class="form-control @error('seo_title') is-invalid @enderror"
+                                        id="seo_title" placeholder="SEO Title"
+                                        value="{{ $car->seo_title }}">
+                                </div>
+                                @error('seo_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
                             </div>
+
+                            <div class="form-group row">
+                                <label for="seo_keywords" class="col-sm-2 col-form-label">SEO
+                                    Keywords</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="seo_keywords"
+                                        class="form-control @error('seo_keywords') is-invalid @enderror"
+                                        id="seo_keywords" placeholder="SEO Keywords"
+                                        value="{{ $car->seo_keywords }}">
+                                </div>
+                                @error('seo_keywords')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="seo_description" class="col-sm-2 col-form-label">SEO
+                                    Description</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
+                                        placeholder="SEO Description">
+                        {{ $car->seo_description }}
+                    </textarea>
+                                </div>
+                                @error('seo_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -319,60 +375,6 @@
                                         value="{{ $car->payment_options }}">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-body" style="position: relative;">
-                            <h4 class="card-title">SEO Info</h4>
-                            <hr>
-                            <div class="form-group row">
-                                <label for="seo_title" class="col-sm-2 col-form-label">SEO Title </label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="seo_title"
-                                        class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
-                                        placeholder="SEO Title" value="{{ $car->seo_title }}">
-                                </div>
-                                @error('seo_title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="seo_keywords" class="col-sm-2 col-form-label">SEO Keywords</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="seo_keywords"
-                                        class="form-control @error('seo_keywords') is-invalid @enderror" id="seo_keywords"
-                                        placeholder="SEO Keywords" value="{{ $car->seo_keywords }}">
-                                </div>
-                                @error('seo_keywords')
-                                    <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="seo_description" class="col-sm-2 col-form-label">SEO Description</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
-                                        placeholder="SEO Description">
-                                        {{ $car->seo_description }}
-                                    </textarea>
-                                </div>
-                                @error('seo_description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <span>{{ $message }}</span>
-                                    </span>
-                                @enderror
-                            </div>
-
                         </div>
                     </div>
                 </div>

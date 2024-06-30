@@ -128,7 +128,42 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->working_hours }}</small>
+                                                <?php $business_hours = json_decode($expert->working_hours); ?>
+                                                <p>
+                                                    <small class="fw-semibold">
+                                                        Sunday : {{ $business_hours->sunday_hours }}
+                                                    </small>
+                                                </p>
+                                                <p>
+                                                    <small class="fw-semibold">
+                                                        Monday : {{ $business_hours->monday_hours }}
+                                                    </small>
+                                                </p>
+                                                <p>
+                                                    <small class="fw-semibold">
+                                                        Tuesday : {{ $business_hours->tuesday_hours }}
+                                                    </small>
+                                                </p>
+                                                <p>
+                                                    <small class="fw-semibold">
+                                                        Wednesday : {{ $business_hours->wednesday_hours }}
+                                                    </small>
+                                                </p>
+                                                <p>
+                                                    <small class="fw-semibold">
+                                                        Thursday : {{ $business_hours->thursday_hours }}
+                                                    </small>
+                                                </p>
+                                                <p>
+                                                    <small class="fw-semibold">
+                                                        Friday : {{ $business_hours->friday_hours }}
+                                                    </small>
+                                                </p>
+                                                <p>
+                                                    <small class="fw-semibold">
+                                                        Saturday : {{ $business_hours->saturday_hours }}
+                                                    </small>
+                                                </p>
                                             </td>
                                         </tr>
                                         <tr>

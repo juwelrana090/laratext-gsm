@@ -44,8 +44,8 @@
                     <!-- <span class="fw-semibold ms-2" style="font-size: 1.2rem">Business Listing</span> -->
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="fw-semibold py-2 px-3 rounded-3" style="font-size: 1.2rem" ;>Business Listing</span>
-                        <a href="{{ route('business.category') }}">
-                            <button href="{{ route('business.category') }}" type="button" class="btn border-0 fw-semibold"
+                        <a href="{{ route('business.list') }}">
+                            <button type="button" class="btn border-0 fw-semibold"
                                 style="font-size: 1.2rem;">View All</button>
                         </a>
                     </div>

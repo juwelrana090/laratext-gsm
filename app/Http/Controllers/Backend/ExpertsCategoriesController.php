@@ -201,23 +201,27 @@ class ExpertsCategoriesController extends Controller
         }
 
         $category_name = $request->category_name;
-        $category_slug = Str::slug($category_name);
+        $category_slug = Str::slug($request->category_name);
 
         $experts_category = ExpertsCategories::where('category_slug', 'LIKE', "%{$category_slug}%")->get();
         $count = $experts_category->count();
 
-        if ($count > 0) {
-            foreach ($experts_category as $category) {
-                $data[] = $category['category_slug'];
-            }
 
-            if (in_array($category_slug, $data)) {
-                $category_count = 0;
-                while (in_array(($category_slug . '-' . ++$category_count), $data));
-                $category_name = $category_name . " " . $category_count;
-                $category_slug = $category_slug . '-' . $category_count;
+        if ($category_name != $category->category_name && $category_slug != $category->category_slug) {
+            if ($count > 0) {
+                foreach ($experts_category as $cat) {
+                    $data[] = $cat['category_slug'];
+                }
+
+                if (in_array($category_slug, $data)) {
+                    $cat_count = 0;
+                    while (in_array(($category_slug . '-' . ++$cat_count), $data));
+                    $category_name = $category_name . " " . $cat_count;
+                    $category_slug = $category_slug . '-' . $cat_count;
+                }
             }
         }
+
 
         $category_create  = ExpertsCategories::where('id', "=", $request->id)->update([
             'category_name' => $category_name,

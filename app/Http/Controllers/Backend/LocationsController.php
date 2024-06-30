@@ -97,10 +97,10 @@ class LocationsController extends Controller
             'slug' => $slug,
             'image' => $file_location,
             'description' => $request->description,
-            'meta_tags' => $request->seo_title,
-            'meta_title' => $request->seo_title,
-            'meta_keywords' => $request->seo_keywords,
-            'meta_description' => $request->seo_description,
+            'meta_tags' => $request->meta_title,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
             'image_id' => $image_id,
         ]);
 
@@ -125,10 +125,10 @@ class LocationsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Locations  $expertsLocations
+     * @param  \App\Models\Locations  $locationssLocations
      * @return \Illuminate\Http\Response
      */
-    public function show(Locations $expertsLocations)
+    public function show(Locations $locationssLocations)
     {
         //
     }
@@ -136,7 +136,7 @@ class LocationsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Locations  $expertsLocations
+     * @param  \App\Models\Locations  $locationssLocations
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -153,7 +153,7 @@ class LocationsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Locations  $expertsLocations
+     * @param  \App\Models\Locations  $locationssLocations
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -209,16 +209,19 @@ class LocationsController extends Controller
         $locations = Locations::where('slug', 'LIKE', "%{$slug}%")->get();
         $count = $locations->count();
 
-        if ($count > 0) {
-            foreach ($locations as $category) {
-                $data[] = $category['slug'];
-            }
 
-            if (in_array($slug, $data)) {
-                $category_count = 0;
-                while (in_array(($slug . '-' . ++$category_count), $data));
-                $title = $title . " " . $category_count;
-                $slug = $slug . '-' . $category_count;
+        if ($title != $category->title && $slug != $category->slug) {
+            if ($count > 0) {
+                foreach ($category as $locations) {
+                    $data[] = $locations['slug'];
+                }
+
+                if (in_array($slug, $data)) {
+                    $locations_count = 0;
+                    while (in_array(($slug . '-' . ++$locations_count), $data));
+                    $title = $title . " " . $locations_count;
+                    $slug = $slug . '-' . $locations_count;
+                }
             }
         }
 
@@ -227,10 +230,10 @@ class LocationsController extends Controller
             'slug' => $slug,
             'image' => $file_location,
             'description' => $request->description,
-            'meta_tags' => $request->seo_title,
-            'meta_title' => $request->seo_title,
-            'meta_keywords' => $request->seo_keywords,
-            'meta_description' => $request->seo_description,
+            'meta_tags' => $request->meta_title,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
             'image_id' => $image_id,
         ]);
 
@@ -244,7 +247,7 @@ class LocationsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Locations  $expertsLocations
+     * @param  \App\Models\Locations  $locationssLocations
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

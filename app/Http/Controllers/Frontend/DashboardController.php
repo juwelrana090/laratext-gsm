@@ -20,6 +20,7 @@ use App\Models\BusinessCategories;
 use App\Models\ExpertsCategories;
 use App\Models\CarType;
 use App\Models\FileManager;
+use Illuminate\Support\Facades\DB;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -87,7 +88,58 @@ class DashboardController extends Controller
 
     public function businessList(Request $request)
     {
-        $businesses = Business::latest()->orderBy('id', 'desc')->paginate(24);
+        // $businesses = Business::latest()->orderBy('id', 'desc')->paginate(24);
+        $businesses = DB::table('businesses')
+            ->leftJoin('business_categories', 'businesses.business_category_id', '=', 'business_categories.id')
+            ->select([
+                'businesses.id',
+                'businesses.user_id',
+                'businesses.uniqid',
+                'businesses.contact_person_name',
+                'businesses.contact_email',
+                'businesses.contact_mobile',
+                'businesses.contact_whatsapp',
+                'businesses.contact_google_map',
+                'businesses.contact_address',
+                'businesses.contact_website',
+                'businesses.contact_image',
+                'businesses.contact_image_id',
+                'businesses.company_name',
+                'businesses.company_slug',
+                'businesses.company_mobile',
+                'businesses.company_description',
+                'businesses.company_email',
+                'businesses.business_price',
+                'businesses.business_type',
+                'businesses.business_hours',
+                'businesses.business_images',
+                'businesses.business_category_id',
+                'businesses.business_category_title',
+                'businesses.whatsapp_number',
+                'businesses.social_media',
+                'businesses.website',
+                'businesses.city',
+                'businesses.locations_id',
+                'businesses.country',
+                'businesses.status',
+                'businesses.seo_title',
+                'businesses.seo_keywords',
+                'businesses.seo_description',
+                'businesses.is_featured',
+                'businesses.created_at',
+                'business_categories.id as categories_id',
+                'business_categories.category_name',
+                'business_categories.category_slug',
+                'business_categories.category_image',
+                'business_categories.category_description',
+                'business_categories.meta_tags',
+                'business_categories.meta_title',
+                'business_categories.meta_keywords',
+                'business_categories.meta_description',
+            ])
+            ->orderBy('businesses.id', 'DESC')
+            ->paginate(24);
+
         $featured = Business::where('is_featured', 1)->paginate(24);
 
         return view('business.index', [
@@ -99,7 +151,61 @@ class DashboardController extends Controller
     public function businessListCategory(Request $request)
     {
         $category = BusinessCategories::where('category_slug', $request->slug)->first();
-        $businesses = Business::where('business_category_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(24);
+
+        // $businesses = Business::where('business_category_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(24);
+
+        $businesses = DB::table('businesses')
+            ->leftJoin('business_categories', 'businesses.business_category_id', '=', 'business_categories.id')
+            ->select([
+                'businesses.id',
+                'businesses.user_id',
+                'businesses.uniqid',
+                'businesses.contact_person_name',
+                'businesses.contact_email',
+                'businesses.contact_mobile',
+                'businesses.contact_whatsapp',
+                'businesses.contact_google_map',
+                'businesses.contact_address',
+                'businesses.contact_website',
+                'businesses.contact_image',
+                'businesses.contact_image_id',
+                'businesses.company_name',
+                'businesses.company_slug',
+                'businesses.company_mobile',
+                'businesses.company_description',
+                'businesses.company_email',
+                'businesses.business_price',
+                'businesses.business_type',
+                'businesses.business_hours',
+                'businesses.business_images',
+                'businesses.business_category_id',
+                'businesses.business_category_title',
+                'businesses.whatsapp_number',
+                'businesses.social_media',
+                'businesses.website',
+                'businesses.city',
+                'businesses.locations_id',
+                'businesses.country',
+                'businesses.status',
+                'businesses.seo_title',
+                'businesses.seo_keywords',
+                'businesses.seo_description',
+                'businesses.is_featured',
+                'businesses.created_at',
+                'business_categories.id as categories_id',
+                'business_categories.category_name',
+                'business_categories.category_slug',
+                'business_categories.category_image',
+                'business_categories.category_description',
+                'business_categories.meta_tags',
+                'business_categories.meta_title',
+                'business_categories.meta_keywords',
+                'business_categories.meta_description',
+            ])
+            ->where('businesses.business_category_id', $category->id)
+            ->orderBy('businesses.id', 'DESC')
+            ->paginate(24);
+
         $featured = Business::where('is_featured', 1)->paginate(24);
 
         return view('business.index', [
@@ -118,9 +224,114 @@ class DashboardController extends Controller
 
     public function businessDetails(Request $request)
     {
-        $businesses = Business::where('company_slug', $request->slug)->first();
+        // $businesses = Business::where('company_slug', $request->slug)->first();
+
+        $businesses = DB::table('businesses')
+            ->leftJoin('business_categories', 'businesses.business_category_id', '=', 'business_categories.id')
+            ->select([
+                'businesses.id',
+                'businesses.user_id',
+                'businesses.uniqid',
+                'businesses.contact_person_name',
+                'businesses.contact_email',
+                'businesses.contact_mobile',
+                'businesses.contact_whatsapp',
+                'businesses.contact_google_map',
+                'businesses.contact_address',
+                'businesses.contact_website',
+                'businesses.contact_image',
+                'businesses.contact_image_id',
+                'businesses.company_name',
+                'businesses.company_slug',
+                'businesses.company_mobile',
+                'businesses.company_description',
+                'businesses.company_email',
+                'businesses.business_price',
+                'businesses.business_type',
+                'businesses.business_hours',
+                'businesses.business_images',
+                'businesses.business_category_id',
+                'businesses.business_category_title',
+                'businesses.whatsapp_number',
+                'businesses.social_media',
+                'businesses.website',
+                'businesses.city',
+                'businesses.locations_id',
+                'businesses.country',
+                'businesses.status',
+                'businesses.seo_title',
+                'businesses.seo_keywords',
+                'businesses.seo_description',
+                'businesses.is_featured',
+                'businesses.created_at',
+                'business_categories.id as categories_id',
+                'business_categories.category_name',
+                'business_categories.category_slug',
+                'business_categories.category_image',
+                'business_categories.category_description',
+                'business_categories.meta_tags',
+                'business_categories.meta_title',
+                'business_categories.meta_keywords',
+                'business_categories.meta_description',
+            ])
+            ->where('businesses.company_slug', $request->slug)
+            ->first();
+
+
+        $similar  = DB::table('businesses')
+            ->leftJoin('business_categories', 'businesses.business_category_id', '=', 'business_categories.id')
+            ->select([
+                'businesses.id',
+                'businesses.user_id',
+                'businesses.uniqid',
+                'businesses.contact_person_name',
+                'businesses.contact_email',
+                'businesses.contact_mobile',
+                'businesses.contact_whatsapp',
+                'businesses.contact_google_map',
+                'businesses.contact_address',
+                'businesses.contact_website',
+                'businesses.contact_image',
+                'businesses.contact_image_id',
+                'businesses.company_name',
+                'businesses.company_slug',
+                'businesses.company_mobile',
+                'businesses.company_description',
+                'businesses.company_email',
+                'businesses.business_price',
+                'businesses.business_type',
+                'businesses.business_hours',
+                'businesses.business_images',
+                'businesses.business_category_id',
+                'businesses.business_category_title',
+                'businesses.whatsapp_number',
+                'businesses.social_media',
+                'businesses.website',
+                'businesses.city',
+                'businesses.locations_id',
+                'businesses.country',
+                'businesses.status',
+                'businesses.seo_title',
+                'businesses.seo_keywords',
+                'businesses.seo_description',
+                'businesses.is_featured',
+                'businesses.created_at',
+                'business_categories.id as categories_id',
+                'business_categories.category_name',
+                'business_categories.category_slug',
+                'business_categories.category_image',
+                'business_categories.category_description',
+                'business_categories.meta_tags',
+                'business_categories.meta_title',
+                'business_categories.meta_keywords',
+                'business_categories.meta_description',
+            ])
+            ->where('businesses.business_category_id', $businesses->categories_id)
+            ->orderBy('businesses.id', 'DESC')
+            ->paginate(6);
+
         $featured = Business::where('is_featured', 1)->paginate(24);
-        return view('business.details', compact('businesses', 'featured'));
+        return view('business.details', compact('businesses', 'featured', 'similar'));
     }
 
     public function expertList(Request $request)

@@ -660,7 +660,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="seo_title"
                                         class="form-control @error('seo_title') is-invalid @enderror" id="seo_title"
-                                        placeholder="SEO Title" value="{{ $expert->seo_title }}">
+                                        placeholder="SEO Title" value="{{ $expert->meta_tags }}">
                                 </div>
                                 @error('seo_title')
                                     <span class="invalid-feedback" role="alert">
@@ -675,7 +675,7 @@
                                     <input type="text" name="seo_keywords"
                                         class="form-control @error('seo_keywords') is-invalid @enderror"
                                         id="seo_keywords" placeholder="SEO Keywords"
-                                        value="{{ $expert->seo_keywords }}">
+                                        value="{{ $expert->meta_keywords }}">
                                 </div>
                                 @error('seo_keywords')
                                     <span class="invalid-feedback" role="alert">
@@ -689,7 +689,7 @@
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
                                         placeholder="SEO Description">
-                                    {{ $expert->seo_description }}
+                                    {{ $expert->meta_description }}
                                 </textarea>
                                 </div>
                                 @error('seo_description')

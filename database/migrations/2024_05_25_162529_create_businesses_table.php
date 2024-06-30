@@ -15,8 +15,7 @@ class CreateBusinessesTable extends Migration
     {
         Schema::create('businesses', function (Blueprint $table) {
             $table->increments('id')->autoIncrement();
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id');
             $table->string('uniqid');
             $table->string('contact_person_name');
             $table->string('contact_email');
@@ -33,7 +32,7 @@ class CreateBusinessesTable extends Migration
             $table->longText('company_description')->nullable();
             $table->string('company_email');
             $table->string('business_price');
-            $table->string('business_type');
+            $table->string('business_type')->nullable();
             $table->json('business_hours');
             $table->json('business_images');
             $table->integer('business_category_id')->nullable()->unsigned()->index();
