@@ -84,6 +84,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/privacy-policy', 'DashboardController@privacyPolicy')->name('privacy-policy');
 
 
+    Route::get('/about_us', 'DashboardController@abouts')->name('about_us');
+
     /*
     Route::get('/bestcool/brands', 'DashboardController@brands')->name('bestcool.brands');
     Route::get('/bestcool/brands/details/{id}/{brand_type}', 'DashboardController@brandsDetails')->name('bestcool.brand.details');
@@ -113,7 +115,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/service', 'DashboardController@service')->name('service');
 
     Route::get('/contact', 'DashboardController@contact')->name('contact');
-    Route::get('/about_us', 'DashboardController@abouts')->name('about_us');
     Route::post('/store/contact/form', 'DashboardController@contact_form')->name('store_contact_form');
 
     Route::get('/mobile_search_page', 'DashboardController@mobile_search_page')->name('mobile_search_page');*/
@@ -235,6 +236,9 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
     Route::get('/admin/frontend/settings', 'DataController@frontendSettings')->name('admin.frontend.settings');
     Route::post('/admin/social_media/whatsApp/update', 'DataController@SocialWhatsAppUpdate')->name('admin.social.whatsApp.update');
     Route::post('/admin/office/location/update/{office_name}', 'DataController@OfficeLocationUpdate')->name('admin.setting.office.location_update');
+
+
+    Route::get('/image/delete/{id}', 'DataController@imageDelete')->name('image.delete');
 
     Route::get('/admin/frontend/about_us', 'DataController@FrontendAboutUs')->name('admin.frontend.about_us');
     Route::post('/admin/frontend/about_us/update', 'DataController@FrontendAboutUsUpdate')->name('admin.frontend.about_us.update');

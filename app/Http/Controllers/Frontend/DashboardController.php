@@ -20,6 +20,7 @@ use App\Models\BusinessCategories;
 use App\Models\ExpertsCategories;
 use App\Models\CarType;
 use App\Models\FileManager;
+use App\Models\Page;
 use Illuminate\Support\Facades\DB;
 
 use Exception;
@@ -55,7 +56,10 @@ class DashboardController extends Controller
 
     public function aboutUs(Request $request)
     {
-        return view('about-us');
+        $page = Page::where('page_slug', 'about-us')->first();
+        return view('about-us', [
+            "page" => $page
+        ]);
     }
 
     public function contactUs(Request $request)
