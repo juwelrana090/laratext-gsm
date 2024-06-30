@@ -14,5 +14,7 @@ class Plans extends Model
         'price_month',
         'price_year',
         'description',
+        'currency',
+        'type',
     ];
 }

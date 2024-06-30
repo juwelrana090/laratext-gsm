@@ -46,6 +46,19 @@
                                 value="{{ $plan_1->price_year }}" required>
                         </div>
 
+                        <div class="mb-1">
+                            <?php $currency = json_decode($plan_1->currency); ?>
+                            <label for="price_year" class="col-form-label">Currency</label>
+                            <select name="currency" class="form-control select2" id="currency" required>
+                                @foreach ($currencies as $item)
+                                    <option value="{{ $item['code'] }}" <?php if ($item['code'] == $currency->code) {
+                                        echo 'selected';
+                                    } ?>>
+                                        {{ $item['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
 
                         <div class="mb-1">
                             <h5>Description List</h5>
@@ -133,6 +146,19 @@
                                 value="{{ $plan_2->price_year }}" required>
                         </div>
 
+                        <div class="mb-1">
+                            <?php $currency = json_decode($plan_2->currency); ?>
+                            <label for="price_year" class="col-form-label">Currency</label>
+                            <select name="currency" class="form-control select2" id="currency" required>
+                                @foreach ($currencies as $item)
+                                    <option value="{{ $item['code'] }}" <?php if ($item['code'] == $currency->code) {
+                                        echo 'selected';
+                                    } ?>>
+                                        {{ $item['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
 
                         <div class="mb-1">
                             <h5>Description List</h5>
@@ -216,6 +242,19 @@
                             <label for="price_year" class="col-form-label">Price yearly</label>
                             <input type="number" class="form-control" id="price_year" name="price_year"
                                 value="{{ $plan_3->price_year }}" required>
+                        </div>
+
+                        <div class="mb-1">
+                            <?php $currency = json_decode($plan_3->currency); ?>
+                            <label for="price_year" class="col-form-label">Currency</label>
+                            <select name="currency" class="form-control select2" id="currency" required>
+                                @foreach ($currencies as $item)
+                                    <option value="{{ $item['code'] }}" <?php if ($item['code'] == $currency->code) {
+                                        echo 'selected';
+                                    } ?>>
+                                        {{ $item['name'] }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
 
@@ -302,6 +341,19 @@
                             <label for="price_year" class="col-form-label">Price yearly</label>
                             <input type="number" class="form-control" id="price_year" name="price_year"
                                 value="{{ $plan_4->price_year }}" required>
+                        </div>
+
+                        <div class="mb-1">
+                            <?php $currency = json_decode($plan_4->currency); ?>
+                            <label for="price_year" class="col-form-label">Currency</label>
+                            <select name="currency" class="form-control select2" id="currency" required>
+                                @foreach ($currencies as $item)
+                                    <option value="{{ $item['code'] }}" <?php if ($item['code'] == $currency->code) {
+                                        echo 'selected';
+                                    } ?>>
+                                        {{ $item['name'] }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
 

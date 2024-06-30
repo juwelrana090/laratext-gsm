@@ -20,6 +20,7 @@ class CreatePlansTable extends Migration
             $table->string('price_month');
             $table->string('price_year');
             $table->json('description')->nullable();
+            $table->json('currency')->nullable();
             $table->string('type');
             $table->timestamps();
         });
