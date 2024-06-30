@@ -221,7 +221,11 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
         });
     });
 
-
+    Route::group(['prefix' => 'review'], function () {
+        Route::get('/', 'ReviewController@index')->name('review.index');
+        Route::post('/create', 'ReviewController@create')->name('review.create');
+        Route::get('/status-update/{id}', 'ReviewController@statusUpdate')->name('review.status_update');
+    });
 
     Route::get('/contact/message', 'DataController@getContactMessage')->name('contact_message');
     Route::get('/car_image_reset/{id}', 'DataController@car_image_reset')->name('car_image_reset');

@@ -13,6 +13,7 @@ use App\Models\Experts;
 
 use App\Models\Blogs;
 use App\Models\Plans;
+use App\Models\Review;
 
 use App\Models\Locations;
 use App\Models\BlogCategories;
@@ -281,6 +282,7 @@ class DashboardController extends Controller
             ->where('businesses.company_slug', $request->slug)
             ->first();
 
+        $reviews = Review::where('business_id', '=', $businesses->id)->get();
 
         $similar  = DB::table('businesses')
             ->leftJoin('business_categories', 'businesses.business_category_id', '=', 'business_categories.id')
@@ -335,7 +337,7 @@ class DashboardController extends Controller
             ->paginate(6);
 
         $featured = Business::where('is_featured', 1)->paginate(24);
-        return view('business.details', compact('businesses', 'featured', 'similar'));
+        return view('business.details', compact('businesses', 'featured', 'similar', 'reviews'));
     }
 
     public function expertList(Request $request)
@@ -369,7 +371,8 @@ class DashboardController extends Controller
     public function expertDetails(Request $request)
     {
         $expert = Experts::where('slug', $request->slug)->first();
-        return view('expert.details', compact('expert'));
+        $reviews = Review::where('expert_id', '=', $expert->id)->get();
+        return view('expert.details', compact('expert', 'reviews'));
     }
 
     public function productList(Request $request)

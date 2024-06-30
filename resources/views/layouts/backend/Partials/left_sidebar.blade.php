@@ -188,6 +188,13 @@
                 </a>
             </li>
 
+            <li class=" {{ Route::is('review.index') ? 'active' : '' }} nav-item">
+                <a href="{{ route('review.index') }}">
+                    <i class="fa fa-star-half-o"></i>
+                    <span class="menu-title" data-i18n="Dashboard">Review List</span>
+                </a>
+            </li>
+
             <li class="navigation-header active"><span>Frontend Settings</span></li>
             <li class=" {{ Route::is('admin.frontend.settings') ? 'active' : '' }} nav-item"><a
                     href="{{ route('admin.frontend.settings') }}"><i class="feather icon-zap"></i><span

@@ -1,8 +1,7 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Blank | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
 
     <style>
@@ -64,8 +63,8 @@
             color: #fff
         }
     </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="container-fluid container-lg business-details my-5">
             <div class="row">
@@ -74,17 +73,17 @@
                         aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('home') }}" class="text-decoration-none">
+                                <a href="<?php echo e(route('home')); ?>" class="text-decoration-none">
                                     <small class="fw-semibold text-muted">Home</small>
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('business.list') }}" class="text-decoration-none">
+                                <a href="<?php echo e(route('business.list')); ?>" class="text-decoration-none">
                                     <small class="fw-semibold text-muted">Business</small>
                                 </a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <small class="fw-semibold">{{ $businesses->company_name }}</small>
+                                <small class="fw-semibold"><?php echo e($businesses->company_name); ?></small>
                             </li>
                         </ol>
                     </nav>
@@ -287,31 +286,22 @@
 
                 <div class="col-12 col-md-12 col-lg-12">
                     <div id="carouselBusinessList_1" class="carousel slide position-relative" data-bs-ride="carousel">
-                        {{-- <small
-                            class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                            {{ $businesses->business_type }}
-                        </small> --}}
+                        
 
-                        {{-- <small
-                            class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
-                            <i class="bi bi-geo-alt-fill"></i>
-                            {{ $businesses->contact_address }}
-                        </small> --}}
+                        
 
                         <?php $images = json_decode($businesses->business_images); ?>
 
                         <div class="carousel-inner rounded overflow-hidden z-1 mt-4">
-                            @foreach ($images as $image)
+                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="carousel-item active">
-                                    <img src="{{ asset($image->image_path) }}" class="img-fluid d-block w-100 rounded"
-                                        alt="{{ $businesses->company_name }}" title="{{ $businesses->company_name }}"
+                                    <img src="<?php echo e(asset($image->image_path)); ?>" class="img-fluid d-block w-100 rounded"
+                                        alt="<?php echo e($businesses->company_name); ?>" title="<?php echo e($businesses->company_name); ?>"
                                         style="height: 400px;">
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
-                        {{-- <h3 class="rounded-4 text-center py-3 mb-5"
-                            style="background-color: #d3ecfa; color: var(--sky-blue);">
-                            ${{ $businesses->business_price }} Per Month</h3> --}}
+                        
 
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselBusinessList_1"
                             data-bs-slide="prev">
@@ -331,37 +321,37 @@
                         <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
                                 <div class="col-sm-12 mb-3">
-                                    <h1 style="color: var(--dark_blue);">{{ $businesses->company_name }}</h1>
+                                    <h1 style="color: var(--dark_blue);"><?php echo e($businesses->company_name); ?></h1>
                                 </div>
                                 <div class="col-sm-12 d-flex align-items-center gap-5 mb-3">
                                     <div class="d-flex gap-1 text-center">
                                         <i class="bi bi-house-fill d-block"></i>
                                         <span class="d-block fw-semibold">Address : </span>
-                                        <span>{{ $businesses->contact_address }}</span>
+                                        <span><?php echo e($businesses->contact_address); ?></span>
                                     </div>
 
                                     <div class="d-flex gap-1 text-center mt-4 mt-md-0">
                                         <i class="bi bi-cash-coin"></i>
                                         <span class="d-block fw-semibold">Price : </span>
-                                        <span>{{ $businesses->business_price }}</span>
+                                        <span><?php echo e($businesses->business_price); ?></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 d-flex align-items-center gap-1" style="height: 45px;">
                                     <a class="btn btn-outline-info d-flex align-items-center gap-1 px-2 py-1"
-                                        style="width: 130px; height: 35px;" href="tel:{{ $businesses->company_mobile }}">
+                                        style="width: 130px; height: 35px;" href="tel:<?php echo e($businesses->company_mobile); ?>">
                                         <i class="bi bi-telephone fs-5"></i>
                                         <span>Click to Call</span>
                                     </a>
 
                                     <a class="btn btn-outline-success d-flex justify-content-center align-items-center gap-1 px-2 py-1"
                                         style="width: 120px; height: 35px;"
-                                        href="https://api.whatsapp.com/send?phone={{ $businesses->contact_whatsapp }}">
+                                        href="https://api.whatsapp.com/send?phone=<?php echo e($businesses->contact_whatsapp); ?>">
                                         <i class="bi bi-whatsapp fs-5"></i>
                                         <span>Whatsapp</span>
                                     </a>
 
                                     <a class="btn btn-outline-secondary d-flex justify-content-center align-items-center gap-1 px-2 py-1"
-                                        style="width: 140px; height: 35px;" href="mail:{{ $businesses->company_email }}">
+                                        style="width: 140px; height: 35px;" href="mail:<?php echo e($businesses->company_email); ?>">
                                         <i class="bi bi-envelope fs-5"></i>
                                         <span>Click to Email</span>
                                     </a>
@@ -374,40 +364,40 @@
                                 <div class="card-body p-0 overflow-hidden">
                                     <div class="d-flex overflow-hidden">
                                         <div class="flex-shrink-0">
-                                            <img src="{{ asset($businesses->contact_image) }}"
-                                                alt="{{ $businesses->contact_person_name }}"
-                                                title="{{ $businesses->contact_person_name }}" class="img-fluid"
+                                            <img src="<?php echo e(asset($businesses->contact_image)); ?>"
+                                                alt="<?php echo e($businesses->contact_person_name); ?>"
+                                                title="<?php echo e($businesses->contact_person_name); ?>" class="img-fluid"
                                                 style="width: 200px; height: 235px; border-radius: 5px;">
                                         </div>
                                         <div class="flex-grow-1 p-1 ms-3">
-                                            <h5 class="mb-1">{{ $businesses->contact_person_name }}</h5>
+                                            <h5 class="mb-1"><?php echo e($businesses->contact_person_name); ?></h5>
                                             <p class="mb-2 pb-1">Real Estate Agent</p>
                                             <div class="row rounded-3 mt-2 py-2 bg-body-tertiary">
                                                 <small
-                                                    class="col-sm-12 fw-semibold">Office:{{ $businesses->contact_whatsapp }}</small>
+                                                    class="col-sm-12 fw-semibold">Office:<?php echo e($businesses->contact_whatsapp); ?></small>
                                                 <small class="col-sm-12 fw-semibold">Mobile:
-                                                    {{ $businesses->contact_mobile }}</small>
+                                                    <?php echo e($businesses->contact_mobile); ?></small>
                                                 <small class="col-sm-12 fw-semibold">Email:
-                                                    {{ $businesses->contact_email }}</small>
+                                                    <?php echo e($businesses->contact_email); ?></small>
                                                 <small class="col-sm-12 fw-semibold">Website:
-                                                    {{ $businesses->contact_website }}</small>
+                                                    <?php echo e($businesses->contact_website); ?></small>
                                             </div>
                                             <div class="d-flex justify-content-between align-items-center mt-2 px-1 py-2"
                                                 style="height: 45px;">
                                                 <a class="icon-link rounded-circle px-2 py-1 me-2"
-                                                    href="tel:{{ $businesses->contact_mobile }}"
+                                                    href="tel:<?php echo e($businesses->contact_mobile); ?>"
                                                     style="background-color: var(--dark_blue);">
                                                     <i class="bi bi-telephone fs-5 mb-2 text-white"></i>
                                                 </a>
 
                                                 <a class="icon-link rounded-circle px-2 py-1 me-2"
-                                                    href="https://api.whatsapp.com/send?phone={{ $businesses->contact_whatsapp }}"
+                                                    href="https://api.whatsapp.com/send?phone=<?php echo e($businesses->contact_whatsapp); ?>"
                                                     style="background-color: #25D366;">
                                                     <i class="bi bi-whatsapp fs-5 mb-2 text-white"></i>
                                                 </a>
 
                                                 <a class="icon-link rounded-circle px-2 py-1"
-                                                    href="mail:{{ $businesses->contact_email }}"
+                                                    href="mail:<?php echo e($businesses->contact_email); ?>"
                                                     style="background-color: #4b4b4b;">
                                                     <i class="bi bi-envelope fs-5 mb-2 text-white"></i>
                                                 </a>
@@ -416,24 +406,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="card profile p-2 border-0 shadow-sm">
-                                <div class="img-container rounded pt-2">
-                                    <img src="{{ asset($businesses->contact_image) }}"
-                                        class="img-fluid rounded d-block m-auto"
-                                        alt="{{ $businesses->contact_person_name }}"
-                                        title="{{ $businesses->contact_person_name }}"
-                                        style="width: auto; height: 235px;">
-                                </div>
-
-                                <div class="card-body d-flex flex-column align-items-center">
-                                    <p class="card-text my-0">Real Estate Agent</p>
-                                    <h4 class="card-title mb-3">{{ $businesses->contact_person_name }}</h4>
-                                    <small class="fw-semibold">Office:{{ $businesses->contact_whatsapp }}</small>
-                                    <small class="fw-semibold">Mobile: {{ $businesses->contact_mobile }}</small>
-                                    <small class="fw-semibold">Email: {{ $businesses->contact_email }}</small>
-                                    <small class="fw-semibold">Website: {{ $businesses->contact_website }}</small>
-                                </div>
-                            </div> --}}
+                            
                         </div>
                     </div>
                 </div>
@@ -470,18 +443,10 @@
                                         </td>
                                         <td style="border-top: none">:</td>
                                         <td style="border-top: none">
-                                            <small class="fw-semibold">{{ $businesses->company_name }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->company_name); ?></small>
                                         </td>
                                     </tr>
-                                    {{-- <tr>
-                                        <td scope="row">
-                                            <small class="fw-semibold">About</small>
-                                        </td>
-                                        <td>:</td>
-                                        <td style="text-align: justify;">
-                                            <small class="fw-semibold">{{ $businesses->company_description }}</small>
-                                        </td>
-                                    </tr> --}}
+                                    
                                     <tr>
                                         <td scope="row">
                                             <small class="fw-semibold">Business Hours</small>
@@ -491,37 +456,44 @@
                                             <?php $business_hours = json_decode($businesses->business_hours); ?>
                                             <p>
                                                 <small class="fw-semibold">
-                                                    Sunday : {{ $business_hours->sunday_hours }}
+                                                    Sunday : <?php echo e($business_hours->sunday_hours); ?>
+
                                                 </small>
                                             </p>
                                             <p>
                                                 <small class="fw-semibold">
-                                                    Monday : {{ $business_hours->monday_hours }}
+                                                    Monday : <?php echo e($business_hours->monday_hours); ?>
+
                                                 </small>
                                             </p>
                                             <p>
                                                 <small class="fw-semibold">
-                                                    Tuesday : {{ $business_hours->tuesday_hours }}
+                                                    Tuesday : <?php echo e($business_hours->tuesday_hours); ?>
+
                                                 </small>
                                             </p>
                                             <p>
                                                 <small class="fw-semibold">
-                                                    Wednesday : {{ $business_hours->wednesday_hours }}
+                                                    Wednesday : <?php echo e($business_hours->wednesday_hours); ?>
+
                                                 </small>
                                             </p>
                                             <p>
                                                 <small class="fw-semibold">
-                                                    Thursday : {{ $business_hours->thursday_hours }}
+                                                    Thursday : <?php echo e($business_hours->thursday_hours); ?>
+
                                                 </small>
                                             </p>
                                             <p>
                                                 <small class="fw-semibold">
-                                                    Friday : {{ $business_hours->friday_hours }}
+                                                    Friday : <?php echo e($business_hours->friday_hours); ?>
+
                                                 </small>
                                             </p>
                                             <p>
                                                 <small class="fw-semibold">
-                                                    Saturday : {{ $business_hours->saturday_hours }}
+                                                    Saturday : <?php echo e($business_hours->saturday_hours); ?>
+
                                                 </small>
                                             </p>
                                         </td>
@@ -532,7 +504,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->seo_description }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->seo_description); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -541,7 +513,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->business_price }}$</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->business_price); ?>$</small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -550,7 +522,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->company_email }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->company_email); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -559,7 +531,7 @@
                                         </td>
                                         <td>:</td>
                                         <td>
-                                            <small class="fw-semibold">{{ $businesses->company_mobile }}</small>
+                                            <small class="fw-semibold"><?php echo e($businesses->company_mobile); ?></small>
                                         </td>
                                     </tr>
                                     <tr>
@@ -570,44 +542,44 @@
                                         <td>
                                             <?php $social_media = json_decode($businesses->social_media); ?>
 
-                                            @if (!empty($social_media->facebook))
+                                            <?php if(!empty($social_media->facebook)): ?>
                                                 <a class="icon-link text-decoration-none me-2"
-                                                    href="{{ $social_media->facebook }}">
+                                                    href="<?php echo e($social_media->facebook); ?>">
                                                     <i class="bi bi-facebook text-color"></i>
                                                     Facebook
                                                 </a>
-                                            @endif
+                                            <?php endif; ?>
 
-                                            @if (!empty($social_media->instagram))
+                                            <?php if(!empty($social_media->instagram)): ?>
                                                 <a class="icon-link text-decoration-none me-2"
-                                                    href="{{ $social_media->instagram }}">
+                                                    href="<?php echo e($social_media->instagram); ?>">
                                                     <i class="bi bi-instagram text-color"></i>
                                                     Instagram
                                                 </a>
-                                            @endif
+                                            <?php endif; ?>
 
-                                            @if (!empty($social_media->twitter))
+                                            <?php if(!empty($social_media->twitter)): ?>
                                                 <a class="icon-link text-decoration-none me-2"
-                                                    href="{{ $social_media->twitter }}">
+                                                    href="<?php echo e($social_media->twitter); ?>">
                                                     <i class="bi bi-twitter-x text-color"></i>
                                                     Twitter
                                                 </a>
-                                            @endif
+                                            <?php endif; ?>
 
-                                            @if (!empty($social_media->linkedin))
+                                            <?php if(!empty($social_media->linkedin)): ?>
                                                 <a class="icon-link text-decoration-none me-2"
-                                                    href="{{ $social_media->linkedin }}">
+                                                    href="<?php echo e($social_media->linkedin); ?>">
                                                     <i class="bi bi-linkedin text-color"></i>
                                                     Linkedin
                                                 </a>
-                                            @endif
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-                            {{ $businesses->company_description }}</div>
+                            <?php echo e($businesses->company_description); ?></div>
                     </div>
 
 
@@ -635,7 +607,7 @@
                         $embedUrl = mapEmbed($businesses->contact_google_map);
                         ?>
                         <iframe class="rounded-3" width="100%" height="400" frameborder="0" scrolling="no"
-                            marginheight="0" marginwidth="0" src="{{ $embedUrl }}"></iframe>
+                            marginheight="0" marginwidth="0" src="<?php echo e($embedUrl); ?>"></iframe>
                     </div>
 
                     <div class="mt-4 contact">
@@ -734,10 +706,10 @@
                             <div class="tab-content p-3 border bg-light" id="nav-tabContent">
                                 <div class="tab-pane fade active show" id="nav-review" role="tabpanel"
                                     aria-labelledby="nav-review-tab">
-                                    @foreach ($reviews as $key => $review)
-                                        <div class="card mt-2 mb-2">
+                                    <?php $__currentLoopData = $reviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="card">
                                             <div class="card-body">
-                                                <h5 class="card-title">{{ $review->name }}</h5>
+                                                <h5 class="card-title"><?php echo e($review->name); ?></h5>
                                                 <i class="bi bi-star-fill text-warning pe-1"></i>
                                                 <i class="bi bi-star-fill text-warning pe-1"></i>
                                                 <i class="bi bi-star-fill text-warning pe-1"></i>
@@ -748,15 +720,16 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                 </div>
                                 <div class="tab-pane fade" id="nav-write" role="tabpanel"
                                     aria-labelledby="nav-write-tab">
-                                    <form class="row g-3" action="{{ route('review.create') }}" method="POST">
-                                        @csrf
+                                    <form class="row g-3" action="<?php echo e(route('review.create')); ?>" method="POST">
+                                        <?php echo csrf_field(); ?>
 
-                                        <input type="hidden" name="business_id" value="{{ $businesses->id }}">
-                                        <input type="hidden" name="type" value="Business">
+                                        <input type="hidden" name="business_id" value="<?php echo e($businesses->id); ?>">
+                                        <input type="hidden" name="type" value="business">
                                         <div class="col-12 mb-2">
                                             <label for="full_name" class="form-label">
                                                 Full Name <span class="text-danger">*</span>
@@ -806,32 +779,33 @@
                         </div>
                     </div>
 
+
                     <h5 class="mt-4">Featured Businesses</h5>
                     <div class="row row-cols-1 mt-3 g-2">
-                        @foreach ($featured as $item)
+                        <?php $__currentLoopData = $featured; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $images = json_decode($item->business_images); ?>
                             <div class="col">
                                 <div class="card feature-list border-0">
                                     <div class="row g-0">
                                         <div class="col-4 p-2">
-                                            <img src="{{ asset($images[0]->image_path) }}"
+                                            <img src="<?php echo e(asset($images[0]->image_path)); ?>"
                                                 class="img-fluid rounded d-block m-auto w-100" alt="..."
                                                 title="..." style="height: 65px;">
                                         </div>
                                         <div class="col-8">
                                             <div class="card-body p-2">
                                                 <h6 class="card-subtitle text-muted">
-                                                    <small>{{ $item->company_name }}</small>
+                                                    <small><?php echo e($item->company_name); ?></small>
                                                 </h6>
                                                 <h6 class="card-title mt-1" style="color: var(--sky-blue);">
-                                                    ${{ $item->business_price }} Per Month
+                                                    $<?php echo e($item->business_price); ?> Per Month
                                                 </h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>
@@ -843,33 +817,31 @@
                 <h4 class="mt-5">Similar Businesses</h4>
                 <div class="row row-cols-md-2 row-cols-lg-3 g-3">
 
-                    @foreach ($similar as $item)
+                    <?php $__currentLoopData = $similar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col">
                             <div class="card border-0 similar-properties-card">
                                 <div class="card-body p-2">
                                     <div id="carouselBusinessList_2"
                                         class="carousel slide position-relative hover-play mb-2">
-                                        {{-- <small
-                                        class="badge text-bg-dark rounded-5 px-2 position-absolute top-0 start-0 z-2 m-2 fw-semibold">
-                                        For Rent
-                                    </small> --}}
+                                        
 
                                         <small
                                             class="badge text-bg-dark rounded-5 px-2 position-absolute bottom-0 start-0 z-2 m-2 fw-semibold">
                                             <i class="bi bi-geo-alt-fill"></i>
-                                            {{ $item->city }}, {{ $item->country }}
+                                            <?php echo e($item->city); ?>, <?php echo e($item->country); ?>
+
                                         </small>
 
                                         <div class="carousel-inner rounded overflow-hidden z-1">
                                             <?php $images = json_decode($item->business_images); ?>
-                                            @foreach ($images as $image)
+                                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <div class="carousel-item active">
-                                                    <img src="{{ asset($image->image_path) }}"
+                                                    <img src="<?php echo e(asset($image->image_path)); ?>"
                                                         class="img-fluid d-block w-100 rounded"
-                                                        alt="{{ $item->company_name }}"
-                                                        title="{{ $item->company_name }}" style="height: 330px;">
+                                                        alt="<?php echo e($item->company_name); ?>"
+                                                        title="<?php echo e($item->company_name); ?>" style="height: 330px;">
                                                 </div>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
 
                                         <button class="carousel-control-prev" type="button"
@@ -891,33 +863,17 @@
                                             echo date('M d, Y', strtotime($item->created_at));
                                             ?>
                                         </small>
-                                        <h5 class="card-title text-truncate fw-bold mt-2">{{ $item->company_name }}</h5>
+                                        <h5 class="card-title text-truncate fw-bold mt-2"><?php echo e($item->company_name); ?></h5>
                                         <h6 class="card-text fw-bold" style="color: var(--sky-blue);">
-                                            ${{ $item->business_price }}</h6>
+                                            $<?php echo e($item->business_price); ?></h6>
 
 
-                                        {{-- <div class="mb-2 mt-3 d-flex justify-content-between">
-                                            <i class="bi bi-buildings-fill me-1">
-                                                <small class="fw-semibold">Villa</small>
-                                            </i>
-
-                                            <i class="bi bi-diagram-3-fill me-1">
-                                                <small class="fw-semibold">1,800 sqft</small>
-                                            </i>
-
-                                            <i class="bi bi-door-open-fill me-1">
-                                                <small class="fw-semibold">5</small>
-                                            </i>
-
-                                            <i class="bi bi-door-open">
-                                                <small class="fw-semibold">3</small>
-                                            </i>
-                                        </div> --}}
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
 
 
@@ -977,7 +933,9 @@
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/business/details.blade.php ENDPATH**/ ?>

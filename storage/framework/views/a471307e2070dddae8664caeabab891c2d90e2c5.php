@@ -1,8 +1,7 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Blank | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
 
     <style>
@@ -64,21 +63,21 @@
             color: #fff
         }
     </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="expert-profile pb-5">
             <div class="container-fluid p-0">
-                <img src="{{ asset('images/hospital.jpg') }}" class="img-fluid w-100" alt="..." title="..."
+                <img src="<?php echo e(asset('images/hospital.jpg')); ?>" class="img-fluid w-100" alt="..." title="..."
                     style="max-height: 400px" />
             </div>
 
             <div class="container-fluid container-lg">
                 <div class="row">
                     <div class="col-3 col-lg-2 position-relative">
-                        <img src="{{ asset($expert->expert_image) }}"
+                        <img src="<?php echo e(asset($expert->expert_image)); ?>"
                             class="img-fluid d-block m-auto rounded-circle position-absolute profile-picture"
-                            alt="{{ $expert->title }}" title="{{ $expert->title }}"
+                            alt="<?php echo e($expert->title); ?>" title="<?php echo e($expert->title); ?>"
                             style="height: 170px; width: 170px; top: -20px" />
                     </div>
 
@@ -94,19 +93,13 @@
                             <small class="ms-3 text-muted rating-text fw-semibold">3 Out Of 5</small>
                         </div>
 
-                        <h3 class="mt-1 mb-3 expert-name">{{ $expert->contact_person_name }}</h3>
+                        <h3 class="mt-1 mb-3 expert-name"><?php echo e($expert->contact_person_name); ?></h3>
 
-                        {{-- <div class="header-info">
-                            <small class="bg-color p-1 rounded">Demo Text 1</small>
-                            <small class="text-muted"> | </small>
-                            <small class="bg-color-2 p-1 rounded">Demo Text 2</small>
-                            <small class="text-muted"> | </small>
-                            <small class="bg-color-2 p-1 rounded">Demo Text 3</small>
-                        </div> --}}
+                        
                     </div>
 
                     <div class="col-12 col-md-3 col-lg-6 d-flex justify-content-center align-items-center">
-                        <a href="tel:{{ $expert->mobile }}" class="btn bg-color call-btn mt-3">
+                        <a href="tel:<?php echo e($expert->mobile); ?>" class="btn bg-color call-btn mt-3">
                             <i class="bi bi-telephone-forward-fill"></i>
                             Call Now
                         </a>
@@ -119,25 +112,25 @@
                     <div class="row row-cols-2 row-cols-md-4">
                         <div class="col text-center">
                             <i class="bi bi-house-fill d-block"></i>
-                            <span>{{ $expert->title }}</span>
+                            <span><?php echo e($expert->title); ?></span>
                         </div>
 
                         <div class="col text-center">
                             <i class="bi bi-telephone-forward-fill"></i>
                             <span class="d-block">Telephone</span>
-                            <span>{{ $expert->telephone }}</span>
+                            <span><?php echo e($expert->telephone); ?></span>
                         </div>
 
                         <div class="col text-center mt-4 mt-md-0">
                             <i class="bi bi-envelope-fill"></i>
                             <span class="d-block">Email</span>
-                            <span>{{ $expert->email }}</span>
+                            <span><?php echo e($expert->email); ?></span>
                         </div>
 
                         <div class="col text-center mt-4 mt-md-0">
                             <i class="bi bi-cash-coin"></i>
                             <span class="d-block">Price</span>
-                            <span>{{ $expert->price }}</span>
+                            <span><?php echo e($expert->price); ?></span>
                         </div>
                     </div>
                 </div>
@@ -170,7 +163,7 @@
                                             </td>
                                             <td style="border-top: none">:</td>
                                             <td style="border-top: none">
-                                                <small class="fw-semibold">{{ $expert->title }}</small>
+                                                <small class="fw-semibold"><?php echo e($expert->title); ?></small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -179,7 +172,7 @@
                                             </td>
                                             <td>:</td>
                                             <td style="text-align: justify;">
-                                                <small class="fw-semibold">{{ $expert->about }}</small>
+                                                <small class="fw-semibold"><?php echo e($expert->about); ?></small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -191,37 +184,44 @@
                                                 <?php $business_hours = json_decode($expert->working_hours); ?>
                                                 <p>
                                                     <small class="fw-semibold">
-                                                        Sunday : {{ $business_hours->sunday_hours }}
+                                                        Sunday : <?php echo e($business_hours->sunday_hours); ?>
+
                                                     </small>
                                                 </p>
                                                 <p>
                                                     <small class="fw-semibold">
-                                                        Monday : {{ $business_hours->monday_hours }}
+                                                        Monday : <?php echo e($business_hours->monday_hours); ?>
+
                                                     </small>
                                                 </p>
                                                 <p>
                                                     <small class="fw-semibold">
-                                                        Tuesday : {{ $business_hours->tuesday_hours }}
+                                                        Tuesday : <?php echo e($business_hours->tuesday_hours); ?>
+
                                                     </small>
                                                 </p>
                                                 <p>
                                                     <small class="fw-semibold">
-                                                        Wednesday : {{ $business_hours->wednesday_hours }}
+                                                        Wednesday : <?php echo e($business_hours->wednesday_hours); ?>
+
                                                     </small>
                                                 </p>
                                                 <p>
                                                     <small class="fw-semibold">
-                                                        Thursday : {{ $business_hours->thursday_hours }}
+                                                        Thursday : <?php echo e($business_hours->thursday_hours); ?>
+
                                                     </small>
                                                 </p>
                                                 <p>
                                                     <small class="fw-semibold">
-                                                        Friday : {{ $business_hours->friday_hours }}
+                                                        Friday : <?php echo e($business_hours->friday_hours); ?>
+
                                                     </small>
                                                 </p>
                                                 <p>
                                                     <small class="fw-semibold">
-                                                        Saturday : {{ $business_hours->saturday_hours }}
+                                                        Saturday : <?php echo e($business_hours->saturday_hours); ?>
+
                                                     </small>
                                                 </p>
                                             </td>
@@ -232,7 +232,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->services }}</small>
+                                                <small class="fw-semibold"><?php echo e($expert->services); ?></small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -241,7 +241,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->starting_prices }}$</small>
+                                                <small class="fw-semibold"><?php echo e($expert->starting_prices); ?>$</small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -250,7 +250,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->email }}</small>
+                                                <small class="fw-semibold"><?php echo e($expert->email); ?></small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -259,7 +259,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $expert->telephone }}</small>
+                                                <small class="fw-semibold"><?php echo e($expert->telephone); ?></small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -270,37 +270,37 @@
                                             <td>
                                                 <?php $social_media = json_decode($expert->social_profile); ?>
 
-                                                @if (!empty($social_media->facebook))
+                                                <?php if(!empty($social_media->facebook)): ?>
                                                     <a class="icon-link text-decoration-none me-2"
-                                                        href="{{ $social_media->facebook }}">
+                                                        href="<?php echo e($social_media->facebook); ?>">
                                                         <i class="bi bi-facebook text-color"></i>
                                                         Facebook
                                                     </a>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if (!empty($social_media->instagram))
+                                                <?php if(!empty($social_media->instagram)): ?>
                                                     <a class="icon-link text-decoration-none me-2"
-                                                        href="{{ $social_media->instagram }}">
+                                                        href="<?php echo e($social_media->instagram); ?>">
                                                         <i class="bi bi-instagram text-color"></i>
                                                         Instagram
                                                     </a>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if (!empty($social_media->twitter))
+                                                <?php if(!empty($social_media->twitter)): ?>
                                                     <a class="icon-link text-decoration-none me-2"
-                                                        href="{{ $social_media->twitter }}">
+                                                        href="<?php echo e($social_media->twitter); ?>">
                                                         <i class="bi bi-twitter-x text-color"></i>
                                                         Twitter
                                                     </a>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if (!empty($social_media->linkedin))
+                                                <?php if(!empty($social_media->linkedin)): ?>
                                                     <a class="icon-link text-decoration-none me-2"
-                                                        href="{{ $social_media->linkedin }}">
+                                                        href="<?php echo e($social_media->linkedin); ?>">
                                                         <i class="bi bi-linkedin text-color"></i>
                                                         Linkedin
                                                     </a>
-                                                @endif
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -328,7 +328,7 @@
                             ?>
 
                             <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0"
-                                marginwidth="0" id="gmap_canvas" src="{{ $embedUrl }}"></iframe>
+                                marginwidth="0" id="gmap_canvas" src="<?php echo e($embedUrl); ?>"></iframe>
                         </div>
 
                         <div class="mt-3 contact">
@@ -422,10 +422,10 @@
                                 <div class="tab-content p-3 border bg-light" id="nav-tabContent">
                                     <div class="tab-pane fade active show" id="nav-review" role="tabpanel"
                                         aria-labelledby="nav-review-tab">
-                                        @foreach ($reviews as $key => $review)
+                                        <?php $__currentLoopData = $reviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div class="card mt-2 mb-2">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">{{ $review->name }}</h5>
+                                                    <h5 class="card-title"><?php echo e($review->name); ?></h5>
                                                     <i class="bi bi-star-fill text-warning pe-1"></i>
                                                     <i class="bi bi-star-fill text-warning pe-1"></i>
                                                     <i class="bi bi-star-fill text-warning pe-1"></i>
@@ -436,14 +436,14 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                     <div class="tab-pane fade" id="nav-write" role="tabpanel"
                                         aria-labelledby="nav-write-tab">
-                                        <form class="row g-3" action="{{ route('review.create') }}" method="POST">
-                                            @csrf
+                                        <form class="row g-3" action="<?php echo e(route('review.create')); ?>" method="POST">
+                                            <?php echo csrf_field(); ?>
 
-                                            <input type="hidden" name="expert_id" value="{{ $expert->id }}">
+                                            <input type="hidden" name="expert_id" value="<?php echo e($expert->id); ?>">
                                             <input type="hidden" name="type" value="Expert">
                                             <div class="col-12 mb-2">
                                                 <label for="full_name" class="form-label">
@@ -503,7 +503,9 @@
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/expert/details.blade.php ENDPATH**/ ?>
