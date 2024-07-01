@@ -65,6 +65,22 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="title" class="col-sm-2 col-form-label">Contact Position<span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="contact_position"
+                                        class="form-control @error('contact_position') is-invalid @enderror"
+                                        id="contact_position" placeholder="Contact Position"
+                                        value="{{ $business->contact_position }}">
+                                </div>
+                                @error('contact_position')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Contact Email <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
@@ -443,13 +459,14 @@
                                 <label for="title" class="col-sm-2 col-form-label">City <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                        <select name="city" class="form-control select2 @error('city') is-invalid @enderror" id="city">
-                                            @foreach ($locations as $item)
-                                                <option value="{{ $item->id }}"
-                                                    {{ $business->locations_id == $item->id ? 'selected' : '' }}>
-                                                    {{ $item->title }}</option>
-                                            @endforeach
-                                        </select>
+                                    <select name="city"
+                                        class="form-control select2 @error('city') is-invalid @enderror" id="city">
+                                        @foreach ($locations as $item)
+                                            <option value="{{ $item->id }}"
+                                                {{ $business->locations_id == $item->id ? 'selected' : '' }}>
+                                                {{ $item->title }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 @error('city')
                                     <span class="invalid-feedback" role="alert">
@@ -675,10 +692,14 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select name="status" class="form-control select2" id="status">
-                                        <option value="active" @if($business->status == 'active') selected @endif>Active</option>
-                                        <option value="pending" @if($business->status == 'pending') selected @endif>Pending</option>
-                                        <option value="inactive" @if($business->status == 'inactive') selected @endif>Inactive</option>
-                                        <option value="rejected" @if($business->status == 'rejected') selected @endif>Rejected</option>
+                                        <option value="active" @if ($business->status == 'active') selected @endif>Active
+                                        </option>
+                                        <option value="pending" @if ($business->status == 'pending') selected @endif>Pending
+                                        </option>
+                                        <option value="inactive" @if ($business->status == 'inactive') selected @endif>
+                                            Inactive</option>
+                                        <option value="rejected" @if ($business->status == 'rejected') selected @endif>
+                                            Rejected</option>
                                     </select>
                                 </div>
                             </div>

@@ -716,6 +716,18 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body" style="position: relative;">
+                            <h4 class="card-title">Cover Photo<span class="text-danger">*</span></h4>
+                            <hr>
+                            <input type="file" class="form-control" id="cover_photo" name="cover_photo" />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Add</button>
                 <hr>

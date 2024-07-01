@@ -8,18 +8,17 @@
 
     <nav class="navbar navbar-expand-md py-3 fixed-top">
         <div class="container-fluid container-lg">
-            <a class="navbar-brand" href="#">
-                <img src="./images/logo2.png" class="img-fluid" alt="..." title="..."
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="{{ asset('images/logo2.png') }}" class="img-fluid" alt="..." title="..."
                     style="max-height: 40px; width: auto" />
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center w-100">
                     <li class="nav-item">
                         <a class="nav-link fw-bold active" aria-current="page" href="{{ route('home') }}">Home</a>

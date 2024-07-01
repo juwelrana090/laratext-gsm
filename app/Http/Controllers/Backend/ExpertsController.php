@@ -107,8 +107,10 @@ class ExpertsController extends Controller
 
         $now_day = date('F_Y');
 
-        $file_location = "";
+        $expert_image = "";
         $image_id = "";
+        $cover_photo = "";
+        $cover_photo_id = "";
 
         if ($request->hasFile('expert_image')) {
             $path = public_path('uploads/files/' . $now_day);
@@ -134,7 +136,35 @@ class ExpertsController extends Controller
                 $fileModel->save();
             }
 
+            $expert_image = $file_location;
             $image_id = $fileModel->id;
+        }
+
+        if ($request->hasFile('cover_photo')) {
+            $path = public_path('uploads/files/' . $now_day);
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $file = $request->file('cover_photo');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+            }
+            $cover_photo = $file_location;
+            $cover_photo_id = $fileModel->id;
         }
 
 
@@ -187,7 +217,9 @@ class ExpertsController extends Controller
             'seo_title' => $request->seo_title,
             'seo_keywords' => $request->seo_keywords,
             'seo_description' => $request->seo_description,
-            'expert_image' => $file_location,
+            'expert_image' => $expert_image,
+            'cover_photo' => $cover_photo,
+            'cover_photo_id' => $cover_photo_id,
             'image_id' => $image_id,
         ]);
 
@@ -285,14 +317,14 @@ class ExpertsController extends Controller
 
         $now_day = date('F_Y');
 
-        $file_location = "";
-        $image_id = "";
 
+        $expert_image = "";
+        $image_id = "";
+        $cover_photo = "";
+        $cover_photo_id = "";
 
         if ($request->hasFile('expert_image')) {
             $path = public_path('uploads/files/' . $now_day);
-
-
 
             if (!File::isDirectory($path)) {
                 File::makeDirectory($path, 0777, true, true);
@@ -313,18 +345,45 @@ class ExpertsController extends Controller
                 $fileModel->file_thumbnail = $file_location;
                 $fileModel->file_path = $file_location;
                 $fileModel->save();
-
-                $image = FileManager::find($expert->image_id);
-                if ($image) {
-                    $image->delete();
-                    unlink(public_path($image->file_path));
-                }
             }
 
+            $expert_image = $file_location;
             $image_id = $fileModel->id;
         } else {
-            $file_location = $expert->expert_image;
+            $expert_image = $expert->expert_image;
             $image_id = $expert->image_id;
+        }
+
+
+        if ($request->hasFile('cover_photo')) {
+            $path = public_path('uploads/files/' . $now_day);
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $file = $request->file('cover_photo');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+            }
+
+            $cover_photo = $file_location;
+            $cover_photo_id = $fileModel->id;
+        } else {
+            $cover_photo = $expert->cover_photo;
+            $cover_photo_id = $expert->cover_photo_id;
         }
 
         $social_profile = json_encode([
@@ -375,7 +434,9 @@ class ExpertsController extends Controller
             'seo_title' => $request->seo_title,
             'seo_keywords' => $request->seo_keywords,
             'seo_description' => $request->seo_description,
-            'expert_image' => $file_location,
+            'expert_image' => $expert_image,
+            'cover_photo' => $cover_photo,
+            'cover_photo_id' => $cover_photo_id,
             'image_id' => $image_id,
         ]);
 

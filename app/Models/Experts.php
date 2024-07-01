@@ -37,6 +37,8 @@ class Experts extends Model
         'seo_keywords',
         'seo_description',
         'expert_image',
+        'cover_photo',
+        'cover_photo_id',
         'image_id',
     ];
 }

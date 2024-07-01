@@ -64,6 +64,22 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="title" class="col-sm-2 col-form-label">Contact Position<span
+                                        class="text-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="contact_position"
+                                        class="form-control @error('contact_position') is-invalid @enderror"
+                                        id="contact_position" placeholder="Contact Position"
+                                        value="{{ old('contact_position') }}">
+                                </div>
+                                @error('contact_position')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Contact Email <span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-10">

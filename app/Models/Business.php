@@ -12,6 +12,7 @@ class Business extends Model
         'user_id',
         'uniqid',
         'contact_person_name',
+        'contact_position',
         'contact_email',
         'contact_mobile',
         'contact_whatsapp',

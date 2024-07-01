@@ -719,6 +719,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body" style="position: relative;">
+                            <h4 class="card-title">Cover Photo<span class="text-danger">*</span></h4>
+                            <hr>
+                            <img src="{{ asset($expert->cover_photo) }}" class="img-fluid rounded d-block"
+                                alt="{{ $expert->title }}" title="{{ $expert->title }}"
+                                style="width: auto; height: 235px;">
+                            <hr>
+                            <input type="file" class="form-control" id="cover_photo" name="cover_photo" />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Update</button>
                 <hr>

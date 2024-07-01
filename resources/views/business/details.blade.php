@@ -91,18 +91,18 @@
 
 
                     <!-- <div class="info">
-                                                                                                                                                                                                                                                                                                                                                                                            <i class="bi bi-geo-alt-fill me-3">
-                                                                                                                                                                                                                                                                                                                                                                                              <small class="fw-semibold">Rue de Tracy</small>
-                                                                                                                                                                                                                                                                                                                                                                                            </i>
+                                                                                                                                                                                                                                                                                                                                                                                                <i class="bi bi-geo-alt-fill me-3">
+                                                                                                                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">Rue de Tracy</small>
+                                                                                                                                                                                                                                                                                                                                                                                                </i>
 
-                                                                                                                                                                                                                                                                                                                                                                                            <i class="bi bi-tags-fill me-3">
-                                                                                                                                                                                                                                                                                                                                                                                              <small class="fw-semibold">For Rent</small>
-                                                                                                                                                                                                                                                                                                                                                                                            </i>
+                                                                                                                                                                                                                                                                                                                                                                                                <i class="bi bi-tags-fill me-3">
+                                                                                                                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">For Rent</small>
+                                                                                                                                                                                                                                                                                                                                                                                                </i>
 
-                                                                                                                                                                                                                                                                                                                                                                                            <i class="bi bi-calendar3">
-                                                                                                                                                                                                                                                                                                                                                                                              <small class="fw-semibold">July 3, 2023</small>
-                                                                                                                                                                                                                                                                                                                                                                                            </i>
-                                                                                                                                                                                                                                                                                                                                                                                          </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                <i class="bi bi-calendar3">
+                                                                                                                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">July 3, 2023</small>
+                                                                                                                                                                                                                                                                                                                                                                                                </i>
+                                                                                                                                                                                                                                                                                                                                                                                              </div> -->
 
                     <!--<h4 class="mt-4 mb-3">Overview</h4>-->
                     <!--<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">-->
@@ -330,7 +330,7 @@
                     <div class="row mt-2">
                         <div class="col-12 col-md-8 col-lg-8">
                             <div class="row">
-                                <div class="col-sm-12 mb-3">
+                                <div class="col-sm-12 mb-1">
                                     <h1 style="color: var(--dark_blue);">{{ $businesses->company_name }}</h1>
                                 </div>
                                 <div class="col-sm-12 d-flex align-items-center gap-5 mb-3">
@@ -340,28 +340,27 @@
                                         <span>{{ $businesses->contact_address }}</span>
                                     </div>
 
-                                    <div class="d-flex gap-1 text-center mt-4 mt-md-0">
+                                    <div class="d-flex gap-1 text-center">
                                         <i class="bi bi-cash-coin"></i>
                                         <span class="d-block fw-semibold">Price : </span>
                                         <span>{{ $businesses->business_price }}</span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 d-flex align-items-center gap-1" style="height: 45px;">
-                                    <a class="btn btn-outline-info d-flex align-items-center gap-1 px-2 py-1"
-                                        style="width: 130px; height: 35px;" href="tel:{{ $businesses->company_mobile }}">
+                                    <a class="btn btn-outline-info company-call d-flex align-items-center gap-1 px-2 py-1"
+                                        href="tel:{{ $businesses->company_mobile }}">
                                         <i class="bi bi-telephone fs-5"></i>
                                         <span>Click to Call</span>
                                     </a>
 
-                                    <a class="btn btn-outline-success d-flex justify-content-center align-items-center gap-1 px-2 py-1"
-                                        style="width: 120px; height: 35px;"
+                                    <a class="btn btn-outline-success company-whatsapp d-flex justify-content-center align-items-center gap-1 px-2 py-1"
                                         href="https://api.whatsapp.com/send?phone={{ $businesses->contact_whatsapp }}">
                                         <i class="bi bi-whatsapp fs-5"></i>
                                         <span>Whatsapp</span>
                                     </a>
 
-                                    <a class="btn btn-outline-secondary d-flex justify-content-center align-items-center gap-1 px-2 py-1"
-                                        style="width: 140px; height: 35px;" href="mail:{{ $businesses->company_email }}">
+                                    <a class="btn btn-outline-secondary company-email d-flex justify-content-center align-items-center gap-1 px-2 py-1"
+                                        href="mail:{{ $businesses->company_email }}">
                                         <i class="bi bi-envelope fs-5"></i>
                                         <span>Click to Email</span>
                                     </a>
@@ -369,19 +368,18 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-4 col-lg-4 d-flex justify-content-center">
-                            <div class="card border shadow-sm"
-                                style="width: auto; height: 235px; border-color: #c8c8c83b !important; border-radius: 05px;">
+                            <div class="card agent-card border shadow-sm">
                                 <div class="card-body p-0 overflow-hidden">
                                     <div class="d-flex overflow-hidden">
                                         <div class="flex-shrink-0">
                                             <img src="{{ asset($businesses->contact_image) }}"
                                                 alt="{{ $businesses->contact_person_name }}"
-                                                title="{{ $businesses->contact_person_name }}" class="img-fluid"
-                                                style="width: 200px; height: 235px; border-radius: 5px;">
+                                                title="{{ $businesses->contact_person_name }}"
+                                                class="img-fluid agent-img">
                                         </div>
                                         <div class="flex-grow-1 p-1 ms-3">
                                             <h5 class="mb-1">{{ $businesses->contact_person_name }}</h5>
-                                            <p class="mb-2 pb-1">Real Estate Agent</p>
+                                            <p class="mb-2 pb-1">{{ $businesses->contact_position }}</p>
                                             <div class="row rounded-3 mt-2 py-2 bg-body-tertiary">
                                                 <small
                                                     class="col-sm-12 fw-semibold">Office:{{ $businesses->contact_whatsapp }}</small>
@@ -447,8 +445,8 @@
                     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <!-- <button class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill"
-                                                                                                                                                                                                                                                                                                                                                                                                data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
-                                                                                                                                                                                                                                                                                                                                                                                                aria-selected="true">Overview</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                    data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
+                                                                                                                                                                                                                                                                                                                                                                                                    aria-selected="true">Overview</button> -->
 
                             <h5 style="margin-top: 10px;">Overview</h5>
                         </li>

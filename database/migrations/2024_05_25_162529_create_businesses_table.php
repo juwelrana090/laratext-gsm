@@ -18,6 +18,7 @@ class CreateBusinessesTable extends Migration
             $table->integer('user_id');
             $table->string('uniqid');
             $table->string('contact_person_name');
+            $table->string('contact_position');
             $table->string('contact_email');
             $table->string('contact_mobile');
             $table->string('contact_whatsapp');

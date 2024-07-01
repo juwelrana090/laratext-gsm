@@ -69,7 +69,7 @@ header .nav-link:hover {
     border: 1px solid #12bcff;
 }
 
-.whatsapp-btn{
+.whatsapp-btn {
     width: 110px;
     display: flex !important;
     justify-content: center !important;
@@ -96,6 +96,33 @@ header .nav-link:hover {
     background-color: var(--sky-blue);
 }
 
+.agent-card {
+    width: auto;
+    height: 235px;
+    border-color: #c8c8c83b !important;
+    border-radius: 05px;
+}
+
+.agent-img {
+    width: 200px;
+    height: 235px;
+    border-radius: 5px;
+}
+
+.company-call {
+    width: 130px;
+    height: 35px;
+}
+
+.company-whatsapp {
+    width: 120px;
+    height: 35px;
+}
+
+.company-email {
+    width: 140px;
+    height: 35px;
+}
 
 @media screen and (max-width: 800px) {
     .banner .trans-bg {
@@ -111,6 +138,43 @@ header .nav-link:hover {
     .banner .trans-bg {
         width: 95% !important;
     }
+
+    .agent-img {
+        width: 180px;
+        height: 215px;
+        border-radius: 5px;
+    }
+
+    .agent-card {
+        width: auto;
+        height: 215px;
+        border-color: #c8c8c83b !important;
+        border-radius: 05px;
+    }
+
+    .company-call {
+        width: 130px;
+        height: 35px;
+        font-size: 12px !important;
+    }
+
+    .company-whatsapp {
+        width: 120px;
+        height: 35px;
+        font-size: 12px !important;
+    }
+
+    .company-email {
+        width: 140px;
+        height: 35px;
+        font-size: 12px !important;
+    }
+
+    .fw-semibold{
+        font-size: 11px !important;
+    }
+
+
 }
 
 

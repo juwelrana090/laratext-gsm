@@ -194,6 +194,7 @@ class BusinessController extends Controller
             'user_id' => $user_id,
             'uniqid' => $uniqid,
             'contact_person_name' => $request->contact_person_name,
+            'contact_position' => $request->contact_position,
             'contact_email' => $request->contact_email,
             'contact_mobile' => $request->contact_mobile,
             'contact_whatsapp' => $request->contact_whatsapp,
@@ -416,6 +417,7 @@ class BusinessController extends Controller
 
         $business = Business::where('id', $request->id)->update([
             'contact_person_name' => $request->contact_person_name,
+            'contact_position' => $request->contact_position,
             'contact_email' => $request->contact_email,
             'contact_mobile' => $request->contact_mobile,
             'contact_whatsapp' => $request->contact_whatsapp,

@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 @section('title')
-    <title>Blank | GSP - The best place to explore your favourite business.</title>
+    <title>Expert | GSP - The best place to explore your favourite business.</title>
 @endsection
 @section('custom_head')
     <!-- Custom styles for this template -->
@@ -69,20 +69,20 @@
     <main>
         <div class="expert-profile pb-5">
             <div class="container-fluid p-0">
-                <img src="{{ asset('images/hospital.jpg') }}" class="img-fluid w-100" alt="..." title="..."
+                <img src="{{ asset($expert->cover_photo) }}" class="img-fluid w-100" alt="..." title="..."
                     style="max-height: 400px" />
             </div>
 
             <div class="container-fluid container-lg">
                 <div class="row">
-                    <div class="col-3 col-lg-2 position-relative">
+                    <div class="col-sm-12 col-md-4 col-lg-2 mb-2 position-relative" style="height: 170px;">
                         <img src="{{ asset($expert->expert_image) }}"
                             class="img-fluid d-block m-auto rounded-circle position-absolute profile-picture"
                             alt="{{ $expert->title }}" title="{{ $expert->title }}"
                             style="height: 170px; width: 170px; top: -20px" />
                     </div>
 
-                    <div class="col-9 col-md-6 col-lg-4">
+                    <div class="col-sm-12 col-md-4 col-lg-4 mb-2 ">
                         <div class="d-flex mt-2 mt-md-4 rating">
                             <div>
                                 <i class="bi bi-star-fill text-color"></i>
@@ -105,7 +105,7 @@
                         </div> --}}
                     </div>
 
-                    <div class="col-12 col-md-3 col-lg-6 d-flex justify-content-center align-items-center">
+                    <div class="col-sm-12 col-md-4 col-lg-6 d-flex justify-content-center">
                         <a href="tel:{{ $expert->mobile }}" class="btn bg-color call-btn mt-3">
                             <i class="bi bi-telephone-forward-fill"></i>
                             Call Now
@@ -116,25 +116,25 @@
 
             <div class="mt-5 py-4 contact-info">
                 <div class="container-fluid container-lg">
-                    <div class="row row-cols-2 row-cols-md-4">
-                        <div class="col text-center">
+                    <div class="row ">
+                        <div class="col-sm-6 col-md-3 text-center">
                             <i class="bi bi-house-fill d-block"></i>
                             <span>{{ $expert->title }}</span>
                         </div>
 
-                        <div class="col text-center">
+                        <div class="col-sm-6 col-md-4 text-center">
                             <i class="bi bi-telephone-forward-fill"></i>
                             <span class="d-block">Telephone</span>
                             <span>{{ $expert->telephone }}</span>
                         </div>
 
-                        <div class="col text-center mt-4 mt-md-0">
+                        <div class="col-sm-6 col-md-3 text-center mt-4 mt-md-0">
                             <i class="bi bi-envelope-fill"></i>
                             <span class="d-block">Email</span>
                             <span>{{ $expert->email }}</span>
                         </div>
 
-                        <div class="col text-center mt-4 mt-md-0">
+                        <div class="col-sm-6 col-md-3 text-center mt-4 mt-md-0">
                             <i class="bi bi-cash-coin"></i>
                             <span class="d-block">Price</span>
                             <span>{{ $expert->price }}</span>
