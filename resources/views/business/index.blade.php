@@ -11,166 +11,166 @@
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
                     <!-- <form action="" method="get" enctype="multipart/form-data" class="p-3 rounded-3 bg-white">
-                                                                                              <div class="accordion" id="accordionFilter">
+                                                                                                              <div class="accordion" id="accordionFilter">
 
-                                                                                                <div class="accordion-item rounded-5 mb-3">
-                                                                                                  <h2 class="accordion-header">
-                                                                                                    <button class="accordion-button collapsed rounded-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStatus" aria-expanded="false" aria-controls="collapseStatus" style="padding: 12px 15px;">
-                                                                                                      <small class="fw-semibold">Status</small>
-                                                                                                    </button>
-                                                                                                  </h2>
-                                                                                                  <div id="collapseStatus" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
-                                                                                                    <div class="accordion-body">
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="status" id="showAll" checked>
-                                                                                                        <label class="form-check-label" for="showAll">
-                                                                                                          <small class="fw-semibold">Show All</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                <div class="accordion-item rounded-5 mb-3">
+                                                                                                                  <h2 class="accordion-header">
+                                                                                                                    <button class="accordion-button collapsed rounded-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStatus" aria-expanded="false" aria-controls="collapseStatus" style="padding: 12px 15px;">
+                                                                                                                      <small class="fw-semibold">Status</small>
+                                                                                                                    </button>
+                                                                                                                  </h2>
+                                                                                                                  <div id="collapseStatus" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
+                                                                                                                    <div class="accordion-body">
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="status" id="showAll" checked>
+                                                                                                                        <label class="form-check-label" for="showAll">
+                                                                                                                          <small class="fw-semibold">Show All</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="status" id="forSale">
-                                                                                                        <label class="form-check-label" for="forSale">
-                                                                                                          <small class="fw-semibold">For Sale</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="status" id="forSale">
+                                                                                                                        <label class="form-check-label" for="forSale">
+                                                                                                                          <small class="fw-semibold">For Sale</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="status" id="forRent">
-                                                                                                        <label class="form-check-label" for="forRent">
-                                                                                                          <small class="fw-semibold">For Rent</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="status" id="forRent">
+                                                                                                                        <label class="form-check-label" for="forRent">
+                                                                                                                          <small class="fw-semibold">For Rent</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="status" id="offPlan">
-                                                                                                        <label class="form-check-label" for="offPlan">
-                                                                                                          <small class="fw-semibold">Off Plan</small>
-                                                                                                        </label>
-                                                                                                      </div>
-                                                                                                    </div>
-                                                                                                  </div>
-                                                                                                </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="status" id="offPlan">
+                                                                                                                        <label class="form-check-label" for="offPlan">
+                                                                                                                          <small class="fw-semibold">Off Plan</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
+                                                                                                                    </div>
+                                                                                                                  </div>
+                                                                                                                </div>
 
-                                                                                                <div class="accordion-item rounded-5 mb-3">
-                                                                                                  <h2 class="accordion-header">
-                                                                                                    <button class="accordion-button collapsed rounded-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType" aria-expanded="false" aria-controls="collapseType" style="padding: 12px 15px;">
-                                                                                                      <small class="fw-semibold">Type</small>
-                                                                                                    </button>
-                                                                                                  </h2>
-                                                                                                  <div id="collapseType" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
-                                                                                                    <div class="accordion-body">
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="type" id="showAll" checked>
-                                                                                                        <label class="form-check-label" for="showAll">
-                                                                                                          <small class="fw-semibold">Show All</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                <div class="accordion-item rounded-5 mb-3">
+                                                                                                                  <h2 class="accordion-header">
+                                                                                                                    <button class="accordion-button collapsed rounded-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType" aria-expanded="false" aria-controls="collapseType" style="padding: 12px 15px;">
+                                                                                                                      <small class="fw-semibold">Type</small>
+                                                                                                                    </button>
+                                                                                                                  </h2>
+                                                                                                                  <div id="collapseType" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
+                                                                                                                    <div class="accordion-body">
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="type" id="showAll" checked>
+                                                                                                                        <label class="form-check-label" for="showAll">
+                                                                                                                          <small class="fw-semibold">Show All</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="type" id="apartment">
-                                                                                                        <label class="form-check-label" for="apartment">
-                                                                                                          <small class="fw-semibold">Apartment</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="type" id="apartment">
+                                                                                                                        <label class="form-check-label" for="apartment">
+                                                                                                                          <small class="fw-semibold">Apartment</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="type" id="loft">
-                                                                                                        <label class="form-check-label" for="loft">
-                                                                                                          <small class="fw-semibold">Loft</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="type" id="loft">
+                                                                                                                        <label class="form-check-label" for="loft">
+                                                                                                                          <small class="fw-semibold">Loft</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="type" id="studio">
-                                                                                                        <label class="form-check-label" for="studio">
-                                                                                                          <small class="fw-semibold">Studio</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="type" id="studio">
+                                                                                                                        <label class="form-check-label" for="studio">
+                                                                                                                          <small class="fw-semibold">Studio</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="type" id="townhouse">
-                                                                                                        <label class="form-check-label" for="townhouse">
-                                                                                                          <small class="fw-semibold">Townhouse</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="type" id="townhouse">
+                                                                                                                        <label class="form-check-label" for="townhouse">
+                                                                                                                          <small class="fw-semibold">Townhouse</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="type" id="villa">
-                                                                                                        <label class="form-check-label" for="villa">
-                                                                                                          <small class="fw-semibold">Villa</small>
-                                                                                                        </label>
-                                                                                                      </div>
-                                                                                                    </div>
-                                                                                                  </div>
-                                                                                                </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="type" id="villa">
+                                                                                                                        <label class="form-check-label" for="villa">
+                                                                                                                          <small class="fw-semibold">Villa</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
+                                                                                                                    </div>
+                                                                                                                  </div>
+                                                                                                                </div>
 
-                                                                                                <div class="accordion-item rounded-5 mb-3">
-                                                                                                  <h2 class="accordion-header">
-                                                                                                    <button class="accordion-button collapsed rounded-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLocation" aria-expanded="false" aria-controls="collapseLocation" style="padding: 12px 15px;">
-                                                                                                      <small class="fw-semibold">Location</small>
-                                                                                                    </button>
-                                                                                                  </h2>
-                                                                                                  <div id="collapseLocation" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
-                                                                                                    <div class="accordion-body">
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="location" id="showAll" checked>
-                                                                                                        <label class="form-check-label" for="showAll">
-                                                                                                          <small class="fw-semibold">Show All</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                <div class="accordion-item rounded-5 mb-3">
+                                                                                                                  <h2 class="accordion-header">
+                                                                                                                    <button class="accordion-button collapsed rounded-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLocation" aria-expanded="false" aria-controls="collapseLocation" style="padding: 12px 15px;">
+                                                                                                                      <small class="fw-semibold">Location</small>
+                                                                                                                    </button>
+                                                                                                                  </h2>
+                                                                                                                  <div id="collapseLocation" class="accordion-collapse collapse" data-bs-parent="#accordionFilter">
+                                                                                                                    <div class="accordion-body">
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="location" id="showAll" checked>
+                                                                                                                        <label class="form-check-label" for="showAll">
+                                                                                                                          <small class="fw-semibold">Show All</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="location" id="australia">
-                                                                                                        <label class="form-check-label" for="australia">
-                                                                                                          <small class="fw-semibold">Australia</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="location" id="australia">
+                                                                                                                        <label class="form-check-label" for="australia">
+                                                                                                                          <small class="fw-semibold">Australia</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="location" id="france">
-                                                                                                        <label class="form-check-label" for="france">
-                                                                                                          <small class="fw-semibold">France</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="location" id="france">
+                                                                                                                        <label class="form-check-label" for="france">
+                                                                                                                          <small class="fw-semibold">France</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="location" id="germany">
-                                                                                                        <label class="form-check-label" for="germany">
-                                                                                                          <small class="fw-semibold">Germany</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="location" id="germany">
+                                                                                                                        <label class="form-check-label" for="germany">
+                                                                                                                          <small class="fw-semibold">Germany</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="location" id="usa">
-                                                                                                        <label class="form-check-label" for="usa">
-                                                                                                          <small class="fw-semibold">USA</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="location" id="usa">
+                                                                                                                        <label class="form-check-label" for="usa">
+                                                                                                                          <small class="fw-semibold">USA</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="location" id="uk">
-                                                                                                        <label class="form-check-label" for="uk">
-                                                                                                          <small class="fw-semibold">UK</small>
-                                                                                                        </label>
-                                                                                                      </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="location" id="uk">
+                                                                                                                        <label class="form-check-label" for="uk">
+                                                                                                                          <small class="fw-semibold">UK</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
 
-                                                                                                      <div class="form-check">
-                                                                                                        <input class="form-check-input" type="radio" name="type" id="canada">
-                                                                                                        <label class="form-check-label" for="canada">
-                                                                                                          <small class="fw-semibold">Canada</small>
-                                                                                                        </label>
-                                                                                                      </div>
-                                                                                                    </div>
-                                                                                                  </div>
-                                                                                                </div>
-                                                                                              </div>
+                                                                                                                      <div class="form-check">
+                                                                                                                        <input class="form-check-input" type="radio" name="type" id="canada">
+                                                                                                                        <label class="form-check-label" for="canada">
+                                                                                                                          <small class="fw-semibold">Canada</small>
+                                                                                                                        </label>
+                                                                                                                      </div>
+                                                                                                                    </div>
+                                                                                                                  </div>
+                                                                                                                </div>
+                                                                                                              </div>
 
-                                                                                              <button type="submit" class="btn submit-btn border-0 fw-semibold rounded-5 w-100">
-                                                                                                <i class="bi bi-send"></i>
-                                                                                                <small>Search</small>
-                                                                                              </button>
-                                                                                            </form> -->
+                                                                                                              <button type="submit" class="btn submit-btn border-0 fw-semibold rounded-5 w-100">
+                                                                                                                <i class="bi bi-send"></i>
+                                                                                                                <small>Search</small>
+                                                                                                              </button>
+                                                                                                            </form> -->
 
                     <form action="" method="get" enctype="multipart/form-data"
                         class="p-3 rounded-3 bg-white mt-3">
@@ -486,7 +486,7 @@
                         @foreach ($businesses as $item)
                             <?php $images = json_decode($item->business_images); ?>
                             <div class="col">
-                                <div class="card border-0">
+                                <div class="card border-0" style="background-color: #cfcfcf4f">
                                     <div class="row g-0">
                                         <div class="col-lg-6 p-2">
                                             <div id="carouselBusinessList_1"
@@ -556,7 +556,8 @@
                                                     </li> --}}
 
                                                     <li
-                                                        class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                        class="list-group-item d-flex justify-content-between align-items-center px-0"
+                                                    style="background-color: #ffffff00 !important;">
                                                         <div class="fw-semibold">
                                                             <i class="bi bi-diagram-3-fill me-1"></i>
                                                             <small>Business Category</small>
@@ -567,58 +568,29 @@
                                                     </li>
 
                                                     <li
-                                                        class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                        class="list-group-item d-flex justify-content-between align-items-center px-0" style="background-color: #ffffff00 !important;">
                                                         <div class="fw-semibold">
-                                                            <i class="bi bi-clock me-1"></i>
-                                                            <small>Business Hours</small>
+                                                            <i class="bi bi-envelope-at-fill me-1"></i>
+                                                            <small>Email</small>
                                                         </div>
                                                         <div>
-                                                            <?php $business_hours = json_decode($item->business_hours); ?>
-                                                            <table>
-                                                                <tr class="fw-semibold" id="ShowHours"
-                                                                    style="cursor: pointer;">
-                                                                    <td><small>Sunday : </small></td>
-                                                                    <td>
-                                                                        <small>{{ $business_hours->sunday_hours }}</small>
-                                                                        <i class="bi bi-caret-down-fill"></i>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="fw-semibold hours" style="display: none;">
-                                                                    <td><small>Monday : </small></td>
-                                                                    <td><small>{{ $business_hours->monday_hours }}</small>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="fw-semibold hours" style="display: none;">
-                                                                    <td><small>Tuesday : </small></td>
-                                                                    <td><small>{{ $business_hours->wednesday_hours }}</small>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="fw-semibold hours" style="display: none;">
-                                                                    <td><small>Wednesday : </small></td>
-                                                                    <td><small>{{ $business_hours->wednesday_hours }}</small>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="fw-semibold hours" style="display: none;">
-                                                                    <td><small>Thursday : </small></td>
-                                                                    <td><small>{{ $business_hours->thursday_hours }}</small>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="fw-semibold hours" style="display: none;">
-                                                                    <td><small>Friday : </small></td>
-                                                                    <td><small>{{ $business_hours->friday_hours }}</small>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="fw-semibold hours" style="display: none;">
-                                                                    <td><small>Saturday : </small></td>
-                                                                    <td><small>{{ $business_hours->saturday_hours }}</small>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
+                                                            <small>{{ $item->company_email }}</small>
                                                         </div>
                                                     </li>
 
                                                     <li
-                                                        class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                        class="list-group-item d-flex justify-content-between align-items-center px-0" style="background-color: #ffffff00 !important;">
+                                                        <div class="fw-semibold">
+                                                            <i class="bi bi-browser-chrome me-1"></i>
+                                                            <small>Website</small>
+                                                        </div>
+                                                        <div>
+                                                            <small{{ $item->website }}< /small>
+                                                        </div>
+                                                    </li>
+
+                                                    <li
+                                                        class="list-group-item d-flex justify-content-between align-items-center px-0" style="background-color: #ffffff00 !important;">
                                                         <div class="fw-semibold">
                                                             <i class="bi bi-person-rolodex me-1"></i>
                                                             <small>Contact Number</small>

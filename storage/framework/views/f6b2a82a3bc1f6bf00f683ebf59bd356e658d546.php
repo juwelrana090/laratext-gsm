@@ -10,7 +10,7 @@
             <div class="row row-cols-1 g-4">
                 <?php $__currentLoopData = $experts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $expert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col">
-                        <div class="card expert-list border-0">
+                        <div class="card expert-list border-0" style="background-color: #cfcfcf4f">
                             <div class="row g-0">
                                 <div class="col-md-4 p-2">
                                     <div class="img-container rounded">

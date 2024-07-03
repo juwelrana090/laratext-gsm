@@ -408,12 +408,13 @@ class DashboardController extends Controller
     public function productListCategory(Request $request)
     {
         $car_type = CarType::where('id', '=', $request->id)->first();
+        $car_types = CarType::latest()->orderBy('id', 'desc')->get();
         $cars = Car::where('pub_place', '!=', 'Sold')
             ->where('car_type_id', '=', $car_type->id)
             ->orderBy('id', 'DESC')
             ->paginate(24);
 
-        return view('product.index', compact('cars'));
+        return view('product.category.category_view', compact('cars', 'car_type', 'car_types'));
     }
 
     public function productListBrands(Request $request)
