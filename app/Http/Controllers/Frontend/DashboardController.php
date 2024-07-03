@@ -36,6 +36,7 @@ class DashboardController extends Controller
         $experts_categories = ExpertsCategories::latest()->orderBy('id', 'desc')->paginate(12);
         $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->paginate(12);
         $locations = Locations::latest()->orderBy('id', 'desc')->paginate(12);
+        $get_locations = Locations::latest()->orderBy('id', 'desc')->get();
 
         $plan_1 = Plans::where('id', 1)->first();
         $plan_2 = Plans::where('id', 2)->first();
@@ -47,6 +48,7 @@ class DashboardController extends Controller
             'car_type' => $car_type,
             'experts_categories' => $experts_categories,
             'business_categories' => $business_categories,
+            'get_locations' => $get_locations,
             'locations' => $locations,
             'plan_1' => $plan_1,
             'plan_2' => $plan_2,

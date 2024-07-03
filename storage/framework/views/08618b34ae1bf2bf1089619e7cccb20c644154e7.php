@@ -8,8 +8,8 @@
 
     <nav class="navbar navbar-expand-md py-3 fixed-top">
         <div class="container-fluid container-lg">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ asset('images/logo2.png') }}" class="img-fluid" alt="..." title="..."
+            <a class="navbar-brand" href="<?php echo e(route('home')); ?>">
+                <img src="<?php echo e(asset('images/logo2.png')); ?>" class="img-fluid" alt="..." title="..."
                     style="max-height: 40px; width: auto" />
             </a>
 
@@ -21,35 +21,36 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center w-100">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold active" aria-current="page" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link fw-bold active" aria-current="page" href="<?php echo e(route('home')); ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{{ route('about.us') }}">About</a>
+                        <a class="nav-link fw-bold" href="<?php echo e(route('about.us')); ?>">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{{ route('business.list') }}">Business Listing</a>
+                        <a class="nav-link fw-bold" href="<?php echo e(route('business.list')); ?>">Business Listing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{{ route('expert.list') }}">Experts</a>
+                        <a class="nav-link fw-bold" href="<?php echo e(route('expert.list')); ?>">Experts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{{ route('product.list') }}">Products</a>
+                        <a class="nav-link fw-bold" href="<?php echo e(route('product.list')); ?>">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{{ route('brand.list') }}">Brands</a>
+                        <a class="nav-link fw-bold" href="<?php echo e(route('brand.list')); ?>">Brands</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{{ route('blog.list') }}">Blogs</a>
+                        <a class="nav-link fw-bold" href="<?php echo e(route('blog.list')); ?>">Blogs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{{ route('contact.us') }}">Contact</a>
+                        <a class="nav-link fw-bold" href="<?php echo e(route('contact.us')); ?>">Contact</a>
                     </li>
                 </ul>
             </div>
 
-            <a href="{{ route('listing') }}" class="btn biz-btn">
+            <a href="<?php echo e(route('listing')); ?>" class="btn biz-btn">
                 <small class="fw-semibold">Add Listing</small>
             </a>
         </div>
     </nav>
 </header>
+<?php /**PATH C:\laragon\www\app_gsp\resources\views/includes/header.blade.php ENDPATH**/ ?>
