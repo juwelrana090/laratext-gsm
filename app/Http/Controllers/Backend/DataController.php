@@ -10,6 +10,7 @@ use App\Models\Contact;
 use App\Models\Page;
 use App\Models\SocialLink;
 use App\Models\FileManager;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -116,10 +117,90 @@ class DataController extends Controller
         return redirect()->back();
     }
 
+    public function touchList()
+    {
+        return view('backend.touch.index');
+    }
+
+    public function bannerAdd()
+    {
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
+        return view('backend.banner.index', compact('banner'));
+    }
+
+    public function bannerUpdate(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $banner = Banner::where('id', '=', $request->id)->first();
+
+        $now_day = date('F_Y');
+
+        $banner_image = "";
+        $image_id = "";
+        if ($request->hasFile('banner_image')) {
+            $path = public_path('uploads/files/' . $now_day);
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $file = $request->file('banner_image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+            }
+
+            $image_id = $fileModel->id;
+            $banner_image = $file_location;
+        }
+
+        if ($banner) {
+            $banner_update = $banner->update([
+                'banner_title' => $request->banner_title,
+                'banner_image' => $banner_image,
+                'banner_link' => $request->banner_link,
+                'banner_position' => $request->banner_position,
+                'banner_status' => $request->banner_status,
+                'image_id' => $image_id,
+            ]);
+        } else {
+            $banner_update = Banner::create([
+                'banner_title' => $request->banner_title,
+                'banner_image' => $banner_image,
+                'banner_link' => $request->banner_link,
+                'banner_position' => $request->banner_position,
+                'banner_status' => $request->banner_status,
+                'image_id' => $image_id,
+            ]);
+        }
+
+        if ($banner_update) {
+            toastr()->success('Banner has been Update', 'Success');
+        }
+
+        return redirect()->back();
+    }
+
     public function FrontendAboutUs()
     {
         return view('backend.frontendSettings.about_us');
     }
+
+
     public function FrontendAboutUsUpdate(Request $request)
     {
         $page = Page::where('page_slug', 'about-us')->first();

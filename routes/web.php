@@ -227,6 +227,14 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth']], function () {
         Route::get('/status-update/{id}', 'ReviewController@statusUpdate')->name('review.status_update');
     });
 
+    Route::group(['prefix' => 'banner'], function () {
+        Route::get('/', 'DataController@bannerAdd')->name('banner.index');
+        Route::post('/update', 'DataController@bannerUpdate')->name('banner.update');
+    });
+    Route::group(['prefix' => 'get-in-touch'], function () {
+        Route::get('/', 'DataController@touchList')->name('touch.index');
+    });
+
     Route::get('/contact/message', 'DataController@getContactMessage')->name('contact_message');
     Route::get('/car_image_reset/{id}', 'DataController@car_image_reset')->name('car_image_reset');
 

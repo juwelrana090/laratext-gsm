@@ -22,6 +22,7 @@ use App\Models\ExpertsCategories;
 use App\Models\CarType;
 use App\Models\FileManager;
 use App\Models\Page;
+use App\Models\Banner;
 use Illuminate\Support\Facades\DB;
 
 use Exception;
@@ -37,6 +38,7 @@ class DashboardController extends Controller
         $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->paginate(12);
         $locations = Locations::latest()->orderBy('id', 'desc')->paginate(12);
         $get_locations = Locations::latest()->orderBy('id', 'desc')->get();
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
 
         $plan_1 = Plans::where('id', 1)->first();
         $plan_2 = Plans::where('id', 2)->first();
@@ -50,10 +52,11 @@ class DashboardController extends Controller
             'business_categories' => $business_categories,
             'get_locations' => $get_locations,
             'locations' => $locations,
+            'banner' => $banner,
             'plan_1' => $plan_1,
             'plan_2' => $plan_2,
             'plan_3' => $plan_3,
-            'plan_4' => $plan_4
+            'plan_4' => $plan_4,
         ]);
     }
 
@@ -74,8 +77,10 @@ class DashboardController extends Controller
     public function locationsList(Request $request)
     {
         $locations = Locations::latest()->orderBy('id', 'desc')->paginate(24);
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
         return view('locations.index', [
             'locations' => $locations,
+            'banner' => $banner
         ]);
     }
 
@@ -85,11 +90,13 @@ class DashboardController extends Controller
         $locations_view = Locations::where('slug', $request->slug)->first();
         $businesses = Business::where('locations_id', $locations_view->id)->orderBy('id', 'desc')->paginate(24);
         $experts = Experts::where('locations_id', $locations_view->id)->orderBy('id', 'desc')->paginate(24);
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
 
         return view('locations.view', [
             'locations' => $locations,
             'businesses' => $businesses,
             'experts' => $experts,
+            'banner' => $banner
         ]);
     }
 
@@ -216,18 +223,23 @@ class DashboardController extends Controller
             ->paginate(24);
 
         $featured = Business::where('is_featured', 1)->paginate(24);
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
 
         return view('business.index', [
             'businesses' => $businesses,
-            'featured' => $featured
+            'featured' => $featured,
+            'banner' => $banner
         ]);
     }
 
     public function businessCategory(Request $request)
     {
         $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
+
         return view('business.category', [
             'business_categories' => $business_categories,
+            'banner' => $banner
         ]);
     }
 
@@ -358,8 +370,12 @@ class DashboardController extends Controller
     {
         $category = ExpertsCategories::where('category_slug', $request->slug)->first();
         $experts = Experts::where('experts_categories_id', $category->id)->latest()->orderBy('id', 'desc')->paginate(24);
+
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
+
         return view('expert.index', [
-            'experts' => $experts
+            'experts' => $experts,
+            'banner' => $banner
         ]);
     }
 
@@ -369,8 +385,10 @@ class DashboardController extends Controller
     public function expertCategory(Request $request)
     {
         $experts_categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
         return view('expert.category', [
-            'experts_categories' => $experts_categories
+            'experts_categories' => $experts_categories,
+            'banner' => $banner
         ]);
     }
 
@@ -413,8 +431,9 @@ class DashboardController extends Controller
             ->where('car_type_id', '=', $car_type->id)
             ->orderBy('id', 'DESC')
             ->paginate(24);
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
 
-        return view('product.category.category_view', compact('cars', 'car_type', 'car_types'));
+        return view('product.category.category_view', compact('cars', 'car_type', 'car_types', 'banner'));
     }
 
     public function productListBrands(Request $request)
@@ -425,15 +444,19 @@ class DashboardController extends Controller
             ->orderBy('id', 'DESC')
             ->paginate(24);
 
-        return view('product.index', compact('cars'));
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
+
+        return view('product.index', compact('cars', 'brand', 'banner'));
     }
 
 
     public function productCategory(Request $request)
     {
         $car_type = CarType::latest()->orderBy('id', 'desc')->get();
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
         return view('product.category.index', [
             'car_type' => $car_type,
+            'banner' => $banner
         ]);
     }
 
@@ -447,7 +470,11 @@ class DashboardController extends Controller
     public function brandsList(Request $request)
     {
         $brand = Brand::latest()->orderBy('id', 'desc')->get();
-        return view('brand.index', ['brand' => $brand]);
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
+        return view('brand.index', [
+            'brand' => $brand,
+            'banner' => $banner
+        ]);
     }
 
     public function blogList(Request $request)
@@ -496,10 +523,12 @@ class DashboardController extends Controller
     {
         $brands = Brand::all();
         $v_brands = FuelType::all(); //vehicle brands
+        $banner = Banner::latest()->orderBy('id', 'desc')->first();
+
         if (!MoBileView()) {
-            return view('brands', compact('brands', 'v_brands'));
+            return view('brands', compact('brands', 'v_brands', 'banner'));
         } else {
-            return view('mobile.brands', compact('brands', 'v_brands'));
+            return view('mobile.brands', compact('brands', 'v_brands', 'banner'));
         }
     }
 
