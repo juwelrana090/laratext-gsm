@@ -57,6 +57,7 @@
                                 <form action="<?php echo e(route('banner.update')); ?>" method="POST" enctype="multipart/form-data">
                                     <?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo e($banner->id); ?>">
+
                                     <div class="form-group">
                                         <label for="banner_title">Banner Title</label>
                                         <input type="text" id="banner_title" class="form-control" name="banner_title"

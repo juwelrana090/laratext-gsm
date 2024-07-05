@@ -5,6 +5,16 @@
     <!-- Custom styles for this template -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
+
+
+<div class="container-fluid container-lg mt-5 mb-3">
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <img src="<?php echo e(asset($banner->banner_image)); ?>" class="img-fluid" alt="<?php echo e($banner->banner_title); ?>">
+        </div>
+    </div>
+</div>
+
     <div class="container-fluid container-lg mt-5 mb-3">
 
         <div class="row">

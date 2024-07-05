@@ -1,11 +1,10 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Product details | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="container-fluid container-lg product-details my-5">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
@@ -17,12 +16,12 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route('home') }}/product" class="text-decoration-none">
+                        <a href="<?php echo e(route('home')); ?>/product" class="text-decoration-none">
                             <small class="fw-semibold text-muted">Product</small>
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        <small class="fw-semibold"> {{ $car->title }}</small>
+                        <small class="fw-semibold"> <?php echo e($car->title); ?></small>
                     </li>
                 </ol>
             </nav>
@@ -36,14 +35,14 @@
                                     <div class="col-12 col-md-6 col-lg-6">
                                         <div id="carouselBusinessList_1" class="carousel slide" data-bs-ride="carousel">
                                             <div class="carousel-inner rounded overflow-hidden z-1 mt-4">
-                                                @foreach ($car_images as $car_image)
+                                                <?php $__currentLoopData = $car_images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $car_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="carousel-item active p-3">
-                                                        <img src="{{ thumbnail($car_image->image) }}"
+                                                        <img src="<?php echo e(thumbnail($car_image->image)); ?>"
                                                             class="img-fluid d-block w-100 rounded"
-                                                            alt="{{ $car->title }}" title=" {{ $car->title }}"
+                                                            alt="<?php echo e($car->title); ?>" title=" <?php echo e($car->title); ?>"
                                                             style="height: 300px;">
                                                     </div>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </div>
 
                                             <button class="carousel-control-prev" type="button"
@@ -63,13 +62,13 @@
 
 
                                         <div class="d-flex flex-column flex-md-row flex-row justify-content-between">
-                                            <h2 style="color: var(--dark_blue);"> {{ $car->title }}</h2>
-                                            <h4 style="color: var(--deep-orrange);">AED {{ $car->original_price }}</h4>
+                                            <h2 style="color: var(--dark_blue);"> <?php echo e($car->title); ?></h2>
+                                            <h4 style="color: var(--deep-orrange);">AED <?php echo e($car->original_price); ?></h4>
                                         </div>
 
                                         <i class="bi bi-calendar3" style="color: var(--sky-blue);">
                                             <small
-                                                class="fw-semibold text-muted">{{ $car->created_at->diffForHumans() }}</small>
+                                                class="fw-semibold text-muted"><?php echo e($car->created_at->diffForHumans()); ?></small>
                                         </i>
 
                                         <table class="table mt-4">
@@ -80,7 +79,7 @@
                                                     </td>
                                                     <td style="width: 15px;">:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->category_title }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->category_title); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -89,7 +88,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td style="text-align: justify;">
-                                                        <small class="fw-semibold">{{ $car->sub_category_title }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->sub_category_title); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -98,7 +97,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->type }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->type); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -108,7 +107,7 @@
                                                     <td>:</td>
                                                     <td>
                                                         <small
-                                                            class="fw-semibold">{{ $car->Brand ? $car->Brand->name : '' }}</small>
+                                                            class="fw-semibold"><?php echo e($car->Brand ? $car->Brand->name : ''); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -117,7 +116,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->condition }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->condition); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -126,7 +125,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->part_no }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->part_no); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -135,7 +134,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->application }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->application); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -144,7 +143,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->uses }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->uses); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -153,7 +152,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->product_note }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->product_note); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -162,7 +161,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->delivery_note }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->delivery_note); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -171,7 +170,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->made }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->made); ?></small>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -180,7 +179,7 @@
                                                     </td>
                                                     <td>:</td>
                                                     <td>
-                                                        <small class="fw-semibold">{{ $car->payment_options }}</small>
+                                                        <small class="fw-semibold"><?php echo e($car->payment_options); ?></small>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -203,56 +202,15 @@
                 </div>
 
 
-                {{-- <h4 class="mb-3">Location</h4>
-                    <div class="mt-2">
-                        <iframe class="rounded-3" width="100%" height="400" frameborder="0" scrolling="no"
-                            marginheight="0" marginwidth="0" id="gmap_canvas"
-                            src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%20New%20Haven+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                        <a href="https://www.embedmap.net/">google maps widget</a>
-                        <script type="text/javascript"
-                            src="https://embedmaps.com/google-maps-authorization/script.js?id=aeba0eb2a2d1830cfe370c5ed5bd90dfce1c73be">
-                        </script>
-                    </div> --}}
+                
 
-                {{-- <div class="col-12 col-md-3 col-lg-2 mt-3">
-                    <div class="d-grid gap-2">
-                        <button type="button" class="btn fw-semibold text-white border-0"
-                            style="background-color: var(--deep-orrange);">
-                            <i class="bi bi-chat-dots"></i>
-                            <small>Chat With Seller</small>
-                        </button>
-
-                        <button type="button" class="btn btn-outline-danger fw-semibold">
-                            <i class="bi bi-telephone"></i>
-                            <small>+880 01789 556677</small>
-                        </button>
-
-                        <button type="button" class="btn btn-outline-danger fw-semibold">
-                            <i class="bi bi-telephone"></i>
-                            <small>+880 01789 556677</small>
-                        </button>
-
-                        <button type="button" class="btn btn-outline-danger fw-semibold">
-                            <i class="bi bi-telephone"></i>
-                            <small>+880 01789 556677</small>
-                        </button>
-
-                        <button type="button" class="btn btn-outline-danger fw-semibold">
-                            <i class="bi bi-telephone"></i>
-                            <small>+880 01789 556677</small>
-                        </button>
-
-                        <button type="button" class="btn fw-semibold text-white border-0"
-                            style="background-color: #49de82;">
-                            <i class="bi bi-whatsapp"></i>
-                            <small>+880 01789 556677</small>
-                        </button>
-                    </div>
-                </div> --}}
+                
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/product/details.blade.php ENDPATH**/ ?>

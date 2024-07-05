@@ -11,6 +11,7 @@ use App\Models\Page;
 use App\Models\SocialLink;
 use App\Models\FileManager;
 use App\Models\Banner;
+use App\Models\GetInTouch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -119,7 +120,8 @@ class DataController extends Controller
 
     public function touchList()
     {
-        return view('backend.touch.index');
+        $touch_list = GetInTouch::orderBy('id', 'desc')->paginate(15);
+        return view('backend.touch.index', compact('touch_list'));
     }
 
     public function bannerAdd()

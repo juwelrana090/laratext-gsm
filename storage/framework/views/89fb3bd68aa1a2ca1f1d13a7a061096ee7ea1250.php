@@ -7,14 +7,14 @@ $address = json_decode($socialLInk->dubai_address);
 
 ?>
 
-@extends('layouts.frontend')
-@section('title')
+
+<?php $__env->startSection('title'); ?>
     <title>CONTACT US | GSP - The best place to explore your favourite business.</title>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="expert-profile pb-5">
             <div class="container-fluid p-0">
@@ -42,22 +42,14 @@ $address = json_decode($socialLInk->dubai_address);
                                 aria-labelledby="pills-overview-tab">
                                 <table class="table">
                                     <tbody>
-                                        {{-- <tr>
-                                            <td scope="row" style="width: 115px; border-top: none">
-                                                <small class="fw-semibold">Company</small>
-                                            </td>
-                                            <td style="border-top: none">:</td>
-                                            <td style="border-top: none">
-                                                <small class="fw-semibold">Mark</small>
-                                            </td>
-                                        </tr> --}}
+                                        
                                         <tr>
                                             <td scope="row">
                                                 <small class="fw-semibold">Address</small>
                                             </td>
                                             <td>:</td>
                                             <td style="text-align: justify;">
-                                                <small class="fw-semibold">{{ $address->address }}</small>
+                                                <small class="fw-semibold"><?php echo e($address->address); ?></small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -66,7 +58,7 @@ $address = json_decode($socialLInk->dubai_address);
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $address->mobile }}</small>
+                                                <small class="fw-semibold"><?php echo e($address->mobile); ?></small>
                                             </td>
                                         </tr>
                                         <tr>
@@ -75,7 +67,7 @@ $address = json_decode($socialLInk->dubai_address);
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <small class="fw-semibold">{{ $address->email }}</small>
+                                                <small class="fw-semibold"><?php echo e($address->email); ?></small>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -98,7 +90,7 @@ $address = json_decode($socialLInk->dubai_address);
                             $embedUrl = mapEmbed($address->map);
                             ?>
                             <iframe class="rounded-3" width="100%" height="400" frameborder="0" scrolling="no"
-                                marginheight="0" marginwidth="0" src="{{ $embedUrl }}"></iframe>
+                                marginheight="0" marginwidth="0" src="<?php echo e($embedUrl); ?>"></iframe>
                         </div>
                     </div>
 
@@ -106,14 +98,14 @@ $address = json_decode($socialLInk->dubai_address);
                         <h5 class="text-center" style="margin-top: 10px;">Get In Touch</h5>
                         <hr style="margin-top: 5px; border-width: 2px" />
 
-                        <form action="{{ route('add.get.in.touch') }}" method="post" class="px-3">
-                            @csrf
+                        <form action="<?php echo e(route('add.get.in.touch')); ?>" method="post" class="px-3">
+                            <?php echo csrf_field(); ?>
                             <div class="mb-3">
                                 <label for="name" class="form-label fw-semibold">
                                     <small>Your Name</small>
                                 </label>
                                 <input type="text" name="name" class="form-control" id="name"
-                                    aria-describedby="nameHelp" value="{{ old('name') }}">
+                                    aria-describedby="nameHelp" value="<?php echo e(old('name')); ?>">
                                 <div id="nameHelp" class="form-text d-none">We'll never share your email with anyone
                                     else.
                                 </div>
@@ -124,7 +116,7 @@ $address = json_decode($socialLInk->dubai_address);
                                     <small>Your Email</small>
                                 </label>
                                 <input type="email" name="email" class="form-control" id="email"
-                                    aria-describedby="emailHelp" value="{{ old('email') }}">
+                                    aria-describedby="emailHelp" value="<?php echo e(old('email')); ?>">
                                 <div id="emailHelp" class="form-text d-none">We'll never share your email with anyone
                                     else.
                                 </div>
@@ -135,7 +127,7 @@ $address = json_decode($socialLInk->dubai_address);
                                     <small>Your Phone</small>
                                 </label>
                                 <input type="text" name="phone" class="form-control" id="phone"
-                                    aria-describedby="phoneHelp" value="{{ old('phone') }}">
+                                    aria-describedby="phoneHelp" value="<?php echo e(old('phone')); ?>">
                                 <div id="phoneHelp" class="form-text d-none">We'll never share your email with anyone
                                     else.
                                 </div>
@@ -146,7 +138,7 @@ $address = json_decode($socialLInk->dubai_address);
                                     <small>Your City</small>
                                 </label>
                                 <input type="text" name="city" class="form-control" id="city"
-                                    aria-describedby="cityHelp" value="{{ old('city') }}">
+                                    aria-describedby="cityHelp" value="<?php echo e(old('city')); ?>">
                                 <div id="cityHelp" class="form-text d-none">We'll never share your email with anyone
                                     else.
                                 </div>
@@ -157,7 +149,7 @@ $address = json_decode($socialLInk->dubai_address);
                                     <small>Prefered Replay Time</small>
                                 </label>
                                 <input type="datetime-local" name="replay_time" class="form-control" id="replyTime"
-                                    aria-describedby="replyTimeHelp" value="{{ old('replay_time') }}">
+                                    aria-describedby="replyTimeHelp" value="<?php echo e(old('replay_time')); ?>">
                                 <div id="replyTimeHelp" class="form-text d-none">We'll never share your email with
                                     anyone
                                     else.</div>
@@ -168,7 +160,8 @@ $address = json_decode($socialLInk->dubai_address);
                                     <small>Your Message</small>
                                 </label>
                                 <textarea class="form-control" name="message" rows="6" id="message">
-                            {{ old('message') }}
+                            <?php echo e(old('message')); ?>
+
                         </textarea>
                                 <div id="messageHelp" class="form-text d-none">We'll never share your email with
                                     anyone
@@ -186,7 +179,9 @@ $address = json_decode($socialLInk->dubai_address);
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('custom_script')
-@endsection
+<?php $__env->startSection('custom_script'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/contact-us.blade.php ENDPATH**/ ?>

@@ -1,5 +1,4 @@
-@extends('layouts.frontend')
-@section('title')
+<?php $__env->startSection('title'); ?>
     <title>Listing | GSP - The best place to explore your favourite business.</title>
     <style>
         .step-container {
@@ -42,11 +41,11 @@
             background-color: #FF0C0E !important;
         }
     </style>
-@endsection
-@section('custom_head')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom_head'); ?>
     <!-- Custom styles for this template -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <main>
         <div class="container my-4 form-container pt-3 rounded-3">
             <ul class="nav nav-underline justify-content-center" id="pills-tab" role="tablist">
@@ -92,9 +91,9 @@
                             <div class="step-circle" onclick="displayStep(3)"><i class="fa fa-info"></i></div>
                         </div>
 
-                        <form action="{{ route('business.create.home') }}" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo e(route('business.create.home')); ?>" method="post" enctype="multipart/form-data">
                             <div id="multi-step-form">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <div class="step step-1">
                                     <div class="mb-3">
                                         <div class="text-center">
@@ -122,7 +121,7 @@
                                                 <input type="text" class="form-control" id="contact_person_name"
                                                     aria-describedby="contactPersonNameHelp"
                                                     placeholder="Enter Contact person name" name="contact_person_name"
-                                                    required value="{{ old('contact_person_name') }}">
+                                                    required value="<?php echo e(old('contact_person_name')); ?>">
                                                 <div id="contactPersonNameHelp" class="form-text"></div>
                                             </div>
 
@@ -132,7 +131,7 @@
                                                 </label>
                                                 <input type="email" class="form-control" id="contact_email"
                                                     aria-describedby="emailHelp" placeholder="example@gmail.com"
-                                                    name="contact_email" required value="{{ old('contact_email') }}">
+                                                    name="contact_email" required value="<?php echo e(old('contact_email')); ?>">
                                                 <div id="emailHelp" class="form-text"></div>
                                             </div>
 
@@ -142,7 +141,7 @@
                                                 </label>
                                                 <input type="number" class="form-control" id="mobile"
                                                     aria-describedby="mobileHelp" placeholder="+880 17899 888888"
-                                                    name="contact_mobile" required value="{{ old('contact_mobile') }}">
+                                                    name="contact_mobile" required value="<?php echo e(old('contact_mobile')); ?>">
                                                 <div id="mobileHelp" class="form-text"></div>
                                             </div>
 
@@ -153,7 +152,7 @@
                                                 <input type="number" class="form-control" id="contact_whatsapp"
                                                     aria-describedby="whatsappNumberHelp" placeholder="+880 17899 888888"
                                                     name="contact_whatsapp" required
-                                                    value="{{ old('contact_whatsapp') }}">
+                                                    value="<?php echo e(old('contact_whatsapp')); ?>">
                                                 <div id="whatsappNumberHelp" class="form-text"></div>
                                             </div>
                                         </div>
@@ -203,7 +202,7 @@
                                                 </label>
                                                 <input type="text" class="form-control" id="company_name"
                                                     aria-describedby="companyNameHelp" placeholder="Enter Company Name"
-                                                    name="company_name" required value="{{ old('company_name') }}">
+                                                    name="company_name" required value="<?php echo e(old('company_name')); ?>">
                                                 <div id="companyNameHelp" class="form-text"></div>
                                             </div>
                                         </div>
@@ -214,7 +213,7 @@
                                                 </label>
                                                 <input type="email" class="form-control" id="company_email"
                                                     aria-describedby="companyEmailHelp" placeholder="example@gmail.com"
-                                                    name="company_email" required value="{{ old('company_email') }}">
+                                                    name="company_email" required value="<?php echo e(old('company_email')); ?>">
                                                 <div id="companyEmailHelp" class="form-text"></div>
                                             </div>
                                         </div>
@@ -225,21 +224,13 @@
                                                 </label>
                                                 <input type="number" class="form-control" id="company_mobile"
                                                     aria-describedby="companyMobileHelp" placeholder="+880 17899 888888"
-                                                    name="company_mobile" required value="{{ old('company_mobile') }}">
+                                                    name="company_mobile" required value="<?php echo e(old('company_mobile')); ?>">
                                                 <div id="companyMobileHelp" class="form-text"></div>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 col-md-6">
 
-                                            {{-- <div class="mb-3">
-                                            <label for="businessType" class="form-label">
-                                                <small class="fw-semibold asterisk">Business Type</small>
-                                            </label>
-                                            <input type="text" class="form-control" id="businessType"
-                                                aria-describedby="businessTypeHelp" placeholder="Enter Business Type"
-                                                name="business_type" required>
-                                            <div id="businessTypeHelp" class="form-text"></div>
-                                        </div> --}}
+                                            
 
                                             <div class="mb-2">
                                                 <label for="businessCategory" class="form-label">
@@ -248,10 +239,11 @@
                                                 <select name="business_category_id" class="form-select select2"
                                                     aria-label="Select Business Category"
                                                     aria-describedby="businessCategoryHelp" id="business_category_id">
-                                                    @foreach ($business_categories as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->category_name }}
+                                                    <?php $__currentLoopData = $business_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->category_name); ?>
+
                                                         </option>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -262,7 +254,7 @@
                                                 </label>
                                                 <input type="text" class="form-control" id="whatsapp_number"
                                                     aria-describedby="whatsapp_number" placeholder="Enter WhatsApp Number"
-                                                    name="whatsapp_number" required value="{{ old('whatsapp_number') }}">
+                                                    name="whatsapp_number" required value="<?php echo e(old('whatsapp_number')); ?>">
                                                 <div id="whatsapp_number" class="form-text"></div>
                                             </div>
 
@@ -307,11 +299,18 @@
                                                             value="" required>
                                                     </div>
                                                 </div>
-                                                @error('social_media')
+                                                <?php $__errorArgs = ['social_media'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                     <span class="invalid-feedback" role="alert">
-                                                        <span>{{ $message }}</span>
+                                                        <span><?php echo e($message); ?></span>
                                                     </span>
-                                                @enderror
+                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                             </div>
 
                                             <div class="mb-3">
@@ -320,7 +319,7 @@
                                                 </label>
                                                 <input type="text" class="form-control" id="website"
                                                     aria-describedby="businessTypeHelp" placeholder="Enter Website"
-                                                    name="website" required value="{{ old('website') }}">
+                                                    name="website" required value="<?php echo e(old('website')); ?>">
                                                 <div id="businessTypeHelp" class="form-text"></div>
                                             </div>
                                         </div>
@@ -395,11 +394,18 @@
                                                             value="" required>
                                                     </div>
                                                 </div>
-                                                @error('business_hours')
+                                                <?php $__errorArgs = ['business_hours'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                     <span class="invalid-feedback" role="alert">
-                                                        <span>{{ $message }}</span>
+                                                        <span><?php echo e($message); ?></span>
                                                     </span>
-                                                @enderror
+                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                             </div>
                                         </div>
 
@@ -412,7 +418,8 @@
                                                 <textarea class="form-control" id="company_description" rows="10" name="company_description"
                                                     aria-describedby="companyDescriptionHelp" placeholder="Write Company Description Here..."
                                                     name="company_description" required>
-                                                {{ old('company_description') }}
+                                                <?php echo e(old('company_description')); ?>
+
                                             </textarea>
                                                 <div id="companyDescriptionHelp" class="form-text"></div>
                                             </div>
@@ -638,13 +645,20 @@
                                             <small class="fw-semibold asterisk">City</small>
                                         </label>
                                         <select name="city"
-                                            class="form-control select2 @error('city') is-invalid @enderror"
+                                            class="form-control select2 <?php $__errorArgs = ['city'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                             id="city">
-                                            @foreach ($locations as $item)
-                                                <option value="{{ $item->id }}"
-                                                    {{ old('city') == $item->id ? 'selected' : '' }}>
-                                                    {{ $item->title }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($item->id); ?>"
+                                                    <?php echo e(old('city') == $item->id ? 'selected' : ''); ?>>
+                                                    <?php echo e($item->title); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                     <button type="button"
@@ -663,8 +677,8 @@
                     tabindex="0">
                     <h4 class="text-center my-3" style="color: var(--sky-blue);">Add Expert</h4>
 
-                    <form action="{{ route('experts.create') }}" method="post" enctype="multipart/form-data">
-                        @csrf
+                    <form action="<?php echo e(route('experts.create')); ?>" method="post" enctype="multipart/form-data">
+                        <?php echo csrf_field(); ?>
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class="col">
                                 <div class="mb-2">
@@ -674,11 +688,11 @@
                                     <select name="experts_categories_id" class="form-select select2"
                                         aria-label="Select Expert Category" aria-describedby="expertCategoryHelp"
                                         data-placeholder="Select Expert Category" id="experts_categories_id">
-                                        @foreach ($categories as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ old('experts_categories_id') == $item->id ? 'selected' : '' }}>
-                                                {{ $item->category_name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($item->id); ?>"
+                                                <?php echo e(old('experts_categories_id') == $item->id ? 'selected' : ''); ?>>
+                                                <?php echo e($item->category_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                     <div id="expertCategoryHelp" class="form-text"></div>
                                 </div>
@@ -689,7 +703,7 @@
                                     </label>
                                     <input type="text" class="form-control" id="contact_person_name"
                                         aria-describedby="contact_person_name" placeholder="Enter Contact person name"
-                                        name="contact_person_name" required value="{{ old('contact_person_name') }}">
+                                        name="contact_person_name" required value="<?php echo e(old('contact_person_name')); ?>">
                                     <div id="contact_person_name" class="form-text"></div>
                                 </div>
 
@@ -699,7 +713,7 @@
                                     </label>
                                     <input type="email" class="form-control" id="email"
                                         aria-describedby="emailHelp" placeholder="example@gmail.com" name="email"
-                                        required value="{{ old('email') }}">
+                                        required value="<?php echo e(old('email')); ?>">
                                     <div id="emailHelp" class="form-text"></div>
                                 </div>
 
@@ -709,7 +723,7 @@
                                     </label>
                                     <input type="phone" class="form-control" id="mobile"
                                         aria-describedby="mobileHelp" placeholder="+880 17899 888888" name="mobile"
-                                        required value="{{ old('mobile') }}">
+                                        required value="<?php echo e(old('mobile')); ?>">
                                     <div id="mobileHelp" class="form-text"></div>
                                 </div>
 
@@ -719,7 +733,7 @@
                                     </label>
                                     <input type="phone" class="form-control" id="whatsapp_number"
                                         aria-describedby="whatsapp_number" placeholder="+880 17899 888888"
-                                        name="whatsapp_number" required value="{{ old('whatsapp_number') }}">
+                                        name="whatsapp_number" required value="<?php echo e(old('whatsapp_number')); ?>">
                                     <div id="whatsapp_number" class="form-text"></div>
                                 </div>
 
@@ -729,7 +743,7 @@
                                     </label>
                                     <input type="text" class="form-control" id="address"
                                         aria-describedby="addressHelp" placeholder="Enter Your Address" name="address"
-                                        required value="{{ old('address') }}">
+                                        required value="<?php echo e(old('address')); ?>">
                                     <div id="addressHelp" class="form-text"></div>
                                 </div>
                             </div>
@@ -752,7 +766,7 @@
                                     </label>
                                     <input type="url" class="form-control" id="website"
                                         aria-describedby="websiteLinkHelp" placeholder="https://www.example.com"
-                                        name="website" value="{{ old('website') }}">
+                                        name="website" value="<?php echo e(old('website')); ?>">
                                     <div id="websiteLinkHelp" class="form-text"></div>
                                 </div>
 
@@ -969,13 +983,20 @@
                                     </label>
 
                                     <select name="city"
-                                        class="form-control select2 @error('city') is-invalid @enderror" id="city"
+                                        class="form-control select2 <?php $__errorArgs = ['city'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="city"
                                         required>
-                                        @foreach ($locations as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ old('city') == $item->id ? 'selected' : '' }}>
-                                                {{ $item->title }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($item->id); ?>"
+                                                <?php echo e(old('city') == $item->id ? 'selected' : ''); ?>>
+                                                <?php echo e($item->title); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                     <div id="cityHelp" class="form-text"></div>
                                 </div>
@@ -986,7 +1007,8 @@
                                     </label>
                                     <textarea class="form-control" id="description" rows="4" aria-describedby="descriptionHelp"
                                         placeholder="Write Your Description Here..." name="description" required>
-                                        {{ old('description') }}
+                                        <?php echo e(old('description')); ?>
+
                                     </textarea>
                                     <div id="descriptionHelp" class="form-text"></div>
                                 </div>
@@ -1009,7 +1031,7 @@
             </div>
         </div>
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 <script>
@@ -1077,7 +1099,7 @@
 </script>
 
 
-@section('custom_script')
+<?php $__env->startSection('custom_script'); ?>
     <script>
         $('#companyDescription').summernote({
             placeholder: 'Write Company Description Here...',
@@ -1155,4 +1177,6 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.frontend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\app_gsp\resources\views/listing.blade.php ENDPATH**/ ?>

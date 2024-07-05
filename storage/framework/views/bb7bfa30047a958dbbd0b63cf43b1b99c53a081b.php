@@ -90,18 +90,18 @@
 
 
                     <!-- <div class="info">
-                                                                                                                                                                                                                                                                                                                                                                                                <i class="bi bi-geo-alt-fill me-3">
-                                                                                                                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">Rue de Tracy</small>
-                                                                                                                                                                                                                                                                                                                                                                                                </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="bi bi-geo-alt-fill me-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                          <small class="fw-semibold">Rue de Tracy</small>
+                                                                                                                                                                                                                                                                                                                                                                                                                        </i>
 
-                                                                                                                                                                                                                                                                                                                                                                                                <i class="bi bi-tags-fill me-3">
-                                                                                                                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">For Rent</small>
-                                                                                                                                                                                                                                                                                                                                                                                                </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="bi bi-tags-fill me-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                          <small class="fw-semibold">For Rent</small>
+                                                                                                                                                                                                                                                                                                                                                                                                                        </i>
 
-                                                                                                                                                                                                                                                                                                                                                                                                <i class="bi bi-calendar3">
-                                                                                                                                                                                                                                                                                                                                                                                                  <small class="fw-semibold">July 3, 2023</small>
-                                                                                                                                                                                                                                                                                                                                                                                                </i>
-                                                                                                                                                                                                                                                                                                                                                                                              </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="bi bi-calendar3">
+                                                                                                                                                                                                                                                                                                                                                                                                                          <small class="fw-semibold">July 3, 2023</small>
+                                                                                                                                                                                                                                                                                                                                                                                                                        </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                      </div> -->
 
                     <!--<h4 class="mt-4 mb-3">Overview</h4>-->
                     <!--<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">-->
@@ -418,8 +418,8 @@
                     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <!-- <button class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill"
-                                                                                                                                                                                                                                                                                                                                                                                                    data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
-                                                                                                                                                                                                                                                                                                                                                                                                    aria-selected="true">Overview</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                            data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
+                                                                                                                                                                                                                                                                                                                                                                                                                            aria-selected="true">Overview</button> -->
 
                             <h5 style="margin-top: 10px;">Overview</h5>
                         </li>
@@ -613,13 +613,14 @@
                         <h5 style="margin-top: 10px;">Get In Touch</h5>
                         <hr style="margin-top: 5px; border-width: 2px" />
 
-                        <form action="" method="post" enctype="multipart/form-data" class="px-3">
+                        <form action="<?php echo e(route('add.get.in.touch')); ?>" method="post" class="px-3">
+                            <?php echo csrf_field(); ?>
                             <div class="mb-3">
                                 <label for="name" class="form-label fw-semibold">
                                     <small>Your Name</small>
                                 </label>
                                 <input type="text" name="name" class="form-control" id="name"
-                                    aria-describedby="nameHelp">
+                                    aria-describedby="nameHelp" value="<?php echo e(old('name')); ?>">
                                 <div id="nameHelp" class="form-text d-none">We'll never share your email with anyone
                                     else.
                                 </div>
@@ -630,7 +631,7 @@
                                     <small>Your Email</small>
                                 </label>
                                 <input type="email" name="email" class="form-control" id="email"
-                                    aria-describedby="emailHelp">
+                                    aria-describedby="emailHelp" value="<?php echo e(old('email')); ?>">
                                 <div id="emailHelp" class="form-text d-none">We'll never share your email with anyone
                                     else.
                                 </div>
@@ -641,7 +642,7 @@
                                     <small>Your Phone</small>
                                 </label>
                                 <input type="text" name="phone" class="form-control" id="phone"
-                                    aria-describedby="phoneHelp">
+                                    aria-describedby="phoneHelp" value="<?php echo e(old('phone')); ?>">
                                 <div id="phoneHelp" class="form-text d-none">We'll never share your email with anyone
                                     else.
                                 </div>
@@ -652,7 +653,7 @@
                                     <small>Your City</small>
                                 </label>
                                 <input type="text" name="city" class="form-control" id="city"
-                                    aria-describedby="cityHelp">
+                                    aria-describedby="cityHelp" value="<?php echo e(old('city')); ?>">
                                 <div id="cityHelp" class="form-text d-none">We'll never share your email with anyone
                                     else.
                                 </div>
@@ -662,9 +663,10 @@
                                 <label for="replyTime" class="form-label fw-semibold">
                                     <small>Prefered Replay Time</small>
                                 </label>
-                                <input type="datetime-local" name="reply_time" class="form-control" id="replyTime"
-                                    aria-describedby="replyTimeHelp">
-                                <div id="replyTimeHelp" class="form-text d-none">We'll never share your email with anyone
+                                <input type="datetime-local" name="replay_time" class="form-control" id="replyTime"
+                                    aria-describedby="replyTimeHelp" value="<?php echo e(old('replay_time')); ?>">
+                                <div id="replyTimeHelp" class="form-text d-none">We'll never share your email with
+                                    anyone
                                     else.</div>
                             </div>
 
@@ -672,13 +674,17 @@
                                 <label for="message" class="form-label fw-semibold">
                                     <small>Your Message</small>
                                 </label>
-                                <textarea class="form-control" name="message" rows="6" id="message" aria-describedby="messageHelp"></textarea>
-                                <div id="messageHelp" class="form-text d-none">We'll never share your email with anyone
+                                <textarea class="form-control" name="message" rows="6" id="message">
+                            <?php echo e(old('message')); ?>
+
+                        </textarea>
+                                <div id="messageHelp" class="form-text d-none">We'll never share your email with
+                                    anyone
                                     else.
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn submit-btn border-0 fw-semibold rounded-5 px-4">
+                            <button type="submit" class="btn btn-primary border-0 fw-semibold rounded-5 px-4">
                                 <i class="bi bi-send"></i>
                                 <small>Submit</small>
                             </button>

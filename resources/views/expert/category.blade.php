@@ -7,6 +7,16 @@
 @endsection
 @section('content')
     <main>
+
+
+        <div class="container-fluid container-lg mt-5 mb-3">
+            <div class="row">
+                <div class="col-sm-12 d-flex justify-content-center">
+                    <img src="{{ asset($banner->banner_image) }}" class="img-fluid" alt="{{ $banner->banner_title }}">
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid container-lg mt-5 mb-2">
 
             <div class="row">
@@ -49,7 +59,8 @@
                                     <div class="card-body text-truncate py-2">
                                         <h6 class="card-title fw-semibold text-center my-0" style="font-size: 1rem">
                                             {{ $item->category_name }}</h6>
-                                        <a href="{{ route('expert.list.category', $item->category_slug) }}" class="stretched-link"></a>
+                                        <a href="{{ route('expert.list.category', $item->category_slug) }}"
+                                            class="stretched-link"></a>
                                     </div>
                                 </div>
                             </div>

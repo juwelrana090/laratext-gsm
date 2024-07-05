@@ -61,6 +61,34 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="new_price" class="col-sm-2 col-form-label">New Price</label>
+                                <div class="col-sm-10">
+                                    <input type="text" onkeyup="convertToSlug(this.value)" name="new_price"
+                                        class="form-control @error('new_price') is-invalid @enderror" id="new_price"
+                                        placeholder="Title">
+                                </div>
+                                @error('new_price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="original_price" class="col-sm-2 col-form-label">Original Price</label>
+                                <div class="col-sm-10">
+                                    <input type="text" onkeyup="convertToSlug(this.value)" name="original_price"
+                                        class="form-control @error('original_price') is-invalid @enderror"
+                                        id="original_price" placeholder="Title">
+                                </div>
+                                @error('original_price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <span>{{ $message }}</span>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="brandSelect" class="col-sm-2 col-form-label">Menufacturer Brands</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" name="brand_id" id="brandSelect">
@@ -150,7 +178,8 @@
                                 <label for="seo_description" class="col-sm-2 col-form-label">SEO
                                     Description</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" name="seo_description" id="seo_description" rows="3" placeholder="SEO Description"></textarea>
+                                    <textarea class="form-control" name="seo_description" id="seo_description" rows="3"
+                                        placeholder="SEO Description"></textarea>
                                 </div>
                                 @error('seo_description')
                                     <span class="invalid-feedback" role="alert">

@@ -7,6 +7,16 @@
 @endsection
 @section('content')
     <main>
+
+
+        <div class="container-fluid container-lg mt-5 mb-3">
+            <div class="row">
+                <div class="col-sm-12 d-flex justify-content-center">
+                    <img src="{{ asset($banner->banner_image) }}" class="img-fluid" alt="{{ $banner->banner_title }}">
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid container-lg mt-5 mb-3">
 
             <div class="row">

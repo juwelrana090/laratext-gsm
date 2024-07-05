@@ -61,6 +61,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($touch_list as $touch)
+                                            <tr>
+                                                <td>{{ $touch->name }}</td>
+                                                <td>{{ $touch->email }}</td>
+                                                <td>{{ $touch->phone }}</td>
+                                                <td>{{ $touch->city }}</td>
+                                                <td>{{ $touch->replay_time }}</td>
+                                                <td>{{ $touch->message }}</td>
+                                            </tr>
+                                        @endforeach
 
                                     </tbody>
                                 </table>

@@ -23,7 +23,12 @@ use App\Models\CarType;
 use App\Models\FileManager;
 use App\Models\Page;
 use App\Models\Banner;
+use App\Models\GetInTouch;
+
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -500,9 +505,293 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function addGetInTouch(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'replay_time' => 'required',
+            'message' => 'required',
+        ]);
+
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $add_touch = GetInTouch::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'city' => $request->city,
+            'replay_time' => $request->replay_time,
+            'message' => $request->message,
+        ]);
+
+
+        if ($add_touch) {
+            toastr()->success('Get In Touch sent successfully', 'Success');
+        }
+        return back()->with('success', 'Get In Touch sent successfully');
+    }
+
     public function listing(Request $request)
     {
-        return view('listing');
+        $business_categories = BusinessCategories::latest()->orderBy('id', 'desc')->get();
+        $categories = ExpertsCategories::latest()->orderBy('id', 'desc')->get();
+        $locations = Locations::latest()->orderBy('id', 'desc')->get();
+        return view('listing', [
+            'business_categories' => $business_categories,
+            'categories' => $categories,
+            'locations' => $locations,
+        ]);
+    }
+    public function businessCreate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'contact_person_name' => 'required',
+            'contact_email' => 'required',
+            'contact_mobile' => 'required',
+            'contact_whatsapp' => 'required',
+            'contact_address' => 'required',
+            'contact_image' => 'required',
+            'company_name' => 'required',
+            'company_mobile' => 'required',
+            'company_email' => 'required',
+            'business_category_id' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $uniqid = uniqid();
+        $user_id = auth()->user()->id;
+
+        $company_name = $request->company_name;
+        $company_slug = Str::slug($company_name);
+
+        $businesses = Business::where('company_slug', 'LIKE', "%{$company_slug}%")->get();
+        $count = $businesses->count();
+
+        if ($count > 0) {;
+            foreach ($businesses as $business) {
+                $data[] = $business['company_slug'];
+            }
+
+            if (in_array($company_slug, $data)) {
+                $business_count = 0;
+                while (in_array(($company_slug . '-' . ++$business_count), $data));
+                $company_name = $company_name . " " . $business_count;
+                $company_slug = $company_slug . '-' . $business_count;
+            }
+        }
+
+        $business_category = BusinessCategories::find($request->business_category_id);
+
+        $business_images = [];
+
+        $now_day = date('F_Y');
+        $contact_image = "";
+        $contact_image_id = "";
+
+        if ($request->hasFile('contact_image')) {
+            $path = public_path('uploads/files/' . $now_day);
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $file = $request->file('contact_image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->move($path, $fileName);
+            $fileModel = new FileManager;
+            $file_location = 'uploads/files/' . $now_day . '/' . $fileName;
+
+            $file_type = explode('/', $file->getClientMimeType());
+
+            if ($filePath) {
+                $fileModel->file_name = $fileName;
+                $fileModel->file_type = $file_type[0];
+                $fileModel->file_format = $file->getClientOriginalExtension();
+                $fileModel->file_thumbnail = $file_location;
+                $fileModel->file_path = $file_location;
+                $fileModel->save();
+            }
+
+            $contact_image = $file_location;
+            $contact_image_id = $fileModel->id;
+        }
+
+
+        $business_hours =  json_encode([
+            "sunday_hours" => $request->sunday_hours,
+            "monday_hours" => $request->monday_hours,
+            "tuesday_hours" => $request->tuesday_hours,
+            "wednesday_hours" => $request->wednesday_hours,
+            "thursday_hours" => $request->thursday_hours,
+            "friday_hours" => $request->friday_hours,
+            "saturday_hours" => $request->saturday_hours,
+        ]);
+
+        $social_media = json_encode([
+            "facebook" => $request->facebook,
+            "instagram" => $request->instagram,
+            "twitter" => $request->twitter,
+            "linkedin" => $request->linkedin,
+        ]);
+
+        $locations = Locations::where('id', '=', $request->city)->first();
+
+        $business_images = json_encode($business_images);
+        $business = Business::create([
+            'user_id' => $user_id,
+            'uniqid' => $uniqid,
+            'contact_person_name' => $request->contact_person_name,
+            'contact_position' => $request->contact_position,
+            'contact_email' => $request->contact_email,
+            'contact_mobile' => $request->contact_mobile,
+            'contact_whatsapp' => $request->contact_whatsapp,
+            'contact_google_map' => $request->contact_google_map,
+            'contact_address' => $request->contact_address,
+            'contact_website' => $request->contact_website,
+            'contact_image' => $contact_image,
+            'contact_image_id' => $contact_image_id,
+            'company_name' => $company_name,
+            'company_slug' => $company_slug,
+            'company_mobile' => $request->company_mobile,
+            'company_description' => $request->company_description,
+            'company_email' => $request->company_email,
+            'business_price' => 0,
+            'business_hours' => $business_hours,
+            'business_images' => $business_images,
+            'business_category_id' => $business_category->id,
+            'business_category_title' => $business_category->category_name,
+            'whatsapp_number' => $request->whatsapp_number,
+            'social_media' => $social_media,
+            'website' => $request->website,
+            'city' => $locations->title,
+            'locations_id' => $locations->id,
+            'country' => $request->country,
+            'status' => "pending",
+        ]);
+
+
+
+        if ($business) {
+            toastr()->success('Business created successfully', 'Success');
+        }
+
+        return back()->with('success', 'Business created successfully');
+    }
+
+    public function expertsCreate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'contact_person_name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'mobile' => 'required',
+            'whatsapp_number' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $uniqid = uniqid();
+        $user_id = auth()->user()->id;
+
+        $title = $request->contact_person_name;
+        $slug = Str::slug($title);
+
+        $experts = Experts::where('slug', 'LIKE', "%{$slug}%")->get();
+        $count = $experts->count();
+
+        if ($count > 0) {
+            $data = [];
+            foreach ($experts as $expert) {
+                $data[] = $expert['slug'];
+            }
+
+            if (in_array($slug, $data)) {
+                $expert_count = 0;
+                while (in_array(($slug . '-' . ++$expert_count), $data));
+                $title = $title . " " . $expert_count;
+                $slug = $slug . '-' . $expert_count;
+            }
+        }
+
+        $expert_category =  ExpertsCategories::where('id', '=', $request->experts_categories_id)->first();
+
+        $now_day = date('F_Y');
+
+        $expert_image = "";
+        $image_id = "";
+        $cover_photo = "";
+        $cover_photo_id = "";
+
+        $social_profile = json_encode([
+            "facebook" => "",
+            "instagram" => "",
+            "twitter" => "",
+            "linkedin" => "",
+        ]);
+
+        $working_hours = json_encode([
+            "sunday_hours" => "",
+            "monday_hours" => "",
+            "tuesday_hours" => "",
+            "wednesday_hours" => "",
+            "thursday_hours" => "",
+            "friday_hours" => "",
+            "saturday_hours" => "",
+        ]);
+
+        $locations = Locations::where('id', '=', $request->city)->first();
+
+        $expert_create = Experts::create([
+            'experts_categories_id' => $expert_category->id,
+            'experts_categories_name' => $expert_category->category_name,
+            'contact_person_name' => $request->contact_person_name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'mobile' => $request->mobile,
+            'telephone' => $request->mobile,
+            'whatsapp_number' => $request->whatsapp_number,
+            'price' => 0,
+            'starting_prices' => 0,
+            'title' => $title,
+            'slug' => $slug,
+            'about' => "",
+            'services' => "",
+            'working_hours' => $working_hours,
+            'description' => $request->description,
+            'social_profile' => $social_profile,
+            'google_map' => $request->google_map,
+            'website' => $request->website,
+            'city' => $locations->title,
+            'locations_id' => $locations->id,
+            'country' => $request->country,
+            'status' => "pending",
+            'seo_title' => "",
+            'seo_keywords' => "",
+            'seo_description' => "",
+            'expert_image' => "",
+            'cover_photo' => "",
+            'cover_photo_id' => 0,
+            'image_id' => 0,
+        ]);
+
+        if ($expert_create) {
+            toastr()->success('Expert created successfully', 'Success');
+        }
+        return back()->with('success', 'Expert created successfully');
     }
 
     public function termsConditions()

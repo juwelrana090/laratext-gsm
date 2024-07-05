@@ -60,6 +60,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $__currentLoopData = $touch_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $touch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <td><?php echo e($touch->name); ?></td>
+                                                <td><?php echo e($touch->email); ?></td>
+                                                <td><?php echo e($touch->phone); ?></td>
+                                                <td><?php echo e($touch->city); ?></td>
+                                                <td><?php echo e($touch->replay_time); ?></td>
+                                                <td><?php echo e($touch->message); ?></td>
+                                            </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                     </tbody>
                                 </table>

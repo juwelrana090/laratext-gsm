@@ -107,7 +107,9 @@ class CarController extends Controller
         }
 
         $data = [
+            'new_price' =>  $request->new_price,
             'title' => $title,
+            'original_price' =>  $request->original_price,
             'brand_id' => $request->brand_id,
             'year' => $request->car_year,
             'slug' => $slug,
@@ -228,12 +230,30 @@ class CarController extends Controller
             'title' => 'required',
         ]);
 
+        $title = $request->title;
+        $slug = Str::slug($title);
+
+        $cars = Car::where('slug', 'LIKE', "%{$slug}%")->get();
+        $count = $cars->count();
+
+        if ($count > 0) {
+            foreach ($cars as $car) {
+                $data[] = $car['slug'];
+            }
+
+            if (in_array($slug, $data)) {
+                $car_count = 0;
+                while (in_array(($slug . '-' . ++$car_count), $data));
+                $title = $title . " " . $car_count;
+                $slug = $slug . '-' . $car_count;
+            }
+        }
+
         $data = [
             'title' => $request->title,
             'brand_id' => $request->brand_id,
             'year' => $request->car_year,
-            'slug' => $request->slug,
-
+            'slug' => $slug,
 
             'car_type_id' => $request->car_type_id,
             'fuel_type_id' => $request->vehicle_brands,
@@ -271,6 +291,7 @@ class CarController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
+
         $result = Car::find($id)->update($data);
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $key => $file) {

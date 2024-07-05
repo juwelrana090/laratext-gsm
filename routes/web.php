@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::get('/about-us', 'DashboardController@aboutUs')->name('about.us');
     Route::get('/contact-us', 'DashboardController@contactUs')->name('contact.us');
+    Route::post('/add-touch', 'DashboardController@addGetInTouch')->name('add.get.in.touch');
 
     Route::group(['prefix' => 'businesses'], function () {
         Route::get('/', 'DashboardController@businessList')->name('business.list');
@@ -79,7 +80,9 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('/{slug}', 'DashboardController@blogDetails')->name('blog.details');
     });
 
-    Route::get('/listing', 'DashboardController@listing')->name('listing');
+    Route::get('/add-listing', 'DashboardController@listing')->name('listing');
+    Route::post('/experts-create', 'DashboardController@expertsCreate')->name('experts.create');
+    Route::post('/business-create', 'DashboardController@businessCreate')->name('business.create.home');
     Route::get('/terms-and-conditions', 'DashboardController@termsConditions')->name('terms-and-conditions');
     Route::get('/privacy-policy', 'DashboardController@privacyPolicy')->name('privacy-policy');
 
