@@ -130,6 +130,13 @@ header .nav-link:hover {
     }
 }
 
+@media screen and (max-width: 480px) {
+
+    .businesses_price {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 400px) {
     .bg-img {
         height: 200px !important;
@@ -170,7 +177,7 @@ header .nav-link:hover {
         font-size: 12px !important;
     }
 
-    .fw-semibold{
+    .fw-semibold {
         font-size: 11px !important;
     }
 

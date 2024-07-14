@@ -330,7 +330,7 @@
                                         <span><?php echo e($businesses->contact_address); ?></span>
                                     </div>
 
-                                    <div class="d-flex gap-1 text-center">
+                                    <div class="d-flex gap-1 text-center businesses_price">
                                         <i class="bi bi-cash-coin"></i>
                                         <span class="d-block fw-semibold">Price : </span>
                                         <span><?php echo e($businesses->business_price); ?></span>

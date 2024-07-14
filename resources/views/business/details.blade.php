@@ -6,6 +6,467 @@
     <!-- Custom styles for this template -->
 
     <style>
+        :root {
+            --dark_orange: #ee5007;
+            --dark_blue: #060047;
+            --blue_violet: #6a1fcb;
+            --white_smoke: #f5f6f7;
+            --deep-orange: #ff0c0e;
+            --sky-blue: #12bcff;
+            --jomolhari: font-family: "Jomolhari", serif;
+            --adamina: font-family: "Adamina", serif;
+            --ledger: font-family: "Ledger", serif;
+            --castoro: font-family: 'Castoro', serif;
+            --lora: font-family: 'Lora', serif;
+        }
+
+        body {
+            background-color: var(--white_smoke);
+        }
+
+        .biz-btn {
+            background-color: var(--deep-orange) !important;
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.5s ease-in-out;
+            /* background: linear-gradient(to right, #ff0c0e, #12bcff); */
+            border: none;
+        }
+
+        .biz-btn:hover {
+            /* background: linear-gradient(to right, #12bcff, #ff0c0e); */
+            background-color: var(--sky-blue);
+        }
+
+        header .navbar {
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            background-color: #f5f6f7;
+        }
+
+        header .nav-link {
+            text-transform: capitalize;
+            font-family: "Castoro", serif;
+            font-weight: 400;
+            color: black;
+        }
+
+        header .nav-link.active,
+        header .nav-link:hover {
+            color: var(--deep-orange) !important;
+        }
+
+        .bg-img {
+            height: 270px;
+            background-image: url(../../images/duba_bg.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .trans-bg {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .banner-title {
+            color: var(--dark_blue);
+        }
+
+        .banner select {
+            border-top-left-radius: 50px !important;
+            border-bottom-left-radius: 50px !important;
+            border: 1px solid #12bcff;
+        }
+
+        .whatsapp-btn {
+            width: 110px;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            background-color: #25D366 !important;
+        }
+
+        .banner input {
+            border-top: 1px solid #12bcff;
+            border-bottom: 1px solid #12bcff;
+        }
+
+        .banner button {
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            /* border: 1px solid #12bcff; */
+            /* background: linear-gradient(to right, #ff0c0e, #12bcff); */
+            border: 1px solid var(--deep-orange);
+            background-color: var(--deep-orange);
+        }
+
+        .banner button:hover {
+            border: 1px solid var(--sky-blue);
+            background-color: var(--sky-blue);
+        }
+
+        .agent-card {
+            width: auto;
+            height: 235px;
+            border-color: #c8c8c83b !important;
+            border-radius: 05px;
+        }
+
+        .agent-img {
+            width: 200px;
+            height: 235px;
+            border-radius: 5px;
+        }
+
+        .company-call {
+            width: 130px;
+            height: 35px;
+        }
+
+        .company-whatsapp {
+            width: 120px;
+            height: 35px;
+        }
+
+        .company-email {
+            width: 140px;
+            height: 35px;
+        }
+
+        @media screen and (max-width: 800px) {
+            .banner .trans-bg {
+                width: 80% !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+
+            .businesses_price {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .bg-img {
+                height: 200px !important;
+            }
+
+            .banner .trans-bg {
+                width: 95% !important;
+            }
+
+            .agent-img {
+                width: 180px;
+                height: 215px;
+                border-radius: 5px;
+            }
+
+            .agent-card {
+                width: auto;
+                height: 215px;
+                border-color: #c8c8c83b !important;
+                border-radius: 05px;
+            }
+
+            .company-call {
+                width: 130px;
+                height: 35px;
+                font-size: 12px !important;
+            }
+
+            .company-whatsapp {
+                width: 120px;
+                height: 35px;
+                font-size: 12px !important;
+            }
+
+            .company-email {
+                width: 140px;
+                height: 35px;
+                font-size: 12px !important;
+            }
+
+            .fw-semibold {
+                font-size: 11px !important;
+            }
+
+
+        }
+
+
+        input[type="text"],
+        select.form-select {
+            border: 1px solid var(--deep-orange);
+            background-color: var(--white_smoke);
+        }
+
+        input[type="text"]:focus,
+        select.form-select:focus {
+            box-shadow: none;
+            border: 1px solid var(--deep-orange);
+        }
+
+        input::placeholder {
+            color: rgb(209, 206, 206) !important;
+        }
+
+        input:focus::placeholder {
+            color: rgb(240, 171, 171) !important;
+            transform: translateX(7px);
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* .category-card {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            background: linear-gradient(to right, #ff0c0e, #12bcff);
+            color: white;
+            font-family: "Castoro", serif;
+        } */
+
+        .category-card {
+            background-color: var(--white_smoke);
+        }
+
+        .category-card span {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            background-color: var(--deep-orange);
+            color: white;
+            font-family: "Castoro", serif;
+        }
+
+        .category-card button {
+            color: var(--deep-orange);
+            font-family: "Castoro", serif;
+        }
+
+        .category-card button:hover {
+            color: var(--sky-blue);
+        }
+
+        .category-list-card {
+            border: 1px solid #f8dcdc;
+            /* border: none; */
+            transition: all 0.5s ease-in-out;
+            background-color: #f5f6f7;
+            box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
+        }
+
+        .category-list-card:hover {
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            transform: translateX(2px);
+        }
+
+        .category-list-card .card-title {
+            font-size: small !important;
+        }
+
+        .show-plan {
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.5s ease-in-out;
+            /* background: linear-gradient(to right, #ff0c0e, #12bcff); */
+            background-color: var(--deep-orange);
+            border: none;
+            border-radius: 5px;
+            padding: 4px 30px;
+        }
+
+        .show-plan:hover {
+            /* background: linear-gradient(to right, #12bcff, #ff0c0e); */
+            background-color: var(--deep-orange);
+        }
+
+        .price-card .card {
+            background-color: #f5f6f7;
+            box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
+            transition: transform .5s ease;
+        }
+
+        .price-card .card:hover {
+            transform: scale(1.03);
+        }
+
+        .price-card .card-header {
+            /* background: linear-gradient(to right, #ff0c0e, #12bcff); */
+            background-color: var(--sky-blue);
+            border-bottom-right-radius: 40px;
+        }
+
+        .price-card .row .col:nth-child(1) .feature-icon {
+            color: #9b0000;
+        }
+
+        .price-card .row .col:nth-child(2) .feature-icon {
+            color: #f76e11;
+        }
+
+        .price-card .row .col:nth-child(3) .feature-icon {
+            color: #3bb210;
+        }
+
+        .price-card .row .col:nth-child(4) .feature-icon {
+            color: #8a39e1;
+        }
+
+        .price-card .ribbon {
+            top: -10px;
+            left: -10px;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .price-card .ribbon::before,
+        .price-card .ribbon::after {
+            position: absolute;
+            content: "";
+            display: block;
+            border-top-color: transparent;
+            border-left-color: transparent;
+        }
+
+        .price-card .row .col:nth-child(1) .ribbon::before,
+        .price-card .row .col:nth-child(1) .ribbon::after {
+            border: 7px solid #740606;
+            border: 7px solid var(--sky-blue);
+        }
+
+        .price-card .row .col:nth-child(2) .ribbon::before,
+        .price-card .row .col:nth-child(2) .ribbon::after {
+            border: 7px solid #873803;
+            border: 7px solid var(--sky-blue);
+        }
+
+        .price-card .row .col:nth-child(3) .ribbon::before,
+        .price-card .row .col:nth-child(3) .ribbon::after {
+            border: 7px solid #206407;
+            border: 7px solid var(--sky-blue);
+        }
+
+        .price-card .row .col:nth-child(4) .ribbon::before,
+        .price-card .row .col:nth-child(4) .ribbon::after {
+            border: 7px solid #3b0376;
+            border: 7px solid var(--sky-blue);
+        }
+
+        .price-card .ribbon::before {
+            top: 0;
+            right: 17px;
+        }
+
+        .price-card .ribbon::after {
+            bottom: 15px;
+            left: -2px;
+        }
+
+        .price-card .ribbon span {
+            width: 200px;
+            padding: 10px 0;
+            color: #fff;
+            text-align: center;
+            top: 30px;
+            right: 0;
+            transform: rotate(-45deg);
+        }
+
+        .price-card .row .col:nth-child(1) .ribbon span,
+        .price-card .row .col:nth-child(1) .card-footer {
+            /* background-color: #9b0000; */
+            /* background: linear-gradient(to right, #ff0c0e, #12bcff); */
+            background-color: var(--deep-orange);
+        }
+
+        .price-card .row .col:nth-child(2) .ribbon span,
+        .price-card .row .col:nth-child(2) .card-footer {
+            /* background-color: #f76e11; */
+            /* background-color: var(--sky-blue); */
+            background-color: var(--deep-orange);
+        }
+
+        .price-card .row .col:nth-child(3) .ribbon span,
+        .price-card .row .col:nth-child(3) .card-footer {
+            /* background-color: #3bb210; */
+            /* background-color: var(--sky-blue); */
+            background-color: var(--deep-orange);
+        }
+
+        .price-card .row .col:nth-child(4) .ribbon span,
+        .price-card .row .col:nth-child(4) .card-footer {
+            /* background-color: #8a39e1; */
+            /* background-color: var(--sky-blue); */
+            background-color: var(--deep-orange);
+        }
+
+
+        .price-card .card-footer {
+            /* background: linear-gradient(to right, #ff0c0e, #12bcff); */
+            background-color: var(--deep-orange);
+        }
+
+
+        .price-card .order-btn {
+            transition: all 0.5s;
+        }
+
+        .price-card .order-btn span {
+            transition: 0.5s;
+        }
+
+        .price-card .order-btn span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .price-card .order-btn:hover span {
+            padding-right: 20px;
+        }
+
+        .price-card .order-btn:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .footer h4,
+        .footer hr,
+        .footer a,
+        .footer p {
+            color: #b9d3f6 !important;
+        }
+
+        .footer .col:hover h4,
+        .col:hover hr {
+            transition: all 0.5s ease-in-out;
+            color: red !important;
+        }
+
+        .footer a:hover {
+            color: #12bcff !important;
+        }
+
+        .footer .company_description,
+        .footer .copyright,
+        .footer .developed-by,
+        .footer .policy {
+            font-size: 12px;
+            text-align: justify;
+        }
+
+        .footer a span {
+            font-size: small !important;
+        }
+
+        .footer a:hover span {
+            transition: all 0.5s ease-in-out;
+            margin-left: 7px !important;
+        }
+
+        /* profile card */
+
+
         .rate {
             border-bottom-right-radius: 12px;
             border-bottom-left-radius: 12px
@@ -91,18 +552,18 @@
 
 
                     <!-- <div class="info">
-                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="bi bi-geo-alt-fill me-3">
-                                                                                                                                                                                                                                                                                                                                                                                                                          <small class="fw-semibold">Rue de Tracy</small>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="bi bi-geo-alt-fill me-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                              <small class="fw-semibold">Rue de Tracy</small>
+                                                                                                                                                                                                                                                                                                                                                                                                                            </i>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="bi bi-tags-fill me-3">
-                                                                                                                                                                                                                                                                                                                                                                                                                          <small class="fw-semibold">For Rent</small>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="bi bi-tags-fill me-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                              <small class="fw-semibold">For Rent</small>
+                                                                                                                                                                                                                                                                                                                                                                                                                            </i>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="bi bi-calendar3">
-                                                                                                                                                                                                                                                                                                                                                                                                                          <small class="fw-semibold">July 3, 2023</small>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </i>
-                                                                                                                                                                                                                                                                                                                                                                                                                      </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="bi bi-calendar3">
+                                                                                                                                                                                                                                                                                                                                                                                                                              <small class="fw-semibold">July 3, 2023</small>
+                                                                                                                                                                                                                                                                                                                                                                                                                            </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                          </div> -->
 
                     <!--<h4 class="mt-4 mb-3">Overview</h4>-->
                     <!--<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">-->
@@ -340,29 +801,29 @@
                                         <span>{{ $businesses->contact_address }}</span>
                                     </div>
 
-                                    <div class="d-flex gap-1 text-center">
+                                    {{-- <div class="d-flex gap-1 text-center businesses_price">
                                         <i class="bi bi-cash-coin"></i>
                                         <span class="d-block fw-semibold">Price : </span>
                                         <span>{{ $businesses->business_price }}</span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-sm-12 d-flex align-items-center gap-1" style="height: 45px;">
-                                    <a class="btn btn-outline-info company-call d-flex align-items-center gap-1 px-2 py-1"
+                                    <a class="btn btn-outline-info company-call  d-flex justify-content-center align-items-center gap-1 px-2 py-1"
                                         href="tel:{{ $businesses->company_mobile }}">
                                         <i class="bi bi-telephone fs-5"></i>
-                                        <span>Click to Call</span>
+                                        {{-- <span>Click to Call</span> --}}
                                     </a>
 
                                     <a class="btn btn-outline-success company-whatsapp d-flex justify-content-center align-items-center gap-1 px-2 py-1"
                                         href="https://api.whatsapp.com/send?phone={{ $businesses->contact_whatsapp }}">
                                         <i class="bi bi-whatsapp fs-5"></i>
-                                        <span>Whatsapp</span>
+                                        {{-- <span>Whatsapp</span> --}}
                                     </a>
 
                                     <a class="btn btn-outline-secondary company-email d-flex justify-content-center align-items-center gap-1 px-2 py-1"
                                         href="mail:{{ $businesses->company_email }}">
                                         <i class="bi bi-envelope fs-5"></i>
-                                        <span>Click to Email</span>
+                                        {{-- <span>Click to Email</span> --}}
                                     </a>
                                 </div>
                             </div>
@@ -445,8 +906,8 @@
                     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <!-- <button class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill"
-                                                                                                                                                                                                                                                                                                                                                                                                                            data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
-                                                                                                                                                                                                                                                                                                                                                                                                                            aria-selected="true">Overview</button> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview"
+                                                                                                                                                                                                                                                                                                                                                                                                                                aria-selected="true">Overview</button> -->
 
                             <h5 style="margin-top: 10px;">Overview</h5>
                         </li>
